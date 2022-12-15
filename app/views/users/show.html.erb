@@ -1,0 +1,42 @@
+  <h1><%= @user.user.name %>の詳細</h1>
+
+  <div>
+    <div>
+      <p>今月のポイント獲得進捗：<%= @user.point %></p>
+    </div>
+    <div>
+      <p>今月利用できるポイント：<%= @user.monthly_point %></p>
+    </div>
+    <!-- 先月違反した&継続したルール一覧withポイント -->
+    <!-- 今月違反した&継続したルール一覧withポイント -->
+    <!-- 作成したルール -->
+    <!-- 作成した罰 -->
+    <!-- 作成した特典 -->
+    <div>
+      <h2>作成したルール</h2>
+      <div>
+        <% if @rules.present? %>
+          <table>
+            <thead>
+              <tr>
+                <th>内容</th>
+                <th>増減ポイント</th>
+              </tr>
+            </thead>
+            <tbody>
+            <% @rules.each do |rule| %>
+              <tr>
+                <td><%= rule.content %></td>
+                <td><%= rule.point %></td>
+              </tr>
+            <% end %>
+            </tbody>
+          </table>
+        <% else %>
+          <p>あなたが<%= @community.community_name %>で作成したルールはありません。</p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <%= link_to "コミュニティTopへ", community_path(@community.id) %>

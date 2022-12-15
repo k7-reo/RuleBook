@@ -1,0 +1,9 @@
+  <h1>特典編集</h1>
+  
+    <%= form_with(model:[@community, @privilege], local:true) do |f| %>
+    <p>特典</p>
+    <%= f.text_area :content %>
+    <p>消費ポイント</p>
+    <%= f.text_area :point %>
+    <%= f.submit "編集完了" %>
+  <% end %>

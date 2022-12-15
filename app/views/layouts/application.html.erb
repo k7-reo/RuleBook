@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>RuleBook</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <header>
+      <div class="site-title">
+        <h1>core</h1>
+      </div>
+      <div class="signin-user">
+        <% if user_signed_in? %>
+          <span>ログインユーザー名：<%= current_user.name %></span><span>写真</span>
+        <% end %>
+      </div>
+      <div class="receive_box">
+        <% if user_signed_in? %>
+          <span><%= link_to "通知BOX", receive_path %></span>
+        <% end %>
+      </div>
+      <div class="site-index">
+        <ul>
+        <% if user_signed_in? %>
+          <li><%= link_to "コミュニティ一覧", top_path %></li>
+          <li><%= link_to "各種設定", setting_path %></li>
+          <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
+        <% else %>
+          <li><%= link_to "TOPページ", root_path %></li>
+          <li><%= link_to "新規登録", new_user_registration_path %></li>
+          <li><%= link_to "ログイン", new_user_session_path %></li>
+        <% end %>
+        </ul>
+      </div>
+    </header>
+
+    <main>
+      <%= yield %>
+    </main>
+  </body>
+
+</html>

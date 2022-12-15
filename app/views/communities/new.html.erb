@@ -1,0 +1,15 @@
+  <h1>新規コミュニティ作成</h1>
+  
+  <div>
+  <%= form_with model: @community, url: communities_path, local:true do |f| %> <!-- url: でprefixを利用してcommunities#createを指定。-->
+    <p>コミュニティ名</p>
+    <%= f.text_field :community_name, placeholder: "コミュニティ名" %>
+    <p>コミュニティ概要</p>
+    <%= f.text_area :introduction, placeholder: "コミュニティ説明" %>
+    <%= f.submit '作成' %>
+  <% end %>
+  </div>
+  
+  <div>
+  <%= link_to "TOPへ", root_path %>
+  </div>

@@ -1,0 +1,9 @@
+<h1>個人情報変更</h1>
+
+    <%= form_with(model:[@user], local:true) do |f| %>
+    <p>ユーザー名 <%= f.text_field :name %></p>
+    <p>メールアドレス <%= f.text_field :email %></p>
+    <p><%= f.submit "編集完了" %></p>
+  <% end %>
+
+<%= link_to "TOPへ", top_path %>

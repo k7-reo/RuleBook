@@ -1,0 +1,21 @@
+  <h1>罰 新規作成</h1>
+
+   <p>
+    <b>罰作成のポイント</b><br>
+    個人のポイントが「回復ポイント」分マイナスになった時に<br>
+    受けなければいけない罰を記載してください。
+  </p>
+
+  <div>
+    <%= form_with(model:[@community, @penalty], local:true) do |f| %>
+      <p>罰内容</p>
+      <%= f.text_area :content, placeholder: "特典or罰の内容をここに" %>
+      <p>罰を受けることで回復するポイント</p>
+      <%= f.text_field :point, placeholder: "罰を受けることで回復できるポイントをここに" %>
+      <%= f.submit '作成' %>
+    <% end %>
+  </div>
+
+  <div>
+    <p><%= link_to "戻る", community_privileges_path(@community.id) %></p>
+  <div>

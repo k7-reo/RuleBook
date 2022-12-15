@@ -1,0 +1,39 @@
+  <h1>ルール一覧</h1>
+  <!--本来ならshowアクション/show.html.erbで作成したいところだがまだでーたがないので -->
+  <div>
+    <table>
+      <thead>
+        <tr>
+          <td>ルール内容</td>
+          <td>ポイント増減</td>
+          <td>作成者</td>
+          <td>最終更新者</td>
+          <td colspan="1"></td>
+        </tr>
+      </thead>
+      <tbody>
+      <% @community.rules.each do |rule| %>
+        <tr>
+          <td><%= rule.content %></td>
+          <td><%= rule.point %></td>
+          <td><%= rule.creating_user.name %></td>
+          <td>
+            <% if rule.updating_user_id.present? %>
+              <%= rule.updating_user.name %>
+            <% end %>
+          </td>
+          <td>
+            <%= link_to "実行", community_rule_execute_path(@community.id, rule.id) %>
+            <%= link_to "編集", edit_community_rule_path(@community.id, rule.id) %>
+            <%= link_to "削除", community_rule_path(@community.id, rule.id), method: :delete %>
+          </td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  <div>
+
+  <div>
+    <p><%= link_to "ルール新規作成", new_community_rule_path(@community.id) %></p>
+    <p><%= link_to "コミュニティTopへ", community_path(@community.id) %></p>
+   <div>

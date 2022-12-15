@@ -1,0 +1,14 @@
+  <h1>モットー一覧</h1>
+
+  <div>
+    <% @community.mottos.each do |motto| %>
+      <%= motto.content %>
+      <%= link_to "編集", edit_community_motto_path(@community, motto.id) %>
+    <% end %>
+  </div>
+  
+  <div>
+    <p><%= link_to "モットー新規作成", new_community_motto_path(@community.id) %></p> <!--モットーが存在していたら表示しないifアクション追加 -->
+    <p><%= link_to "コミュニティTopへ", community_path(@community.id) %></p>
+  </div>
+  

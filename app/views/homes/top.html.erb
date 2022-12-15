@@ -1,0 +1,122 @@
+  <h1>マイページ</h1>
+
+  <div class="my-communities">
+    <h2>所属コミュニティ一覧</h2>
+    <p><%= link_to "コミュニティ新規作成", new_community_path %></p>
+    <div>
+    <% if @my_communities.present? %>
+      <table>
+        <thead>
+          <tr>
+            <td>コミュニティID</td>
+            <td>コミュニティ名</td>
+            <td>コミュニティ説明</td>
+            <td>参加人数</td>
+            <td colspan="4"></td>
+          </tr>
+        </thead>
+        <tbody>
+        <% @my_communities.each do |community| %>
+          <tr>
+            <td><%= community.id %></td>
+            <td>
+              <%= link_to community_path(community.id) do %>
+                <%= community.community_name %>
+              <% end %>
+            </td>
+            <td><%= community.introduction %></td>
+            <td><%= community.users.count %></td>
+            <td>
+              <span><%= link_to '編集', edit_community_path(community.id) %></span>
+              <span><%= link_to '退出', community_out_path(community.id), method: :delete %></span>
+            </td>
+            <td>
+              <% if community.owner_id == current_user.id %>
+                <span><%= link_to '削除', community_path(community.id), method: :delete %></span>
+                <span class="owner_sign">●</span>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+      <p>あなたがオーナーのコミュニティには<span class="owner_sign">●</span>が表示されます。</p>
+    <% else %>
+      <p>現在、所属しているコミュニティはありません。</p>
+    <% end %>
+    </div>
+  </div>
+
+  <div class="requesting-community">
+    <h2>参加申請中コミュニティ一覧</h2>
+    <% if @requesting_communities.present? %>
+      <table>
+        <thead>
+          <tr>
+            <td>コミュニティID</td>
+            <td>コミュニティ名</td
+            <td colspan="1"></td>
+          </tr>
+        </thead>
+        <tbody>
+        <% @requesting_communities.each do |community| %>
+          <tr>
+            <td><%= community.id %></td>
+            <td><%= community.community_name %></td>
+            <td>
+              <span><%= link_to '申請を取り消す', community_out_path(community.id), method: :delete %></span>
+            </td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    <% else %>
+      <p>現在、参加申請しているコミュニティはありません。</p>
+    <% end %>
+  </div>
+
+  <div class="communities-search">
+    <h2>コミュニティ検索</h2>
+    <div class="search-box">
+      <%= form_with(url: search_path, method: :get, local: true, class: "search-form") do |form| %>
+        <%= form.text_field :keyword, placeholder: "コミュニティ名記入", class: "search-input" %>
+        <%= form.submit "コミュニティ検索", class: "search-btn" %>
+      <% end %>
+    </div>
+    <div class="seach-result">
+    <% if @searched_communities.present? %>
+      <table>
+        <thead>
+          <tr>
+            <td>コミュニティID</td>
+            <td>コミュニティ名</td>
+            <td colspan="2"></td>
+          </tr>
+        </thead>
+        <tbody>
+        <% @searched_communities.each do |community| %>
+          <% if community.users.exclude?(current_user) %><!-- ログインしないとcurrent_userを参照できないのでundefind エラーが出るので注意。 -->
+            <tr>
+              <td><%= community.id %></td>
+              <td><%= community.community_name %></td>
+              <td>
+                <span><%= link_to '参加申請', community_join_request_path(community.id) %></span>
+              </td>
+              <td>
+                <% if community.owner_id == current_user.id %>
+                  ※あなたがオーナーです。
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        <% end %>
+        </tbody>
+      </table>
+    <% else %>
+      <p>
+        該当するコミュニティはありません。<br>
+        ※全てのコミュニティを表示するには、空の状態で検索ボタンをクリックしてください。
+      </p>
+    <% end %>
+    </div>
+  </div>

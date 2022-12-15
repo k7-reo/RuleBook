@@ -1,0 +1,6 @@
+  <h1>モットー編集</h1>
+  <%= form_with(model:[@community, @motto], local:true) do |f| %>
+    <p>モットー</p>
+    <%= f.text_area :content %>
+    <%= f.submit %>
+  <% end %>

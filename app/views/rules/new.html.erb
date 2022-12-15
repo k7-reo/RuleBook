@@ -1,0 +1,25 @@
+  <h1>ルール新規作成</h1>
+
+  <p>
+    <b>ルール作成のポイント</b><br>
+    「マイナスポイント」は当たり前にやるべきタスクに対して設定し、<br>
+    普段のタスク以外でやってくれると嬉しいことに「プラスポイント」を設定すると<br>
+    ルール整理がスムーズになります。<br>
+    例） 靴下脱ぎっぱなし → -10ポイント<br>
+    例） 植物の水やり → 5ポイント
+  </p>
+
+  <div>
+  <%= form_with(model:[@community, @rule], local:true) do |f| %> <!--モデルを配列している理由 -->
+    <p>ルール内容</p>
+    <%= f.text_area :content, placeholder: "ルール内容をここに" %>
+    <p>ポイント(−ポイント指定可能)</p>
+    <%= f.text_field :point, placeholder: "ルールによるポイント加減をここに" %>
+    <p>ジャンル</p>
+    <%= f.text_field :genre, placeholder: "ジャンルをここに" %>
+    <%= f.submit '作成' %>
+  <% end %>
+  </div>
+  <div>
+    <%= link_to "コミュニティTopへ", community_path(@community.id) %>
+  </div>
