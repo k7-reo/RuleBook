@@ -1,10 +1,8 @@
-
-
-  <h1>特典&罰</h1>
+  <h2>特典&ペナルティ</h2>
 
   <div>
-    <h2>今月<%= @user.user.name %>さんに配当されたポイント</h2>
-    <h3><%= @user.monthly_point %></h3>
+    <h3>今月<%= @user.user.name %>さんに配当されたポイント</h3>
+    <p><%= @user.monthly_point %></p>
     <p>
     <% if @user.monthly_point < 0 %>
       ポイントが0になるように罰を受けなければなりません。<br>
@@ -13,13 +11,13 @@
       ポイントが0になるまで特典を受けられます。<br>
       ※余剰ポイントは翌月に繰り越されます。
     <% else %>
-      今月中に受けられる特典、受けなければいけない罰はありません。
+      今月中に受けられる特典、受けなければいけないペナルティはありません。
     <% end %>
     </p>
   </div>
 
   <div class =privileges-for-now>
-  <h2>今月受けられる特典</h2> <!-- 特典のポイントより個人のポイントが高ければ選択肢に現れる -->
+  <h3>今月受けられる特典</h3> <!-- 特典のポイントより個人のポイントが高ければ選択肢に現れる -->
    <table>
     <thead>
       <tr>
@@ -47,11 +45,11 @@
   </div>
 
   <div class =penalties-for-now>
-  <h2>今月中に実行が必要な罰</h2> <!-- 特典のポイントより個人のポイントが高ければ選択肢に現れる -->
+  <h3>今月中に実行が必要なペナルティ</h3> <!-- 特典のポイントより個人のポイントが高ければ選択肢に現れる -->
    <table>
     <thead>
      <tr>
-      <td>罰内容</td>
+      <td>ペナルティ内容</td>
       <td>回復ポイント</td>
       <td colspan="1"></td>
      </tr>
@@ -78,7 +76,7 @@
 
   <div  class = "all-privileges">
   <div>
-   <h2>特典一覧</h2>
+   <h3>特典一覧</h3>
    <table>
     <thead>
      <tr>
@@ -106,12 +104,12 @@
 
   <div class="all-penalties">
   <div>
-   <h2>罰一覧</h2>
+   <h3>ペナルティ一覧</h3>
    <table>
     <thead>
      <tr>
-      <td>罰内容</td>
-      <td>罰による回復ポイント</td>
+      <td>ペナルティ内容</td>
+      <td>ペナルティによる回復ポイント</td>
       <td colspan="2"></td>
      </tr>
     </thead>
@@ -128,7 +126,7 @@
    </table>
   </div>
   <div>
-   <p><%= link_to "罰を新規作成", new_community_penalty_path(@community.id) %></p>
+   <p><%= link_to "ペナルティを新規作成", new_community_penalty_path(@community.id) %></p>
   </div>
   </div>
 

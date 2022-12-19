@@ -1,5 +1,5 @@
-  <h1>新規コミュニティ作成</h1>
-  
+  <h2>新規コミュニティ作成</h2>
+
   <div>
   <%= form_with model: @community, url: communities_path, local:true do |f| %> <!-- url: でprefixを利用してcommunities#createを指定。-->
     <p>コミュニティ名</p>
@@ -9,7 +9,7 @@
     <%= f.submit '作成' %>
   <% end %>
   </div>
-  
+
   <div>
   <%= link_to "TOPへ", root_path %>
   </div>

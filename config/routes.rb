@@ -28,7 +28,9 @@ Rails.application.routes.draw do
       get "execute" => 'penalties#execute'
       post "execute" => 'penalties#execute_create'
     end
-    resources :users
+    resources :users do
+      get "mypage" => "users#mypage"
+    end
     get "join_request" => "communities#join_request"
     delete "out" => "communities#out"
   end

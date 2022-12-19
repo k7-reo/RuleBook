@@ -1,4 +1,4 @@
-  <h1><%= @community.community_name %>ダッシュボード</h1>
+  <h2><%= @community.community_name %>ダッシュボード</h2>
 
   <div class="community-users">
     <% @community.users.each do |user| %>
@@ -16,10 +16,41 @@
       <!-- メンバーアイコンで表示(リンク有※メンバーの一覧ページ) -->
   </div>
 
+  <div class="rules">
+    <div class="rules-header">
+      <h2>ルール一覧</h2>
+      <p><%= link_to "ルール編集", community_rules_path(@community.id) %></p>
+    </div>
+    <div>
+    <% if @rules.present? %>
+      <table>
+        <thead>
+          <tr>
+            <th>内容</th>
+            <th>ポイント増減</th>
+          </tr>
+        </thead>
+        <tbody>
+        <% @rules.each do |rule| %>
+          <tr>
+            <td><%= rule.content %></td>
+            <td><%= rule.point %></td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    <% else %>
+      <p>このコミュニティにはまだルールがありません。</p>
+    <% end %>
+    </div>
+
+  </div>
+
   <div>
-      <p><%= link_to "全モットー表示", community_mottos_path(@community.id) %></p>
-      <p><%= link_to "全ルール表示", community_rules_path(@community.id) %></p>
-      <p><%= link_to "全特典・罰表示", community_privileges_path(@community.id) %></p>
-      <p> <%= link_to "全参加メンバー表示", community_users_path(@community.id) %></p>
-      <p><%= link_to 'コミュニティ基本情報編集', edit_community_path(@community.id) %><p>
+    <p><%= link_to "マイページ", community_user_mypage_path(@community.id, @user.id) %></p>
+    <p><%= link_to "モットー", community_mottos_path(@community.id) %></p>
+    <p><%= link_to "ルール", community_rules_path(@community.id) %></p>
+    <p><%= link_to "特典・ペナルティ", community_privileges_path(@community.id) %></p>
+    <p> <%= link_to "メンバー", community_users_path(@community.id) %></p>
+    <p><%= link_to "コミュニティ基本情報編集", edit_community_path(@community.id) %><p>
   </div>

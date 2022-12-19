@@ -1,7 +1,7 @@
-  <h1><%= @user.name %>宛の受信BOX</h1>
+  <h2><%= @user.name %>宛の受信BOX</h2>
 
   <div>
-    <h2><%= @user.name %>への実行ルール</h2>
+    <h3><%= @user.name %>への実行ルール</h3>
     <% if @standbyRules.present? %>
       <table>
         <thead>
@@ -36,7 +36,7 @@
   </div>
 
   <div>
-    <h2><%= @user.name %>への罰完了の承認依頼</h2>
+    <h3><%= @user.name %>への罰完了の承認依頼</h3>
     <% if @standbyPenalties.present? %>
       <table>
         <thead>
@@ -68,7 +68,7 @@
   </div>
 
   <div>
-    <h2><%= @user.name %>がオーナーのコミュニティへの参加申請</h2>
+    <h3><%= @user.name %>がオーナーのコミュニティへの参加申請</h3>
     <% if @unaccepted_users.present? %>
       <table>
         <thead>

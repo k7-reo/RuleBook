@@ -1,9 +1,9 @@
-  <h1>罰編集</h1>
+  <h2>ペナルティ編集</h2>
 
     <%= form_with(model:[@community, @penalty], local:true) do |f| %>
-    <p>罰</p>
+    <p>ペナルティ内容</p>
     <%= f.text_area :content %>
-    <p>罰を受けることで回復するポイント</p>
+    <p>ペナルティを受けることで回復するポイント</p>
     <%= f.text_area :point %>
     <%= f.submit "編集完了" %>
   <% end %>

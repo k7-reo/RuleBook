@@ -26,7 +26,9 @@ class CommunitiesController < ApplicationController
   end
 
   def show
-    @community =Community.find(params[:id])
+    @community = Community.find(params[:id])
+    @user = User.find(current_user.id)
+    @rules = Rule.where(community_id: params[:id])
   end
 
   def join_request

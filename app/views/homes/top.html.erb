@@ -1,7 +1,7 @@
-  <h1>マイページ</h1>
+  <h2>マイページ</h2>
 
   <div class="my-communities">
-    <h2>所属コミュニティ一覧</h2>
+    <h3>所属コミュニティ一覧</h3>
     <p><%= link_to "コミュニティ新規作成", new_community_path %></p>
     <div>
     <% if @my_communities.present? %>
@@ -48,7 +48,7 @@
   </div>
 
   <div class="requesting-community">
-    <h2>参加申請中コミュニティ一覧</h2>
+    <h3>参加申請中コミュニティ一覧</h3>
     <% if @requesting_communities.present? %>
       <table>
         <thead>
@@ -76,7 +76,7 @@
   </div>
 
   <div class="communities-search">
-    <h2>コミュニティ検索</h2>
+    <h3>コミュニティ検索</h3>
     <div class="search-box">
       <%= form_with(url: search_path, method: :get, local: true, class: "search-form") do |form| %>
         <%= form.text_field :keyword, placeholder: "コミュニティ名記入", class: "search-input" %>

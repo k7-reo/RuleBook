@@ -7,20 +7,26 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = CommunityUser.find(params[:id])
+    @user = CommunityUser.find_by(user_id: params[:id])
     @community = Community.find(params[:community_id])
     @rules = Rule.where(user_id: params[:id], community_id: params[:community_id])
     @penalties = Penalty.where(user_id: params[:id], community_id: params[:community_id])
+    @privileges = Privilege.where(user_id: params[:id], community_id: params[:community_id])
   end
-  
+
   def edit
     @user = User.find_by(id: current_user.id)
   end
-  
+
   def update
     user = User.find_by(id: current_user.id)
     user.update(user_params)
     redirect_to setting_path
+  end
+  
+  def mypage
+    @community = Community.find(params[:community_id])
+    @user = CommunityUser.find_by(id: current_user.id)
   end
 
   private

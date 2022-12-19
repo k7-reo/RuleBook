@@ -1,4 +1,4 @@
-  <h1><%= @user.user.name %>の詳細</h1>
+  <h2><%= @user.user.name %>の詳細</h2>
 
   <div>
     <div>
@@ -9,11 +9,8 @@
     </div>
     <!-- 先月違反した&継続したルール一覧withポイント -->
     <!-- 今月違反した&継続したルール一覧withポイント -->
-    <!-- 作成したルール -->
-    <!-- 作成した罰 -->
-    <!-- 作成した特典 -->
     <div>
-      <h2>作成したルール</h2>
+      <h3><%= @user.user.name %>が作成したルール</h3>
       <div>
         <% if @rules.present? %>
           <table>
@@ -37,6 +34,58 @@
         <% end %>
       </div>
     </div>
+    <div>
+      <h3><%= @user.user.name %>が作成した特典</h3>
+      <div>
+        <% if @privileges.present? %>
+          <table>
+            <thead>
+              <tr>
+                <th>内容</th>
+                <th>利用ポイント</th>
+              </tr>
+            </thead>
+            <tbody>
+            <% @privileges.each do |privilege| %>
+              <tr>
+                <td><%= privilege.content %></td>
+                <td><%= privilege.point %></td>
+              </tr>
+            <% end %>
+            </tbody>
+          </table>
+        <% else %>
+          <p>あなたが<%= @community.community_name %>で作成した特典はありません。</p>
+        <% end %>
+      </div>
+    </div>
+    <div>
+      <h2><%= @user.user.name %>が作成した罰</h2>
+      <div>
+        <% if @penalties.present? %>
+          <table>
+            <thead>
+              <tr>
+                <th>内容</th>
+                <th>回復ポイント</th>
+              </tr>
+            </thead>
+            <tbody>
+            <% @penalties.each do |penaltie| %>
+              <tr>
+                <td><%= penaltie.content %></td>
+                <td><%= penaltie.point %></td>
+              </tr>
+            <% end %>
+            </tbody>
+          </table>
+        <% else %>
+          <p>あなたが<%= @community.community_name %>で作成したペナルティはありません。</p>
+        <% end %>
+      </div>
+    </div>
   </div>
 
-  <%= link_to "コミュニティTopへ", community_path(@community.id) %>
+  <div>
+    <%= link_to "コミュニティTopへ", community_path(@community.id) %>
+  </div>
