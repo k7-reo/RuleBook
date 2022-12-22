@@ -23,16 +23,16 @@ class UsersController < ApplicationController
     user.update(user_params)
     redirect_to setting_path
   end
-  
+
   def mypage
     @community = Community.find(params[:community_id])
-    @user = CommunityUser.find_by(id: current_user.id)
+    @user = CommunityUser.find_by(user_id: current_user.id)
   end
 
   private
 
   def user_params
-    params.require(:user).permit(:name, :email)
+    params.require(:user).permit(:name, :email, :profile_image)
   end
 
   def community_params

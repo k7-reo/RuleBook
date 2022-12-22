@@ -67,3 +67,6 @@ gem 'hirb' #出力結果を表として出力するgem
 gem 'hirb-unicode' #マルチバイト文字の表示を補正するgem
 
 gem 'whenever', require: false #時間計測gem
+
+gem "refile", require: "refile/rails", github: 'manfe/refile' # 画像投稿用gem
+gem "refile-mini_magick" # 画像加工用（サイズ調整など）gem

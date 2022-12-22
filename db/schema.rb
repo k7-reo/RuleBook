@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_12_14_054300) do
+ActiveRecord::Schema.define(version: 2022_12_22_014915) do
 
   create_table "communities", force: :cascade do |t|
     t.string "community_name"
@@ -54,6 +54,21 @@ ActiveRecord::Schema.define(version: 2022_12_14_054300) do
     t.integer "point"
     t.integer "community_id"
     t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "records", force: :cascade do |t|
+    t.integer "community_id"
+    t.integer "motto_id"
+    t.integer "rule_id"
+    t.integer "penalty_id"
+    t.integer "privilege_id"
+    t.text "content"
+    t.integer "point"
+    t.integer "updating_user_id"
+    t.integer "version", null: false
+    t.string "action_type", default: "", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -109,6 +124,7 @@ ActiveRecord::Schema.define(version: 2022_12_14_054300) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "profile_image_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

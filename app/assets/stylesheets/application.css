@@ -20,7 +20,7 @@ body {
   padding: 0;
   box-sizing: border-box;
   font-family: "Arial";
-  background-color: #321e1e;
+  background: linear-gradient(160deg, #321e1e, #000000);
 }
 
 a { /*リンク部*/
@@ -34,16 +34,35 @@ header {
   background-color: #fdefed;
   color: #321e1e;
   display: flex;
+  height: 100px;
+}
+
+.site-title, .signin-user, .receive_box {
+  margin: auto 20px;
 }
 
 main {
   color: #fdefed; /*文字白*/
   text-decoration: none;
   margin: 20px;
+  height: auto;
 }
 
-.site-title, .signin-user, .receive_box {
-  margin: auto 20px;
+footer {
+  background-color: #fdefed;
+  color: #321e1e;
+  height: 80px;
+  display: flex;
+}
+
+.footer {
+  margin: auto;
+}
+
+.legal-provisions, .copyrights {
+  margin-top: 0;
+  margin-bottom: 0;
+  text-align: center;
 }
 
 /*ヘッダーの項目から「・」を抜く*/

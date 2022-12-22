@@ -3,7 +3,7 @@
   <div>
     <p><%= @rule.content %></p>
     <p><%= @rule.point %></p>
-    <p><%= @rule.date %></p>
+    <p><%= @rule.created_at.strftime('%Y/%m/%d') %></p>
     <p>作成者：<%= @rule.creating_user.name %></p>
     <p>最終更新者：<%= @rule.updating_user.name %></p>
   </div>
