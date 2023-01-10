@@ -1,15 +1,16 @@
-  <div>
-    <ul class="community-navigation">
-      <li class="community-navigation-item"><%= link_to "コミュニティTop", community_path(@community.id) %></li>
-      <li class="community-navigation-item"><%= link_to "マイページ", community_user_mypage_path(@community.id, @user.id) %></li>
-      <li class="community-navigation-item"><%= link_to "メンバー", community_users_path(@community.id) %></li>
-      <li class="community-navigation-item"><%= link_to "特典・ペナルティ", community_privileges_path(@community.id) %></li>
-      <li class="community-navigation-item"><%= link_to "ルール", community_rules_path(@community.id) %></li>
-      <li class="community-navigation-item"><%= link_to "モットー", community_mottos_path(@community.id) %></li>
-    </ul>
-  </div>
-
-  <div>
-    <p class="head-community-name"><%= link_to community.community_name, edit_community_path(@community.id) %></p>
-    <p class="head-community-introduction"><%= community.introduction %></p>
+  <div class="community-header">
+    <div>
+      <ul class="community-navigation">
+        <li class="community-navigation-item"><%= link_to "コミュニティTop", community_path(@community.id) %></li>
+        <li class="community-navigation-item"><%= link_to "マイページ", community_user_mypage_path(@community.id, @user.id) %></li>
+        <li class="community-navigation-item"><%= link_to "メンバー", community_users_path(@community.id) %></li>
+        <li class="community-navigation-item"><%= link_to "特典・ペナルティ", community_privileges_path(@community.id) %></li>
+        <li class="community-navigation-item"><%= link_to "ルール", community_rules_path(@community.id) %></li>
+        <li class="community-navigation-item"><%= link_to "モットー", community_mottos_path(@community.id) %></li>
+      </ul>
+    </div>
+    <div class="head-community-info">
+      <p class="head-community-name"><%= link_to community.community_name, edit_community_path(@community.id) %></p>
+      <p class="head-community-introduction"><%= community.introduction %></p>
+    </div>
   </div>

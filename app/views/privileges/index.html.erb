@@ -21,119 +21,119 @@
   </div>
 
   <div class="privileges-for-now round">
-  <p class="section-title">今月受けられる特典</p> <!-- 特典のポイントより個人のポイントが高ければ選択肢に現れる -->
-   <table>
-    <thead>
-      <tr>
-        <th>特典内容</th>
-        <th>消費ポイント</th>
-        <th colspan="1"></th>
-      </tr>
-    </thead>
-    <tbody>
-    <% @community.privileges.each do |privilege| %>
-     <% if privilege.point <= @user.monthly_point %> <!-- userのpointをdefaultで0に指定、既存レコードは直接編集 -->
+    <p class="section-title">今月受けられる特典</p> <!-- 特典のポイントより個人のポイントが高ければ選択肢に現れる -->
+    <table>
+      <thead>
         <tr>
-         <td><%= privilege.content %></td>
-         <td><%= privilege.point %></td>
-         <td><%= link_to "取得完了", community_privilege_execute_path(@community.id, privilege.id) %></span></td>
+          <th>特典内容</th>
+          <th>消費ポイント</th>
+          <th colspan="1"></th>
         </tr>
-        <% else %>
-        <tr>
-         <td colspan="3">今月、受けられる特典はありません。</td>
-        </tr>
-     <% end %>
-    <% end %>
-    </tbody>
-   </table>
+      </thead>
+      <tbody>
+      <% @community.privileges.each do |privilege| %>
+       <% if privilege.point <= @user.monthly_point %> <!-- userのpointをdefaultで0に指定、既存レコードは直接編集 -->
+          <tr>
+           <td><%= privilege.content %></td>
+           <td><%= privilege.point %></td>
+           <td><%= link_to "取得完了", community_privilege_execute_path(@community.id, privilege.id) %></span></td>
+          </tr>
+          <% else %>
+          <tr>
+           <td colspan="3">今月、受けられる特典はありません。</td>
+          </tr>
+       <% end %>
+      <% end %>
+      </tbody>
+    </table>
   </div>
 
   <div class="penalties-for-now round">
-  <p class="section-title" >今月中に実行が必要なペナルティ</p> <!-- 特典のポイントより個人のポイントが高ければ選択肢に現れる -->
-   <table>
-    <thead>
-     <tr>
-      <td>ペナルティ内容</td>
-      <td>回復ポイント</td>
-      <td colspan="1"></td>
-     </tr>
-    </thead>
-    <tbody>
-    <% @community.penalties.each do |penalty| %>
-     <% if -(penalty.point) >= @user.monthly_point %> <!-- userのpointをdefaultで0に指定、既存レコードは直接編集 -->
-      <tr>
-       <td><%= penalty.content %></td>
-       <td><%= penalty.point %></td>
-       <td>
-        <!-- まだ申請されてなければlink表示、standbyに居れば「申請中」の表示をしたい。-->
-        <span><%= link_to '実行完了許可', community_penalty_execute_path(@community.id, penalty.id) %><span>
-       </td>
-     <% else %>
-      <tr>
-       <td colspan="3">今月、実行が必要な罰はありません。</td>
-      </tr>
-     <% end %>
-    <% end %>
-    </tbody>
-   </table>
+    <p class="section-title" >今月中に実行が必要なペナルティ</p> <!-- 特典のポイントより個人のポイントが高ければ選択肢に現れる -->
+    <table>
+      <thead>
+       <tr>
+        <td>ペナルティ内容</td>
+        <td>回復ポイント</td>
+        <td colspan="1"></td>
+       </tr>
+      </thead>
+      <tbody>
+      <% @community.penalties.each do |penalty| %>
+       <% if -(penalty.point) >= @user.monthly_point %> <!-- userのpointをdefaultで0に指定、既存レコードは直接編集 -->
+        <tr>
+         <td><%= penalty.content %></td>
+         <td><%= penalty.point %></td>
+         <td>
+          <!-- まだ申請されてなければlink表示、standbyに居れば「申請中」の表示をしたい。-->
+          <span><%= link_to '実行完了許可', community_penalty_execute_path(@community.id, penalty.id) %><span>
+         </td>
+       <% else %>
+        <tr>
+         <td colspan="3">今月、実行が必要な罰はありません。</td>
+        </tr>
+       <% end %>
+      <% end %>
+      </tbody>
+    </table>
   </div>
 
   <div class="all-privileges round">
-  <div>
-   <p class="section-title">特典一覧</p>
-   <table>
-    <thead>
-     <tr>
-      <td>特典内容</td>
-      <td>利用ポイント</td>
-      <td colspan="2"></td>
-     </tr>
-    </thead>
-    <tbody>
-    <% @community.privileges.each do |privilege| %>
-     <tr>
-      <td><%= privilege.content %></td>
-      <td><%= privilege.point %></td>
-      <td><span><%= link_to '削除', community_privilege_path(@community.id, privilege.id), method: :delete %></span></td>
-      <td><span><%= link_to "編集", edit_community_privilege_path(@community, privilege.id) %></span></td>
-     </tr>
-    <% end %>
-    </tbody>
-   </table>
-  </div>
-  <div>
-   <p><%= link_to "特典を新規作成", new_community_privilege_path(@community.id) %></p>
-  </div>
+    <div>
+     <p class="section-title">特典一覧</p>
+     <table>
+      <thead>
+       <tr>
+        <td>特典内容</td>
+        <td>利用ポイント</td>
+        <td colspan="2"></td>
+       </tr>
+      </thead>
+      <tbody>
+      <% @community.privileges.each do |privilege| %>
+       <tr>
+        <td><%= privilege.content %></td>
+        <td><%= privilege.point %></td>
+        <td><span><%= link_to '削除', community_privilege_path(@community.id, privilege.id), method: :delete %></span></td>
+        <td><span><%= link_to "編集", edit_community_privilege_path(@community, privilege.id) %></span></td>
+       </tr>
+      <% end %>
+      </tbody>
+     </table>
+    </div>
+    <div>
+     <p><%= link_to "特典を新規作成", new_community_privilege_path(@community.id) %></p>
+    </div>
   </div>
 
   <div class="all-penalties round">
-  <div>
-   <p class="section-title">ペナルティ一覧</p>
-   <table>
-    <thead>
-     <tr>
-      <td>ペナルティ内容</td>
-      <td>ペナルティによる回復ポイント</td>
-      <td colspan="2"></td>
-     </tr>
-    </thead>
-    <tbody>
-    <% @community.penalties.each do |penalty| %>
-     <tr>
-      <td><%= penalty.content %></td>
-      <td><%= penalty.point %></td>
-      <td><span><%= link_to '削除', community_penalty_path(@community.id, penalty.id), method: :delete %></span></td>
-      <td><span><%= link_to "編集", edit_community_penalty_path(@community, penalty.id) %></span></td>
-     </tr>
-    <% end %>
-    </tbody>
-   </table>
-  </div>
-  <div>
-   <p><%= link_to "ペナルティを新規作成", new_community_penalty_path(@community.id) %></p>
-  </div>
+    <div>
+     <p class="section-title">ペナルティ一覧</p>
+     <table>
+      <thead>
+       <tr>
+        <td>ペナルティ内容</td>
+        <td>ペナルティによる回復ポイント</td>
+        <td colspan="2"></td>
+       </tr>
+      </thead>
+      <tbody>
+      <% @community.penalties.each do |penalty| %>
+       <tr>
+        <td><%= penalty.content %></td>
+        <td><%= penalty.point %></td>
+        <td><span><%= link_to '削除', community_penalty_path(@community.id, penalty.id), method: :delete %></span></td>
+        <td><span><%= link_to "編集", edit_community_penalty_path(@community, penalty.id) %></span></td>
+       </tr>
+      <% end %>
+      </tbody>
+     </table>
+    </div>
+    <div>
+     <p><%= link_to "ペナルティを新規作成", new_community_penalty_path(@community.id) %></p>
+    </div>
   </div>
 
   <div>
-  <p><%= link_to "コミュニティTopへ", community_path(@community.id) %></p>
-  <div
+    <p><%= link_to "コミュニティTopへ", community_path(@community.id) %></p>
+  </div>

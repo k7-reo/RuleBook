@@ -53,19 +53,6 @@ main {
   height: auto;
 }
 
-.community-navigation {
-  display: flex;
-}
-
-.community-navigation-item {
-  margin: 20px;
-}
-
-.community-info {
-  background-color: #ffd8d3;
-  color: #321e1e;
-  margin: -20px;
-}
 
 footer {
   background-color: #fdefed;
