@@ -1,17 +1,17 @@
-  <h2><%= @user.name %>宛の受信BOX</h2>
+  <p class="page-title"><%= @user.name %>宛の受信BOX</p>
 
-  <div>
-    <h3><%= @user.name %>への実行ルール</h3>
+  <div class="round">
+    <p class="section-title"><%= @user.name %>に実行されたルール</p>
     <% if @standbyRules.present? %>
       <table>
         <thead>
           <tr>
-            <td>コミュニティ</td>
-            <td>申請者</td>
-            <td>ルール</td>
-            <td>加減ポイント</td>
-            <td>申請日</td>
-            <td colspan="2"></td>
+            <th>コミュニティ</th>
+            <th>申請者</th>
+            <th>ルール</th>
+            <th>加減ポイント</th>
+            <th>申請日</th>
+            <th colspan="2"></th>
           </tr>
         </thead>
         <tbody>
@@ -35,8 +35,8 @@
     <% end %>
   </div>
 
-  <div>
-    <h3><%= @user.name %>への罰完了の承認依頼</h3>
+  <div class="round">
+    <p class="section-title"><%= @user.name %>へのペナルティ完了許可の依頼</p>
     <% if @standbyPenalties.present? %>
       <table>
         <thead>
@@ -62,13 +62,13 @@
         <tbody>
       <table>
     <% else %>
-      <p>あなたに送られた罰の確認申請はありません。</p>
+      <p>あなたに送られたペナルティ完了の許可依頼はありません。</p>
     <% end %>
     </div>
   </div>
 
-  <div>
-    <h3><%= @user.name %>がオーナーのコミュニティへの参加申請</h3>
+  <div class="round">
+    <p class="section-title"><%= @user.name %>がオーナーのコミュニティへの参加申請</p>
     <% if @unaccepted_users.present? %>
       <table>
         <thead>

@@ -1,3 +1,20 @@
 // Place all the styles related to the Communities controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.community-user-list {
+  display: flex;
+}
+
+.community-user {
+  margin: 10px;
+}
+
+.profile_image {
+  border-radius: 50%;
+}
+
+.community-user-name {
+  text-align: center;
+  margin-top: 0;
+}

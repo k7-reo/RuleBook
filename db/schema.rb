@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_12_22_014915) do
+ActiveRecord::Schema.define(version: 2022_12_27_054946) do
 
   create_table "communities", force: :cascade do |t|
     t.string "community_name"
@@ -71,6 +71,8 @@ ActiveRecord::Schema.define(version: 2022_12_22_014915) do
     t.string "action_type", default: "", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.string "genre"
   end
 
   create_table "rule_users", force: :cascade do |t|

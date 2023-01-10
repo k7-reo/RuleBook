@@ -12,6 +12,7 @@ class User < ApplicationRecord
   has_many :standbies
   has_many :penalties
   has_many :privileges
+  has_many :records
   #アイコン画像添付
   attachment :profile_image
 end

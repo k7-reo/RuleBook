@@ -1,12 +1,22 @@
-  <h2>ルール編集</h2>
+  <p class="page-title">ルール編集</p>
 
-    <%= form_with(model:[@community, @rule], local:true) do |f| %>
-    <p>ルール</p>
-    <%= f.text_area :content %>
-    <p>ポイント(マイナス指定)</p>
-    <%= f.text_area :point %>
-    <p>ジャンル</p>
-    <%= f.text_area :genre %>
-    <%= f.submit  %>
+  <div>
+  <%= form_with(model:[@community, @rule], local:true) do |f| %>
+    <div>
+      <label for="inputContent">ルール</label>
+      <div><%= f.text_area :content, autofocus: true, id:"inputContent", placeholder:"ルール" %></div>
+    </div>
+    <div>
+      <label for="inputPoint">ポイント増減(マイナス指定)</label>
+      <div><%= f.text_area :point, id:"inputPoint", placeholder:"ポイント" %></div>
+    </div>
+    <div>
+      <label for="inputGenre">ジャンル</label>
+      <div><%= f.text_area :genre, id:"inputGenre", placeholder:"ジャンル" %></div>
+    </div>
+    <div>
+      <%= f.submit '編集完了' %>
+    </div>
   <% end %>
+  </div>
 

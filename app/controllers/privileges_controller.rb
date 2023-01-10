@@ -16,6 +16,17 @@ class PrivilegesController < ApplicationController
     privilege.user_id = current_user.id
     privilege.community_id = @community.id
     privilege.save
+    #履歴登録↓
+    newRecord = Record.new
+    newRecord.community_id = @community.id
+    newRecord.privilege_id = privilege.id
+    newRecord.content = privilege.content
+    newRecord.point = privilege.point
+    newRecord.user_id = current_user.id
+    newRecord.updating_user_id = current_user.id
+    newRecord.version = 1
+    newRecord.action_type = "Privilege"
+    newRecord.save
     redirect_to community_privileges_path(@community.id)
   end
 
@@ -26,15 +37,38 @@ class PrivilegesController < ApplicationController
 
   def update
     @community = Community.find(params[:community_id])
-    @privilege = Privilege.find(params[:id])
-    @privilege.update(privilege_params)
+    privilege = Privilege.find(params[:id])
+    privilege.update(privilege_params)
+    #履歴登録↓
+    oldRecord = Record.find_by(privilege_id: privilege.id)
+    newRecord = Record.new
+    newRecord.community_id = @community.id
+    newRecord.privilege_id = privilege.id
+    newRecord.content = privilege.content
+    newRecord.point = privilege.point
+    newRecord.user_id = privilege.user_id
+    newRecord.updating_user_id = current_user.id
+    newRecord.version = oldRecord.version + 1
+    newRecord.action_type = "Privilege"
+    newRecord.save
     redirect_to community_privileges_path(@community.id)
   end
 
   def destroy
     @community = Community.find(params[:community_id])
-    @privilege = Privilege.find(params[:id])
-    @privilege.destroy
+    privilege = Privilege.find(params[:id])
+    #履歴登録↓
+    newRecord = Record.new
+    newRecord.community_id = @community.id
+    newRecord.privilege_id = privilege.id
+    newRecord.content = privilege.content
+    newRecord.point = privilege.point
+    newRecord.user_id = privilege.user_id
+    newRecord.updating_user_id = current_user.id
+    newRecord.version = 0
+    newRecord.action_type = "Privilege"
+    newRecord.save
+    privilege.destroy
     redirect_to community_privileges_path(@community.id)
   end
 

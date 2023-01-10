@@ -14,11 +14,6 @@
       <div class="site-title">
         <h1>core</h1>
       </div>
-      <div class="signin-user">
-        <% if user_signed_in? %>
-          <span>ログインユーザー名：<%= current_user.name %></span><span>写真</span>
-        <% end %>
-      </div>
       <div class="receive_box">
         <% if user_signed_in? %>
           <span><%= link_to "通知BOX", receive_path %></span>
@@ -37,13 +32,20 @@
         <% end %>
         </ul>
       </div>
+      <div class="signin-user">
+        <% if user_signed_in? %>
+          <div class="signin-user-profile_image"><%= attachment_image_tag current_user, :profile_image, :fill, 60, 60, format: 'jpeg', fallback: "f_f_event_98_s512_f_event_98_0bg.jpg", size:'60x60'%></div>
+        <% else %>
+          <!-- サインインしていない時のアイコン表示 -->
+        <% end %>
+      </div>
     </header>
     <main>
       <%= yield %>
     </main>
     <footer>
       <div class="footer">
-        <p class="legal-provisions">利用規約 | プライバシーボリシー</p>
+        <p class="legal-provisions">利用規約 | プライバシーポリシー</p>
         <p class="copyrights">Copyrights © 2022 Reo Yoshitome All rights Reserved.</p>
       </div>
     </footer>

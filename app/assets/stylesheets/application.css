@@ -29,6 +29,11 @@ a { /*リンク部*/
   border-bottom: dotted 1px;
 }
 
+/*枠ごとのタイトル*/
+.section-title {
+  color: #cfbdbd;
+}
+
 /*サイトのヘッダー部*/
 header {
   background-color: #fdefed;
@@ -46,6 +51,20 @@ main {
   text-decoration: none;
   margin: 20px;
   height: auto;
+}
+
+.community-navigation {
+  display: flex;
+}
+
+.community-navigation-item {
+  margin: 20px;
+}
+
+.community-info {
+  background-color: #ffd8d3;
+  color: #321e1e;
+  margin: -20px;
 }
 
 footer {
@@ -73,4 +92,12 @@ ul {
 /*テーブルのタイトル行*/
 thead {
   text-align: center;
+}
+
+/*セクションごとの枠*/
+.round {
+  border-radius: 15px;
+  padding: 10px 20px;
+  margin: 20px 10px;
+  background-color: #321e1e;
 }

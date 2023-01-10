@@ -1,13 +1,21 @@
-  <h2><%= @community.community_name %>ダッシュボード</h2>
-
-  <div class="community-users">
+  <div class="community-info">
+    <%= render 'communities/info', community: @community %>
+  </div>
+  
+  <div class="community-users round">
+    <p class="section-title">参加メンバー</p>
+    <div class="community-user-list">
     <% @community.users.each do |user| %>
-      <%= user.name %>
+      <div class="community-user">
+        <div class="profile_image"><%= attachment_image_tag user, :profile_image, :fill, 80, 80, format: 'jpeg', fallback: "f_f_event_98_s512_f_event_98_0bg.jpg", size:'80x80'%></div>
+        <p class="community-user-name"><%= user.name %></p>
+      </div>
     <% end %>
+    </div>
   </div>
 
-  <div class="community-dashboard">
-      <p>コミュニティ説明：<%= @community.introduction %></p>
+  <div class="community-dashboard round">
+    <p class="section-title">ダッシュボード</p>
       <!-- モットーの表示 -->
       <!-- ルールの棒グラフ一覧表示（ジャンル別）-->
       <!-- コミュニティ健全度の表示(定義説明あり) -->
@@ -16,9 +24,9 @@
       <!-- メンバーアイコンで表示(リンク有※メンバーの一覧ページ) -->
   </div>
 
-  <div class="rules">
+  <div class="rules round">
     <div class="rules-header">
-      <h2>ルール一覧</h2>
+      <p class="section-title">ルール一覧</p>
       <p><%= link_to "ルール編集", community_rules_path(@community.id) %></p>
     </div>
     <div>
@@ -44,13 +52,4 @@
     <% end %>
     </div>
 
-  </div>
-
-  <div>
-    <p><%= link_to "マイページ", community_user_mypage_path(@community.id, @user.id) %></p>
-    <p><%= link_to "モットー", community_mottos_path(@community.id) %></p>
-    <p><%= link_to "ルール", community_rules_path(@community.id) %></p>
-    <p><%= link_to "特典・ペナルティ", community_privileges_path(@community.id) %></p>
-    <p> <%= link_to "メンバー", community_users_path(@community.id) %></p>
-    <p><%= link_to "コミュニティ基本情報編集", edit_community_path(@community.id) %><p>
   </div>

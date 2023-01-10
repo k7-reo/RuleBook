@@ -14,6 +14,17 @@ class PenaltiesController < ApplicationController
     penalty.user_id = current_user.id
     penalty.community_id = @community.id
     penalty.save!
+    #履歴登録↓
+    newRecord = Record.new
+    newRecord.community_id = @community.id
+    newRecord.penalty_id = penalty.id
+    newRecord.content = penalty.content
+    newRecord.point = penalty.point
+    newRecord.user_id = current_user.id
+    newRecord.updating_user_id = current_user.id
+    newRecord.version = 1
+    newRecord.action_type = "Penalty"
+    newRecord.save
     redirect_to community_privileges_path(@community.id)
   end
 
@@ -24,15 +35,38 @@ class PenaltiesController < ApplicationController
 
   def update
     @community = Community.find(params[:community_id])
-    @penalty = Penalty.find(params[:id])
-    @penalty.update(penalty_params)
+    penalty = Penalty.find(params[:id])
+    penalty.update(penalty_params)
+    #履歴登録↓
+    oldRecord = Record.find_by(penalty_id: penalty.id)
+    newRecord = Record.new
+    newRecord.community_id = @community.id
+    newRecord.penalty_id = penalty.id
+    newRecord.content = penalty.content
+    newRecord.point = penalty.point
+    newRecord.user_id = penalty.user_id
+    newRecord.updating_user_id = current_user.id
+    newRecord.version = oldRecord.version + 1
+    newRecord.action_type = "Penalty"
+    newRecord.save
     redirect_to community_privileges_path(@community.id)
   end
 
   def destroy
     @community = Community.find(params[:community_id])
-    @penalty = Penalty.find(params[:id])
-    @penalty.destroy
+    penalty = Penalty.find(params[:id])
+    #履歴登録↓
+    newRecord = Record.new
+    newRecord.community_id = @community.id
+    newRecord.penalty_id = penalty.id
+    newRecord.content = penalty.content
+    newRecord.point = penalty.point
+    newRecord.user_id = penalty.user_id
+    newRecord.updating_user_id = current_user.id
+    newRecord.version = 0
+    newRecord.action_type = "Penalty"
+    newRecord.save
+    penalty.destroy
     redirect_to community_privileges_path(@community.id)
   end
 

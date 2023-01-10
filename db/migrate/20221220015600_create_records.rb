@@ -8,9 +8,11 @@ class CreateRecords < ActiveRecord::Migration[5.2]
       t.integer :privilege_id, optional: true
       t.text :content
       t.integer :point, optional: true
-      t.integer :updating_user_id
-      t.integer :version, null: false #1→作成しました。2以降編集しました。0削除しました。
+      t.integer :updating_user_id #更新ユーザー
+      t.integer :version, null: false #1→作成、2以降→編集、0→削除
       t.string :action_type, default: '', null: false #mottoかruleかpenaltyかprivilegeか
+      #t.integer :user_id 作成ユーザー※migrate20221227054946にて追加済。
+      #t.string :genre 作成ユーザー※migrate20221227054946にて追加済。
       t.timestamps
     end
   end

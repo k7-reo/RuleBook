@@ -1,15 +1,23 @@
-<h2>個人情報変更</h2>
+<p class="page-title">個人情報変更</p>
 
 <div>
   <%= form_with model: @user, local:true do |f| %>
-    <label for="inputName">ユーザーネーム</label>
-    <%= f.text_field :name, autofocus: true, id:"inputName", placeholder:"ユーザー名" %>
-    <label for="inputEmail">メールアドレス</label>
-    <%= f.text_field :email, id:"inputEmail", placeholder:"メールアドレス" %>
-    <label for="inputImage">プロフィール画像</label>
-    <%= attachment_image_tag @user, :profile_image, :fill, 60, 60 %>
-    <%= f.attachment_field :profile_image, placeholder: "プロフィール画像" %>
-    <p><%= f.submit "編集完了" %></p>
+    <div>
+      <label for="inputName">ユーザーネーム</label>
+      <div><%= f.text_field :name, autofocus: true, id:"inputName", placeholder:"ユーザー名" %></div>
+    </div>
+    <div>
+      <label for="inputEmail">メールアドレス</label>
+      <div><%= f.text_field :email, id:"inputEmail", placeholder:"メールアドレス" %></div>
+    </div>
+    <div>
+      <label for="inputImage">プロフィール画像</label>
+      <div><%= attachment_image_tag @user, :profile_image, :fill, 120, 120, fallback: "f_f_event_98_s512_f_event_98_0bg.jpg", size:'120x120' %></div>
+      <div><%= f.attachment_field :profile_image, placeholder: "プロフィール画像" %></div>
+    </div>
+    <div>
+      <p><%= f.submit "編集完了" %></p>
+    </div>
   <% end %>
 </div>
 

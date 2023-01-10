@@ -27,7 +27,7 @@ class CommunitiesController < ApplicationController
 
   def show
     @community = Community.find(params[:id])
-    @user = User.find(current_user.id)
+    @user = User.find(current_user.id) #マイページのpathに利用
     @rules = Rule.where(community_id: params[:id])
   end
 

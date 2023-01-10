@@ -1,12 +1,14 @@
-  <h2>ルール実行</h2>
+  <p class="page-title">ルール実行</p>
 
   <p>実行するルール：<%= @rule.content %></p>
   <p>加減ポイント：<%= @rule.point %></p>
 
   <div>
     <%= form_with model: @standby, url: community_rule_execute_path(@community.id, @rule.id), local:true do |f| %>
-      <%= f.collection_select :executed_user_id, User.joins(:community_users).where(community_users: {community_id: params[:community_id]}), :id, :name, include_blank: "対象ユーザーを選択", multiple: true %>
-      <%= f.submit '申請' %>
+      <div>
+        <div><%= f.collection_select :executed_user_id, User.joins(:community_users).where(community_users: {community_id: params[:community_id]}), :id, :name, include_blank: "対象ユーザーを選択", multiple: true %></div>
+        <div><%= f.submit '申請' %></div>
+      </div>
     <% end %>
   </div>
 

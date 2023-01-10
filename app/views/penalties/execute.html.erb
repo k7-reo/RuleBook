@@ -1,12 +1,14 @@
-  <h2>ペナルティ実行完了の許可</h2>
+  <p class="page-title">ペナルティ実行完了の許可</p>
 
   <p>完了したペナルティ：<%= @penalty.content %></p>
   <p>回復するポイント：<%= @penalty.point %></p>
 
   <div>
     <%= form_with model: @standby, url: community_penalty_execute_path(@community.id, @penalty.id), local:true do |f| %>
-      <%= f.collection_select :executed_user_id, User.joins(:community_users).where(community_users: {community_id: params[:community_id]}), :id, :name, include_blank: "申請ユーザーを選択", multiple: true %>
-      <%= f.submit '実行完了申請' %>
+      <div>
+        <div><%= f.collection_select :executed_user_id, User.joins(:community_users).where(community_users: {community_id: params[:community_id]}), :id, :name, include_blank: "申請ユーザーを選択", multiple: true %></div>
+        <div><%= f.submit '実行完了申請' %></div>
+      </div>
     <% end %>
   </div>
 

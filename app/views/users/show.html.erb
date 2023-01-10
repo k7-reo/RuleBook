@@ -1,4 +1,4 @@
-  <h2><%= @user.user.name %>の詳細</h2>
+  <p class="page-title"><%= @user.user.name %>の詳細</p>
 
   <div>
     <div>
@@ -10,7 +10,7 @@
     <!-- 先月違反した&継続したルール一覧withポイント -->
     <!-- 今月違反した&継続したルール一覧withポイント -->
     <div>
-      <h3><%= @user.user.name %>が作成したルール</h3>
+      <p class="section-title"><%= @user.user.name %>が作成したルール</p>
       <div>
         <% if @rules.present? %>
           <table>
@@ -35,7 +35,7 @@
       </div>
     </div>
     <div>
-      <h3><%= @user.user.name %>が作成した特典</h3>
+      <p class="section-title"><%= @user.user.name %>が作成した特典</p>
       <div>
         <% if @privileges.present? %>
           <table>
@@ -60,7 +60,7 @@
       </div>
     </div>
     <div>
-      <h2><%= @user.user.name %>が作成した罰</h2>
+      <p class="section-title"><%= @user.user.name %>が作成した罰</p>
       <div>
         <% if @penalties.present? %>
           <table>
