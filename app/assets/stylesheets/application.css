@@ -19,46 +19,57 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Arial";
-  background: linear-gradient(160deg, #321e1e, #000000);
+  /* font-family: ""; ※全角半角でズレたりしない適切なフォントを選ぶ*/
+  font-size: 120%;
+  background: linear-gradient(160deg, #272727, #000000);
 }
 
 a { /*リンク部*/
   color: inherit; /*リンク文字の色変更させない*/
   text-decoration:none;
-  border-bottom: dotted 1px;
+  /* border-bottom: dotted 1px; ※リンク下にドット線*/
+}
+
+a:hover {
+  color: inherit; /*リンク文字の色変更させない*/
+  text-decoration:none;
+  border-bottom: dotted 1px; /*リンク下にドット線*/
 }
 
 /*枠ごとのタイトル*/
 .section-title {
-  color: #cfbdbd;
+  color: #a4a4a4;
+  font-weight: bold;
 }
 
 /*サイトのヘッダー部*/
 header {
-  background-color: #fdefed;
-  color: #321e1e;
+  background-color: #ffffff;
+  color: #303030;
   display: flex;
-  height: 100px;
-}
-
-.site-title, .signin-user, .receive_box {
-  margin: auto 20px;
 }
 
 main {
-  color: #fdefed; /*文字白*/
+  color: #ffffff; /*文字白*/
   text-decoration: none;
   margin: 20px;
   height: auto;
 }
 
-
 footer {
-  background-color: #fdefed;
-  color: #321e1e;
+  background-color: #ffffff;
+  color: #303030;
   height: 80px;
   display: flex;
+}
+
+.site-logo {
+  margin-top: 25px;
+  margin-left: 10px;
+}
+
+.site-title, .signin-user, .receive_box {
+  margin: auto 20px;
 }
 
 .footer {
@@ -76,9 +87,44 @@ ul {
   list-style: none;
 }
 
-/*テーブルのタイトル行*/
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+table tr{
+border-bottom: solid 5px #303030;
+}
+
+/*テーブルのタイトル全体*/
 thead {
   text-align: center;
+}
+
+/*テーブルのデータ全体*/
+tbody {
+  color: #303030;
+}
+
+/*テーブルデータの奇数行*/
+tbody tr:nth-child(odd) {
+  background-color: #dddddd;
+}
+
+/*テーブルデータの偶数行*/
+tbody tr:nth-child(even) {
+  background-color: #a4a4a5;
+}
+
+/*テーブルデータの最初の列*/
+tbody td:first-child {
+  border-top-left-radius: 25px;
+  border-bottom-left-radius: 25px;
+}
+
+tbody td:last-child {
+  border-top-right-radius: 25px;
+  border-bottom-right-radius: 25px;
 }
 
 /*セクションごとの枠*/
@@ -86,5 +132,5 @@ thead {
   border-radius: 15px;
   padding: 10px 20px;
   margin: 20px 10px;
-  background-color: #321e1e;
+  background-color: #303030;
 }

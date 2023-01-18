@@ -2,6 +2,7 @@ class MottosController < ApplicationController
 
   def index
     @community = Community.find(params[:community_id]) #mottoparamsとcommunityparamasのうちcommunityのid
+    @currentUser = CommunityUser.find_by(user_id: current_user.id) #community-info表示に利用
   end
 
   def new
@@ -39,12 +40,12 @@ class MottosController < ApplicationController
     motto.update(motto_params)
     redirect_to community_mottos_path(@community.id)
     #履歴登録↓
-    oldRecord = Record.find_by(motto_id: @motto.id)
+    oldRecord = Record.find_by(motto_id: motto.id)
     newRecord = Record.new
     newRecord.community_id = @community.id
-    newRecord.motto_id = @motto.id
-    newRecord.content = @motto.content
-    newRecord.user_id = @motto.user_id
+    newRecord.motto_id = motto.id
+    newRecord.content = motto.content
+    newRecord.user_id = motto.user_id
     newRecord.updating_user_id = current_user.id
     newRecord.version = oldRecord.version + 1
     newRecord.action_type = "Motto"

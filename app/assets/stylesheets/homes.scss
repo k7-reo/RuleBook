@@ -3,12 +3,12 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .owner_sign {
-  color: #00c2cb;
+  color: #ff5757;
 }
 
 .my-communities {
   background-color: #321e1e;
-  border: 3px solid #4b2f2f;
+  border: 3px solid #ffffff;
 }
 
 .requesting-community, .communities-search {
@@ -19,6 +19,19 @@
   display: flex;
 }
 
-.edit_community {
+.new_community {
   margin-left: auto;
+  border-bottom: dotted 1px;
+}
+
+.search-btn {
+  color: #ffffff;
+  background-color: #ff5757;
+  border-style: none; /*デフォルトの枠線デザインを消去*/
+  border-radius: 15px;
+}
+
+.search-btn:hover{
+  color: #ffffff;
+  background-color: #ffd139;
 }

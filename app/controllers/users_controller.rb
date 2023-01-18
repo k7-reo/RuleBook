@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
   def index
-    #@users = User.joins(:community_users).where(community_users: {community_id: params[:community_id]}) #joinsでuserモデルとcommunityモデルのデータを結合したテーブルを作る。(ちなみに中間テーブルは２つの多対多の関連を示すもの)
+    @currentUser = CommunityUser.find_by(user_id: current_user.id) #community-info表示に利用
     @communityUsers = CommunityUser.where(community_id: params[:community_id])
     @community = Community.find(params[:community_id])
   end
@@ -12,6 +12,7 @@ class UsersController < ApplicationController
     @rules = Rule.where(user_id: params[:id], community_id: params[:community_id])
     @penalties = Penalty.where(user_id: params[:id], community_id: params[:community_id])
     @privileges = Privilege.where(user_id: params[:id], community_id: params[:community_id])
+    @currentUser = CommunityUser.find_by(user_id: current_user.id) #community-info表示に利用
   end
 
   def edit
@@ -27,6 +28,7 @@ class UsersController < ApplicationController
   def mypage
     @community = Community.find(params[:community_id])
     @user = CommunityUser.find_by(user_id: current_user.id)
+    @currentUser = CommunityUser.find_by(user_id: current_user.id) #community-info表示に利用
   end
 
   private

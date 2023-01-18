@@ -27,8 +27,10 @@ class CommunitiesController < ApplicationController
 
   def show
     @community = Community.find(params[:id])
-    @user = User.find(current_user.id) #マイページのpathに利用
+    @user = User.find(current_user.id)
     @rules = Rule.where(community_id: params[:id])
+    @records = Record.where(community_id: params[:community_id], updated_at: Time.zone.today.ago(30.days)..Time.zone.today.end_of_day).order(updated_at: :desc).limit(5)
+    @currentUser = CommunityUser.find_by(user_id: current_user.id) #community-info表示に利用
   end
 
   def join_request

@@ -31,6 +31,7 @@ Rails.application.routes.draw do
     resources :users do
       get "mypage" => "users#mypage"
     end
+    resources :records, only: [:index, :show]
     get "join_request" => "communities#join_request"
     delete "out" => "communities#out"
   end

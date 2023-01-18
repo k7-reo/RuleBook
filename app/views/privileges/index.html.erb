@@ -1,3 +1,7 @@
+  <div class="community-info">
+    <%= render 'communities/info', community: @community, currentUser: @currentUser %>
+  </div>
+
   <p class="page-title">特典&ペナルティ</p>
 
   <div class="monthly_point">
@@ -132,8 +136,4 @@
     <div>
      <p><%= link_to "ペナルティを新規作成", new_community_penalty_path(@community.id) %></p>
     </div>
-  </div>
-
-  <div>
-    <p><%= link_to "コミュニティTopへ", community_path(@community.id) %></p>
   </div>

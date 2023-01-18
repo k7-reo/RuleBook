@@ -1,63 +1,60 @@
-  <p class="page-title">マイページ</p>
+  <p class="page-title">コミュニティ一覧</p>
 
   <div class="my-communities round">
     <div class="my-communities-header">
-      <p class="section-title">所属コミュニティ一覧</p>
-      <p class="edit_community"><%= link_to "コミュニティ新規作成", new_community_path %></p>
+      <p class="section-title">所属コミュニティ</p>
+      <p class="new_community"><%= link_to "コミュニティ新規作成", new_community_path %></p>
     </div>
     <div>
-    <% if @my_communities.present? %>
-      <table>
-        <thead>
-          <tr>
-            <td>コミュニティID</td>
-            <td>コミュニティ名</td>
-            <td>コミュニティ説明</td>
-            <td>参加人数</td>
-            <td colspan="4"></td>
-          </tr>
-        </thead>
-        <tbody>
-        <% @my_communities.each do |community| %>
-          <tr>
-            <td><%= community.id %></td>
-            <td>
-              <%= link_to community_path(community.id) do %>
-                <%= community.community_name %>
-              <% end %>
-            </td>
-            <td><%= community.introduction %></td>
-            <td><%= community.users.count %></td>
-            <td>
-              <span><%= link_to '編集', edit_community_path(community.id) %></span>
-              <span><%= link_to '退出', community_out_path(community.id), method: :delete %></span>
-            </td>
-            <td>
-              <% if community.owner_id == current_user.id %>
-                <span><%= link_to '削除', community_path(community.id), method: :delete %></span>
-                <span class="owner_sign">●</span>
-              <% end %>
-            </td>
-          </tr>
-        <% end %>
-        </tbody>
-      </table>
-      <p>あなたがオーナーのコミュニティには<span class="owner_sign">●</span>が表示されます。</p>
-    <% else %>
-      <p>現在、所属しているコミュニティはありません。</p>
-    <% end %>
+      <% if @my_communities.present? %>
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>コミュニティ名</th>
+              <th>コミュニティ説明</th>
+              <th>参加人数</th>
+              <th colspan="4"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @my_communities.each do |community| %>
+              <tr>
+                <td><%= community.id %></td>
+                <td>
+                  <span><%= link_to community.community_name, community_path(community.id) %></span>
+                </td>
+                <td><%= community.introduction %></td>
+                <td><%= community.users.count %></td>
+                <td>
+                    <span><%= link_to '入室', community_path(community.id) %></span>
+                    <span><%= link_to '退出', community_out_path(community.id), method: :delete %></span>
+                  <% if community.owner_id == current_user.id %>
+                    <span><%= link_to '編集', edit_community_path(community.id) %></span>
+                    <span><%= link_to '削除', community_path(community.id), method: :delete %></span>
+                    <span class="owner_sign">●</span>
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+        <p>あなたがオーナーのコミュニティには<span class="owner_sign">●</span>が表示されます。</p>
+      <% else %>
+        <p>現在、所属しているコミュニティはありません。</p>
+      <% end %>
     </div>
   </div>
 
   <div class="requesting-community round">
-    <p class="section-title">参加申請中コミュニティ一覧</p>
+    <p class="section-title">参加申請中コミュニティ</p>
     <% if @requesting_communities.present? %>
       <table>
         <thead>
           <tr>
-            <td>コミュニティID</td>
-            <td>コミュニティ名</td
-            <td colspan="1"></td>
+            <th>ID</th>
+            <th>コミュニティ名</th>
+            <th colspan="1"></th>
           </tr>
         </thead>
         <tbody>
@@ -90,9 +87,9 @@
       <table>
         <thead>
           <tr>
-            <td>コミュニティID</td>
-            <td>コミュニティ名</td>
-            <td colspan="2"></td>
+            <th>ID</th>
+            <th>コミュニティ名</th>
+            <th colspan="2"></th>
           </tr>
         </thead>
         <tbody>
@@ -104,11 +101,11 @@
               <td>
                 <span><%= link_to '参加申請', community_join_request_path(community.id) %></span>
               </td>
-              <td>
-                <% if community.owner_id == current_user.id %>
-                  ※あなたがオーナーです。
-                <% end %>
-              </td>
+              <% if community.owner_id == current_user.id %>
+                <td>
+                    ※あなたがオーナーです。
+                </td>
+              <% end %>
             </tr>
           <% end %>
         <% end %>

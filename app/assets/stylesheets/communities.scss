@@ -20,24 +20,44 @@
 }
 
 //_info
+.community-info {
+  background-color: #dddddd;
+  color: #303030;
+  margin-top: -20px;
+  margin-left: -20px;
+  margin-right: -20px;
+}
+
+//_info
 .community-header {
-  margin-bottom: 40px;
+  padding-bottom: 5px;
+}
+
+.head-community-info {
+  padding-left: 25px;
+  padding-top: 20px;
+}
+
+.head-community-name {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.head-community-introduction {
+  font-size: 70%;
+  margin-top: 0;
 }
 
 //_info
 .community-navigation {
   display: flex;
-  justify-content: center;
+  margin: 10px auto 0 -25px;
+
 }
 
 //_info
 .community-navigation-item {
-  margin: 20px;
-}
-
-//show
-.community-info {
-  background-color: #ffd8d3;
-  color: #321e1e;
-  margin: -20px;
+  margin: 5px 10px;
+  text-align: center;
+  font-weight: bold;
 }

@@ -3,6 +3,7 @@ class PrivilegesController < ApplicationController
   def index #penalties#indexもここで定義
     @community = Community.find(params[:community_id])
     @user = CommunityUser.find_by(user_id: current_user.id, community_id: @community.id)
+    @currentUser = CommunityUser.find_by(user_id: current_user.id) #community-info表示に利用
   end
 
   def new

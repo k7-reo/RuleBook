@@ -1,0 +1,43 @@
+  <div class="community-info">
+    <%= render 'communities/info', community: @community, currentUser: @currentUser %>
+  </div>
+
+  <p class="page-title">過去30日のアクティビティ</p>
+
+  <div class="30days-record round">
+  <% @records.each do |record| %>
+    <% if record.action_type == "Motto" %>
+      <% if record.version == 1 %>
+        <p class="record-content">モットー「<%= record.content %>」が作成されました。<br><span class="record-date"><%= record.created_at.to_s(:datetime_jp) %></span></p>
+      <% elsif record.version == 0 %>
+        <p>モットー「<%= record.content %>」が削除されました。<br><span class="record-date"><%= record.created_at.to_s(:datetime_jp) %></span></p>
+      <% else %>
+        <p>モットー「<%= record.content %>」が編集されました。<br><span class="record-date"><%= record.created_at.to_s(:datetime_jp) %></span></p>
+      <% end %>
+    <% elsif record.action_type == "Rule" %>
+      <% if record.version == 1 %>
+        <p>ルール「<%= record.content %>」が作成されました。<br><span class="record-date"><%= record.created_at.to_s(:datetime_jp) %></span></p>
+      <% elsif record.version == 0 %>
+        <p>ルール「<%= record.content %>」が削除されました。<br><span class="record-date"><%= record.created_at.to_s(:datetime_jp) %></span></p>
+      <% else %>
+        <p>ルール「<%= record.content %>」が編集されました。<br><span class="record-date"><%= record.created_at.to_s(:datetime_jp) %></span></p>
+      <% end %>
+    <% elsif record.action_type == "Privilege" %>
+      <% if record.version == 1 %>
+        <p>特典「<%= record.content %>」が作成されました。<br><span class="record-date"><%= record.created_at.to_s(:datetime_jp) %></span></p>
+      <% elsif record.version == 0 %>
+        <p>特典「<%= record.content %>」が削除されました。<br><span class="record-date"><%= record.created_at.to_s(:datetime_jp) %></span></p>
+      <% else %>
+        <p>特典「<%= record.content %>」が編集されました。<br><span class="record-date"><%= record.created_at.to_s(:datetime_jp) %></span></p>
+      <% end %>
+    <% elsif record.action_type == "Penalty" %>
+      <% if record.version == 1 %>
+        <p>ペナルティ「<%= record.content %>」が作成されました。<br><span class="record-date"><%= record.created_at.to_s(:datetime_jp) %></span></p>
+      <% elsif record.version == 0 %>
+        <p>ペナルティ「<%= record.content %>」が削除されました。<br><span class="record-date"><%= record.created_at.to_s(:datetime_jp) %></span></p>
+      <% else %>
+        <p>ペナルティ「<%= record.content %>」が編集されました。<br><span class="record-date"><%= record.created_at.to_s(:datetime_jp) %></span></p>
+      <% end %>
+    <% end %>
+  <% end %>
+  </div>
