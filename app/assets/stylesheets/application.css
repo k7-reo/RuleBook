@@ -34,12 +34,14 @@ a:hover {
   color: inherit; /*リンク文字の色変更させない*/
   text-decoration:none;
   border-bottom: dotted 1px; /*リンク下にドット線*/
+  font-weight: bold;
 }
 
 /*枠ごとのタイトル*/
 .section-title {
   color: #a4a4a4;
   font-weight: bold;
+  margin-left: 10px;
 }
 
 /*サイトのヘッダー部*/
@@ -88,22 +90,21 @@ ul {
 }
 
 table {
-  border-collapse: collapse;
-  border-spacing: 0;
-}
-
-table tr{
-border-bottom: solid 5px #303030;
+  border-collapse: separate;
+  border-spacing: 1px 12px;
+  width: 100%;
 }
 
 /*テーブルのタイトル全体*/
 thead {
   text-align: center;
+  font-size: 70%;
 }
 
 /*テーブルのデータ全体*/
 tbody {
   color: #303030;
+  text-align: center;
 }
 
 /*テーブルデータの奇数行*/
@@ -114,6 +115,18 @@ tbody tr:nth-child(odd) {
 /*テーブルデータの偶数行*/
 tbody tr:nth-child(even) {
   background-color: #a4a4a5;
+}
+
+th, td {
+  padding: 10px 15px;
+}
+
+th:first-child, td:first-child {
+  padding-left: 15px
+}
+
+th:last-child, td:last-child {
+  padding-right: 15px
 }
 
 /*テーブルデータの最初の列*/
@@ -133,4 +146,14 @@ tbody td:last-child {
   padding: 10px 20px;
   margin: 20px 10px;
   background-color: #303030;
+}
+
+.execute_btn {
+  background-color: #ffd139;
+  padding: 5px 10px;
+  border-radius:  20px;
+}
+
+.point {
+  font-size: 80%;
 }

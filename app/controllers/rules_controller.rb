@@ -14,34 +14,40 @@ class RulesController < ApplicationController
   def new
     @rule = Rule.new
     @community = Community.find(params[:community_id])
-    #@ruleUser = RuleUser.new
   end
 
   def create
     @community = Community.find(params[:community_id])
     #ruleレコード保存↓
-    rule = Rule.new(rule_params)
-    rule.user_id = current_user.id #ルール制作者
-    rule.community_id = @community.id
-    rule.save
-    #rule対象ユーザー登録↓
-    #ruleUser = RuleUser.new(rule_user_params)
-    #ruleUser.rule_id = rule.id
-    #ruleUser.user_id = user_id #form_with実行でで定義済の為ここでは書かなくても良さそう？？
-    #ruleUser.save
-    #履歴登録↓
-    newRecord = Record.new
-    newRecord.community_id = @community.id
-    newRecord.rule_id = rule.id
-    newRecord.content = rule.content
-    newRecord.point = rule.point
-    newRecord.genre = rule.genre
-    newRecord.user_id = current_user.id
-    newRecord.updating_user_id = current_user.id
-    newRecord.version = 1
-    newRecord.action_type = "Rule"
-    newRecord.save
-    redirect_to community_rules_path(@community.id)
+    @rule = Rule.new(rule_params)
+    @rule.user_id = current_user.id #ルール制作者
+    @rule.community_id = @community.id
+    @userIds=params[:rule][:user_ids] #[][]に連続※params[]の意味：送られてきた情報を受け取る。今回のcreateアクションではformに記載された情報をストロングパラメーターとして送っており、それを取得している。
+    if @rule.save
+      @userIds.each do |user_id| #user_idsで配列されているuser一人一人をruleに関連づける。(RuleUser中間テーブルに保存。)
+        user = User.find(user_id.to_i)
+        @rule.users << user #関連付ける。
+      end
+      ruleUsers = RuleUser.where(rule_id: @rule.id) #中間テーブルの各community_idの保存。
+      ruleUsers.each do |user|
+        user.community_id = params[:community_id]
+        user.save
+      end
+      newRecord = Record.new
+      newRecord.community_id = @community.id
+      newRecord.rule_id = @rule.id
+      newRecord.content = @rule.content
+      newRecord.point = @rule.point
+      newRecord.genre = @rule.genre
+      newRecord.user_id = current_user.id
+      newRecord.updating_user_id = current_user.id
+      newRecord.version = 1
+      newRecord.action_type = "Rule"
+      newRecord.save
+      redirect_to community_rules_path(@community.id)
+    else
+      render 'new'
+    end
   end
 
   def destroy

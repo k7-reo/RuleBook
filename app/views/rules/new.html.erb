@@ -17,9 +17,9 @@
     <%= f.text_field :point, placeholder: "ルールによるポイント加減をここに" %>
     <label>ジャンル</label>
     <%= f.text_field :genre, placeholder: "ジャンルをここに" %>
-    <%= fields_for @ruleUser do |i| %>
-      <label>対象ユーザー</label>
-      <%= i.collection_check_boxes :user_id, User.joins(:community_users).where(community_users: {community_id: params[:community_id]}), :id, :name, include_blank: "対象ユーザーを選択", multiple: true %>
+    <%= collection_check_boxes(:rule, :user_ids, User.joins(:community_users).where(community_users: {community_id: params[:community_id]}), :id, :name, include_hidden: false) do |user| %>
+     <%= user.check_box %>
+     <%= user.text %>
     <% end %>
     <%= f.submit '新規作成' %>
   <% end %>

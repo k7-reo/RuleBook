@@ -2,6 +2,8 @@
     <%= render 'communities/info', community: @community, currentUser: @currentUser %>
   </div>
 
+  <p class="page-title"><%= @community.community_name %>のダッシュボード</p>
+
   <div class="community-users round">
     <p class="section-title">メンバー</p>
     <div class="community-user-list">
@@ -50,8 +52,8 @@
         <% @rules.each do |rule| %>
           <tr>
             <td><%= rule.content %></td>
-            <td><%= rule.point %></td>
-            <td><%= link_to "実行", community_rule_execute_path(@community.id, rule.id) %></td>
+            <td><%= rule.point %><span class="point">pt</span></td>
+            <td><%= link_to "実行", community_rule_execute_path(@community.id, rule.id), class: "execute_btn" %></td>
           </tr>
         <% end %>
         </tbody>

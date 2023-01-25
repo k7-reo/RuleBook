@@ -3,11 +3,11 @@
   <div class="my-communities round">
     <div class="my-communities-header">
       <p class="section-title">所属コミュニティ</p>
-      <p class="new_community"><%= link_to "コミュニティ新規作成", new_community_path %></p>
+      <p class="new-community"><%= link_to "コミュニティ新規作成", new_community_path %></p>
     </div>
     <div>
       <% if @my_communities.present? %>
-        <table>
+        <table class="my-communities-table">
           <thead>
             <tr>
               <th>ID</th>

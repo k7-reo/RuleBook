@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_12_27_054946) do
+ActiveRecord::Schema.define(version: 2023_01_24_205024) do
 
   create_table "communities", force: :cascade do |t|
     t.string "community_name"
@@ -80,6 +80,7 @@ ActiveRecord::Schema.define(version: 2022_12_27_054946) do
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "community_id"
     t.index ["rule_id"], name: "index_rule_users_on_rule_id"
     t.index ["user_id"], name: "index_rule_users_on_user_id"
   end

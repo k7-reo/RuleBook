@@ -1,64 +1,48 @@
-// Place all the styles related to the Communities controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
-
 .community-user-list {
-  display: flex;
-}
+  display: flex; }
 
 .community-user {
-  margin: 10px;
-}
+  margin: 10px; }
 
 .profile_image {
-  border-radius: 50%;
-}
+  border-radius: 50%; }
 
 .community-user-name {
   text-align: center;
-  margin-top: 0;
-  margin-bottom: 0;
-}
+  margin-top: 0; }
 
-//_info
 .community-info {
   background-color: #dddddd;
   color: #303030;
   margin-top: -20px;
   margin-left: -20px;
-  margin-right: -20px;
-}
+  margin-right: -20px; }
 
-//_info
 .community-header {
-  padding-bottom: 5px;
-}
+  padding-bottom: 5px; }
 
 .head-community-info {
   padding-left: 25px;
-  padding-top: 20px;
-}
+  padding-top: 20px; }
 
 .head-community-name {
   margin-top: 0;
-  margin-bottom: 0;
-}
+  margin-bottom: 0; }
 
 .head-community-introduction {
   font-size: 70%;
-  margin-top: 0;
-}
+  margin-top: 0; }
 
-//_info
 .community-navigation {
   display: flex;
-  margin: 10px auto 0 -25px;
+  margin: 10px auto 0 -25px; }
 
-}
-
-//_info
 .community-navigation-item {
   margin: 5px 10px;
   text-align: center;
-  font-weight: bold;
-}
+  font-weight: bold; }
+
+.execute-btn {
+  background-color: ffd139; }
+
+/*# sourceMappingURL=communities.css.map */

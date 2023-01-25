@@ -4,8 +4,8 @@
 
   <p class="page-title">特典&ペナルティ</p>
 
-  <div class="monthly_point">
-    <p class="section-title">今月<%= @user.user.name %>さんに配当されたポイント：<%= @user.monthly_point %></p>
+  <div class="monthly_point round">
+    <p class="section-title">今月<%= @user.user.name %>さんに配当されたポイント</p>
     <p><%= @user.monthly_point %></p>
     <p>
     <% if @user.monthly_point < 0 %>
@@ -19,8 +19,8 @@
     <% end %>
     </p>
     <div>
-      <p class="section-title">今月受け取った特典</p>
-      <p class="section-title">今月実行したペナルティ</p>
+      <p class="section-title">今月受け取った特典</p> <!-- standbyテーブルから取得 -->
+      <p class="section-title">今月実行したペナルティ</p> <!-- standbyテーブルから取得 -->
     </div>
   </div>
 
@@ -74,7 +74,7 @@
          </td>
        <% else %>
         <tr>
-         <td colspan="3">今月、実行が必要な罰はありません。</td>
+         <td colspan="3">今月、実行が必要なペナルティはありません。</td>
         </tr>
        <% end %>
       <% end %>
@@ -98,8 +98,10 @@
        <tr>
         <td><%= privilege.content %></td>
         <td><%= privilege.point %></td>
-        <td><span><%= link_to '削除', community_privilege_path(@community.id, privilege.id), method: :delete %></span></td>
-        <td><span><%= link_to "編集", edit_community_privilege_path(@community, privilege.id) %></span></td>
+        <td>
+          <span><%= link_to '削除', community_privilege_path(@community.id, privilege.id), method: :delete %></span>
+          <span><%= link_to "編集", edit_community_privilege_path(@community, privilege.id) %></span>
+        </td>
        </tr>
       <% end %>
       </tbody>
@@ -126,8 +128,10 @@
        <tr>
         <td><%= penalty.content %></td>
         <td><%= penalty.point %></td>
-        <td><span><%= link_to '削除', community_penalty_path(@community.id, penalty.id), method: :delete %></span></td>
-        <td><span><%= link_to "編集", edit_community_penalty_path(@community, penalty.id) %></span></td>
+        <td>
+          <span><%= link_to '削除', community_penalty_path(@community.id, penalty.id), method: :delete %></span>
+          <span><%= link_to "編集", edit_community_penalty_path(@community, penalty.id) %></span>
+        </td>
        </tr>
       <% end %>
       </tbody>

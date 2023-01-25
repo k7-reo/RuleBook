@@ -10,6 +10,7 @@
         <tr>
           <th>ルール内容</th>
           <th>ポイント増減</th>
+          <th>ルール対象者</th>
           <th>作成者</th>
           <th>最終更新者</th>
           <th colspan="1"></th>
@@ -20,6 +21,7 @@
         <tr>
           <td><%= rule.content %></td>
           <td><%= rule.point %></td>
+          <td>表示方法分からない</td>
           <td><%= rule.creating_user.name %></td>
           <td>
             <% if rule.updating_user_id.present? %>

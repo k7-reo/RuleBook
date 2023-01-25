@@ -24,8 +24,8 @@ rails_env = ENV['RAILS_ENV'] || :development # cronを実行する環境変数(:
 set :environment, rails_env # cronを実行する環境変数をセット
 set :output, "#{Rails.root}/log/crontab.log" # cronのログ出力用ファイル
 
-every '8 0 12 * *' do
-  rake 'users_point:total_monthly_point'
+every '0 0 1 * *' do #毎月1日00:00に実行
+  rake "users_point:total_monthly_point"
 end
 
 #every '0 0 11 * *' do #毎5日9:01に実行
