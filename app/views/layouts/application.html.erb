@@ -14,14 +14,10 @@
       <div class="site-logo">
         <%= image_tag 'lube_logo_white_background.png', size: '140x70' %>
       </div>
-      <div class="receive_box">
-        <% if user_signed_in? %>
-          <span><%= link_to "通知BOX", receive_path %></span>
-        <% end %>
-      </div>
-      <div class="site-index">
+      <div class="slide-menu">
         <ul>
         <% if user_signed_in? %>
+          <li><%= link_to "通知BOX", receive_path %></li>
           <li><%= link_to "コミュニティ一覧", top_path %></li>
           <li><%= link_to "各種設定", setting_path %></li>
           <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
@@ -35,8 +31,6 @@
       <div class="signin-user">
         <% if user_signed_in? %>
           <div class="signin-user-profile_image"><%= attachment_image_tag current_user, :profile_image, :fill, 60, 60, format: 'jpeg', fallback: "f_f_event_98_s512_f_event_98_0bg.jpg", size:'60x60'%></div>
-        <% else %>
-          <!-- サインインしていない時のアイコン表示 -->
         <% end %>
       </div>
     </header>
