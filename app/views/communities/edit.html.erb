@@ -1,0 +1,8 @@
+  <p class="page-title">コミュニティ編集</p>
+  <%= form_with(model:[@community], local:true) do |f| %>
+    <p>コミュニティ名</p>
+    <%= f.text_field :community_name %>
+    <p>説明</p>
+    <%= f.text_area :introduction %>
+    <%= f.submit %>
+  <% end %>

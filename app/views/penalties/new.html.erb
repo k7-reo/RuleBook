@@ -1,0 +1,21 @@
+  <p class="page-title">ペナルティ新規作成</p>
+
+   <p>
+    <b>ペナルティ作成のポイント</b><br>
+    個人のポイントが「回復ポイント」分マイナスになった時に<br>
+    受けなければいけないペナルティを記載してください。
+  </p>
+
+  <div>
+    <%= form_with(model:[@community, @penalty], local:true) do |f| %>
+      <p>ペナルティ内容</p>
+      <%= f.text_area :content, placeholder: "内容をここに" %>
+      <p>ペナルティを受けることで回復するポイント</p>
+      <%= f.text_field :point, placeholder: "ポイントをここに" %>
+      <%= f.submit '作成' %>
+    <% end %>
+  </div>
+
+  <div>
+    <p><%= link_to "戻る", community_privileges_path(@community.id) %></p>
+  <div>

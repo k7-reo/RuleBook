@@ -1,0 +1,12 @@
+  <p class="page-title">モットー作成</p>
+
+  <div>
+  <%= form_with(model: [@community, @motto], url: community_mottos_path{@community.id}, local:true) do |f| %> <!-- communityモデル、mottoモデルそれぞれにデータを保存するため、両モデル指定-->
+   <p>モットー</p>
+   <%= f.text_area :content, placeholder: "モットーをここに" %>
+   <%= f.submit '作成' %>
+  <% end %>
+  </div>
+  <div>
+   <p><%= link_to "コミュニティTopへ", community_path(@community.id) %></p>
+  <div>

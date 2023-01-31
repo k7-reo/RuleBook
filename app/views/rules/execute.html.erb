@@ -1,0 +1,22 @@
+  <p class="page-title">ルール実行</p>
+
+  <p>実行するルール：<%= @rule.content %></p>
+  <p>加減ポイント：<%= @rule.point %></p>
+
+  <div>
+    <%= form_with model: @standby, url: community_rule_execute_path(@community.id, @rule.id), local:true do |f| %>
+      <div>
+        <div>
+          <%= collection_check_boxes(:standby, :executed_user_id, User.joins(:rule_users).where(rule_users: {rule_id: params[:rule_id]}), :id, :name, include_hidden: false) do |user| %>
+            <%= user.check_box %>
+            <%= user.text %>
+          <% end %>
+        </div>
+        <div><%= f.submit '対象にルール行使' %></div>
+      </div>
+    <% end %>
+  </div>
+
+  <div>
+    <p><%= link_to "ルール一覧", community_rules_path(@community.id) %></p>
+  </div>

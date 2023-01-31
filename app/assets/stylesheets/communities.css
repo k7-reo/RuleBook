@@ -1,0 +1,48 @@
+.community-user-list {
+  display: flex; }
+
+.community-user {
+  margin: 10px; }
+
+.profile_image {
+  border-radius: 50%; }
+
+.community-user-name {
+  text-align: center;
+  margin-top: 0; }
+
+.community-info {
+  background-color: #dddddd;
+  color: #303030;
+  margin-top: -20px;
+  margin-left: -20px;
+  margin-right: -20px; }
+
+.community-header {
+  padding-bottom: 5px; }
+
+.head-community-info {
+  padding-left: 25px;
+  padding-top: 20px; }
+
+.head-community-name {
+  margin-top: 0;
+  margin-bottom: 0; }
+
+.head-community-introduction {
+  font-size: 70%;
+  margin-top: 0; }
+
+.community-navigation {
+  display: flex;
+  margin: 10px auto 0 -25px; }
+
+.community-navigation-item {
+  margin: 5px 10px;
+  text-align: center;
+  font-weight: bold; }
+
+.execute-btn {
+  background-color: ffd139; }
+
+/*# sourceMappingURL=communities.css.map */

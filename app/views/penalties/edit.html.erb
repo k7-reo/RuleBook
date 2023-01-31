@@ -1,0 +1,9 @@
+  <p class="page-title">ペナルティ編集</p>
+
+    <%= form_with(model:[@community, @penalty], local:true) do |f| %>
+    <p>ペナルティ内容</p>
+    <%= f.text_area :content %>
+    <p>ペナルティを受けることで回復するポイント</p>
+    <%= f.text_area :point %>
+    <%= f.submit "編集完了" %>
+  <% end %>

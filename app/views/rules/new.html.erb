@@ -1,0 +1,29 @@
+  <p class="page-title">ルール新規作成</p>
+
+  <p>
+    <b>ルール作成のポイント</b><br>
+    「マイナスポイント」は当たり前にやるべきタスクに対して設定し、<br>
+    普段のタスク以外でやってくれると嬉しいことに「プラスポイント」を設定すると<br>
+    ルール整理がスムーズになります。<br>
+    例） 靴下脱ぎっぱなし → -10ポイント<br>
+    例） 植物の水やり → 5ポイント
+  </p>
+
+  <div>
+  <%= form_with(model:[@community, @rule], url: community_rules_path{@community.id}, local:true) do |f| %> <!--modelが配列してある理由：ネストしている時は親(community)のインスタンスも必要になる-->
+    <label>ルール内容</label>
+    <%= f.text_area :content, placeholder: "ルール内容をここに" %>
+    <label>ポイント(−ポイント指定可能)</label>
+    <%= f.text_field :point, placeholder: "ルールによるポイント加減をここに" %>
+    <label>ジャンル</label>
+    <%= f.text_field :genre, placeholder: "ジャンルをここに" %>
+    <%= collection_check_boxes(:rule, :user_ids, User.joins(:community_users).where(community_users: {community_id: params[:community_id]}), :id, :name, include_hidden: false) do |user| %>
+      <%= user.check_box %>
+      <%= user.text %>
+    <% end %>
+    <%= f.submit '新規作成' %>
+  <% end %>
+  </div>
+  <div>
+    <%= link_to "コミュニティTopへ", community_path(@community.id) %>
+  </div>

@@ -1,0 +1,66 @@
+  <div class="community-info">
+    <%= render 'communities/info', community: @community, currentUser: @currentUser %>
+  </div>
+
+  <p class="page-title"><%= @community.community_name %>のダッシュボード</p>
+
+  <div class="community-users round">
+    <p class="section-title">メンバー</p>
+    <div class="community-user-list">
+    <% @community.users.each do |user| %>
+      <div class="community-user">
+        <div class="profile_image"><%= attachment_image_tag user, :profile_image, :fill, 80, 80, format: 'jpeg', fallback: "f_f_event_98_s512_f_event_98_0bg.jpg", size:'80x80'%></div>
+        <p class="community-user-name"><%= user.name %></p>
+      </div>
+    <% end %>
+    </div>
+  </div>
+
+  <div class="community-dashboard round">
+    <p class="section-title">ダッシュボード</p>
+      <!-- モットーの表示 -->
+      <!-- ルールの棒グラフ一覧表示（ジャンル別）-->
+      <!-- コミュニティ健全度の表示(定義説明あり) -->
+      <!-- ジャンル別のルール制定量の表示 -->
+      <p>参加者数：<%= @community.users.count %>人<p>
+      <!-- メンバーアイコンで表示(リンク有※メンバーの一覧ページ) -->
+  </div>
+
+  <div class="late-actibities round">
+    <p class="section-title">最近のアクティビティ</p>
+    <div>
+      <p><%= link_to "過去30日のアクティビティ", community_records_path(@community.id) %></p>
+    </div>
+  </div>
+
+  <div class="rules round">
+    <div class="rules-header">
+      <p class="section-title">ルール</p>
+      <p><%= link_to "ルール編集", community_rules_path(@community.id) %></p>
+    </div>
+    <div>
+    <% if @rules.present? %>
+      <table>
+        <thead>
+          <tr>
+            <th>内容</th>
+            <th>ポイント増減</th>
+            <th colspan="1"></th>
+          </tr>
+        </thead>
+        <tbody>
+        <% @rules.each do |rule| %>
+          <tr>
+            <td><%= rule.content %></td>
+            <td><%= rule.point %><span class="point">pt</span></td>
+            <td><%= link_to "実行", community_rule_execute_path(@community.id, rule.id), class: "execute_btn" %></td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    <% else %>
+      <p>このコミュニティにはまだルールがありません。</p>
+    <% end %>
+    </div>
+
+  </div>

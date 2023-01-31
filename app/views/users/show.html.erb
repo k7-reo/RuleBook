@@ -1,0 +1,95 @@
+  <div class="community-info">
+    <%= render 'communities/info', community: @community, currentUser: @currentUser %>
+  </div>
+
+  <p class="page-title"><%= @user.user.name %>の詳細</p>
+
+  <div>
+    <div>
+      <p>今月のポイント獲得進捗：<%= @user.point %></p>
+    </div>
+    <div>
+      <p>今月利用できるポイント：<%= @user.monthly_point %></p>
+    </div>
+    <!-- 先月違反した&継続したルール一覧withポイント -->
+    <!-- 今月違反した&継続したルール一覧withポイント -->
+    <div>
+      <p class="section-title"><%= @user.user.name %>が作成したルール</p>
+      <div>
+        <% if @rules.present? %>
+          <table>
+            <thead>
+              <tr>
+                <th>内容</th>
+                <th>増減ポイント</th>
+              </tr>
+            </thead>
+            <tbody>
+            <% @rules.each do |rule| %>
+              <tr>
+                <td><%= rule.content %></td>
+                <td><%= rule.point %></td>
+              </tr>
+            <% end %>
+            </tbody>
+          </table>
+        <% else %>
+          <p>あなたが<%= @community.community_name %>で作成したルールはありません。</p>
+        <% end %>
+      </div>
+    </div>
+    <div>
+      <p class="section-title"><%= @user.user.name %>が作成した特典</p>
+      <div>
+        <% if @privileges.present? %>
+          <table>
+            <thead>
+              <tr>
+                <th>内容</th>
+                <th>利用ポイント</th>
+              </tr>
+            </thead>
+            <tbody>
+            <% @privileges.each do |privilege| %>
+              <tr>
+                <td><%= privilege.content %></td>
+                <td><%= privilege.point %></td>
+              </tr>
+            <% end %>
+            </tbody>
+          </table>
+        <% else %>
+          <p>あなたが<%= @community.community_name %>で作成した特典はありません。</p>
+        <% end %>
+      </div>
+    </div>
+    <div>
+      <p class="section-title"><%= @user.user.name %>が作成した罰</p>
+      <div>
+        <% if @penalties.present? %>
+          <table>
+            <thead>
+              <tr>
+                <th>内容</th>
+                <th>回復ポイント</th>
+              </tr>
+            </thead>
+            <tbody>
+            <% @penalties.each do |penaltie| %>
+              <tr>
+                <td><%= penaltie.content %></td>
+                <td><%= penaltie.point %></td>
+              </tr>
+            <% end %>
+            </tbody>
+          </table>
+        <% else %>
+          <p>あなたが<%= @community.community_name %>で作成したペナルティはありません。</p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <%= link_to "メンバー一覧へ", community_users_path(@community.id) %>
+  </div>

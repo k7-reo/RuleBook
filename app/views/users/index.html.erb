@@ -1,0 +1,30 @@
+  <div class="community-info">
+    <%= render 'communities/info', community: @community, currentUser: @currentUser %>
+  </div>
+
+  <p class="page-title">コミュニティ所属ユーザー</p>
+
+  <div>
+    <table>
+      <thead>
+          <tr>
+              <th>ユーザー名</th>
+              <th>今月の獲得ポイント</th>
+              <th>保有ポイント</th>
+          </tr>
+      </thead>
+      <tbody>
+      <% @communityUsers.each do |communityUser| %>
+          <tr>
+              <td>
+               <%= link_to community_user_path(@community.id, communityUser.user.id) do %>
+                 <%= communityUser.user.name %>
+               <% end %>
+              </td>
+              <td><%= communityUser.point %></td>
+              <td><%= communityUser.monthly_point %></td>
+          </tr>
+      <% end %>
+      <tbody>
+    </table>
+  </div>

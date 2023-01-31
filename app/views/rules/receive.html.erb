@@ -1,0 +1,98 @@
+  <p class="page-title"><%= @user.name %>宛の受信BOX</p>
+
+  <div class="round">
+    <p class="section-title"><%= @user.name %>に実行されたルール</p>
+    <% if @standbyRules.present? %>
+      <table>
+        <thead>
+          <tr>
+            <th>コミュニティ</th>
+            <th>申請者</th>
+            <th>ルール</th>
+            <th>加減ポイント</th>
+            <th>申請日時</th>
+            <th colspan="2"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @standbyRules.each do |standby| %>
+          <tr>
+            <td><%= link_to standby.community.community_name, community_path(standby.community_id) %></td>
+            <td><%= standby.executing_user.name %></td>
+            <td><%= standby.rule.content %></td>
+            <td><%= standby.rule.point %></td>
+            <td><%= standby.rule.created_at.to_s(:datetime_jp) %></td>
+            <td>
+              <%= link_to "承認する", approval_path(standby) %> <!-- 一つのstandbyレコードのみcotrollerに送りたい -->
+            　<%= link_to "否認する", denial_path(standby)  %> <!-- 一つのstandbyレコードのみcotrollerに送りたい -->
+            </td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% else %>
+      <p>あなたに対して実行されたルールはありません。</p>
+    <% end %>
+  </div>
+
+  <div class="round">
+    <p class="section-title"><%= @user.name %>へのペナルティ完了許可の依頼</p>
+    <% if @standbyPenalties.present? %>
+      <table>
+        <thead>
+          <tr>
+            <td>コミュニティ</td>
+            <td>申請者</td>
+            <td>回復ポイント</td>
+            <td>申請日時</td>
+            <td colspan="2"></td>
+          </tr>
+        </thead>
+        <tbody>
+          <% @standbyPenalties.each do |standby| %>
+          <tr>
+            <td><%= link_to standby.community.community_name, community_path(standby.community_id) %></td>
+            <td><%= standby.executing_user.name %></td>
+            <td><%= standby.penalty.point %></td>
+            <td><%= standby.penalty.created_at.to_s(:datetime_jp) %></td>
+            <td><%= link_to '承認する', forgive_path(standby) %></td>
+            <td><%= link_to '否認する', forbid_path(standby) %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% else %>
+      <p>あなたに送られたペナルティ完了の許可依頼はありません。</p>
+    <% end %>
+    </div>
+  </div>
+
+  <div class="round">
+    <p class="section-title"><%= @user.name %>がオーナーのコミュニティへの参加申請</p>
+    <% if @unaccepted_users.present? %>
+      <table>
+        <thead>
+          <tr>
+            <td>コミュニティ</td>
+            <td>参加希望ユーザー</td>
+            <td colspan="2"></td>
+          </tr>
+        </thead>
+        <tbody>
+          <% @unaccepted_users.each do |users| %>
+          <tr>
+            <td><%= users.community.community_name %></td>
+            <td><%= users.user.name %></td>
+            <td><%= link_to "参加を許可する", accept_path(users.id) %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% else %>
+      <p>参加依頼はありません。</p>
+    <% end %>
+  </div>
+
+  <div>
+    <%= link_to "TOPへ", top_path %>
+  </div>

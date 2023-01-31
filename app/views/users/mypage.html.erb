@@ -1,0 +1,7 @@
+  <div class="community-info">
+    <%= render 'communities/info', community: @community, currentUser: @currentUser %>
+  </div>
+
+  <p class="page-title"><%= @user.user.name %>のマイページ</p>
+
+  <!-- attachment_image_tag @user.user, profile_image, fill, 60, 60, format:'jpeg' -->

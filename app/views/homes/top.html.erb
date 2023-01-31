@@ -1,0 +1,121 @@
+  <p class="page-title">コミュニティ一覧</p>
+
+  <div class="my-communities round">
+    <div class="my-communities-header">
+      <p class="section-title">所属コミュニティ</p>
+      <p class="new-community"><%= link_to "コミュニティ新規作成", new_community_path %></p>
+    </div>
+    <div>
+      <% if @my_communities.present? %>
+        <table class="my-communities-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>コミュニティ名</th>
+              <th>コミュニティ説明</th>
+              <th>参加人数</th>
+              <th colspan="4"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @my_communities.each do |community| %>
+              <tr>
+                <td><%= community.id %></td>
+                <td>
+                  <span><%= link_to community.community_name, community_path(community.id) %></span>
+                </td>
+                <td><%= community.introduction %></td>
+                <td><%= community.users.count %></td>
+                <td>
+                    <span><%= link_to '入室', community_path(community.id) %></span>
+                    <span><%= link_to '退出', community_out_path(community.id), method: :delete %></span>
+                  <% if community.owner_id == current_user.id %>
+                    <span><%= link_to '編集', edit_community_path(community.id) %></span>
+                    <span><%= link_to '削除', community_path(community.id), method: :delete %></span>
+                    <span class="owner_sign">●</span>
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+        <p>あなたがオーナーのコミュニティには<span class="owner_sign">●</span>が表示されます。</p>
+      <% else %>
+        <p>現在、所属しているコミュニティはありません。</p>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="requesting-community round">
+    <p class="section-title">参加申請中コミュニティ</p>
+    <% if @requesting_communities.present? %>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>コミュニティ名</th>
+            <th colspan="1"></th>
+          </tr>
+        </thead>
+        <tbody>
+        <% @requesting_communities.each do |community| %>
+          <tr>
+            <td><%= community.id %></td>
+            <td><%= community.community_name %></td>
+            <td>
+              <span><%= link_to '申請を取り消す', community_out_path(community.id), method: :delete %></span>
+            </td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    <% else %>
+      <p>現在、参加申請しているコミュニティはありません。</p>
+    <% end %>
+  </div>
+
+  <div class="communities-search round">
+    <p class="section-title">コミュニティ検索</p>
+    <div class="search-box">
+      <%= form_with(url: search_path, method: :get, local: true, class: "search-form") do |form| %>
+        <%= form.text_field :keyword, placeholder: "コミュニティ名記入", class: "search-input" %>
+        <%= form.submit "コミュニティ検索", class: "search-btn" %>
+      <% end %>
+    </div>
+    <div class="seach-result">
+    <% if @searched_communities.present? %>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>コミュニティ名</th>
+            <th colspan="2"></th>
+          </tr>
+        </thead>
+        <tbody>
+        <% @searched_communities.each do |community| %>
+          <% if community.users.exclude?(current_user) %><!-- ログインしないとcurrent_userを参照できないのでundefind エラーが出るので注意。 -->
+            <tr>
+              <td><%= community.id %></td>
+              <td><%= community.community_name %></td>
+              <td>
+                <span><%= link_to '参加申請', community_join_request_path(community.id) %></span>
+              </td>
+              <% if community.owner_id == current_user.id %>
+                <td>
+                    ※あなたがオーナーです。
+                </td>
+              <% end %>
+            </tr>
+          <% end %>
+        <% end %>
+        </tbody>
+      </table>
+    <% else %>
+      <p>
+        該当するコミュニティはありません。<br>
+        ※全てのコミュニティを表示するには、空の状態で検索ボタンをクリックしてください。
+      </p>
+    <% end %>
+    </div>
+  </div>

@@ -1,0 +1,48 @@
+  <div class="community-info">
+    <%= render 'communities/info', community: @community, currentUser: @currentUser %>
+  </div>
+
+  <p class="page-title">ルール</p>
+  <!--本来ならshowアクション/show.html.erbで作成したいところだがまだでーたがないので -->
+  <div>
+    <table>
+      <thead>
+        <tr>
+          <th>ルール内容</th>
+          <th>ポイント増減</th>
+          <th>ルール対象者</th>
+          <th>作成者</th>
+          <th>最終更新者</th>
+          <th colspan="1"></th>
+        </tr>
+      </thead>
+      <tbody>
+      <% @community.rules.each do |rule| %>
+        <tr>
+          <td><%= rule.content %></td>
+          <td><%= rule.point %></td>
+          <td>
+            <% rule.users.each do |user| %>
+              <%= user.name %>
+            <% end %>
+          </td>
+          <td><%= rule.creating_user.name %></td>
+          <td>
+            <% if rule.updating_user_id.present? %>
+              <%= rule.updating_user.name %>
+            <% end %>
+          </td>
+          <td>
+            <%= link_to "実行", community_rule_execute_path(@community.id, rule.id) %>
+            <%= link_to "編集", edit_community_rule_path(@community.id, rule.id) %>
+            <%= link_to "削除", community_rule_path(@community.id, rule.id), method: :delete %>
+          </td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  <div>
+
+  <div>
+    <p><%= link_to "ルール新規作成", new_community_rule_path(@community.id) %></p>
+   <div>
