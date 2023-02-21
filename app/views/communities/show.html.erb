@@ -2,65 +2,150 @@
     <%= render 'communities/info', community: @community, currentUser: @currentUser %>
   </div>
 
-  <p class="page-title"><%= @community.community_name %>のダッシュボード</p>
-
-  <div class="community-users round">
-    <p class="section-title">メンバー</p>
-    <div class="community-user-list">
-    <% @community.users.each do |user| %>
-      <div class="community-user">
-        <div class="profile_image"><%= attachment_image_tag user, :profile_image, :fill, 80, 80, format: 'jpeg', fallback: "f_f_event_98_s512_f_event_98_0bg.jpg", size:'80x80'%></div>
-        <p class="community-user-name"><%= user.name %></p>
+  <div class="community-main">
+    <p class="page-title"><%= @community.community_name %>のダッシュボード</p>
+    <div class="community-dashboard round">
+        <!-- ルールの棒グラフ一覧表示（ジャンル別）-->
+        <!-- コミュニティ健全度の表示(定義説明あり) -->
+      <section>
+        <p>ルール数</p>
+        <p></p>
+      </section>
+      <section>
+        <p>報酬数</p>
+        <p></p>
+      </section>
+      <section>
+        <p>ペナルティ数</p>
+        <p></p>
+      </section>
+      <section>
+        <p>今月のルール実行数</p>
+        <p></p>
+      </section>
+      <section>
+        <p>参加者数<p>
+        <p><%= @community.users.count %></p>
+      </section>
+        <!-- メンバーアイコンで表示(リンク有※メンバーの一覧ページ) -->
+    </div>
+    <div class="community-users round">
+      <p class="section-title">メンバー</p>
+      <div class="community-user-list">
+      <% @community.users.each do |user| %>
+        <div class="community-user">
+          <div class="profile_image"><%= attachment_image_tag user, :profile_image, :fill, 80, 80, format: 'jpeg', fallback: "f_f_event_98_s512_f_event_98_0bg.jpg", size:'80x80'%></div>
+          <p class="community-user-name"><%= user.name %></p>
+        </div>
+      <% end %>
       </div>
-    <% end %>
     </div>
-  </div>
-
-  <div class="community-dashboard round">
-    <p class="section-title">ダッシュボード</p>
-      <!-- モットーの表示 -->
-      <!-- ルールの棒グラフ一覧表示（ジャンル別）-->
-      <!-- コミュニティ健全度の表示(定義説明あり) -->
-      <!-- ジャンル別のルール制定量の表示 -->
-      <p>参加者数：<%= @community.users.count %>人<p>
-      <!-- メンバーアイコンで表示(リンク有※メンバーの一覧ページ) -->
-  </div>
-
-  <div class="late-actibities round">
-    <p class="section-title">最近のアクティビティ</p>
-    <div>
-      <p><%= link_to "過去30日のアクティビティ", community_records_path(@community.id) %></p>
-    </div>
-  </div>
-
-  <div class="rules round">
-    <div class="rules-header">
-      <p class="section-title">ルール</p>
-      <p><%= link_to "ルール編集", community_rules_path(@community.id) %></p>
-    </div>
-    <div>
-    <% if @rules.present? %>
-      <table>
-        <thead>
-          <tr>
-            <th>内容</th>
-            <th>ポイント増減</th>
-            <th colspan="1"></th>
-          </tr>
-        </thead>
-        <tbody>
-        <% @rules.each do |rule| %>
-          <tr>
-            <td><%= rule.content %></td>
-            <td><%= rule.point %><span class="point">pt</span></td>
-            <td><%= link_to "実行", community_rule_execute_path(@community.id, rule.id), class: "execute_btn" %></td>
-          </tr>
+    <div class="goals round">
+      <div class="goal-header">
+        <p class="section-title">ゴール</p>
+        <% if @goal.present? %>
+          <p><%= link_to "ゴール編集", edit_community_goal_path(@community.id) %></p>
+        <% else %>
+          <p><%= link_to "ゴール作成", new_community_goal_path(@community.id) %></p>
         <% end %>
-        </tbody>
-      </table>
-    <% else %>
-      <p>このコミュニティにはまだルールがありません。</p>
-    <% end %>
+      </div>
+      <div class="goal-show">
+        <% if @goal.present? %>
+          <div class="goal-content">
+            <p class="goal-content-letters"><%= @goal.content %></p>
+          </div>
+          <div class="till-goal">
+            <p class="till-goal-letters">ゴール達成まで残り</p>
+          </div>
+          <div class="goal-deadline">
+            <p class="goal-deadline-timer" id="countTimer"></p>
+          </div>
+        <% else %>
+          <div>
+            <p>コミュニティのメンバー全員で目指す目標を決めましょう！</p>
+          </div>
+        <% end %>
+      </div>
     </div>
-
+    <div class="mottos round">
+      <div class="mottos-header">
+        <p class="section-title">スローガン</p>
+        <p><%= link_to "スローガン編集", community_mottos_path(@community.id) %></p>
+      </div>
+      <% if @mottos.present? %>
+        <div class="mottos-show">
+        <% @mottos.each.with_index(1) do |motto, index| %>
+          <div class="motto-index">
+            <p class="motto-index-number"><b><%= index %></b></p>
+          </div>
+          <div class="motto-content">
+            <p class="motto-content-letters"><%= motto.content %></p>
+          </div>
+        <% end %>
+        </div>
+      <% else %>
+        <p>このコミュニティにはまだスローガンがありません。</p>
+      <% end %>
+      </div>
+    <div class="rules round">
+      <div class="rules-header">
+        <p class="section-title">ルール</p>
+        <p><%= link_to "ルール編集", community_rules_path(@community.id) %></p>
+      </div>
+      <div>
+      <% if @rules.present? %>
+        <table>
+          <thead>
+            <tr>
+              <th>内容</th>
+              <th>ポイント増減</th>
+              <th>ジャンル</th>
+              <th colspan="1"></th>
+            </tr>
+          </thead>
+          <tbody>
+          <% @rules.each do |rule| %>
+            <tr>
+              <td><%= rule.content %></td>
+              <td><%= rule.point %><span class="point-letter">pt</span></td>
+              <td><%= rule.genre %></td>
+              <td><%= link_to "実行", community_rule_execute_path(@community.id, rule.id), class: "execute_btn" %></td>
+            </tr>
+          <% end %>
+          </tbody>
+        </table>
+      <% else %>
+        <p>このコミュニティにはまだルールがありません。</p>
+      <% end %>
+      </div>
+    </div>
+    <div class="late-actibities round">
+      <div class="late-actibuties-header">
+        <p class="section-title">直近10件の活動履歴</p>
+        <p><%= link_to "過去30日の活動履歴", community_records_path(@community.id) %></p>
+      </div>
+    </div>
   </div>
+  <!-- 以下、カウントダウン表示のためのJavaScript -->
+  <script>
+    // タイマーの日付を設定
+    var countDownDate = new Date(gon.deadline).getTime();
+    // 1秒おきに更新
+    var x = setInterval(function() {
+      // 今日の日付と時間を取得
+      var now = new Date().getTime();
+      // 日付と時間の計算
+      var distance = countDownDate - now;
+      var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      // 出力する内容
+      document.getElementById("countTimer").innerHTML = days + "<span>日</span>" + hours + "<span>時間</span>" + minutes + "<span>分</span>" + seconds + "<span>秒</span>";
+      // タイマー終了後
+      if (distance < 0) {
+        clearInterval(x);
+        document.getElementById("countTimer").innerHTML = "タイマーが終わったよ。目標は達成できましたか？";
+      }
+    }, 1000);
+  </script>

@@ -4,15 +4,22 @@
     <title>RuleBook</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= include_gon %> <!-- gem 'gon'利用に必要な記述 -->
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
     <header>
-      <div class="site-logo">
-        <%= image_tag 'lube_logo_white_background.png', size: '140x70' %>
+      <div class="header-area">
+        <div class="site-logo">
+          <%= image_tag 'lube_logo_white_background.png', size: '100x50' %>
+        </div>
+      </div>
+      <div class="sign-in-user">
+        <% if user_signed_in? %>
+          <div class="signin-user-profile_image"><%= attachment_image_tag current_user, :profile_image, :fill, 60, 60, format: 'jpeg', fallback: "f_f_event_98_s512_f_event_98_0bg.jpg", size:'60x60'%></div>
+        <% end %>
       </div>
       <div class="slide-menu">
         <ul>
@@ -28,11 +35,6 @@
         <% end %>
         </ul>
       </div>
-      <div class="signin-user">
-        <% if user_signed_in? %>
-          <div class="signin-user-profile_image"><%= attachment_image_tag current_user, :profile_image, :fill, 60, 60, format: 'jpeg', fallback: "f_f_event_98_s512_f_event_98_0bg.jpg", size:'60x60'%></div>
-        <% end %>
-      </div>
     </header>
     <main>
       <%= yield %>
@@ -44,5 +46,4 @@
       </div>
     </footer>
   </body>
-
 </html>

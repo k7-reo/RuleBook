@@ -70,3 +70,5 @@ gem 'whenever', require: false #時間計測gem
 
 gem "refile", require: "refile/rails", github: 'manfe/refile' # 画像投稿用gem
 gem "refile-mini_magick" # 画像加工用（サイズ調整など）gem
+
+gem 'gon' #RailsからJavaScriptにデータを渡すgem https://qiita.com/mosa_siru/items/e69eee47a183b13cfb62

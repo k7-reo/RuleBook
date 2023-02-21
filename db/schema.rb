@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_01_24_205024) do
+ActiveRecord::Schema.define(version: 2023_02_15_060414) do
 
   create_table "communities", force: :cascade do |t|
     t.string "community_name"
@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 2023_01_24_205024) do
     t.integer "owner_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "manual"
   end
 
   create_table "community_users", force: :cascade do |t|
@@ -30,6 +31,15 @@ ActiveRecord::Schema.define(version: 2023_01_24_205024) do
     t.integer "monthly_point", default: 0
     t.index ["community_id"], name: "index_community_users_on_community_id"
     t.index ["user_id"], name: "index_community_users_on_user_id"
+  end
+
+  create_table "goals", force: :cascade do |t|
+    t.integer "community_id"
+    t.integer "user_id"
+    t.text "content"
+    t.datetime "deadline"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "mottos", force: :cascade do |t|
@@ -73,6 +83,15 @@ ActiveRecord::Schema.define(version: 2023_01_24_205024) do
     t.datetime "updated_at", null: false
     t.integer "user_id"
     t.string "genre"
+    t.integer "goal_id"
+  end
+
+  create_table "roles", force: :cascade do |t|
+    t.string "content"
+    t.integer "user_id"
+    t.integer "community_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "rule_users", force: :cascade do |t|
@@ -108,6 +127,7 @@ ActiveRecord::Schema.define(version: 2023_01_24_205024) do
     t.boolean "checked", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "detail"
   end
 
   create_table "users", force: :cascade do |t|

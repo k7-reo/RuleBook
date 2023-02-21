@@ -1,21 +1,29 @@
-  <p class="page-title">特典新規作成</p>
-
-  <p>
-    <b>特典作成のポイント</b><br>
-    個人のポイントが「消費ポイント」に達した時に<br>
-    受けられる特典を記載してください。
-  </p>
-
-  <div>
-    <%= form_with(model:[@community, @privilege], local:true) do |f| %>
-      <p>特典内容</p>
-      <%= f.text_area :content, placeholder: "特典or罰の内容をここに" %>
-      <p>消費ポイント</p>
-      <%= f.text_field :point, placeholder: "行使するのに必要なポイントをここに" %>
-      <%= f.submit '作成' %>
-    <% end %>
+  <div class="community-info">
+    <%= render 'communities/info', community: @community, currentUser: @currentUser %>
   </div>
 
-  <div>
-    <p><%= link_to "戻る", community_privileges_path(@community.id) %></p>
-  <div>
+  <div class="community-main">
+    <p class="page-title">報酬新規作成</p>
+    <div class="comment">
+      <p>
+        <b>制定ポイント</b><br>
+        コミュニティのゴール達成に向けて<br>
+        更に意欲が湧くような報酬はなんですか？
+      </p>
+    </div>
+    <div>
+      <%= form_with(model:[@community, @privilege], local:true) do |f| %>
+        <label>内容</label>
+        <div>
+          <%= f.text_area :content, placeholder: "報酬内容をここに" %>
+        </div>
+        <label>受けることによって消費する配当ポイント</label>
+        <div>
+          <%= f.text_field :point, placeholder: "行使するのに必要なポイントをここに" %>
+        </div>
+        <div>
+          <%= f.submit '作成' %>
+        </div>
+      <% end %>
+    </div>
+  </div>

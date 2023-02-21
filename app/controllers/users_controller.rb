@@ -9,9 +9,10 @@ class UsersController < ApplicationController
   def show
     @user = CommunityUser.find_by(user_id: params[:id])
     @community = Community.find(params[:community_id])
-    @rules = Rule.where(user_id: params[:id], community_id: params[:community_id])
-    @penalties = Penalty.where(user_id: params[:id], community_id: params[:community_id])
-    @privileges = Privilege.where(user_id: params[:id], community_id: params[:community_id])
+    @rules = Rule.where(user_id: params[:id], community_id: @community.id)
+    @penalties = Penalty.where(user_id: params[:id], community_id: @community.id)
+    @privileges = Privilege.where(user_id: params[:id], community_id: @community.id)
+    @roles = Role.where(user_id: params[:id], community_id: @community.id)
     @currentUser = CommunityUser.find_by(user_id: current_user.id) #community-info表示に利用
   end
 
@@ -27,8 +28,9 @@ class UsersController < ApplicationController
 
   def mypage
     @community = Community.find(params[:community_id])
-    @user = CommunityUser.find_by(user_id: current_user.id)
+    @user = CommunityUser.find_by(user_id: current_user.id, community_id: @community.id)
     @currentUser = CommunityUser.find_by(user_id: current_user.id) #community-info表示に利用
+    @roles = Role.where(user_id: current_user.id, community_id: @community.id)
   end
 
   private

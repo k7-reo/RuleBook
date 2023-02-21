@@ -1,21 +1,28 @@
-  <p class="page-title">ペナルティ新規作成</p>
-
-   <p>
-    <b>ペナルティ作成のポイント</b><br>
-    個人のポイントが「回復ポイント」分マイナスになった時に<br>
-    受けなければいけないペナルティを記載してください。
-  </p>
-
-  <div>
-    <%= form_with(model:[@community, @penalty], local:true) do |f| %>
-      <p>ペナルティ内容</p>
-      <%= f.text_area :content, placeholder: "内容をここに" %>
-      <p>ペナルティを受けることで回復するポイント</p>
-      <%= f.text_field :point, placeholder: "ポイントをここに" %>
-      <%= f.submit '作成' %>
-    <% end %>
+  <div class="community-info">
+    <%= render 'communities/info', community: @community, currentUser: @currentUser %>
   </div>
 
-  <div>
-    <p><%= link_to "戻る", community_privileges_path(@community.id) %></p>
-  <div>
+  <div class="community-main">
+    <p class="page-title">ペナルティ新規作成</p>
+    <div class="comment">
+      <p>
+        <b>ペナルティ作成のポイント</b><br>
+        相手がゴール達成のモチベーションが下がるような内容は控えましょう。<br>
+      </p>
+    </div>
+    <div>
+      <%= form_with(model:[@community, @penalty], local:true) do |f| %>
+        <p>内容</p>
+        <div>
+        <%= f.text_area :content, placeholder: "必須" %>
+        </div>
+        <p>実行によって回復するポイントト</p>
+        <div>
+        <%= f.text_field :point, placeholder: "必須" %>
+        </div>
+        <div>
+        <%= f.submit '作成' %>
+        </div>
+      <% end %>
+    </div>
+  </div>

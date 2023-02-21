@@ -14,8 +14,11 @@ Rails.application.routes.draw do
   get "forbid/:id" => 'penalties#forbid', as:"forbid"
   get "accept/:id" => "communities#accept", as:"accept"
 
-  resources :users
+  resources :users do
+  end
   resources :communities do #URLがcommunityディレクトリ配下にrules、mottos、usersがくる
+    get "detail" => 'communities#detail' #コミュニティの詳細説明への遷移
+    resource :goal
     resources :rules do
       get "execute" => 'rules#execute' #ルール実行画面への遷移
       post "execute" => 'rules#execute_create' #ルール実行申請。standbyテーブルにテーブルを新しく作成。
@@ -30,6 +33,7 @@ Rails.application.routes.draw do
     end
     resources :users do
       get "mypage" => "users#mypage"
+      resources :roles
     end
     resources :records, only: [:index, :show]
     get "join_request" => "communities#join_request"

@@ -1,8 +1,27 @@
   <p class="page-title">コミュニティ編集</p>
-  <%= form_with(model:[@community], local:true) do |f| %>
-    <p>コミュニティ名</p>
-    <%= f.text_field :community_name %>
-    <p>説明</p>
-    <%= f.text_area :introduction %>
-    <%= f.submit %>
-  <% end %>
+  <div>
+    <%= form_with(model:[@community], local:true) do |f| %>
+      <div>
+        <label>コミュニティ名</label>
+        <div>
+          <%= f.text_field :community_name %>
+        </div>
+      </div>
+      <div>
+        <label>概要</label>
+        <span>250文字まで</span>
+        <div>
+          <%= f.text_area :introduction %>
+        </div>
+      </div>
+      <div>
+        <label>注意点</label>
+        <div>
+          <%= f.text_area :manual %>
+        </div>
+      </div>
+      <div>
+        <%= f.submit '編集完了' %>
+      </div>
+    <% end %>
+  </div>

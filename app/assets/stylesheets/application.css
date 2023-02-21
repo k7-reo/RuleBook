@@ -20,7 +20,6 @@ body {
   padding: 0;
   box-sizing: border-box;
   /* font-family: ""; ※全角半角でズレたりしない適切なフォントを選ぶ*/
-  font-size: 120%;
   background: linear-gradient(160deg, #272727, #000000);
 }
 
@@ -30,6 +29,11 @@ a { /*リンク部*/
   /* border-bottom: dotted 1px; ※リンク下にドット線*/
 }
 
+p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
 a:hover {
   color: inherit; /*リンク文字の色変更させない*/
   text-decoration:none;
@@ -37,25 +41,80 @@ a:hover {
   font-weight: bold;
 }
 
+.page-title {
+  margin-top: 30px;
+  margin-left: 10px;
+}
+
 /*枠ごとのタイトル*/
 .section-title {
   color: #a4a4a4;
   font-weight: bold;
-  margin-left: 10px;
+  font-size: 80%;
+  margin-top: 0;
 }
 
 /*サイトのヘッダー部*/
 header {
   background-color: #ffffff;
   color: #303030;
+}
+
+.header-area {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 56px;
+  background-color: #ffffff;
+  color: #303030;
   display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px;
+  z-index: 1;
+}
+
+.site-logo {
+  margin-top: 4px;
+}
+
+.sign-in-user {
+  position: fixed;
+  top: 0;
+  right: 0;
+  padding: 6px;
+  z-index: 3;
+}
+
+.slide-menu {
+  color: #fff;
+  background-color: rgba(0, 0, 0, .8);
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 200px;
+  padding-top: 60px;
+  height: 250px;
+  z-index: 2;
+}
+
+.slide-menu ul {
+  padding-left: 0;
+  padding-right: 10px
+}
+
+.slide-menu li {
+  text-align: right;
 }
 
 main {
   color: #ffffff; /*文字白*/
   text-decoration: none;
-  margin: 20px;
-  height: auto;
+  margin: 72px 20px 20px 20px; /* header-areaの高さにmargin-topを合わせる。 */
+  /*最低限の高さ指定、それ以上はフレキシブル*/
+  min-height:1000px;
+  height:auto !important;
+  height:1000px;
 }
 
 footer {
@@ -63,15 +122,6 @@ footer {
   color: #303030;
   height: 80px;
   display: flex;
-}
-
-.site-logo {
-  margin-top: 25px;
-  margin-left: 10px;
-}
-
-.site-title, .signin-user, .receive_box {
-  margin: auto 20px;
 }
 
 .footer {
@@ -142,9 +192,9 @@ tbody td:last-child {
 
 /*セクションごとの枠*/
 .round {
-  border-radius: 15px;
-  padding: 10px 20px;
-  margin: 20px 10px;
+  border-radius: 16px;
+  padding: 32px 32px;
+  margin: 24px 8px;
   background-color: #303030;
 }
 
@@ -154,6 +204,39 @@ tbody td:last-child {
   border-radius:  20px;
 }
 
-.point {
+.execute_btn:hover {
+border-bottom: inherit;
+}
+
+.point-letter {
   font-size: 80%;
 }
+
+.community-info {
+  background-color: #dddddd;
+  color: #303030;
+  position: fixed;
+  top: 0;
+  height: 88px;
+  width: 100%;
+  margin-top: 72px;
+  margin-left: -20px;
+  margin-right: -20px;
+}
+
+.community-main {
+  padding-top: 88px; /* community-infoのheightに合わせる。 */
+}
+
+.goal-header, .mottos-header,
+.rules-header, .my-communities-header,
+.all-privileges-header, .all-penalties-header,
+.role-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.comment {
+  font-size: 70%;
+}
+

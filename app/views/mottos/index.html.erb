@@ -1,32 +1,31 @@
   <div class="community-info">
     <%= render 'communities/info', community: @community, currentUser: @currentUser %>
   </div>
-
-  <p class="page-title">モットー</p>
-
-  <div>
-    <table>
-      <thead>
-        <tr>
-          <th>内容</th>
-          <th colspan="1"></th>
-        </tr>
-      </thead>
-      <tbody>
-      <% @community.mottos.each do |motto| %>
-        <tr>
-          <td><%= motto.content %></td>
-          <td>
-            <%= link_to "編集", edit_community_motto_path(@community, motto.id) %>
-            <%= link_to "削除", community_motto_path(@community.id, motto.id), method: :delete %>
-          </td>
-        </tr>
-      <% end %>
-      </tbody>
-    </table>
-  </div>
-
-  <div>
-    <p><%= link_to "モットー新規作成", new_community_motto_path(@community.id) %></p> <!--モットーが存在していたら表示しないifアクション追加 -->
-    <p><%= link_to "コミュニティTopへ", community_path(@community.id) %></p>
+  <div class="community-main">
+    <p class="page-title"><%= @community.community_name %>のモットー</p>
+    <div class="round">
+      <div class="mottos-header">
+        <p class="section-title">スローガン一覧</p>
+        <p><%= link_to "モットー新規作成", new_community_motto_path(@community.id) %></p>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>内容</th>
+            <th colspan="1"></th>
+          </tr>
+        </thead>
+        <tbody>
+        <% @community.mottos.each do |motto| %>
+          <tr>
+            <td><%= motto.content %></td>
+            <td>
+              <%= link_to "編集", edit_community_motto_path(@community, motto.id) %>
+              <%= link_to "削除", community_motto_path(@community.id, motto.id), method: :delete %>
+            </td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
   </div>

@@ -2,29 +2,33 @@
     <%= render 'communities/info', community: @community, currentUser: @currentUser %>
   </div>
 
-  <p class="page-title">コミュニティ所属ユーザー</p>
-
-  <div>
-    <table>
-      <thead>
+  <div class="community-main">
+    <p class="page-title">コミュニティ所属メンバー</p>
+    <div class="round">
+      <div class="member-header">
+        <p class="section-title">メンバー一覧</p>
+      </div>
+      <table>
+        <thead>
           <tr>
-              <th>ユーザー名</th>
-              <th>今月の獲得ポイント</th>
-              <th>保有ポイント</th>
+            <th>名前</th>
+            <th>今月の獲得ポイント</th>
+            <th>保有ポイント</th>
           </tr>
-      </thead>
-      <tbody>
-      <% @communityUsers.each do |communityUser| %>
+        </thead>
+        <tbody>
+        <% @communityUsers.each do |communityUser| %>
           <tr>
-              <td>
-               <%= link_to community_user_path(@community.id, communityUser.user.id) do %>
-                 <%= communityUser.user.name %>
-               <% end %>
-              </td>
-              <td><%= communityUser.point %></td>
-              <td><%= communityUser.monthly_point %></td>
+            <td>
+              <%= link_to community_user_path(@community.id, communityUser.user.id) do %>
+                <%= communityUser.user.name %>
+              <% end %>
+            </td>
+            <td><%= communityUser.point %></td>
+            <td><%= communityUser.monthly_point %></td>
           </tr>
-      <% end %>
-      <tbody>
-    </table>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
   </div>

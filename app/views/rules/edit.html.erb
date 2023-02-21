@@ -1,26 +1,43 @@
-  <p class="page-title">ルール編集</p>
-
-  <div>
-  <%= form_with(model:[@community, @rule], local:true) do |f| %>
-    <div>
-      <label for="inputContent">ルール</label>
-      <div><%= f.text_area :content, autofocus: true, id:"inputContent", placeholder:"ルール" %></div>
-    </div>
-    <div>
-      <label for="inputPoint">ポイント増減(マイナス指定)</label>
-      <div><%= f.text_area :point, id:"inputPoint", placeholder:"ポイント" %></div>
-    </div>
-    <div>
-      <label for="inputGenre">ジャンル</label>
-      <div><%= f.text_area :genre, id:"inputGenre", placeholder:"ジャンル" %></div>
-    </div>
-    <%= collection_check_boxes(:rule, :user_ids, User.joins(:community_users).where(community_users: {community_id: params[:community_id]}), :id, :name, include_hidden: false) do |user| %>
-      <%= user.check_box %>
-      <%= user.text %>
-    <% end %>
-    <div>
-      <%= f.submit '編集完了' %>
-    </div>
-  <% end %>
+  <div class="community-info">
+    <%= render 'communities/info', community: @community, currentUser: @currentUser %>
   </div>
 
+  <div class="community-main">
+    <p class="page-title">ルール編集</p>
+    <div class="comment">
+      <p>
+        <b>ルール作成のポイント</b><br>
+        <br>
+        ゴール達成が遠のく行動には、マイナスのポイントを設定しましょう。<br>
+        <br>
+        強制ではないけど、やるとゴール達成に近づく、モチベーションがアップする行動には<br>
+        マイナスのポイントを設定しましょう<br>
+        <br>
+        線引きが難しいルールの設定は避けスローガンに設定しましょう。<br>
+        <br>
+      </p>
+    </div>
+    <div>
+      <%= form_with(model:[@community, @rule], local:true) do |f| %>
+        <div>
+          <label for="inputContent">ルール</label>
+          <div><%= f.text_area :content, autofocus: true, id:"inputContent", placeholder:"ルール" %></div>
+        </div>
+        <div>
+          <label for="inputPoint">ポイント増減(マイナス指定)</label>
+          <div><%= f.text_area :point, id:"inputPoint", placeholder:"ポイント" %></div>
+        </div>
+        <div>
+          <label for="inputGenre">ジャンル</label>
+          <div><%= f.text_area :genre, id:"inputGenre", placeholder:"ジャンル" %></div>
+        </div>
+        <%= collection_check_boxes(:rule, :user_ids, User.joins(:community_users).where(community_users: {community_id: params[:community_id]}), :id, :name, include_hidden: false) do |user| %>
+          <%= user.check_box %>
+          <%= user.text %>
+        <% end %>
+        <div>
+          <%= f.submit '編集完了' %>
+        </div>
+      <% end %>
+    </div>
+  </div>

@@ -13,6 +13,7 @@ class User < ApplicationRecord
   has_many :penalties
   has_many :privileges
   has_many :records
+  has_many :roles, dependent: :destroy
   #アイコン画像添付
   attachment :profile_image
 end

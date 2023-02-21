@@ -1,9 +1,28 @@
-  <p class="page-title">ペナルティ編集</p>
+  <div class="community-info">
+    <%= render 'communities/info', community: @community, currentUser: @currentUser %>
+  </div>
 
-    <%= form_with(model:[@community, @penalty], local:true) do |f| %>
-    <p>ペナルティ内容</p>
-    <%= f.text_area :content %>
-    <p>ペナルティを受けることで回復するポイント</p>
-    <%= f.text_area :point %>
-    <%= f.submit "編集完了" %>
-  <% end %>
+  <div class="community-main">
+    <p class="page-title">ペナルティ編集</p>
+    <div class="comment">
+      <p>
+        <b>制定ポイント</b><br>
+        相手がゴール達成の意欲を失わないようなないようにしましょう。<br>
+      </p>
+    </div>
+    <div>
+      <%= form_with(model:[@community, @penalty], local:true) do |f| %>
+        <label>内容</label>
+        <div>
+          <%= f.text_area :content %>
+        </div>
+        <label>実行によって回復するポイント</label>
+        <div>
+          <%= f.text_area :point %>
+        </div>
+        <div>
+          <%= f.submit "編集完了" %>
+        </div>
+      <% end %>
+      </div>
+  </div>

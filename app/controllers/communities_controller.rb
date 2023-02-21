@@ -25,11 +25,21 @@ class CommunitiesController < ApplicationController
   def index #homes#topに統合
   end
 
+  def detail
+    @community = Community.find(params[:community_id])
+    @currentUser = CommunityUser.find_by(user_id: current_user.id) #community-info表示に利用
+  end
+
   def show
     @community = Community.find(params[:id])
     @user = User.find(current_user.id)
     @rules = Rule.where(community_id: params[:id])
+    @mottos = Motto.where(community_id: params[:id])
     @records = Record.where(community_id: params[:community_id], updated_at: Time.zone.today.ago(30.days)..Time.zone.today.end_of_day).order(updated_at: :desc).limit(5)
+    @goal = Goal.find_by(community_id: params[:id])
+    if @goal.present? #if文にしないとなぜかエラーがでる。
+      gon.deadline = @goal.deadline #gem 'gon'を利用してRailsからJavaScriptオブジェクトに変換
+    end
     @currentUser = CommunityUser.find_by(user_id: current_user.id) #community-info表示に利用
   end
 
@@ -60,18 +70,19 @@ class CommunitiesController < ApplicationController
 
   def edit
     @community = Community.find(params[:id])
+    @currentUser = CommunityUser.find_by(user_id: current_user.id) #community-info表示に利用
   end
 
   def update
     community = Community.find(params[:id])
     community.update(community_params)
-    redirect_to community_path(community.id)
+    redirect_to community_detail_path(community.id)
   end
 
   private
 
   def community_params
-    params.require(:community).permit(:community_name, :introduction, :owner_id)
+    params.require(:community).permit(:community_name, :introduction, :owner_id, :manual)
   end
 
   def motto_params

@@ -2,18 +2,38 @@
     <%= render 'communities/info', community: @community, currentUser: @currentUser %>
   </div>
 
-  <p class="page-title"><%= @user.user.name %>の詳細</p>
-
-  <div>
-    <div>
-      <p>今月のポイント獲得進捗：<%= @user.point %></p>
+  <div class="community-main">
+    <p class="page-title"><%= @user.user.name %>の詳細</p>
+    <div class="others-role round">
+      <p class="section-title">役割</p>
+      <% if @roles.present? %>
+        <% @roles.each do |role| %>
+          <div class="others-role-content">
+            <span class="others-role-content-letters"><%= role.content %></span>
+          </div>
+        <% end %>
+      <% else %>
+        <p>まだ役割が明記されていません。</p>
+      <% end %>
     </div>
-    <div>
-      <p>今月利用できるポイント：<%= @user.monthly_point %></p>
+    <div class="round">
+      <p class="section-title">今月のポイント獲得進捗</p>
+      <p><%= @user.point %></p>
+      <div>
+        <!-- 実行されたルール -->
+      </div>
+    </div>
+    <div class="round">
+      <p class="section-title">今月利用できる配当ポイント</p>
+      <p><%= @user.monthly_point %></p>
+      <div>
+        <!-- 受けた報酬 -->
+        <!-- 受けたペナルティ -->
+      </div>
     </div>
     <!-- 先月違反した&継続したルール一覧withポイント -->
     <!-- 今月違反した&継続したルール一覧withポイント -->
-    <div>
+    <div class="round">
       <p class="section-title"><%= @user.user.name %>が作成したルール</p>
       <div>
         <% if @rules.present? %>
@@ -34,11 +54,11 @@
             </tbody>
           </table>
         <% else %>
-          <p>あなたが<%= @community.community_name %>で作成したルールはありません。</p>
+          <p>作成したルールはありません。</p>
         <% end %>
       </div>
-    </div>
-    <div>
+    </div> <!-- 隠せるようにする -->
+    <div class="round">
       <p class="section-title"><%= @user.user.name %>が作成した特典</p>
       <div>
         <% if @privileges.present? %>
@@ -59,11 +79,11 @@
             </tbody>
           </table>
         <% else %>
-          <p>あなたが<%= @community.community_name %>で作成した特典はありません。</p>
+          <p>作成した特典はありません。</p>
         <% end %>
       </div>
-    </div>
-    <div>
+    </div> <!-- 隠せるようにする -->
+    <div class="round">
       <p class="section-title"><%= @user.user.name %>が作成した罰</p>
       <div>
         <% if @penalties.present? %>
@@ -84,12 +104,8 @@
             </tbody>
           </table>
         <% else %>
-          <p>あなたが<%= @community.community_name %>で作成したペナルティはありません。</p>
+          <p>作成したペナルティはありません。</p>
         <% end %>
       </div>
-    </div>
-  </div>
-
-  <div>
-    <%= link_to "メンバー一覧へ", community_users_path(@community.id) %>
+    </div> <!-- 隠せるようにする -->
   </div>

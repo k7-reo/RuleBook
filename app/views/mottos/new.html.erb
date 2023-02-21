@@ -1,12 +1,23 @@
-  <p class="page-title">モットー作成</p>
-
-  <div>
-  <%= form_with(model: [@community, @motto], url: community_mottos_path{@community.id}, local:true) do |f| %> <!-- communityモデル、mottoモデルそれぞれにデータを保存するため、両モデル指定-->
-   <p>モットー</p>
-   <%= f.text_area :content, placeholder: "モットーをここに" %>
-   <%= f.submit '作成' %>
-  <% end %>
+  <div class="community-info">
+    <%= render 'communities/info', community: @community, currentUser: @currentUser %>
   </div>
-  <div>
-   <p><%= link_to "コミュニティTopへ", community_path(@community.id) %></p>
-  <div>
+  <div class="community-main">
+    <p class="page-title">スローガン作成</p>
+    <div class="comment">
+      <p>
+        <b>制定ポイント</b><br>
+        ゴール達成のためにメンバー全員が心がけることを記載してください。<br>
+        みんなで話し合って決めてみましょう！
+      </p>
+    </div>
+    <div>
+      <%= form_with(model: [@community, @motto], url: community_mottos_path{@community.id}, local:true) do |f| %> <!-- communityモデル、mottoモデルそれぞれにデータを保存するため、両モデル指定-->
+        </div>
+        <%= f.text_area :content, placeholder: "必須" %>
+        <div>
+        </div>
+        <%= f.submit '作成' %>
+        <div>
+      <% end %>
+    </div>
+  </div>

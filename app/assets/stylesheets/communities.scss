@@ -2,17 +2,22 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+//コミュニティダッシュボードのメンバーリスト
 .community-user-list {
   display: flex;
 }
 
+//コミュニティダッシュボードのメンバーリストの各メンバー
 .community-user {
   margin: 10px;
 }
 
+//コミュニティダッシュボードのメンバーリストの各メンバー写真
 .profile_image {
   border-radius: 50%;
 }
+
+//コミュニティダッシュボードのメンバーリストの各メンバー名前
 
 .community-user-name {
   text-align: center;
@@ -20,45 +25,112 @@
   margin-bottom: 0;
 }
 
-//_info
-.community-info {
-  background-color: #dddddd;
-  color: #303030;
-  margin-top: -20px;
-  margin-left: -20px;
-  margin-right: -20px;
+//_info全体
+.community-info-contents {
 }
 
-//_info
-.community-header {
-  padding-bottom: 5px;
-}
-
-.head-community-info {
-  padding-left: 25px;
-  padding-top: 20px;
-}
-
-.head-community-name {
-  margin-top: 0;
+//_info コミュニティの表示情報
+.community-info-main {
+  display: flex;
+  margin-top: 16px;
+  margin-left: 32px;
   margin-bottom: 0;
 }
 
-.head-community-introduction {
-  font-size: 70%;
-  margin-top: 0;
+.community-info-name, .community-info-detail {
+  margin: 0 10px 0 0;
 }
 
-//_info
+.community-detail-link {
+  font-size: 80%;
+}
+
+//_info メニューバー
 .community-navigation {
   display: flex;
-  margin: 10px auto 0 -25px;
-
+  margin-top: 8px;
+  margin-bottom: 0;
+  padding-left: 16px;
 }
 
-//_info
+//_info メニューバー各項目
 .community-navigation-item {
-  margin: 5px 10px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 16px;
+  padding-right: 16px;
   text-align: center;
   font-weight: bold;
+}
+
+//_info メニューバー各項目、カーソルあった時の背景色
+.community-navigation-item:hover {
+  background-color: #303030;
+  color: #fff;
+}
+
+//_info メニューバー各項目、カーソルあった時の下線無くす。
+.community-navigation-link:hover {
+  border-bottom: inherit;
+}
+
+.goal-show, .mottos-show {
+  text-align: center;
+}
+
+.goal-content {
+  margin-top: 16px;
+}
+
+.motto-index {
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #44c48a;
+  height: 32px;
+  width: 32px;
+  border-radius: 50px;
+}
+
+.motto-index-number {
+  line-height: 32px;
+}
+
+.motto-content {
+  margin-bottom: 16px;
+  height: 40px;
+  margin-left: auto;
+  margin-right: auto;
+  width: fit-content;
+}
+
+.goal-content-letters, .motto-content-letters {
+  font-size: 120%;
+  font-weight: bold;
+}
+
+.till-goal {
+  margin-top: 16px;
+}
+
+.goal-deadline-timer {
+  font-size: 320%;
+  font-weight: border;
+}
+
+.till-goal {
+  width: 168px;
+  height: 40px;
+  background-color: #ffd139;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.till-goal-letters {
+  line-height: 40px;
+}
+
+p#countTimer span {
+  font-size: 40%;
+  font-weight: 400;
+  margin-right: 8px;
 }

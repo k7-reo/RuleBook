@@ -9,6 +9,7 @@ class PrivilegesController < ApplicationController
   def new
     @privilege = Privilege.new
     @community = Community.find(params[:community_id])
+    @currentUser = CommunityUser.find_by(user_id: current_user.id) #community-info表示に利用
   end
 
   def create
@@ -34,6 +35,7 @@ class PrivilegesController < ApplicationController
   def edit
     @community = Community.find(params[:community_id])
     @privilege = Privilege.find(params[:id])
+    @currentUser = CommunityUser.find_by(user_id: current_user.id) #community-info表示に利用
   end
 
   def update
@@ -76,9 +78,17 @@ class PrivilegesController < ApplicationController
   def execute
     @community = Community.find(params[:community_id])
     community_user = CommunityUser.find_by(user_id: current_user.id, community_id: @community.id)
-    privilege = Privilege.find(params[:privilege_id]) #urlにidが複数あるのでどのidなのか指定する
+    privilege = Privilege.find(params[:privilege_id])
     community_user.monthly_point -= privilege.point
     community_user.save
+    standby = Standby.new
+    standby.community_id = @community.id
+    standby.privilege_id = privilege.id
+    standby.action_type = 'privilege'
+    standby.executing_user_id = current_user.id
+    standby.executed_user_id = current_user.id
+    standby.checked = true
+    standby.save
     redirect_to community_privileges_path(@community.id)
   end
 

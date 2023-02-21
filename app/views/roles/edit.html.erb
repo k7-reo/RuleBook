@@ -1,0 +1,26 @@
+  <div class="community-info">
+    <%= render 'communities/info', community: @community, currentUser: @currentUser %>
+  </div>
+
+  <div class="community-main">
+    <p class="page-title">役割編集</p>
+    <div class="comment">
+      <p>
+        <b>制定ポイント</b><br>
+        ゴール達成を意識して、自分が担うべき役割を考えましょう。<br>
+      </p>
+    </div>
+    <div>
+      <%= form_with(model: [@community, @user, @role], url: community_user_role_path{@community.id}, local: true) do |f| %>
+        <div>
+          <%= f.text_area :content, placeholder: "このコミュニティにおけるあなたの役割" %>
+        </div>
+        <div>
+          <%= f.submit '編集完了' %>
+        </div>
+      <% end %>
+    </div>
+    <div>
+      <span><%= link_to '削除', community_user_role_path(@community.id), method: :delete %></span>
+    </div>
+  </div>

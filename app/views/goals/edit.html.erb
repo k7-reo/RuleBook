@@ -1,0 +1,40 @@
+  <div class="community-info">
+    <%= render 'communities/info', community: @community, currentUser: @currentUser %>
+  </div>
+
+  <div class="community-main">
+    <div>
+      <p class="page-title">ゴール編集</p>
+      <div class="comment">
+        <p><b>ゴール設定のポイント</b></p>
+        <p>
+          緊急度は高くないけど重要度が高いこと。
+        </p>
+      </div>
+      <div>
+        <%= form_with(model:[@community, @goal], local:true) do |f| %>
+          <label>メンバー全員で達成したいゴール</label>
+          <div>
+            <%= f.text_area :content, placeholder: "メンバー全員で達成したい内容" %>
+          </div>
+          <label>期限</label>
+          <div class="comment">
+            <p><b>ゴール設定のポイント</b></p>
+            <p>
+            期限の指定は任意ですが、程よい緊張感を保つ為にも設定することをお勧めします。<br>
+            特に期間指定の無いゴールについてはまず「１ヶ月」を期限にして頑張ってみましょう。
+            </p>
+          </div>
+          <div>
+            <%= f.datetime_field :deadline %>
+          </div>
+          <div>
+            <%= f.submit '編集完了' %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <div>
+      <span><%= link_to '削除', community_goal_path(@community.id, @goal.id), method: :delete %></span>
+    </div>
+  </div>

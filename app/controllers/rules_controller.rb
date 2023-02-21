@@ -9,11 +9,13 @@ class RulesController < ApplicationController
   def show
     @rule = Rule.find(params[:id])
     @community = Community.find(params[:community_id])
+    @currentUser = CommunityUser.find_by(user_id: current_user.id) #community-info表示に利用
   end
 
   def new
     @rule = Rule.new
     @community = Community.find(params[:community_id])
+    @currentUser = CommunityUser.find_by(user_id: current_user.id) #community-info表示に利用
   end
 
   def create
@@ -72,21 +74,22 @@ class RulesController < ApplicationController
   def edit
     @community = Community.find(params[:community_id])
     @rule = Rule.find(params[:id])
+    @currentUser = CommunityUser.find_by(user_id: current_user.id) #community-info表示に利用
   end
 
   def update
     @community = Community.find(params[:community_id])
     rule = Rule.find(params[:id])
     rule.updating_user_id = current_user.id
-    oldUserIds = rule.users.pluck(:id)
-    newUserIds = params[:rule][:user_ids].map(&:to_i)
+    oldUserIds = rule.users.pluck(:id) #配列で取得
+    newUserIds = params[:rule][:user_ids].map(&:to_i) #文字の配列として受け取ったidを数に変換
     if rule.update(rule_params)
       destroyUserIds = oldUserIds - newUserIds
       destroyUserIds.each do |destroy_user_id|
         user = RuleUser.find_by(rule_id: rule.id, user_id: destroy_user_id)
         user.destroy
       end
-      newUserIds.each do |user_id| 
+      newUserIds.each do |user_id|
         unless oldUserIds.include?(user_id)
           user = User.find(user_id)
           rule.users << user
@@ -115,16 +118,19 @@ class RulesController < ApplicationController
     @community = Community.find(params[:community_id])
     @rule = Rule.find(params[:rule_id])
     @standby = Standby.new
+    @currentUser = CommunityUser.find_by(user_id: current_user.id) #community-info表示に利用
   end
 
   def execute_create #ルール実行htmlから申請、待機テーブルへの登録までのアクション
     @community = Community.find(params[:community_id])
     @rule = Rule.find(params[:rule_id])
-    userIds=params[:standby][:executed_user_id]
+    userIds = params[:standby][:executed_user_id]
+    detail = params[:standby][:detail]
     userIds.each do |user_id|
       standby = Standby.new(standby_params)
       standby.executing_user_id = current_user.id
       standby.executed_user_id = user_id
+      standby.detail = detail
       standby.community_id = @community.id
       standby.rule_id = @rule.id
       standby.action_type = 'rule'
@@ -135,12 +141,12 @@ class RulesController < ApplicationController
 
   def receive #ルール実行申請を受けての承認/否認のアクション(notificationアクションが実装できたら移行)
     @user = current_user
-    @standbyRules = Standby.where(action_type: 'rule', executed_user_id: current_user.id, checked: false).order(created_at: :asc) #ルール承認のため
-    @standbyPenalties = Standby.where(action_type: 'penalty', executed_user_id: current_user.id, checked: false).order(created_at: :asc)
-    @unaccepted_users = CommunityUser.joins(:community).where(status: 0).where(communities: {owner_id: current_user.id}) #コミュティ参加依頼受信のため
+    @standbyRules = Standby.where(action_type: 'rule', executed_user_id: current_user.id, checked: false).order(created_at: :asc) #自分に送られたルール実行
+    @standbyPenalties = Standby.where(action_type: 'penalty', executed_user_id: current_user.id, checked: false).order(created_at: :asc) #自分に送られたペナルティ承認依頼
+    @unaccepted_users = CommunityUser.joins(:community).where(status: 0).where(communities: {owner_id: current_user.id}) #自分に送られたコミュティ参加依頼受信
   end
 
-  def approval
+  def approval #ルール承認
     standby = Standby.find(params[:id])
     @community_user = CommunityUser.find_by(user_id: standby.executed_user_id, community_id: standby.community_id)#whereは条件にあっているデータを複数とってくる。今回は1つのデータを取る前提なのでfind_byを利用。
     @community_user.point += standby.rule.point
@@ -150,7 +156,7 @@ class RulesController < ApplicationController
     redirect_to receive_path
   end
 
-  def denial
+  def denial #ルール否認
     standby = Standby.find(params[:id])
     standby.checked = true
     standby.save

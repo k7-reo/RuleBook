@@ -1,17 +1,17 @@
-  <p class="page-title">ペナルティ実行完了の許可</p>
-
-  <p>完了したペナルティ：<%= @penalty.content %></p>
-  <p>回復するポイント：<%= @penalty.point %></p>
-
-  <div>
-    <%= form_with model: @standby, url: community_penalty_execute_path(@community.id, @penalty.id), local:true do |f| %>
-      <div>
-        <div><%= f.collection_select :executed_user_id, User.joins(:community_users).where(community_users: {community_id: params[:community_id]}), :id, :name, include_blank: "申請ユーザーを選択", multiple: true %></div>
-        <div><%= f.submit '実行完了申請' %></div>
-      </div>
-    <% end %>
+  <div class="community-info">
+    <%= render 'communities/info', community: @community, currentUser: @currentUser %>
   </div>
 
-  <div>
-    <p><%= link_to "戻る", community_privileges_path(@community.id) %></p>
-  <div>
+  <div class="community-main">
+    <p class="page-title">ペナルティ実行完了の許可</p>
+    <p>完了したペナルティ：<%= @penalty.content %></p>
+    <p>回復ポイント：<%= @penalty.point %></p>
+    <div>
+      <%= form_with model: @standby, url: community_penalty_execute_path(@community.id, @penalty.id), local:true do |f| %>
+        <div>
+          <div><%= f.collection_select :executed_user_id, User.joins(:community_users).where(community_users: {community_id: params[:community_id]}), :id, :name, include_blank: "申請ユーザーを選択" %></div>
+          <div><%= f.submit '実行完了申請' %></div>
+        </div>
+      <% end %>
+    </div>
+  </div>

@@ -1,6 +1,24 @@
-  <p class="page-title">モットー編集</p>
-  <%= form_with(model:[@community, @motto], local:true) do |f| %>
-    <p>モットー</p>
-    <%= f.text_area :content %>
-    <%= f.submit %>
-  <% end %>
+  <div class="community-info">
+    <%= render 'communities/info', community: @community, currentUser: @currentUser %>
+  </div>
+
+  <div class="community-main">
+    <p class="page-title">スローガン編集</p>
+    <div class="comment">
+      <p>
+        <b>制定ポイント</b><br>
+        ゴール達成のためにメンバー全員が心がけることを記載してください。<br>
+        みんなで話し合って決めてみましょう！
+      </p>
+    </div>
+    <dib>
+      <%= form_with(model:[@community, @motto], local:true) do |f| %>
+        <div>
+        <%= f.text_area :content %>
+        </div>
+        <div>
+        <%= f.submit "編集完了" %>
+        </div>
+      <% end %>
+    </dib>
+  </div>

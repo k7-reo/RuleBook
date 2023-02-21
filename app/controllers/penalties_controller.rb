@@ -6,6 +6,7 @@ class PenaltiesController < ApplicationController
   def new
     @penalty = Penalty.new
     @community = Community.find(params[:community_id])
+    @currentUser = CommunityUser.find_by(user_id: current_user.id) #community-info表示に利用
   end
 
   def create
@@ -31,6 +32,7 @@ class PenaltiesController < ApplicationController
   def edit
     @community = Community.find(params[:community_id])
     @penalty = Penalty.find(params[:id])
+    @currentUser = CommunityUser.find_by(user_id: current_user.id) #community-info表示に利用
   end
 
   def update
@@ -74,6 +76,7 @@ class PenaltiesController < ApplicationController
     @community = Community.find(params[:community_id])
     @penalty = Penalty.find(params[:penalty_id])
     @standby = Standby.new
+    @currentUser = CommunityUser.find_by(user_id: current_user.id) #community-info表示に利用
   end
 
   def execute_create #penalty実行完了申請。この時点でcommunity_userのpointにポイント反映。否認されれば申請前のポイントに戻る。

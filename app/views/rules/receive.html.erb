@@ -11,6 +11,7 @@
             <th>ルール</th>
             <th>加減ポイント</th>
             <th>申請日時</th>
+            <th>補足</th>
             <th colspan="2"></th>
           </tr>
         </thead>
@@ -22,6 +23,7 @@
             <td><%= standby.rule.content %></td>
             <td><%= standby.rule.point %></td>
             <td><%= standby.rule.created_at.to_s(:datetime_jp) %></td>
+            <td><%= standby.detail %></td>
             <td>
               <%= link_to "承認する", approval_path(standby) %> <!-- 一つのstandbyレコードのみcotrollerに送りたい -->
             　<%= link_to "否認する", denial_path(standby)  %> <!-- 一つのstandbyレコードのみcotrollerに送りたい -->

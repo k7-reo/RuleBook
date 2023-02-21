@@ -11,6 +11,7 @@ class CreateStandbies < ActiveRecord::Migration[5.2]
       t.integer :executed_user_id
       t.boolean :checked, default: false, null: false #false→receiveに表示、true→ユーザーの承認or否認完了
       t.timestamps
+      #t.string :detail ※migrationの20230203015432にて追加済み
     end
   end
 end
