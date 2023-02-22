@@ -2,10 +2,16 @@
   <div>
     <%= form_with model: @community, url: communities_path, local:true do |f| %> <!-- url: でprefixを利用してcommunities#createを指定。-->
       <label>コミュニティ名</label>
+      <span>250文字まで</span>
       <div>
         <%= f.text_field :community_name %>
       </div>
+      <label>ジャンル</label>
+      <div>
+        <%= f.select :genre, [["夫婦・カップル", "夫婦・カップル"], ["家族", "家族"], ["兄弟・姉妹", "兄弟・姉妹"], ["友達", "友達"], ["その他", "その他"]], include_blank: "選択してください" %>
+      </div>
       <label>コミュニティ概要</label>
+      <span>250文字まで</span>
       <div>
         <%= f.text_area :introduction %>
       </div>

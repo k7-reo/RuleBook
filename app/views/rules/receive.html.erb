@@ -36,7 +36,6 @@
       <p>あなたに対して実行されたルールはありません。</p>
     <% end %>
   </div>
-
   <div class="round">
     <p class="section-title"><%= @user.name %>へのペナルティ完了許可の依頼</p>
     <% if @standbyPenalties.present? %>
@@ -45,6 +44,7 @@
           <tr>
             <td>コミュニティ</td>
             <td>申請者</td>
+            <td>完了内容</td>
             <td>回復ポイント</td>
             <td>申請日時</td>
             <td colspan="2"></td>
@@ -55,6 +55,7 @@
           <tr>
             <td><%= link_to standby.community.community_name, community_path(standby.community_id) %></td>
             <td><%= standby.executing_user.name %></td>
+            <td><%= standby.penalty.content %></td>
             <td><%= standby.penalty.point %></td>
             <td><%= standby.penalty.created_at.to_s(:datetime_jp) %></td>
             <td><%= link_to '承認する', forgive_path(standby) %></td>
@@ -67,8 +68,6 @@
       <p>あなたに送られたペナルティ完了の許可依頼はありません。</p>
     <% end %>
     </div>
-  </div>
-
   <div class="round">
     <p class="section-title"><%= @user.name %>がオーナーのコミュニティへの参加申請</p>
     <% if @unaccepted_users.present? %>
@@ -94,7 +93,6 @@
       <p>参加依頼はありません。</p>
     <% end %>
   </div>
-
   <div>
-    <%= link_to "TOPへ", top_path %>
+    <%= link_to "コミュニティ一覧へ", top_path %>
   </div>

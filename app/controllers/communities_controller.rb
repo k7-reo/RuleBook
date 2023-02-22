@@ -35,11 +35,12 @@ class CommunitiesController < ApplicationController
     @user = User.find(current_user.id)
     @rules = Rule.where(community_id: params[:id])
     @mottos = Motto.where(community_id: params[:id])
-    @records = Record.where(community_id: params[:community_id], updated_at: Time.zone.today.ago(30.days)..Time.zone.today.end_of_day).order(updated_at: :desc).limit(5)
+    @records = Record.where(community_id: params[:community_id], updated_at: Time.zone.today.ago(30.days)..Time.zone.today.end_of_day).order(updated_at: :desc).limit(10)
     @goal = Goal.find_by(community_id: params[:id])
     if @goal.present? #if文にしないとなぜかエラーがでる。
       gon.deadline = @goal.deadline #gem 'gon'を利用してRailsからJavaScriptオブジェクトに変換
     end
+    @excutedRules = Standby.where(community_id: params[:id], action_type: "rule", created_at: Time.current.all_month) #今月created_atのデータに絞っている。
     @currentUser = CommunityUser.find_by(user_id: current_user.id) #community-info表示に利用
   end
 
@@ -82,7 +83,7 @@ class CommunitiesController < ApplicationController
   private
 
   def community_params
-    params.require(:community).permit(:community_name, :introduction, :owner_id, :manual)
+    params.require(:community).permit(:community_name, :introduction, :owner_id, :manual, :genre)
   end
 
   def motto_params

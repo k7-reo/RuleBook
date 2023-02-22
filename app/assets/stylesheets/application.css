@@ -42,8 +42,8 @@ a:hover {
 }
 
 .page-title {
-  margin-top: 30px;
-  margin-left: 10px;
+  padding-top: 24px;
+  margin-left: 8px;
 }
 
 /*枠ごとのタイトル*/
@@ -71,7 +71,7 @@ header {
   justify-content: space-between;
   align-items: center;
   padding: 8px;
-  z-index: 1;
+  z-index: 1001;
 }
 
 .site-logo {
@@ -83,7 +83,7 @@ header {
   top: 0;
   right: 0;
   padding: 6px;
-  z-index: 3;
+  z-index: 1003;
 }
 
 .slide-menu {
@@ -95,7 +95,7 @@ header {
   width: 200px;
   padding-top: 60px;
   height: 250px;
-  z-index: 2;
+  z-index: 1002;
 }
 
 .slide-menu ul {
@@ -110,7 +110,7 @@ header {
 main {
   color: #ffffff; /*文字白*/
   text-decoration: none;
-  margin: 72px 20px 20px 20px; /* header-areaの高さにmargin-topを合わせる。 */
+  margin: 72px 32px 32px 32px; /* header-areaの高さにmargin-topを合わせる。 */
   /*最低限の高さ指定、それ以上はフレキシブル*/
   min-height:1000px;
   height:auto !important;
@@ -142,19 +142,18 @@ ul {
 table {
   border-collapse: separate;
   border-spacing: 1px 12px;
+  text-align: center;
   width: 100%;
 }
 
 /*テーブルのタイトル全体*/
 thead {
-  text-align: center;
   font-size: 70%;
 }
 
 /*テーブルのデータ全体*/
 tbody {
   color: #303030;
-  text-align: center;
 }
 
 /*テーブルデータの奇数行*/
@@ -198,20 +197,6 @@ tbody td:last-child {
   background-color: #303030;
 }
 
-.execute_btn {
-  background-color: #ffd139;
-  padding: 5px 10px;
-  border-radius:  20px;
-}
-
-.execute_btn:hover {
-border-bottom: inherit;
-}
-
-.point-letter {
-  font-size: 80%;
-}
-
 .community-info {
   background-color: #dddddd;
   color: #303030;
@@ -220,8 +205,9 @@ border-bottom: inherit;
   height: 88px;
   width: 100%;
   margin-top: 72px;
-  margin-left: -20px;
-  margin-right: -20px;
+  margin-left: -32px;
+  margin-right: -32px;
+  z-index: 10;
 }
 
 .community-main {
@@ -231,12 +217,12 @@ border-bottom: inherit;
 .goal-header, .mottos-header,
 .rules-header, .my-communities-header,
 .all-privileges-header, .all-penalties-header,
-.role-header {
+.role-header, .late-activities-header {
   display: flex;
   justify-content: space-between;
 }
 
 .comment {
-  font-size: 70%;
+  font-size: 80%;
 }
 

@@ -29,6 +29,8 @@ class UsersController < ApplicationController
   def mypage
     @community = Community.find(params[:community_id])
     @user = CommunityUser.find_by(user_id: current_user.id, community_id: @community.id)
+    @activePrivileges = Privilege.where("community_id = ? and point <= ?", @community.id, @user.monthly_point) #whereの変異系：community_idが@community.idでpointが@user.monthly_pointのレコード取得。
+    @activePenalties = Penalty.where("community_id = ? and -(point) >= ?", @community.id, @user.monthly_point)
     @currentUser = CommunityUser.find_by(user_id: current_user.id) #community-info表示に利用
     @roles = Role.where(user_id: current_user.id, community_id: @community.id)
   end

@@ -7,25 +7,49 @@
     <div class="community-dashboard round">
         <!-- ルールの棒グラフ一覧表示（ジャンル別）-->
         <!-- コミュニティ健全度の表示(定義説明あり) -->
-      <section>
-        <p>ルール数</p>
-        <p></p>
+      <section class="community-dashboard-section">
+        <p class="community-dashboard-section-title">ルールの数</p>
+        <p class="community-dashboard-section-content">
+          <% if @community.rules.present? %>
+            <%= @community.rules.count %>
+          <% else %>
+            0
+          <% end %>
+        </p>
+      </section class="community-dashboard-section">
+      <section class="community-dashboard-section">
+        <p class="community-dashboard-section-title">報酬の数</p>
+        <p class="community-dashboard-section-content">
+          <% if @community.privileges.present? %>
+            <%= @community.privileges.count %>
+          <% else %>
+            0
+          <% end %>
+        </p>
       </section>
-      <section>
-        <p>報酬数</p>
-        <p></p>
+      <section class="community-dashboard-section">
+        <p class="community-dashboard-section-title">ペナルティの数</p>
+        <p class="community-dashboard-section-content">
+          <% if @community.penalties.present? %>
+            <%= @community.penalties.count %>
+          <% else %>
+            0
+          <% end %>
+        </p>
       </section>
-      <section>
-        <p>ペナルティ数</p>
-        <p></p>
+      <section class="community-dashboard-section">
+        <p class="community-dashboard-section-title">今月のルール実行回数</p>
+        <p class="community-dashboard-section-content">
+          <% if @excutedRules.present? %>
+            <%= @excutedRules.count %>
+          <% else %>
+            0
+          <% end %>
+        </p>
       </section>
-      <section>
-        <p>今月のルール実行数</p>
-        <p></p>
-      </section>
-      <section>
-        <p>参加者数<p>
-        <p><%= @community.users.count %></p>
+      <section class="community-dashboard-section">
+        <p class="community-dashboard-section-title">メンバーの人数<p>
+        <p class="community-dashboard-section-content"><%= @community.users.count %></p>
       </section>
         <!-- メンバーアイコンで表示(リンク有※メンバーの一覧ページ) -->
     </div>
@@ -35,7 +59,7 @@
       <% @community.users.each do |user| %>
         <div class="community-user">
           <div class="profile_image"><%= attachment_image_tag user, :profile_image, :fill, 80, 80, format: 'jpeg', fallback: "f_f_event_98_s512_f_event_98_0bg.jpg", size:'80x80'%></div>
-          <p class="community-user-name"><%= user.name %></p>
+          <p class="community-user-name"><b><%= user.name %></b></p>
         </div>
       <% end %>
       </div>
@@ -53,6 +77,7 @@
         <% if @goal.present? %>
           <div class="goal-content">
             <p class="goal-content-letters"><%= @goal.content %></p>
+            <div class="goal-content-background-line"></div>
           </div>
           <div class="till-goal">
             <p class="till-goal-letters">ゴール達成まで残り</p>
@@ -80,6 +105,7 @@
           </div>
           <div class="motto-content">
             <p class="motto-content-letters"><%= motto.content %></p>
+            <div class="mottos-content-background-line"></div>
           </div>
         <% end %>
         </div>
@@ -92,35 +118,23 @@
         <p class="section-title">ルール</p>
         <p><%= link_to "ルール編集", community_rules_path(@community.id) %></p>
       </div>
-      <div>
       <% if @rules.present? %>
-        <table>
-          <thead>
-            <tr>
-              <th>内容</th>
-              <th>ポイント増減</th>
-              <th>ジャンル</th>
-              <th colspan="1"></th>
-            </tr>
-          </thead>
-          <tbody>
-          <% @rules.each do |rule| %>
-            <tr>
-              <td><%= rule.content %></td>
-              <td><%= rule.point %><span class="point-letter">pt</span></td>
-              <td><%= rule.genre %></td>
-              <td><%= link_to "実行", community_rule_execute_path(@community.id, rule.id), class: "execute_btn" %></td>
-            </tr>
-          <% end %>
-          </tbody>
-        </table>
+      <div class="community-rules-in-dashboard">
+        <% @rules.each do |rule| %>
+        <div class="community-rule-box">
+          <div class="community-rule-box-genre"><%= rule.genre %></div>
+          <div class="community-rule-box-content"><%= rule.content %></div>
+          <div class="community-rule-box-point"><%= rule.point %><span class="point-letter">ポイント</span></div>
+          <div class="community-rule-box-cta"><%= link_to "実行", community_rule_execute_path(@community.id, rule.id), class: "rule-execute-btn" %></div>
+        </div>
+        <% end %>
       <% else %>
         <p>このコミュニティにはまだルールがありません。</p>
       <% end %>
       </div>
     </div>
     <div class="late-actibities round">
-      <div class="late-actibuties-header">
+      <div class="late-activities-header">
         <p class="section-title">直近10件の活動履歴</p>
         <p><%= link_to "過去30日の活動履歴", community_records_path(@community.id) %></p>
       </div>

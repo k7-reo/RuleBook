@@ -61,62 +61,59 @@
       <p class="section-title">今月受けられる報酬</p> <!-- 特典のポイントより個人のポイントが高ければ選択肢に現れる -->
       <div class="comment">
         <p>配当ボインがなくなるまで以下の報酬を選択して受け取ることができます。</p>
+        <p class="privilege-note">報酬を受け取ったら、自ら「取得完了」ボタンを押してください。</p>
       </div>
-      <table>
-        <thead>
-          <tr>
-            <th>内容</th>
-            <th>消費ポイント</th>
-            <th colspan="1"></th>
-          </tr>
-        </thead>
-        <tbody>
-        <% @community.privileges.each do |privilege| %>
-          <% if privilege.point <= @user.monthly_point %> <!-- userのpointをdefaultで0に指定、既存レコードは直接編集 -->
+      <% if @activePrivileges.present? %>
+        <table>
+          <thead>
+            <tr>
+              <th>内容</th>
+              <th>消費ポイント</th>
+              <th colspan="1"></th>
+            </tr>
+          </thead>
+          <tbody>
+          <% @activePrivileges.each do |privilege| %>
             <tr>
               <td><%= privilege.content %></td>
               <td><%= privilege.point %></td>
               <td><%= link_to "取得完了", community_privilege_execute_path(@community.id, privilege.id) %></td>
             </tr>
-            <% else %>
-            <tr>
-              <td colspan="3">今月、受けられる報酬はありません。</td>
-            </tr>
           <% end %>
-        <% end %>
-        </tbody>
-      </table>
+          </tbody>
+        </table>
+      <% else %>
+        <p>今月取得可能な報酬はありません。</p>
+      <% end %>
     </div>
     <div class="penalties-for-now round">
       <p class="section-title" >今月中に実行が必要なペナルティ</p>
       <div class="comment">
         <p>ペナルティを実行してポイント回復に努めましょう！</p>
       </div>
-      <table>
-        <thead>
-          <tr>
-            <th>内容</th>
-            <th>回復ポイント</th>
-            <th colspan="1"></th>
-          </tr>
-        </thead>
-        <tbody>
-        <% @community.penalties.each do |penalty| %>
-          <% if -(penalty.point) >= @user.monthly_point %> <!-- userのpointをdefaultで0に指定、既存レコードは直接編集 -->
-          <tr>
-            <td><%= penalty.content %></td>
-            <td><%= penalty.point %></td>
-            <td>
-            <!-- まだ申請されてなければlink表示、standbyに居れば「申請中」の表示をしたい。-->
-            <span><%= link_to '実行完了許可', community_penalty_execute_path(@community.id, penalty.id) %></span>
-            </td>
-          <% else %>
-            <td colspan="3">今月、実行が必要なペナルティはありません。</td>
-          </tr>
+      <% if @activePenalties.present? %>
+        <table>
+          <thead>
+            <tr>
+              <th>内容</th>
+              <th>回復ポイント</th>
+              <th colspan="1"></th>
+            </tr>
+          </thead>
+          <tbody>
+          <% @activePenalties.each do |penalty| %>
+            <tr>
+              <td><%= penalty.content %></td>
+              <td><%= penalty.point %></td>
+              <td>
+              <span><%= link_to '実行完了許可', community_penalty_execute_path(@community.id, penalty.id) %></span>
+              </td>
+            </tr>
           <% end %>
-        <% end %>
-        </tbody>
-      </table>
+          </tbody>
+        </table>
+      <% else %>
+        <p>今月実行しなければならないペナルティはありません。</p>
+      <% end %>
     </div>
   </div>
-  <!-- attachment_image_tag @user.user, profile_image, fill, 60, 60, format:'jpeg' -->

@@ -2,34 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-//コミュニティダッシュボードのメンバーリスト
-.community-user-list {
-  display: flex;
-}
-
-//コミュニティダッシュボードのメンバーリストの各メンバー
-.community-user {
-  margin: 10px;
-}
-
-//コミュニティダッシュボードのメンバーリストの各メンバー写真
-.profile_image {
-  border-radius: 50%;
-}
-
-//コミュニティダッシュボードのメンバーリストの各メンバー名前
-
-.community-user-name {
-  text-align: center;
-  margin-top: 0;
-  margin-bottom: 0;
-}
-
-//_info全体
-.community-info-contents {
-}
-
-//_info コミュニティの表示情報
+//_info
 .community-info-main {
   display: flex;
   margin-top: 16px;
@@ -37,15 +10,17 @@
   margin-bottom: 0;
 }
 
+//_info
 .community-info-name, .community-info-detail {
   margin: 0 10px 0 0;
 }
 
+//_info
 .community-detail-link {
   font-size: 80%;
 }
 
-//_info メニューバー
+//_info
 .community-navigation {
   display: flex;
   margin-top: 8px;
@@ -53,7 +28,7 @@
   padding-left: 16px;
 }
 
-//_info メニューバー各項目
+//_info
 .community-navigation-item {
   padding-top: 8px;
   padding-bottom: 8px;
@@ -63,25 +38,110 @@
   font-weight: bold;
 }
 
-//_info メニューバー各項目、カーソルあった時の背景色
+//_info
 .community-navigation-item:hover {
   background-color: #303030;
   color: #fff;
 }
 
-//_info メニューバー各項目、カーソルあった時の下線無くす。
+//_info
 .community-navigation-link:hover {
   border-bottom: inherit;
 }
 
+//show 数値
+.community-dashboard {
+  background-color: #dddddd !important;
+  color: #303030;
+  display: flex;
+}
+
+//show 数値
+.community-dashboard-section {
+  width: 200px;
+  text-align: center;
+}
+
+//show 数値
+.community-dashboard-section-title {
+  font-weight: bold;
+  font-size: 80%;
+}
+
+//show 数値
+.community-dashboard-section-content {
+  font-size: 300%;
+  font-weight: bold;
+}
+
+//show メンバー
+.community-user-list {
+  display: flex;
+}
+
+//show メンバー
+.community-user {
+  margin: 10px;
+}
+
+//show メンバー
+.profile_image {
+  border-radius: 50%;
+}
+
+//show メンバー
+.community-user-name {
+  text-align: center;
+  color: #ffd139;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+//show ゴール スローガン
 .goal-show, .mottos-show {
   text-align: center;
 }
 
+//show ゴール
 .goal-content {
   margin-top: 16px;
+  height: 40px;
+  margin-left: auto;
+  margin-right: auto;
+  width: fit-content;
 }
 
+//show ゴール
+.goal-content-letters {
+  font-size: 160%;
+  font-weight: bold;
+  background: linear-gradient(transparent 60%, rgba(244,120,66,0.5) 60%);
+}
+
+//show ゴール
+.till-goal {
+  color: #f47842;
+  width: 168px;
+  margin-top: 32px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+//show ゴール
+.goal-deadline-timer {
+  font-size: 320%;
+  font-weight: bold;
+  color: #f47842;
+}
+
+//show ゴール
+p#countTimer span {
+  font-size: 40%;
+  font-weight: 400;
+  margin-right: 8px;
+}
+
+//show スローガン
 .motto-index {
   margin-left: auto;
   margin-right: auto;
@@ -91,46 +151,92 @@
   border-radius: 50px;
 }
 
+//show スローガン
 .motto-index-number {
   line-height: 32px;
 }
 
+//show スローガン
 .motto-content {
-  margin-bottom: 16px;
   height: 40px;
+  margin-top: 8px;
+  margin-bottom: 16px;
   margin-left: auto;
   margin-right: auto;
   width: fit-content;
 }
 
-.goal-content-letters, .motto-content-letters {
+//show スローガン
+.motto-content-letters {
   font-size: 120%;
   font-weight: bold;
+  background: linear-gradient(transparent 60%, rgba(68,196,138,0.5) 60%);
 }
 
-.till-goal {
-  margin-top: 16px;
+//show ルール
+.community-rules-in-dashboard {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
-.goal-deadline-timer {
-  font-size: 320%;
-  font-weight: border;
+//show ルール
+.community-rule-box {
+  width: 320px;
+  margin: 16px;
+  background-color: #dddddd;
+  color: #303030;
+  border-radius: 16px;
 }
 
-.till-goal {
-  width: 168px;
-  height: 40px;
-  background-color: #ffd139;
+.community-rule-box-genre {
+  position: relative;
+  bottom: 12px;
+  background-color: #fff;
+  color: #07868c;
+  font-size: 80%;
   margin-left: auto;
   margin-right: auto;
+  padding-left: 8px;
+  padding-right: 8px;
+  border: 1px solid #07868c;
+  border-radius: 50px;
+  width: fit-content;
 }
 
-.till-goal-letters {
-  line-height: 40px;
+.community-rule-box-content {
+  height: 48px;
+  font-weight: bold;
+  margin: 16px 24px;
+  color: #07868c;
 }
 
-p#countTimer span {
-  font-size: 40%;
-  font-weight: 400;
-  margin-right: 8px;
+.community-rule-box-point {
+  font-weight: bold;
+  margin: 16px 24px;
+}
+
+.point-letter {
+  font-size: 80%;
+}
+
+//show ルール
+.community-rule-box-cta {
+  width: 320px;
+  height: 32px;
+  background-color: #07868c;
+  display: table; //子のインライン要素を左右中央よせ
+  border-radius: 0 0 16px 16px;
+}
+
+.rule-execute-btn {
+  display: table-cell;
+  color: #fff;
+  font-weight: bold;
+  padding: 8px 16px;
+  text-align: center; //テキスト要素を左右中央寄せ
+}
+
+.rule-execute-btn:hover {
+border-bottom: inherit;
 }
