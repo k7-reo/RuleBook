@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_02_21_204210) do
+ActiveRecord::Schema.define(version: 2023_02_24_054554) do
 
   create_table "communities", force: :cascade do |t|
     t.string "community_name"
@@ -39,6 +39,31 @@ ActiveRecord::Schema.define(version: 2023_02_21_204210) do
     t.integer "user_id"
     t.text "content"
     t.datetime "deadline"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "meeting_users", force: :cascade do |t|
+    t.integer "meeting_id"
+    t.integer "user_id"
+    t.integer "community_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["meeting_id"], name: "index_meeting_users_on_meeting_id"
+    t.index ["user_id"], name: "index_meeting_users_on_user_id"
+  end
+
+  create_table "meetings", force: :cascade do |t|
+    t.string "name", default: "定例会"
+    t.integer "community_id"
+    t.integer "user_id"
+    t.text "content"
+    t.string "todo"
+    t.string "agenda"
+    t.string "next_agenda"
+    t.datetime "date"
+    t.datetime "next_date"
+    t.integer "status", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

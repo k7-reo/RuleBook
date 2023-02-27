@@ -75,7 +75,7 @@ header {
 }
 
 .site-logo {
-  margin-top: 4px;
+  margin-top: 6px;
 }
 
 .sign-in-user {
@@ -217,7 +217,8 @@ tbody td:last-child {
 .goal-header, .mottos-header,
 .rules-header, .my-communities-header,
 .all-privileges-header, .all-penalties-header,
-.role-header, .late-activities-header {
+.role-header, .late-activities-header,
+.meeting-header {
   display: flex;
   justify-content: space-between;
 }

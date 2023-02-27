@@ -7,6 +7,7 @@
     <div class="community-dashboard round">
         <!-- ルールの棒グラフ一覧表示（ジャンル別）-->
         <!-- コミュニティ健全度の表示(定義説明あり) -->
+        <!-- ポイント上位メンバーのランキング-->
       <section class="community-dashboard-section">
         <p class="community-dashboard-section-title">ルールの数</p>
         <p class="community-dashboard-section-content">
@@ -64,6 +65,43 @@
       <% end %>
       </div>
     </div>
+    <div class="meeting round">
+      <div class="meeting-header">
+        <p class="section-title">ミーティング</p>
+        <div>
+          <span class="meeting-header-menu-1"><%= link_to "新規ミーティング設定", new_community_meeting_path(@community.id) %></span>
+          <span class="meeting-header-menu-2"><%= link_to "ミーティング一覧", community_meetings_path(@community.id) %></span>
+        </div>
+      </div>
+      <div class="meetings">
+        <% if @nextMeeting.present? %>
+          <div class="next-meeting">
+            <div class="meeting-index">
+              <p class="meeting-index-letter">次回</p>
+            </div>
+            <div class="meeting-content">
+              <div class="meeting-name"><%= @nextMeeting.name %></div>
+              <p id="meetingCountTimer"></p>
+              <div class="meeting-date"><%= @nextMeeting.date.to_s(:datetime_jp) %></div>
+              <div class="meeting-cta"><%= link_to "ミーティングを始める", edit_community_meeting_path(@community.id, @nextMeeting.id) %></div>
+            </div>
+          </div>
+        <% else %>
+          <p>実施予定のミーティングはありません。</p>
+        <% end %>
+        <% if @meetingInProgress.present? %>
+          <div class="meeting-in-progress">
+            <div class="meeting-index">
+              <p class="meeting-index-letter">編集中</p>
+            </div>
+            <div class="meeting-content">
+              <div class="meeting-name"><%= @meetingInProgress.name %></div>
+              <div class="meeting-cta"><%= link_to "議事録に戻る", edit_community_meeting_path(@community.id, @nextMeeting.id) %></div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
     <div class="goals round">
       <div class="goal-header">
         <p class="section-title">ゴール</p>
@@ -83,7 +121,7 @@
             <p class="till-goal-letters">ゴール達成まで残り</p>
           </div>
           <div class="goal-deadline">
-            <p class="goal-deadline-timer" id="countTimer"></p>
+            <p class="goal-deadline-timer" id="goalCountTimer"></p>
           </div>
         <% else %>
           <div>
@@ -140,8 +178,9 @@
       </div>
     </div>
   </div>
-  <!-- 以下、カウントダウン表示のためのJavaScript -->
+  <!-- 以下JavaScript -->
   <script>
+  //ゴール達成までのカウントダウン
     // タイマーの日付を設定
     var countDownDate = new Date(gon.deadline).getTime();
     // 1秒おきに更新
@@ -155,11 +194,32 @@
       var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
       var seconds = Math.floor((distance % (1000 * 60)) / 1000);
       // 出力する内容
-      document.getElementById("countTimer").innerHTML = days + "<span>日</span>" + hours + "<span>時間</span>" + minutes + "<span>分</span>" + seconds + "<span>秒</span>";
+      document.getElementById("goalCountTimer").innerHTML = days + "<span>日</span>" + hours + "<span>時間</span>" + minutes + "<span>分</span>" + seconds + "<span>秒</span>";
       // タイマー終了後
       if (distance < 0) {
         clearInterval(x);
-        document.getElementById("countTimer").innerHTML = "タイマーが終わったよ。目標は達成できましたか？";
+        document.getElementById("goalCountTimer").innerHTML = "期限が終わったよ。目標は達成できましたか？";
       }
     }, 1000);
+  //次のミーティングまでのカウントダウン
+    //指定日程を定義
+    var y = gon.year; // 年
+    var m = gon.month; // 月
+    var d = gon.day; // 日
+    var tgday = y + "/" + m + "/" + d;
+
+    var now = new Date();
+    var days = Math.ceil((Date.parse(tgday) - now.getTime()) / (24 * 60 * 60 * 1000));
+
+    // 表示開始
+    if(days == 0) {
+    	document.getElementById("meetingCountTimer").innerHTML = "当日です！"; // 指定日当日の表示
+    }
+    else if(days < 0) {
+    	days = Math.abs(days);
+    	document.getElementById("meetingCountTimer").innerHTML =  days + "日経過"; // 指定日後の表示
+    }
+    else {
+    	document.getElementById("meetingCountTimer").innerHTML = "あと" + days + "日"; // 指定日前の表示
+    }
   </script>

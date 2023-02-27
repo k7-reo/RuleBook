@@ -13,10 +13,10 @@
     <div>
       <%= form_with(model: [@community, @motto], url: community_mottos_path{@community.id}, local:true) do |f| %> <!-- communityモデル、mottoモデルそれぞれにデータを保存するため、両モデル指定-->
         </div>
-        <%= f.text_area :content, placeholder: "必須" %>
+          <%= f.text_area :content, placeholder: "必須" %>
         <div>
         </div>
-        <%= f.submit '作成' %>
+          <%= f.submit "作成" %>
         <div>
       <% end %>
     </div>

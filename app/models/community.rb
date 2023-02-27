@@ -7,6 +7,7 @@ class Community < ApplicationRecord
   has_many :privileges, dependent: :destroy
   has_many :penalties, dependent: :destroy
   has_many :records, dependent: :destroy
+  has_many :meetings, dependent: :destroy
 
   def self.search(search)
     if search != ""

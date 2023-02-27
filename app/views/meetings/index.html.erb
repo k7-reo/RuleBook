@@ -1,0 +1,34 @@
+  <div class="community-info">
+    <%= render 'communities/info', community: @community, currentUser: @currentUser %>
+  </div>
+
+  <div class="community-main">
+    <p class="page-title"><%= @community.community_name %>のミーティング</p>
+    <div class="past-meetings round">
+      <p class="section-title">過去のミーティング一覧</p>
+    </div>
+  </div>
+  
+    <script>
+  //次のミーティングまでのカウントダウン
+    //指定日程を定義
+    var y = gon.year; // 年
+    var m = gon.month; // 月
+    var d = gon.day; // 日
+    var tgday = y + "/" + m + "/" + d;
+
+    var now = new Date();
+    var days = Math.ceil((Date.parse(tgday) - now.getTime()) / (24 * 60 * 60 * 1000));
+
+    // 表示開始
+    if(days == 0) {
+    	document.getElementById("meetingCountTimer").innerHTML = "当日です！"; // 指定日当日の表示
+    }
+    else if(days < 0) {
+    	days = Math.abs(days);
+    	document.getElementById("meetingCountTimer").innerHTML =  days + "日経過"; // 指定日後の表示
+    }
+    else {
+    	document.getElementById("meetingCountTimer").innerHTML = "あと" + days + "日"; // 指定日前の表示
+    }
+  </script>
