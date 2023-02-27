@@ -297,12 +297,20 @@ border-bottom: inherit;
   border-radius: 16px;
 }
 
+.meeting-pre-edit {
+  width: 80px;
+  margin-left: auto;
+  position: relative;
+  bottom: 8px;
+  left: 8px;
+}
+
 //show ミーティング
 .meeting-name {
   font-size: 140%;
   font-weight: bold;
   margin-top: 16px;
-  margin-bottom: 16px;
+  margin-bottom: 24px;
 }
 
 .meeting-date{
@@ -310,10 +318,14 @@ border-bottom: inherit;
 }
 .meeting-cta {
   font-weight: bold;
-  margin-top: 16px;
-  margin-bottom: 8px;
+  margin-top: 24px;
+  margin-left: 16px;
+  margin-right: 16px;
+  margin-bottom: 16px;
   padding-top: 8px;
   padding-bottom: 8px;
-  background-color: #07868c;
+  color: #07868c;
+  background-color: #fff;
   border-radius: 16px;
+  border: 1px solid #07868c;
 }

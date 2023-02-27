@@ -24,10 +24,10 @@
     <div class="point round">
       <div>
         <p class="section-title">獲得ポイント</p>
-        <p><%= @user.point %></p>
+        <p class="my-point"><%= @user.point %></p>
       </div>
       <div>
-        <p>今月実行されたルール</p> <!-- standbyテーブルから取得 -->
+        <p class="section-title">今月実行されたルール</p> <!-- standbyテーブルから取得 -->
       </div>
       <div>
       </div>
@@ -35,35 +35,25 @@
     <div class="monthly_point round">
       <div>
         <p class="section-title">配当ポイント</p>
-        <p><%= @user.monthly_point %></p>
+        <p class="my-monthly_point"><%= @user.monthly_point %></p>
         <div class="comment">
-          <p>
-          <% if @user.monthly_point < 0 %>
-            ポイントが0になるようにペナルティを受けなければなりません。cd
-            ※余剰ポイントは翌月に繰り越されます。
-          <% elsif @user.monthly_point > 0 %>
-            ポイントが0になるまで報酬を受けられます。<br>
-            ※余剰ポイントは翌月に繰り越されます。
-          <% else %>
-            今月中に受けられる報酬、受けなければいけないペナルティはありません。
-          <% end %>
-          </p>
+          <p>※余剰ポイントは翌月に繰り越されます。</p>
         </div>
       </div>
       <div>
-        <p>今月受け取った報酬</p> <!-- standbyテーブルから取得 -->
+        <p class="section-title">今月受け取った報酬</p> <!-- standbyテーブルから取得 -->
       </div>
       <div>
-        <p>今月実行したペナルティ</p> <!-- standbyテーブルから取得 -->
+        <p class="section-title">今月実行したペナルティ</p> <!-- standbyテーブルから取得 -->
       </div>
     </div>
     <div class="privileges-for-now round">
       <p class="section-title">今月受けられる報酬</p> <!-- 特典のポイントより個人のポイントが高ければ選択肢に現れる -->
-      <div class="comment">
-        <p>配当ボインがなくなるまで以下の報酬を選択して受け取ることができます。</p>
-        <p class="privilege-note">報酬を受け取ったら、自ら「取得完了」ボタンを押してください。</p>
-      </div>
       <% if @activePrivileges.present? %>
+        <div class="comment">
+          <p>配当ボインがなくなるまで以下の報酬を選択して受け取ることができます。</p>
+          <p class="privilege-note">報酬を受け取ったら、自ら「取得完了」ボタンを押してください。</p>
+        </div>
         <table>
           <thead>
             <tr>
@@ -88,10 +78,10 @@
     </div>
     <div class="penalties-for-now round">
       <p class="section-title" >今月中に実行が必要なペナルティ</p>
-      <div class="comment">
-        <p>ペナルティを実行してポイント回復に努めましょう！</p>
-      </div>
       <% if @activePenalties.present? %>
+        <div class="comment">
+          <p>ペナルティを実行してポイント回復に努めましょう！</p>
+        </div>
         <table>
           <thead>
             <tr>

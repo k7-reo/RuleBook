@@ -4,4 +4,32 @@
 
   <div class="community-main">
     <p class="page-title">ミーティング議事録</p>
+    <div>
+      <%= form_with(model: [@community, @meeting], url: community_meetings_path{@community.id}, local:true) do |f| %> <!-- communityモデル、mottoモデルそれぞれにデータを保存するため、両モデル指定-->
+        <label>ミーティング名</label>
+        <div>
+          <%= @meeting.name %>
+        </div>
+        <label>話したい内容</label>
+        <div>
+          <%= safe_join(@meeting.agenda.split("\n"),tag(:br)) %>
+        </div>
+        <label>議事録</label>
+        <div>
+          <%= f.text_area :content %>
+        </div>
+        <label>次回話したいこと</label>
+        <div>
+          <%= f.text_area :next_agenda %>
+        </div>
+        <label>次回の実施予定日</label>
+        <div>
+          <%= f.datetime_field :next_date, placeholder: "必須" %>
+        </div>
+        <div>
+          <%= f.submit "一時保存", name: 'save' %>
+          <%= f.submit "MTG終了", name: 'done' %>
+        </div>
+      <% end %>
+    </div>
   </div>

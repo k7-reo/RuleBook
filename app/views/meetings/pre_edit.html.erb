@@ -3,9 +3,9 @@
   </div>
 
   <div class="community-main">
-    <p class="page-title">新規ミーティング作成</p>
+    <p class="page-title">ミーティング内容変更</p>
     <div>
-      <%= form_with(model: [@community, @meeting], url: community_meetings_path{@community.id}, local:true) do |f| %> <!-- communityモデル、mottoモデルそれぞれにデータを保存するため、両モデル指定-->
+      <%= form_with(model: [@community, @meeting], url: community_meeting_path(@community.id, @meeting.id), local:true) do |f| %> <!-- communityモデル、mottoモデルそれぞれにデータを保存するため、両モデル指定-->
         <label>ミーティング名</label>
         </div>
           <%= f.text_area :name, placeholder: "必須" %>
@@ -19,7 +19,7 @@
           <%= f.datetime_field :date, placeholder: "必須" %>
         <div>
         </div>
-          <%= f.submit "作成" %>
+          <%= f.submit "変更完了" %>
         <div>
       <% end %>
     </div>
