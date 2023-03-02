@@ -1,6 +1,6 @@
   <div class="community-info-contents">
     <div class="community-info-main">
-      <p class="community-info-name">参加中のコミュニティ：<b><%= community.community_name %></b></p>
+      <p class="community-info-name">参加中のコミュニティ：<span class="community-name"><%= community.community_name %></span></p>
       <p class="community-info-detail"><%= link_to "詳細表示", community_detail_path(community.id), class: "community-detail-link" %></p>
     </div>
     <div>

@@ -9,7 +9,7 @@
       <%= form_with model: @standby, url: community_rule_execute_path(@community.id, @rule.id), local:true do |f| %>
         <div>
           <div>
-            <label>対象ユーザー選択</label>
+            <label>対象メンバー選択</label>
             <div>
               <%= collection_check_boxes(:standby, :executed_user_id, User.joins(:rule_users).where(rule_users: {rule_id: params[:rule_id]}), :id, :name, include_hidden: false) do |user| %>
                 <%= user.check_box %>

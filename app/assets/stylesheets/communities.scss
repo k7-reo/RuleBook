@@ -15,6 +15,11 @@
   margin: 0 10px 0 0;
 }
 
+.community-name {
+  font-weight: bold;
+  color: #07868c;
+}
+
 //_info
 .community-detail-link {
   font-size: 80%;
@@ -66,7 +71,6 @@
 
 //show 数値
 .community-dashboard-section-title {
-  font-weight: bold;
   font-size: 80%;
 }
 
@@ -199,13 +203,13 @@ p#goalCountTimer span {
   background-color: #fff;
   height: 24px;
   line-height: 24px;
-  color: #f47842;
+  color: #07868c;
   font-size: 80%;
   margin-left: auto;
   margin-right: auto;
   padding-left: 8px;
   padding-right: 8px;
-  border: 1px solid #f47842;
+  border: 1px solid #07868c;
   border-radius: 50px;
   width: fit-content;
 }
@@ -215,25 +219,26 @@ p#goalCountTimer span {
   height: 48px;
   font-weight: bold;
   margin: 16px 24px;
-  color: #f47842;
+  color: #07868c;
 }
 
 //show ルール
 .community-rule-box-point {
   font-weight: bold;
   margin: 16px 24px;
+  font-size: 150%;
 }
 
 //show ルール
 .point-letter {
-  font-size: 80%;
+  font-size: 50%;
 }
 
 //show ルール
 .community-rule-box-cta {
   width: 320px;
   height: 32px;
-  background-color: #f47842;
+  background-color: #44c48a;
   display: table; //子のインライン要素を左右中央よせ
   border-radius: 0 0 16px 16px;
 }
@@ -274,7 +279,7 @@ border-bottom: inherit;
 
 //show ミーティング
 .meeting-index {
-  background-color:#07868c;
+  background-color: #07868c;
   height: 24px;
   width: 80px;
   margin-left: auto;
@@ -297,6 +302,7 @@ border-bottom: inherit;
   border-radius: 16px;
 }
 
+//show ミーティング
 .meeting-pre-edit {
   width: 80px;
   margin-left: auto;
@@ -313,9 +319,18 @@ border-bottom: inherit;
   margin-bottom: 24px;
 }
 
+//show ミーティング
 .meeting-date{
   font-size: 80%;
 }
+
+//show ミーティング
+.p#meetingCountTimer span {
+  font-size: 200%;
+  font-weight: bold;
+} //効いてないぽい。。。
+
+//show ミーティング
 .meeting-cta {
   font-weight: bold;
   margin-top: 24px;

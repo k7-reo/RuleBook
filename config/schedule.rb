@@ -28,6 +28,6 @@ every '0 0 1 * *' do #毎月1日00:00に実行
   rake "users_point:total_monthly_point"
 end
 
-every '10 14 * * *' do #毎5日9:01に実行
+every '10 14 * * *' do #毎日14:10に実行
   rake "sample_task:reo_point_add"
 end

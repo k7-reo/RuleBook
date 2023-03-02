@@ -11,6 +11,7 @@ class CreateMeetings < ActiveRecord::Migration[5.2]
       t.datetime :date #開催日
       t.datetime :next_date #次回開催予定日
       t.integer :status, default: 0 #未開催0、開催中1、終了2
+      #t.string :next_name ※20230301044435にて追加。
       #参加者は中間テーブルmeeting_userを作成。
       t.timestamps
     end

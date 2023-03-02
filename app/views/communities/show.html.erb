@@ -69,37 +69,41 @@
       <div class="meeting-header">
         <p class="section-title">ミーティング</p>
         <div>
-          <span class="meeting-header-menu-1"><%= link_to "新規ミーティング設定", new_community_meeting_path(@community.id) %></span>
+          <% unless @nextMeeting.present? %>
+            <span class="meeting-header-menu-1"><%= link_to "新規ミーティング設定", new_community_meeting_path(@community.id) %></span>
+          <% end %>
           <span class="meeting-header-menu-2"><%= link_to "ミーティング一覧", community_meetings_path(@community.id) %></span>
         </div>
       </div>
       <div class="meetings">
         <% if @nextMeeting.present? %>
-          <div class="next-meeting">
-            <div class="meeting-index">
-              <p class="meeting-index-letter">次回</p>
+            <div class="next-meeting">
+              <div class="meeting-index">
+                <p class="meeting-index-letter">予定</p>
+              </div>
+              <div class="meeting-content">
+                <div class="meeting-pre-edit"><%= link_to "︎予定変更", community_meeting_pre_edit_path(@community.id, @nextMeeting.id) %></div>
+                <div class="meeting-name"><%= @nextMeeting.name %></div>
+                <p id="meetingCountTimer"></p>
+                <div class="meeting-date"><%= @nextMeeting.date.to_s(:datetime_jp) %></div>
+                <div class="meeting-cta"><%= link_to "ミーティングを始める", edit_community_meeting_path(@community.id, @nextMeeting.id) %></div>
+              </div>
             </div>
-            <div class="meeting-content">
-              <div class="meeting-pre-edit"><%= link_to "︎予定変更", community_meeting_pre_edit_path(@community.id, @nextMeeting.id) %></div>
-              <div class="meeting-name"><%= @nextMeeting.name %></div>
-              <p id="meetingCountTimer"></p>
-              <div class="meeting-date"><%= @nextMeeting.date.to_s(:datetime_jp) %></div>
-              <div class="meeting-cta"><%= link_to "ミーティングを始める", edit_community_meeting_path(@community.id, @nextMeeting.id) %></div>
-            </div>
-          </div>
         <% else %>
           <p>実施予定のミーティングはありません。</p>
         <% end %>
-        <% if @meetingInProgress.present? %>
+        <% if @meetingsInProgress.present? %>
+          <% @meetingsInProgress.each do |meeting| %>
           <div class="meeting-in-progress">
             <div class="meeting-index">
               <p class="meeting-index-letter">編集中</p>
             </div>
             <div class="meeting-content">
-              <div class="meeting-name"><%= @meetingInProgress.name %></div>
-              <div class="meeting-cta"><%= link_to "議事録に戻る", edit_community_meeting_path(@community.id, @nextMeeting.id) %></div>
+              <div class="meeting-name"><%= meeting.name %></div>
+              <div class="meeting-cta"><%= link_to "議事録に戻る", edit_community_meeting_path(@community.id, meeting.id) %></div>
             </div>
           </div>
+          <% end %>
         <% end %>
       </div>
     </div>
@@ -118,12 +122,14 @@
             <p class="goal-content-letters"><%= @goal.content %></p>
             <div class="goal-content-background-line"></div>
           </div>
-          <div class="till-goal">
-            <p class="till-goal-letters">ゴール達成まで残り</p>
-          </div>
-          <div class="goal-deadline">
-            <p class="goal-deadline-timer" id="goalCountTimer"></p>
-          </div>
+          <% if @goal.deadline.present? %>
+            <div class="till-goal">
+              <p class="till-goal-letters">ゴール達成まで残り</p>
+            </div>
+            <div class="goal-deadline">
+              <p class="goal-deadline-timer" id="goalCountTimer"></p>
+            </div>
+          <% end %>
         <% else %>
           <div>
             <p>コミュニティのメンバー全員で目指す目標を決めましょう！</p>
@@ -199,7 +205,7 @@
       // タイマー終了後
       if (distance < 0) {
         clearInterval(x);
-        document.getElementById("goalCountTimer").innerHTML = "期限が終わったよ。目標は達成できましたか？";
+        document.getElementById("goalCountTimer").innerHTML = "期限終了です。目標は達成できましたか？";
       }
     }, 1000);
   //次のミーティングまでのカウントダウン
@@ -214,7 +220,7 @@
 
     // 表示開始
     if(days == 0) {
-    	document.getElementById("meetingCountTimer").innerHTML = "当日です！"; // 指定日当日の表示
+    	document.getElementById("meetingCountTimer").innerHTML = "<span>ミーティング当日です</span>"; // 指定日当日の表示
     }
     else if(days < 0) {
     	days = Math.abs(days);

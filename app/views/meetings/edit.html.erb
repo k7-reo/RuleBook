@@ -5,18 +5,45 @@
   <div class="community-main">
     <p class="page-title">ミーティング議事録</p>
     <div>
-      <%= form_with(model: [@community, @meeting], url: community_meetings_path{@community.id}, local:true) do |f| %> <!-- communityモデル、mottoモデルそれぞれにデータを保存するため、両モデル指定-->
+      <%= form_with(model: [@community, @meeting], url: community_meeting_path{@community.id}, local:true) do |f| %> <!-- communityモデル、mottoモデルそれぞれにデータを保存するため、両モデル指定-->
         <label>ミーティング名</label>
         <div>
           <%= @meeting.name %>
         </div>
         <label>話したい内容</label>
         <div>
-          <%= safe_join(@meeting.agenda.split("\n"),tag(:br)) %>
+          <% if @meeting.todo.present? %>
+            <div><%= safe_join(@meeting.agenda.split("\n"),tag(:br)) %></div>
+          <% else %>
+            <p>ありません。</p>
+          <% end %>
+        </div>
+        <label>前回のTODO</label>
+        <div>
+          <% if @meeting.todo.present? %>
+            <div><%= safe_join(@meeting.todo.split("\n"),tag(:br)) %></div>
+          <% else %>
+            <p>ありません。</p>
+          <% end %>
+        </div>
+        <label>参加メンバー</label>
+        <div>
+          <%= collection_check_boxes(:meeting, :user_ids, User.joins(:community_users).where(community_users: {community_id: params[:community_id]}), :id, :name, include_hidden: false) do |user| %>
+            <%= user.check_box %>
+            <%= user.text %>
+          <% end %>
         </div>
         <label>議事録</label>
         <div>
           <%= f.text_area :content %>
+        </div>
+        <label>TODO</label>
+        <div>
+          <%= f.text_area :todo %>
+        </div>
+        <label>次回のミーティング名</label>
+        <div>
+          <%= f.text_field :next_name %>
         </div>
         <label>次回話したいこと</label>
         <div>
@@ -24,7 +51,7 @@
         </div>
         <label>次回の実施予定日</label>
         <div>
-          <%= f.datetime_field :next_date, placeholder: "必須" %>
+          <%= f.datetime_field :next_date, value: Time.zone.now.strftime('%Y-%m-%dT') %>
         </div>
         <div>
           <%= f.submit "一時保存", name: 'save' %>

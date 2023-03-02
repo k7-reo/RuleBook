@@ -11,6 +11,7 @@
       <table>
         <thead>
           <tr>
+            <th></th>
             <th>名前</th>
             <th>今月の獲得ポイント</th>
             <th>保有ポイント</th>
@@ -19,6 +20,9 @@
         <tbody>
         <% @communityUsers.each do |communityUser| %>
           <tr>
+            <td>
+              <%= attachment_image_tag communityUser.user, :profile_image, :fill, 60, 60, format: 'jpeg', fallback: "f_f_event_98_s512_f_event_98_0bg.jpg", size:'60x60'%>
+            </td>
             <td>
               <%= link_to community_user_path(@community.id, communityUser.user.id) do %>
                 <%= communityUser.user.name %>
