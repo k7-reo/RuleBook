@@ -2,7 +2,7 @@ class UsersController < ApplicationController
 
   def index
     @currentUser = CommunityUser.find_by(user_id: current_user.id) #community-info表示に利用
-    @communityUsers = CommunityUser.where(community_id: params[:community_id])
+    @communityUsers = CommunityUser.where(community_id: params[:community_id]).order(point: :desc)
     @community = Community.find(params[:community_id])
   end
 

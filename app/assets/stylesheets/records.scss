@@ -2,6 +2,51 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.record-content {
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
 .record-date {
   font-size: 70%;
+}
+
+.record-motto {
+  background-color: #44c48a;
+  color: #303030;
+  font-weight: bold;
+  padding-left: 2px;
+  padding-right: 2px;
+}
+
+.record-rule {
+  background-color: #07868c;
+  color: #303030;
+  font-weight: bold;
+  padding-left: 2px;
+  padding-right: 2px;
+}
+
+.record-privilege {
+  background-color: #f47842; /* オレンジ色*/
+  color: #303030;
+  font-weight: bold;
+  padding-left: 2px;
+  padding-right: 2px;
+}
+
+.record-penalty {
+  background-color: #8c52ff; /* 黄緑色 */
+  color: #303030;
+  font-weight: bold;
+  padding-left: 2px;
+  padding-right: 2px;
+}
+
+.record-goal {
+  background-color: #ffd139; /* 紫色 */
+  color: #303030;
+  font-weight: bold;
+  padding-left: 2px;
+  padding-right: 2px;
 }

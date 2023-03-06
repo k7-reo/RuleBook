@@ -1,7 +1,11 @@
   <div class="community-info-contents">
     <div class="community-info-main">
       <p class="community-info-name">参加中のコミュニティ：<span class="community-name"><%= community.community_name %></span></p>
-      <p class="community-info-detail"><%= link_to "詳細表示", community_detail_path(community.id), class: "community-detail-link" %></p>
+      <p class="community-info-detail">
+        <%= link_to community_detail_path(community.id), class: "community-detail-link" do %>
+          <i class="fa-solid fa-circle-info"></i>
+        <% end %>
+      </p>
     </div>
     <div>
       <ul class="community-navigation">

@@ -8,26 +8,21 @@
     <div>
       <%= form_with model: @standby, url: community_rule_execute_path(@community.id, @rule.id), local:true do |f| %>
         <div>
+          <label>対象メンバー選択<span class="form-note">必須</span></label>
           <div>
-            <label>対象メンバー選択</label>
-            <div>
-              <%= collection_check_boxes(:standby, :executed_user_id, User.joins(:rule_users).where(rule_users: {rule_id: params[:rule_id]}), :id, :name, include_hidden: false) do |user| %>
-                <%= user.check_box %>
-                <%= user.text %>
-              <% end %>
-            </div>
+            <%= collection_check_boxes(:standby, :executed_user_id, User.joins(:rule_users).where(rule_users: {rule_id: params[:rule_id]}), :id, :name, include_hidden: false) do |user| %>
+              <%= user.check_box %>
+              <%= user.text %>
+            <% end %>
           </div>
-          <div>
-            <label>補足</label>
-            <div>
-              <%= f.text_area :detail, placeholder: "ルールを破ったタイミングや対象者へのコメントなど" %>
-            </div>
-          </div>
-          <div><%= f.submit '対象にルール行使' %></div>
         </div>
+        <div>
+          <label><%= f.label :detail, "補足" %></label>
+          <div>
+            <%= f.text_area :detail %>
+          </div>
+        </div>
+        <div><%= f.submit '対象にルール行使' %></div>
       <% end %>
-    </div>
-    <div>
-      <p><%= link_to "ルール一覧", community_rules_path(@community.id) %></p>
     </div>
   </div>

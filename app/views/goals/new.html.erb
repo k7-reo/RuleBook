@@ -5,28 +5,32 @@
   <div class="community-main">
     <p class="page-title">ゴール新規作成</p>
     <div class="comment">
-      <p><b>ゴール設定のポイント</b></p>
+      <p>ゴール設定のポイント</p>
       <p>
         緊急度は高くないけど重要度が高いこと。
       </p>
     </div>
     <div>
       <%= form_with(model: [@community, @goal], url: community_goal_path{@community.id}, local: true) do |f| %>
-        <label>ゴール</label>
         <div>
-          <%= f.text_area :content, placeholder: "メンバー全員で達成したい内容" %>
-        </div>
-        <label>期限</label>
-        <div class="comment">
-          <p><b>ゴール設定のポイント</b></p>
-          <p>
-          期限の指定は任意ですが、程よい緊張感を保つ為にも設定することをお勧めします。<br>
-          特に期間指定の無いゴールについてはまず「１ヶ月」を期限にして頑張ってみましょう。
-          </p>
+          <label><%= f.label :content, "メンバー全員で達成したいゴール" %><span class="form-note">必須</span></label>
+          <div>
+            <%= f.text_area :content, placeholder: "メンバー全員で達成したい内容" %>
+          </div>
         </div>
         <div>
-          <%= f.datetime_field :deadline %>
-        </div>
+          <label><%= f.label :deadline, "ゴール達成期限" %><span class="form-note">必須</span></label>
+          <div class="comment">
+            <p><b>ゴール設定のポイント</b></p>
+            <p>
+            期限の指定は任意ですが、程よい緊張感を保つ為にも設定することをお勧めします。<br>
+            特に期間指定の無いゴールについてはまず「１ヶ月」を期限にして頑張ってみましょう。
+            </p>
+          </div>
+          <div>
+            <%= f.datetime_field :deadline %>
+          </div>
+        <div>
         <div>
           <%= f.submit '作成' %>
         </div>

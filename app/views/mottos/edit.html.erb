@@ -5,20 +5,23 @@
   <div class="community-main">
     <p class="page-title">スローガン編集</p>
     <div class="comment">
+      <p>制定ポイント</p>
       <p>
-        <b>制定ポイント</b><br>
         ゴール達成のためにメンバー全員が心がけることを記載してください。<br>
         みんなで話し合って決めてみましょう！
       </p>
     </div>
-    <dib>
+    <div>
       <%= form_with(model:[@community, @motto], local:true) do |f| %>
         <div>
-        <%= f.text_area :content %>
+          <label><%= f.label :content, "内容" %><span class="form-note">必須</span></label>
+          <div>
+          <%= f.text_area :content %>
+          </div>
         </div>
         <div>
         <%= f.submit "編集完了" %>
         </div>
       <% end %>
-    </dib>
+    </div>
   </div>

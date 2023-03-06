@@ -35,14 +35,16 @@ class CommunitiesController < ApplicationController
     @user = User.find(current_user.id)
     @nextMeeting = Meeting.find_by(community_id:  params[:id], status: 0) #実施前のMTG
     if @nextMeeting.present? #次のミーティングまでのカウントダウン実装javascriptに使う数値を定義。
-      gon.year = @nextMeeting.date.year
-      gon.month = @nextMeeting.date.month
-      gon.day = @nextMeeting.date.day
+      if @nextMeeting.date.present?
+        gon.year = @nextMeeting.date.year
+        gon.month = @nextMeeting.date.month
+        gon.day = @nextMeeting.date.day
+      end
     end
     @meetingsInProgress = Meeting.where(community_id: params[:id], status: 1) #実施中のMTG
     @rules = Rule.where(community_id: params[:id])
     @mottos = Motto.where(community_id: params[:id])
-    @records = Record.where(community_id: params[:community_id], updated_at: Time.zone.today.ago(30.days)..Time.zone.today.end_of_day).order(updated_at: :desc).limit(10)
+    @records = Record.where(community_id: params[:id], updated_at: Time.zone.today.ago(30.days)..Time.zone.today.end_of_day).order(updated_at: :desc).limit(10)
     @goal = Goal.find_by(community_id: params[:id])
     if @goal.present? #if文にしないとなぜかエラーがでる。
       gon.deadline = @goal.deadline #gem 'gon'を利用してRailsからJavaScriptオブジェクトに変換

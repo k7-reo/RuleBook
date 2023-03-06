@@ -13,14 +13,18 @@
     </div>
     <div>
       <%= form_with(model:[@community, @privilege], local:true) do |f| %>
-        <label>内容</label>
+      <div>
+        <label><%= f.label :content, "内容" %><span class="form-note">必須</span></label>
         <div>
           <%= f.text_area :content, placeholder: "報酬内容をここに" %>
         </div>
-        <label>受けることによって消費する配当ポイント</label>
+      </div>
+      <div>
+        <label><%= f.label :point, "消費する配当ポイント" %><span class="form-note">必須</span></label>
         <div>
           <%= f.text_field :point, placeholder: "行使するのに必要なポイントをここに" %>
         </div>
+      </div>
         <div>
           <%= f.submit '作成' %>
         </div>

@@ -23,7 +23,11 @@
                 <div class="meeting-pre-edit"><%= link_to "︎予定変更", community_meeting_pre_edit_path(@community.id, @nextMeeting.id) %></div>
                 <div class="meeting-name"><%= @nextMeeting.name %></div>
                 <p id="meetingCountTimer"></p>
-                <div class="meeting-date"><%= @nextMeeting.date.to_s(:datetime_jp) %></div>
+                <div class="meeting-date">
+                  <% if @nextMeeting.date.present? %>
+                    <%= @nextMeeting.date.to_s(:datetime_jp) %>
+                  <% end %>
+                </div>
                 <div class="meeting-cta"><%= link_to "ミーティングを始める", edit_community_meeting_path(@community.id, @nextMeeting.id) %></div>
               </div>
             </div>
@@ -47,7 +51,7 @@
     </div>
     <div class="past-meetings round">
       <p class="section-title">過去のミーティング一覧</p>
-      <div class="@past-meeting">
+      <div class="past-meeting">
         <% if @pastMeetings.present? %>
           <% @pastMeetings.each do |meeting| %>
           <div class="past-meeting-content">

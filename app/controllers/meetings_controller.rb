@@ -32,7 +32,10 @@ class MeetingsController < ApplicationController
     @community = Community.find(params[:community_id])
     meeting = Meeting.find(params[:id])
     userIds = params[:meeting][:user_ids]
-    if params[:save] #一時保存だったら
+    if params[:change]
+      meeting.update(meeting_params)
+      redirect_to community_meetings_path(@community.id)
+    elsif params[:save] #一時保存だったら
       meeting.status = 1
       if userIds.present?
         userIds.each do |user_id| #user_idsで配列されているuser一人一人をruleに関連づける。(MeetingUser中間テーブルに保存。)
@@ -45,6 +48,8 @@ class MeetingsController < ApplicationController
         user.community_id = params[:community_id]
         user.save
       end
+      meeting.update(meeting_params)
+      redirect_to community_meetings_path(@community.id)
     elsif params[:done] #MTG終了だったら
       meeting.status = 2
       if userIds.present?
@@ -58,36 +63,39 @@ class MeetingsController < ApplicationController
         user.community_id = params[:community_id]
         user.save
       end
-      if meeting.next_name.present? || meeting.next_agenda.present? || meeting.next_date.present?
-      nextMeeting = Meeting.new(meeting_params)
-      nextMeeting.community_id = @community.id
-      nextMeeting.user_id = current_user.id
-      nextMeeting.name = meeting.next_name
-      nextMeeting.date = meeting.next_date
-      nextMeeting.agenda = meeting.next_agenda
-      nextMeeting.save
+      if meeting.update(meeting_params)
+        redirect_to community_meetings_path(@community.id)
+        if meeting.next_name.present? || meeting.next_agenda.present? || meeting.next_date.present?
+          nextMeeting = Meeting.new(meeting_params)
+          nextMeeting.community_id = @community.id
+          nextMeeting.user_id = current_user.id
+          nextMeeting.name = meeting.next_name
+          nextMeeting.date = meeting.next_date
+          nextMeeting.agenda = meeting.next_agenda
+          nextMeeting.save
+        end
       end
-    end
-    if meeting.update(meeting_params)
-      redirect_to community_meetings_path(@community.id)
     end
   end
 
   def destroy
     @community = Community.find(params[:community_id])
+    meeting = Meeting.find(params[:id])
+    meeting.destroy
+    redirect_to community_meetings_path(@community.id)
   end
 
   def index
     @community = Community.find(params[:community_id])
     @currentUser = CommunityUser.find_by(user_id: current_user.id) #community-info表示に利用
     @nextMeeting = Meeting.find_by(community_id:  params[:community_id], status: 0) #実施前のMTG
-    if @nextMeeting.present? #次のミーティングまでのカウントダウン実装javascriptに使う数値を定義。
+    if @nextMeeting.date.present? #次のミーティングまでのカウントダウン実装javascriptに使う数値を定義。
       gon.year = @nextMeeting.date.year
       gon.month = @nextMeeting.date.month
       gon.day = @nextMeeting.date.day
     end
     @meetingsInProgress = Meeting.where(community_id: params[:community_id], status: 1) #実施中のMTG
-    @pastMeetings = Meeting.where(community_id: params[:community_id], status: 2) 
+    @pastMeetings = Meeting.where(community_id: params[:community_id], status: 2)
   end
 
   private

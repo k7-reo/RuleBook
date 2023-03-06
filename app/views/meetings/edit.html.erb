@@ -6,52 +6,70 @@
     <p class="page-title">ミーティング議事録</p>
     <div>
       <%= form_with(model: [@community, @meeting], url: community_meeting_path{@community.id}, local:true) do |f| %> <!-- communityモデル、mottoモデルそれぞれにデータを保存するため、両モデル指定-->
-        <label>ミーティング名</label>
         <div>
-          <%= @meeting.name %>
+          <label>ミーティング名</label>
+          <div>
+            <%= @meeting.name %>
+          </div>
         </div>
-        <label>話したい内容</label>
         <div>
-          <% if @meeting.todo.present? %>
-            <div><%= safe_join(@meeting.agenda.split("\n"),tag(:br)) %></div>
-          <% else %>
-            <p>ありません。</p>
-          <% end %>
+          <label>話したい内容</label>
+          <div>
+            <% if @meeting.todo.present? %>
+              <div><%= safe_join(@meeting.agenda.split("\n"),tag(:br)) %></div>
+            <% else %>
+              <p>ありません。</p>
+            <% end %>
+          </div>
         </div>
-        <label>前回のTODO</label>
         <div>
-          <% if @meeting.todo.present? %>
-            <div><%= safe_join(@meeting.todo.split("\n"),tag(:br)) %></div>
-          <% else %>
-            <p>ありません。</p>
-          <% end %>
+          <label>前回のTODO</label>
+          <div>
+            <% if @meeting.todo.present? %>
+              <div><%= safe_join(@meeting.todo.split("\n"),tag(:br)) %></div>
+            <% else %>
+              <p>ありません。</p>
+            <% end %>
+          </div>
         </div>
-        <label>参加メンバー</label>
         <div>
-          <%= collection_check_boxes(:meeting, :user_ids, User.joins(:community_users).where(community_users: {community_id: params[:community_id]}), :id, :name, include_hidden: false) do |user| %>
-            <%= user.check_box %>
-            <%= user.text %>
-          <% end %>
+          <label><%= f.label :user_ids, "参加メンバー" %><span class="form-note">必須</span></label>
+          <div>
+            <%= collection_check_boxes(:meeting, :user_ids, User.joins(:community_users).where(community_users: {community_id: params[:community_id]}), :id, :name, include_hidden: false) do |user| %>
+              <%= user.check_box %>
+              <%= user.text %>
+            <% end %>
+          </div>
         </div>
-        <label>議事録</label>
         <div>
-          <%= f.text_area :content %>
+          <label><%= f.label :content, "議事録" %></label>
+          <div>
+            <%= f.text_area :content %>
+          </div>
         </div>
-        <label>TODO</label>
         <div>
-          <%= f.text_area :todo %>
+          <label><%= f.label :todo, "TODO" %></label>
+          <div>
+            <%= f.text_area :todo %>
+          </div>
         </div>
-        <label>次回のミーティング名</label>
         <div>
-          <%= f.text_field :next_name %>
+          <label><%= f.label :next_name, "次回ミーティング名" %></label>
+          <div>
+            <%= f.text_field :next_name %>
+          </div>
         </div>
-        <label>次回話したいこと</label>
         <div>
-          <%= f.text_area :next_agenda %>
+          <label><%= f.label :next_agenda, "次回話したいこと" %></label>
+          <div>
+            <%= f.text_area :next_agenda %>
+          </div>
         </div>
-        <label>次回の実施予定日</label>
         <div>
-          <%= f.datetime_field :next_date, value: Time.zone.now.strftime('%Y-%m-%dT') %>
+          <label><%= f.label :next_date, "次回実施予定日" %></label>
+          <div>
+            <%= f.datetime_field :next_date, value: Time.zone.now.strftime('%Y-%m-%dT') %>
+          </div>
         </div>
         <div>
           <%= f.submit "一時保存", name: 'save' %>

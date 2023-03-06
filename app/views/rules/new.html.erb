@@ -19,19 +19,19 @@
     </div>
     <div>
       <%= form_with(model:[@community, @rule], url: community_rules_path{@community.id}, local:true) do |f| %> <!--modelが配列してある理由：ネストしている時は親(community)のインスタンスも必要になる-->
-        <label>ルール内容</label>
+        <label><%= f.label :content, "ルール内容" %><span class="form-note">必須</span></label>
         <div>
-          <%= f.text_area :content, placeholder: "ルール内容をここに" %>
+          <%= f.text_area :content %>
         </div>
-        <label>ポイント(−ポイント指定可能)</label>
+        <label><%= f.label :point, "ポイント増減" %><span class="form-note">必須</span></label>
         <div>
-          <%= f.text_field :point, placeholder: "ルールによるポイント加減をここに" %>
+          <%= f.text_field :point, placeholder: "マイナス指定可" %>
         </div>
-        <label>ジャンル</label>
+        <label><%= f.label :genre, "ジャンル" %><span class="form-note">必須</span></label>
         <div>
-          <%= f.text_field :genre, placeholder: "ジャンルをここに" %>
+          <%= f.text_field :genre %>
         </div>
-        <label>対象メンバー</label>
+        <label><%= f.label :user_ids, "対象メンバー" %><span class="form-note">必須</span></label>
         <div>
           <%= collection_check_boxes(:rule, :user_ids, User.joins(:community_users).where(community_users: {community_id: params[:community_id]}), :id, :name, include_hidden: false) do |user| %>
             <%= user.check_box %>

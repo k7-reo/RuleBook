@@ -9,9 +9,13 @@
     <div>
       <%= form_with model: @standby, url: community_penalty_execute_path(@community.id, @penalty.id), local:true do |f| %>
         <div>
-          <label>完了状況をチェックしてもらうメンバー</label>
-          <div><%= f.collection_select :executed_user_id, User.joins(:community_users).where(community_users: {community_id: params[:community_id]}), :id, :name, include_blank: "ユーザーを選択してください" %></div>
-          <div><%= f.submit '実行完了申請' %></div>
+          <label><%= f.label :executed_user_id, "ペナルティ完了を許可してもらうユーザー" %><span class="form-note">必須</span></label>
+          <div>
+            <%= f.collection_select :executed_user_id, User.joins(:community_users).where(community_users: {community_id: params[:community_id]}), :id, :name, include_blank: "ユーザーを選択してください" %>
+          </div>
+        </div>
+        <div>
+          <%= f.submit '実行完了申請' %>
         </div>
       <% end %>
     </div>

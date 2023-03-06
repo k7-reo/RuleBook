@@ -58,15 +58,21 @@
 
 //show 数値
 .community-dashboard {
-  background-color: #dddddd !important;
-  color: #303030;
+  margin: 24px 8px;
+  color: #fff;
   display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
 //show 数値
 .community-dashboard-section {
   width: 200px;
   text-align: center;
+  border: 1px solid #fff;
+  padding-top: 32px;
+  padding-bottom: 16px;
+  margin: 24px;
 }
 
 //show 数値
@@ -78,13 +84,14 @@
 .community-dashboard-section-content {
   font-size: 300%;
   font-weight: bold;
+  color: #44c48a;
 }
 
 //show メンバー
 .community-user-list {
   display: flex;
-  white-space:nowrap;
-  overflow:scroll;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
 //show メンバー
@@ -216,16 +223,20 @@ p#goalCountTimer span {
 
 //show ルール
 .community-rule-box-content {
-  height: 48px;
+  height: 40px;
   font-weight: bold;
-  margin: 16px 24px;
+  margin: 8px 24px;
   color: #07868c;
+  display: flex;
+  align-items: center;
 }
 
 //show ルール
 .community-rule-box-point {
   font-weight: bold;
-  margin: 16px 24px;
+  margin-left: 24px;
+  margin-right: 24px;
+  margin-bottom: 16px;
   font-size: 150%;
 }
 
@@ -238,7 +249,7 @@ p#goalCountTimer span {
 .community-rule-box-cta {
   width: 320px;
   height: 32px;
-  background-color: #44c48a;
+  background-color: #07868c;
   display: table; //子のインライン要素を左右中央よせ
   border-radius: 0 0 16px 16px;
 }
@@ -279,7 +290,7 @@ border-bottom: inherit;
 
 //show ミーティング
 .meeting-index {
-  background-color: #07868c;
+  background-color: #f47842;
   height: 24px;
   width: 80px;
   margin-left: auto;
@@ -296,7 +307,7 @@ border-bottom: inherit;
 
 //show ミーティング
 .meeting-content {
-  background-color: rgba(7,134,140, 0.1);
+  background-color: rgba(244,120,66,0.1);
   margin: 8px 16px;
   padding: 16px;
   border-radius: 16px;
@@ -339,8 +350,12 @@ border-bottom: inherit;
   margin-bottom: 16px;
   padding-top: 8px;
   padding-bottom: 8px;
-  color: #07868c;
+  color: #f47842;
   background-color: #fff;
   border-radius: 16px;
-  border: 1px solid #07868c;
+  border: 1px solid #f47842;
+}
+
+.ten-days-record {
+  margin-top: 16px;
 }

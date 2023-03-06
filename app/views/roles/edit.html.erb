@@ -12,8 +12,11 @@
     </div>
     <div>
       <%= form_with(model: [@community, @user, @role], url: community_user_role_path{@community.id}, local: true) do |f| %>
-        <div>
-          <%= f.text_area :content, placeholder: "このコミュニティにおけるあなたの役割" %>
+        <div></div>
+          <label><%= f.label :content, "このコミュニティにおけるあなたの役" %><span class="form-note">必須</span></label>
+          <div>
+            <%= f.text_area :content %>
+          </div>
         </div>
         <div>
           <%= f.submit '編集完了' %>

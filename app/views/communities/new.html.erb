@@ -1,23 +1,29 @@
   <p class="page-title">新規コミュニティ作成</p>
   <div>
     <%= form_with model: @community, url: communities_path, local:true do |f| %> <!-- url: でprefixを利用してcommunities#createを指定。-->
-      <label>コミュニティ名</label>
-      <span>250文字まで</span>
       <div>
-        <%= f.text_field :community_name %>
+        <label><%= f.label :community_name, "コミュニティ名" %><span class="form-note">必須</span></label>
+        <div>
+          <%= f.text_field :community_name, placeholder: "250文字まで" %>
+        </div>
       </div>
-      <label>ジャンル</label>
       <div>
-        <%= f.select :genre, [["夫婦・カップル", "夫婦・カップル"], ["家族", "家族"], ["兄弟・姉妹", "兄弟・姉妹"], ["友達", "友達"], ["その他", "その他"]], include_blank: "選択してください" %>
+        <label><%= f.label :genre, "コミュニティジャンル" %><span class="form-note">必須</span></label>
+        <div>
+          <%= f.select :genre, [["夫婦・カップル", "夫婦・カップル"], ["家族", "家族"], ["兄弟・姉妹", "兄弟・姉妹"], ["友達", "友達"], ["その他", "その他"]], include_blank: "選択してください" %>
+        </div>
       </div>
-      <label>コミュニティ概要</label>
-      <span>250文字まで</span>
       <div>
-        <%= f.text_area :introduction %>
+        <label><%= f.label :introduction, "コミュニティ概要" %></label>
+        <div>
+          <%= f.text_area :introduction, placeholder: "30文字以内推奨" %>
+        </div>
       </div>
-      <label>コミュニティ参加上の注意点</label>
       <div>
-        <%= f.text_area :manual, placeholder: "任意" %>
+        <label><%= f.label :manual, "コミュニティ利用上の注意" %></label>
+        <div>
+          <%= f.text_area :manual, placeholder: "任意" %>
+        </div>
       </div>
       <div>
         <%= f.submit '作成' %>

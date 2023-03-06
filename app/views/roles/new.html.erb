@@ -13,7 +13,10 @@
     <div>
       <%= form_with(model: [@community, @user, @role], local: true) do |f| %>
         <div>
-          <%= f.text_area :content, placeholder: "このコミュニティにおけるあなたの役割" %>
+          <label><%= f.label :content, "このコミュニティにおけるあなたの役" %><span class="form-note">必須</span></label>
+          <div>
+            <%= f.text_area :content %>
+          </div>
         </div>
         <div>
           <%= f.submit '作成' %>

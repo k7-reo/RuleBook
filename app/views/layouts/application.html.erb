@@ -7,13 +7,16 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= include_gon %> <!-- gem 'gon'利用に必要な記述 -->
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script src="https://kit.fontawesome.com/a3d3283c4c.js" crossorigin="anonymous"></script>
   </head>
 
   <body>
     <header>
       <div class="header-area">
         <div class="site-logo">
-          <%= image_tag 'COLABO_logo', size: '80x48' %>
+          <%= link_to top_path do %>
+            <%= image_tag 'COLABO_logo', size: '80x48' %>
+          <% end %>
         </div>
       </div>
       <div class="sign-in-user">

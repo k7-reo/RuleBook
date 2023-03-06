@@ -37,7 +37,7 @@ p {
 a:hover {
   color: inherit; /*リンク文字の色変更させない*/
   text-decoration:none;
-  border-bottom: dotted 1px; /*リンク下にドット線*/
+  /* border-bottom: dotted 1px; /*リンク下にドット線*/
   font-weight: bold;
 }
 
@@ -112,9 +112,9 @@ main {
   text-decoration: none;
   margin: 72px 32px 32px 32px; /* header-areaの高さにmargin-topを合わせる。 */
   /*最低限の高さ指定、それ以上はフレキシブル*/
-  min-height:1000px;
+  min-height:100vh;
   height:auto !important;
-  height:1000px;
+  height:100vh;
 }
 
 footer {
@@ -191,9 +191,8 @@ tbody td:last-child {
 
 /*セクションごとの枠*/
 .round {
-  border-radius: 16px;
   padding: 32px 32px;
-  margin: 24px 8px;
+  margin: 40px 32px;
   background-color: #303030;
 }
 
@@ -227,3 +226,8 @@ tbody td:last-child {
   font-size: 80%;
 }
 
+.form-note {
+  font-size: 80%;
+  color: #ff5757;
+  margin-left: 8px;
+}

@@ -20,21 +20,26 @@
     <div>
       <%= form_with(model:[@community, @rule], local:true) do |f| %>
         <div>
-          <label for="inputContent">ルール</label>
+          <label for="inputContent">ルール<span class="form-note">必須</span></label>
           <div><%= f.text_area :content, autofocus: true, id:"inputContent", placeholder:"ルール" %></div>
         </div>
         <div>
-          <label for="inputPoint">ポイント増減(マイナス指定)</label>
-          <div><%= f.text_area :point, id:"inputPoint", placeholder:"ポイント" %></div>
+          <label for="inputPoint">ポイント増減<span class="form-note">必須</span></label>
+          <div><%= f.text_area :point, id:"inputPoint", placeholder:"マイナス指定可" %></div>
         </div>
         <div>
-          <label for="inputGenre">ジャンル</label>
-          <div><%= f.text_area :genre, id:"inputGenre", placeholder:"ジャンル" %></div>
+          <label for="inputGenre">ジャンル<span class="form-note">必須</span></label>
+          <div><%= f.text_area :genre, id:"inputGenre" %></div>
         </div>
-        <%= collection_check_boxes(:rule, :user_ids, User.joins(:community_users).where(community_users: {community_id: params[:community_id]}), :id, :name, include_hidden: false) do |user| %>
-          <%= user.check_box %>
-          <%= user.text %>
-        <% end %>
+        <div>
+        <label><%= f.label :user_ids, "対象メンバー" %><span class="form-note">必須</span></label>
+          <div>
+            <%= collection_check_boxes(:rule, :user_ids, User.joins(:community_users).where(community_users: {community_id: params[:community_id]}), :id, :name, include_hidden: false) do |user| %>
+              <%= user.check_box %>
+              <%= user.text %>
+            <% end %>
+          </div>
+        </div>
         <div>
           <%= f.submit '編集完了' %>
         </div>

@@ -12,15 +12,18 @@
     </div>
     <div>
       <%= form_with(model:[@community, @penalty], local:true) do |f| %>
-        <label>内容</label>
         <div>
-          <%= f.text_area :content %>
-        </div>
-        <label>実行によって回復するポイント</label>
-        <div>
-          <%= f.text_area :point %>
+          <label><%= f.label :content, "内容" %><span class="form-note">必須</span></label>
+          <div>
+            <%= f.text_area :content %>
+          </div>
         </div>
         <div>
+          <label><%= f.label :point, "ペナルティ実行による回復ポイント" %><span class="form-note">必須</span></label>
+          <div>
+            <%= f.text_area :point, placeholder: "マイナス設定不可" %>
+          </div>
+        </div>
           <%= f.submit "編集完了" %>
         </div>
       <% end %>

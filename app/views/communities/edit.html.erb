@@ -2,27 +2,25 @@
   <div>
     <%= form_with(model:[@community], local:true) do |f| %>
       <div>
-        <label>コミュニティ名</label>
-        <span>250文字まで</span>
+        <label><%= f.label :community_name, "コミュニティ名" %><span class="form-note">必須</span></label>
         <div>
-          <%= f.text_field :community_name %>
+          <%= f.text_field :community_name, placeholder: "250文字まで" %>
         </div>
       </div>
       <div>
-        <label>ジャンル</label>
+        <label><%= f.label :genre, "コミュニティジャンル" %><span class="form-note">必須</span></label>
         <div>
           <%= f.select :genre, [["夫婦・カップル", "夫婦・カップル"], ["家族", "家族"], ["兄弟・姉妹", "兄弟・姉妹"], ["友達", "友達"], ["その他", "その他"]], include_blank: "選択してください" %>
         </div>
       </div>
       <div>
-        <label>概要</label>
-        <span>250文字まで</span>
+        <label><%= f.label :introduction, "コミュニティ概要" %></label>
         <div>
-          <%= f.text_area :introduction %>
+          <%= f.text_area :introduction, placeholder: "30文字以内" %>
         </div>
       </div>
       <div>
-        <label>注意点</label>
+        <label><%= f.label :manual, "コミュニティ利用上の注意" %></label>
         <div>
           <%= f.text_area :manual %>
         </div>

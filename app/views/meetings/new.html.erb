@@ -6,21 +6,27 @@
     <p class="page-title">新規ミーティング作成</p>
     <div>
       <%= form_with(model: [@community, @meeting], url: community_meetings_path{@community.id}, local:true) do |f| %> <!-- communityモデル、mottoモデルそれぞれにデータを保存するため、両モデル指定-->
-        <label>ミーティング名</label>
-        </div>
-          <%= f.text_area :name, placeholder: "必須" %>
         <div>
-        <label>話したい内容</label>
+          <label><%= f.label :next_agenda, "ミーティング名" %></label>
+          <div>
+            <%= f.text_area :name %>
+          </div>
         </div>
-          <%= f.text_area :agenda, placeholder: "必須" %>
         <div>
-        <label>実施予定日</label>
+          <label><%= f.label :agenda, "話したいこと" %></label>
+          <div>
+            <%= f.text_area :agenda %>
+          </div>
         </div>
-          <%= f.datetime_field :date, placeholder: "必須" %>
         <div>
+          <label><%= f.label :date, "実施予定日" %><span class="form-note">必須</span></label>
+          <div>
+            <%= f.datetime_field :date, placeholder: "必須" %>
+          </div>
         </div>
+        <div>
           <%= f.submit "作成" %>
-        <div>
+        </div>
       <% end %>
     </div>
   </div>
