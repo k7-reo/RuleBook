@@ -1,14 +1,6 @@
   <div class="community-info-contents">
-    <div class="community-info-main">
-      <p class="community-info-name">参加中のコミュニティ：<span class="community-name"><%= community.community_name %></span></p>
-      <p class="community-info-detail">
-        <%= link_to community_detail_path(community.id), class: "community-detail-link" do %>
-          <i class="fa-solid fa-circle-info"></i>
-        <% end %>
-      </p>
-    </div>
-    <div>
-      <ul class="community-navigation">
+    <div class="community-navigation">
+      <ul class="community-navigation-items">
         <li class="community-navigation-item"><%= link_to "ダッシュボード", community_path(community.id), class: "community-navigation-link" %></li>
         <li class="community-navigation-item"><%= link_to "マイページ", community_user_mypage_path(community.id, currentUser.id), class: "community-navigation-link" %></li>
         <li class="community-navigation-item"><%= link_to "メンバー", community_users_path(community.id), class: "community-navigation-link" %></li>
@@ -17,5 +9,13 @@
         <li class="community-navigation-item"><%= link_to "ルール", community_rules_path(community.id), class: "community-navigation-link" %></li>
         <li class="community-navigation-item"><%= link_to "報酬&ペナルティ", community_privileges_path(community.id), class: "community-navigation-link" %></li>
       </ul>
+    </div>
+    <div class="community-basic-info">
+      <p class="community-info-name">参加中のコミュニティ<span class="community-name"><%= community.community_name %></span></p>
+      <div class="community-info-detail">
+        <%= link_to community_detail_path(community.id), class: "community-detail-link" do %>
+          <i class="fa-solid fa-circle-info"></i>
+        <% end %>
+      </div>
     </div>
   </div>

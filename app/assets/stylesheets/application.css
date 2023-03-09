@@ -21,6 +21,7 @@ body {
   box-sizing: border-box;
   /* font-family: ""; ※全角半角でズレたりしない適切なフォントを選ぶ*/
   background: linear-gradient(160deg, #272727, #000000);
+  overflow-x: hidden; /* 画面外の要素を非表示にできる(slide-menu非表示) */
 }
 
 a { /*リンク部*/
@@ -46,7 +47,6 @@ a:hover {
   margin-left: 8px;
 }
 
-/*枠ごとのタイトル*/
 .section-title {
   color: #a4a4a4;
   font-weight: bold;
@@ -54,7 +54,7 @@ a:hover {
   margin-top: 0;
 }
 
-/*サイトのヘッダー部*/
+/*ヘッダー部*/
 header {
   background-color: #ffffff;
   color: #303030;
@@ -70,20 +70,30 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 8px;
   z-index: 1001;
 }
 
 .site-logo {
+  margin-left: 8px;
   margin-top: 6px;
 }
 
 .sign-in-user {
+  position: relative;
   position: fixed;
   top: 0;
   right: 0;
+  margin-top: 4px;
+  margin-right: 4px;
   padding: 6px;
   z-index: 1003;
+}
+
+.sign-in-user-profile-image-cta:hover {
+  border: 3px solid #44c48a;
+  position: relative;
+  bottom: 3px;
+  left: 3px;
 }
 
 .slide-menu {
@@ -96,6 +106,12 @@ header {
   padding-top: 60px;
   height: 250px;
   z-index: 1002;
+  transform: translateX(200px);
+  transition: .5s;
+}
+
+.slide-menu.active{
+  transform: translateX(0);
 }
 
 .slide-menu ul {
@@ -110,17 +126,33 @@ header {
 main {
   color: #ffffff; /*文字白*/
   text-decoration: none;
-  margin: 72px 32px 32px 32px; /* header-areaの高さにmargin-topを合わせる。 */
+  margin-top: 56px; /* header-areaの高さにmargin-topを合わせる。 */
   /*最低限の高さ指定、それ以上はフレキシブル*/
   min-height:100vh;
   height:auto !important;
   height:100vh;
 }
 
+.community-info {
+  background-color: rgba(24,24,24,0.9);
+  color: #303030;
+  position: fixed;
+  top: 0;
+  height: 32px;
+  width: 100%;
+  margin-top: 56px; /*header-areaのheightとpaddingの合計の高さに合わせる*/
+  z-index: 10;
+}
+
+.community-main {
+  padding-top: 32px; /* community-infoのheightに合わせる。 */
+}
+
 footer {
   background-color: #ffffff;
   color: #303030;
-  height: 80px;
+  font-size: 80%;
+  height: 40px;
   display: flex;
 }
 
@@ -132,6 +164,32 @@ footer {
   margin-top: 0;
   margin-bottom: 0;
   text-align: center;
+}
+
+/*セクションごとの枠*/
+.round {
+  padding: 16px 16px;
+  margin: 40px 32px;
+  background-color: #303030;
+}
+
+.goal-header, .mottos-header,
+.rules-header, .my-communities-header,
+.all-privileges-header, .all-penalties-header,
+.role-header, .late-activities-header,
+.meeting-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.comment {
+  font-size: 80%;
+}
+
+.form-note {
+  font-size: 80%;
+  color: #ff5757;
+  margin-left: 8px;
 }
 
 /*ヘッダーの項目から「・」を抜く*/
@@ -187,47 +245,4 @@ tbody td:first-child {
 tbody td:last-child {
   border-top-right-radius: 25px;
   border-bottom-right-radius: 25px;
-}
-
-/*セクションごとの枠*/
-.round {
-  padding: 32px 32px;
-  margin: 40px 32px;
-  background-color: #303030;
-}
-
-.community-info {
-  background-color: #f8f8f8;
-  color: #303030;
-  position: fixed;
-  top: 0;
-  height: 88px;
-  width: 100%;
-  margin-top: 72px;
-  margin-left: -32px;
-  margin-right: -32px;
-  z-index: 10;
-}
-
-.community-main {
-  padding-top: 88px; /* community-infoのheightに合わせる。 */
-}
-
-.goal-header, .mottos-header,
-.rules-header, .my-communities-header,
-.all-privileges-header, .all-penalties-header,
-.role-header, .late-activities-header,
-.meeting-header {
-  display: flex;
-  justify-content: space-between;
-}
-
-.comment {
-  font-size: 80%;
-}
-
-.form-note {
-  font-size: 80%;
-  color: #ff5757;
-  margin-left: 8px;
 }

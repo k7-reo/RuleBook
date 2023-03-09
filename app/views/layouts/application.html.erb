@@ -15,13 +15,13 @@
       <div class="header-area">
         <div class="site-logo">
           <%= link_to top_path do %>
-            <%= image_tag 'COLABO_logo', size: '80x48' %>
+            <%= image_tag 'COLABO_logo', size: '70x42' %>
           <% end %>
         </div>
       </div>
       <div class="sign-in-user">
         <% if user_signed_in? %>
-          <div class="signin-user-profile_image"><%= attachment_image_tag current_user, :profile_image, :fill, 60, 60, format: 'jpeg', fallback: "f_f_event_98_s512_f_event_98_0bg.jpg", size:'60x60'%></div>
+          <div class="sign-in-user-profile-image"><%= attachment_image_tag current_user, :profile_image, :fill, 40, 40, format: 'jpeg', fallback: "f_f_event_98_s512_f_event_98_0bg.jpg", size:'40x40', class: "sign-in-user-profile-image-cta"%></div>
         <% end %>
       </div>
       <div class="slide-menu">
@@ -50,3 +50,11 @@
     </footer>
   </body>
 </html>
+
+<script>
+  //サイドメニュースライド
+  document.querySelector('.sign-in-user-profile-image').addEventListener('click', function(){
+    this.classList.toggle('active');
+    document.querySelector('.slide-menu').classList.toggle('active');
+  })
+</script>

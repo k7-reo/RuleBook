@@ -2,53 +2,39 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-//_info
-.community-info-main {
+
+.community-info-contents {
+  height: 24px;
   display: flex;
-  margin-top: 16px;
-  margin-left: 32px;
-  margin-bottom: 0;
-}
-
-//_info
-.community-info-name, .community-info-detail {
-  margin: 0 10px 0 0;
-}
-
-.community-name {
-  font-weight: bold;
-  color: #07868c;
-}
-
-//_info
-.community-detail-link {
+  justify-content: space-between;
+  margin-top: auto;
+  margin-bottom: auto;
   font-size: 80%;
 }
 
 //_info
-.community-navigation {
+.community-navigation-items {
   display: flex;
-  margin-top: 8px;
-  margin-bottom: 0;
-  padding-left: 16px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  text-align: center;
+  padding-left: 0px;
   white-space: nowrap;
   overflow: scroll;
 }
 
 //_info
 .community-navigation-item {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 16px;
-  padding-right: 16px;
+  padding: 8px;
   text-align: center;
   font-weight: bold;
+  height: 16px;
+  color: #fff;
 }
 
 //_info
 .community-navigation-item:hover {
   background-color: #303030;
-  color: #fff;
 }
 
 //_info
@@ -56,9 +42,31 @@
   border-bottom: inherit;
 }
 
+.community-basic-info {
+  display: flex;
+  margin-top: 6px; //.community-navigation-itemsのmargin-topに合わせる。
+  margin-right: 8px;
+  height: 16px;
+  color: #fff;
+}
+
+//_info
+.community-name {
+  font-weight: bold;
+  color: #44c48a;
+  margin-left: 4px;
+}
+
+//_info
+.community-info-detail {
+  font-size: 80%;
+  margin-top: 3px;
+  margin-left: 6px;
+}
+
 //show 数値
 .community-dashboard {
-  margin: 24px 8px;
+  margin: 40px 32px;
   color: #fff;
   display: flex;
   justify-content: center;
@@ -72,7 +80,7 @@
   border: 1px solid #fff;
   padding-top: 32px;
   padding-bottom: 16px;
-  margin: 24px;
+  margin: 16px;
 }
 
 //show 数値
@@ -111,9 +119,14 @@
   margin-bottom: 0;
 }
 
-//show ゴール スローガン
-.goal-show, .mottos-show {
+//show ゴール
+.goal-show {
   text-align: center;
+  background-color: rgba(255,209,57, 0.1);
+  border-radius: 16px;
+  width: fit-content;
+  margin: 16px auto 16px auto;
+  padding: 32px;
 }
 
 //show ゴール
@@ -129,7 +142,6 @@
 .goal-content-letters {
   font-size: 160%;
   font-weight: bold;
-  background: linear-gradient(transparent 60%, rgba(255,209,57, 0.3) 60%);
 }
 
 //show ゴール
@@ -155,117 +167,67 @@ p#goalCountTimer span {
   margin-right: 8px;
 }
 
+//スローガン
+.community-mottos {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+//スローガン
+.community-motto-box {
+  text-align: center;
+  background-color: rgba(68, 196, 138, 0.1);
+  border-radius: 16px;
+  margin-left: 24px;
+  margin-right: 24px;
+  margin-bottom: 16px;
+  width: fit-content;
+  padding: 16px;
+}
+
 //show スローガン
-.motto-index {
+.community-motto-box-edit {
+  font-size: 80%;
+  width: fit-content;
+  margin-left: auto;
+  border-bottom: dotted 1px;
+  position: relative;
+  left: 8px;
+  bottom: 8px;
+  left: 8px;
+}
+
+//show スローガン
+.community-motto-index {
   margin-left: auto;
   margin-right: auto;
   background-color: #44c48a;
   height: 32px;
   width: 32px;
   border-radius: 50px;
+  position: relative;
+  top: 16px;
 }
 
 //show スローガン
-.motto-index-number {
+.community-motto-index-number {
   line-height: 32px;
+  text-align: center;
 }
 
 //show スローガン
-.motto-content {
+.community-motto-box-content {
   height: 40px;
-  margin-top: 8px;
-  margin-bottom: 16px;
   margin-left: auto;
   margin-right: auto;
   width: fit-content;
 }
 
 //show スローガン
-.motto-content-letters {
+.community-motto-box-content-letters {
   font-size: 120%;
   font-weight: bold;
-  background: linear-gradient(transparent 60%, rgba(68,196,138,0.3) 60%);
-}
-
-//show ルール
-.community-rules-in-dashboard {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-//show ルール
-.community-rule-box {
-  width: 320px;
-  margin: 16px;
-  background-color: #dddddd;
-  color: #303030;
-  border-radius: 16px;
-}
-
-//show ルール
-.community-rule-box-genre {
-  position: relative;
-  bottom: 12px;
-  background-color: #fff;
-  height: 24px;
-  line-height: 24px;
-  color: #07868c;
-  font-size: 80%;
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 8px;
-  padding-right: 8px;
-  border: 1px solid #07868c;
-  border-radius: 50px;
-  width: fit-content;
-}
-
-//show ルール
-.community-rule-box-content {
-  height: 40px;
-  font-weight: bold;
-  margin: 8px 24px;
-  color: #07868c;
-  display: flex;
-  align-items: center;
-}
-
-//show ルール
-.community-rule-box-point {
-  font-weight: bold;
-  margin-left: 24px;
-  margin-right: 24px;
-  margin-bottom: 16px;
-  font-size: 150%;
-}
-
-//show ルール
-.point-letter {
-  font-size: 50%;
-}
-
-//show ルール
-.community-rule-box-cta {
-  width: 320px;
-  height: 32px;
-  background-color: #07868c;
-  display: table; //子のインライン要素を左右中央よせ
-  border-radius: 0 0 16px 16px;
-}
-
-//show ルール
-.rule-execute-btn {
-  display: table-cell;
-  color: #fff;
-  font-weight: bold;
-  padding: 16px 16px;
-  text-align: center; //テキスト要素を左右中央寄せ
-}
-
-//show ルール
-.rule-execute-btn:hover {
-border-bottom: inherit;
 }
 
 //show ミーティング
@@ -278,8 +240,7 @@ border-bottom: inherit;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  margin-top: 16px;
-  margin-bottom: 16px;
+  margin-bottom: 0 16px 16px 16px;
 }
 
 //show ミーティング
@@ -291,18 +252,19 @@ border-bottom: inherit;
 //show ミーティング
 .meeting-index {
   background-color: #f47842;
-  height: 24px;
+  height: 32px;
   width: 80px;
   margin-left: auto;
   margin-right: auto;
   border-radius: 50px;
   position: relative;
-  top: 20px;
+  top: 22px;
 }
 
 //show ミーティング
 .meeting-index-letter {
   color: #fff;
+  line-height: 32px;
 }
 
 //show ミーティング
@@ -315,19 +277,21 @@ border-bottom: inherit;
 
 //show ミーティング
 .meeting-pre-edit {
-  width: 80px;
+  width: fit-content;
   margin-left: auto;
   position: relative;
   bottom: 8px;
   left: 8px;
+  border-bottom: dotted 1px;
+  font-size: 80%;
 }
 
 //show ミーティング
 .meeting-name {
-  font-size: 140%;
+  font-size: 160%;
   font-weight: bold;
-  margin-top: 16px;
-  margin-bottom: 24px;
+  margin-top: 8px;
+  margin-bottom: 16px;
 }
 
 //show ミーティング
@@ -342,20 +306,24 @@ border-bottom: inherit;
 } //効いてないぽい。。。
 
 //show ミーティング
-.meeting-cta {
-  font-weight: bold;
-  margin-top: 24px;
-  margin-left: 16px;
-  margin-right: 16px;
-  margin-bottom: 16px;
+.meeting-cta-btn {
+  display: block;
+  margin: 24px auto 0 auto;
   padding-top: 8px;
   padding-bottom: 8px;
-  color: #f47842;
   background-color: #fff;
+  color: #f47842;
+  font-weight: bold;
   border-radius: 16px;
   border: 1px solid #f47842;
 }
 
+//show ミーティング
+.meeting-cta-btn:hover {
+color: #303030;
+}
+
+//show レコード
 .ten-days-record {
-  margin-top: 16px;
+  margin: 16px;
 }

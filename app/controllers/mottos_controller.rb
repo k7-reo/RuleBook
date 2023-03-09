@@ -3,6 +3,11 @@ class MottosController < ApplicationController
   def index
     @community = Community.find(params[:community_id]) #mottoparamsとcommunityparamasのうちcommunityのid
     @currentUser = CommunityUser.find_by(user_id: current_user.id) #community-info表示に利用
+  end
+  
+  def show
+    @motto = Motto.find(params[:id])
+    @community = Community.find(params[:community_id]) #mottoparamsとcommunityparamasのうちcommunityのid
     @currentUser = CommunityUser.find_by(user_id: current_user.id) #community-info表示に利用
   end
 

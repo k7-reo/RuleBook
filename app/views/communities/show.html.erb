@@ -3,7 +3,6 @@
   </div>
 
   <div class="community-main">
-    <p class="page-title"><%= @community.community_name %>のダッシュボード</p>
     <div class="community-dashboard">
         <!-- ルールの棒グラフ一覧表示（ジャンル別）-->
         <!-- コミュニティ健全度の表示(定義説明あり) -->
@@ -84,7 +83,9 @@
                 <p class="meeting-index-letter">予定</p>
               </div>
               <div class="meeting-content">
-                <div class="meeting-pre-edit"><%= link_to "︎予定変更", community_meeting_pre_edit_path(@community.id, @nextMeeting.id) %></div>
+                <div class="meeting-pre-edit">
+                  <p><%= link_to "︎予定変更", community_meeting_pre_edit_path(@community.id, @nextMeeting.id) %></p>
+                </div>
                 <div class="meeting-name"><%= @nextMeeting.name %></div>
                 <p id="meetingCountTimer"></p>
                 <div class="meeting-date">
@@ -92,7 +93,7 @@
                     <%= @nextMeeting.date.to_s(:datetime_jp) %>
                   <% end %>
                 </div>
-                <div class="meeting-cta"><%= link_to "ミーティングを始める", edit_community_meeting_path(@community.id, @nextMeeting.id) %></div>
+                <div class="meeting-cta"><%= link_to "ミーティングを始める", edit_community_meeting_path(@community.id, @nextMeeting.id), class: "meeting-cta-btn" %></div>
               </div>
             </div>
         <% else %>
@@ -146,46 +147,30 @@
     <div class="mottos round">
       <div class="mottos-header">
         <p class="section-title">スローガン</p>
-        <p><%= link_to "スローガン編集", community_mottos_path(@community.id) %></p>
+        <p><%= link_to "新規スローガン作成", new_community_motto_path(@community.id) %></p>
       </div>
-      <% if @mottos.present? %>
-        <div class="mottos-show">
-        <% @mottos.each.with_index(1) do |motto, index| %>
-          <div class="motto-index">
-            <p class="motto-index-number"><b><%= index %></b></p>
+      <div class="community-mottos">
+        <% if @mottos.present? %>
+          <% @mottos.each.with_index(1) do |motto, index| %>
+          <div class="community-motto">
+            <div class="community-motto-index">
+              <p class="community-motto-index-number"><b><%= index %></b></p>
+            </div>
+            <div class="community-motto-box">
+              <div class="community-motto-box-edit">
+                <p><%= link_to "詳細表示", community_motto_path(@community.id, motto.id) %><p>
+              </div>
+              <div class="community-motto-box-content">
+                <p class="community-motto-box-content-letters"><%= motto.content %></p>
+              </div>
+            </div>
           </div>
-          <div class="motto-content">
-            <p class="motto-content-letters"><%= motto.content %></p>
-            <div class="mottos-content-background-line"></div>
-          </div>
+          <% end %>
+        <% else %>
+          <p>このコミュニティにはまだスローガンがありません。</p>
         <% end %>
-        </div>
-      <% else %>
-        <p>このコミュニティにはまだスローガンがありません。</p>
-      <% end %>
       </div>
-    <div class="rules round">
-      <div class="rules-header">
-        <p class="section-title">ルール</p>
-        <p><%= link_to "ルール編集", community_rules_path(@community.id) %></p>
       </div>
-      <% if @rules.present? %>
-      <div class="community-rules-in-dashboard">
-        <% @rules.each do |rule| %>
-        <div class="community-rule-box">
-          <div class="community-rule-box-genre"><%= rule.genre %></div>
-          <div class="community-rule-box-content">
-            <p class="community-rule-box-content-script"><%= rule.content %><p>
-          </div>
-          <div class="community-rule-box-point"><%= rule.point %><span class="point-letter">ポイント</span></div>
-          <div class="community-rule-box-cta"><%= link_to "実行", community_rule_execute_path(@community.id, rule.id), class: "rule-execute-btn" %></div>
-        </div>
-        <% end %>
-      <% else %>
-        <p>このコミュニティにはまだルールがありません。</p>
-      <% end %>
-      </div>
-    </div>
     <div class="late-actibities round">
       <div class="late-activities-header">
         <p class="section-title">直近10件の活動履歴</p>

@@ -2,10 +2,12 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+//mypage, user
 .role, .others-role {
   margin: 24px 8px;
 }
 
+//mypage, user
 .role-content, .others-role-content {
   background-color: #44c48a;
   border-radius: 50px;
@@ -14,6 +16,7 @@
   padding: 8px 16px;
 }
 
+//mypage, user
 .role-content-letters {
   font-size: 120%;
   font-weight: bold;
@@ -21,17 +24,18 @@
   border-right: 1px solid #fff;
 }
 
-//mypage
 .privilege-note {
   color: #ffd139;
 }
 
+//mypage, user
 .my-point {
   color: #44c48a;
   font-size: 400%;
   font-weight: bold;
 }
 
+//mypage, user
 .my-monthly-point {
   color: #07868c;
   font-size: 400%;

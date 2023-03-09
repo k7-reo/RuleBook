@@ -2,6 +2,7 @@ class RulesController < ApplicationController
 
 
   def index
+    @rules = Rule.where(community_id: params[:community_id])
     @community = Community.find(params[:community_id]) #意味：Communityモデルから該当するidのレコードをfind(探し出す)する。findはidしか引数にできない。paramがないとcontorollerはデータを受け取れない。アクションないでrule_idも呼び出されているので、しっかり[:community_id]を指定。
     @currentUser = CommunityUser.find_by(user_id: current_user.id) #community-info表示に利用
   end

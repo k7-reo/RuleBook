@@ -3,7 +3,6 @@
   </div>
 
   <div class="community-main">
-    <p class="page-title"><%= @community.community_name %>のミーティング</p>
     <div class="meeting round">
       <div class="meeting-header">
         <p class="section-title">ミーティング予定</p>
@@ -20,7 +19,9 @@
                 <p class="meeting-index-letter">予定</p>
               </div>
               <div class="meeting-content">
-                <div class="meeting-pre-edit"><%= link_to "︎予定変更", community_meeting_pre_edit_path(@community.id, @nextMeeting.id) %></div>
+                <div class="meeting-pre-edit">
+                  <p><%= link_to "︎予定変更", community_meeting_pre_edit_path(@community.id, @nextMeeting.id) %></p>
+                </div>
                 <div class="meeting-name"><%= @nextMeeting.name %></div>
                 <p id="meetingCountTimer"></p>
                 <div class="meeting-date">
@@ -28,7 +29,7 @@
                     <%= @nextMeeting.date.to_s(:datetime_jp) %>
                   <% end %>
                 </div>
-                <div class="meeting-cta"><%= link_to "ミーティングを始める", edit_community_meeting_path(@community.id, @nextMeeting.id) %></div>
+                <div class="meeting-cta"><%= link_to "ミーティングを始める", edit_community_meeting_path(@community.id, @nextMeeting.id), class: "meeting-cta-btn" %></div>
               </div>
             </div>
         <% else %>
