@@ -8,6 +8,8 @@ class Community < ApplicationRecord
   has_many :penalties, dependent: :destroy
   has_many :records, dependent: :destroy
   has_many :meetings, dependent: :destroy
+  #背景画像
+  attachment :community_image
 
   def self.search(search)
     if search != ""

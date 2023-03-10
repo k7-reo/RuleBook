@@ -92,7 +92,7 @@ class CommunitiesController < ApplicationController
   private
 
   def community_params
-    params.require(:community).permit(:community_name, :introduction, :owner_id, :manual, :genre)
+    params.require(:community).permit(:community_name, :introduction, :owner_id, :manual, :genre, :community_image)
   end
 
   def motto_params

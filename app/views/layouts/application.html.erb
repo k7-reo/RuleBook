@@ -31,10 +31,14 @@
           <li><%= link_to "コミュニティ一覧", top_path %></li>
           <li><%= link_to "各種設定", setting_path %></li>
           <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
+          <li>利用規約</li>
+          <li>プライバシーポリシー</li>
         <% else %>
           <li><%= link_to "TOPページ", root_path %></li>
           <li><%= link_to "新規登録", new_user_registration_path %></li>
           <li><%= link_to "ログイン", new_user_session_path %></li>
+          <li>利用規約</li>
+          <li>プライバシーポリシー</li>
         <% end %>
         </ul>
       </div>
@@ -42,12 +46,6 @@
     <main>
       <%= yield %>
     </main>
-    <footer>
-      <div class="footer">
-        <p class="legal-provisions">利用規約 | プライバシーポリシー</p>
-        <p class="copyrights">Copyrights © 2022 Reo Yoshitome All rights Reserved.</p>
-      </div>
-    </footer>
   </body>
 </html>
 

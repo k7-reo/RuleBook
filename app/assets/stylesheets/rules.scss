@@ -27,7 +27,6 @@
   height: 32px;
   line-height: 32px;
   color: #07868c;
-  font-size: 80%;
   margin-left: auto;
   margin-right: auto;
   padding-left: 16px;
@@ -45,7 +44,6 @@
   position: relative;
   bottom: 8px;
   left: 8px;
-  font-size: 80%;
   border-bottom: dotted 1px;
 }
 
@@ -63,12 +61,12 @@
   margin-left: 24px;
   margin-right: 24px;
   margin-bottom: 24px;
-  font-size: 150%;
+  font-size: 160%;
   color: #fff;
 }
 
 .point-letter {
-  font-size: 50%;
+  font-size: 62.5%; /*.community-rule-box-pointから逆算して100%に戻す */
 }
 
 .rule-execute-btn {

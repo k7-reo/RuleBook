@@ -11,6 +11,6 @@
     </div>
     <div>
       <p><%= link_to "編集", edit_community_rule_path(@community.id, @motto.id) %></p>
-      <p><%= link_to "削除", community_rule_path(@community.id, @motto.id), method: :delete %></p>
+      <p><%= link_to "削除", community_motto_path(@community.id, @motto.id), method: :delete %></p>
     </div>
   </div>

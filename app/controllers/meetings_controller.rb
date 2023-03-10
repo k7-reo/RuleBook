@@ -89,10 +89,12 @@ class MeetingsController < ApplicationController
     @community = Community.find(params[:community_id])
     @currentUser = CommunityUser.find_by(user_id: current_user.id) #community-info表示に利用
     @nextMeeting = Meeting.find_by(community_id:  params[:community_id], status: 0) #実施前のMTG
-    if @nextMeeting.date.present? #次のミーティングまでのカウントダウン実装javascriptに使う数値を定義。
-      gon.year = @nextMeeting.date.year
-      gon.month = @nextMeeting.date.month
-      gon.day = @nextMeeting.date.day
+    if @nextMeeting.present?
+      if @nextMeeting.date.present? #次のミーティングまでのカウントダウン実装javascriptに使う数値を定義。
+        gon.year = @nextMeeting.date.year
+        gon.month = @nextMeeting.date.month
+        gon.day = @nextMeeting.date.day
+      end
     end
     @meetingsInProgress = Meeting.where(community_id: params[:community_id], status: 1) #実施中のMTG
     @pastMeetings = Meeting.where(community_id: params[:community_id], status: 2)
