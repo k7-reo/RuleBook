@@ -1,29 +1,37 @@
+  <div class="community-background">
+    <%= attachment_image_tag @community, :community_image, format: 'jpeg', fallback: "plants.jpg" %>
+  </div>
   <div class="community-info">
     <%= render 'communities/info', community: @community, currentUser: @currentUser %>
   </div>
-
   <div class="community-main">
-    <div class="meeting round">
-      <div class="meeting-header">
-        <p class="section-title">ミーティング予定</p>
+    <div class="meeting">
+      <div class="meeting-header"></div>
         <div>
           <% unless @nextMeeting.present? %>
-            <span class="meeting-header-menu-1"><%= link_to "新規ミーティング設定", new_community_meeting_path(@community.id) %></span>
+            <span><%= link_to "新規ミーティング設定", new_community_meeting_path(@community.id) %></span>
           <% end %>
         </div>
-      </div>
       <div class="meetings">
         <% if @nextMeeting.present? %>
             <div class="next-meeting">
-              <div class="meeting-index">
-                <p class="meeting-index-letter">予定</p>
-              </div>
               <div class="meeting-content">
-                <div class="meeting-pre-edit">
-                  <p><%= link_to "︎予定変更", community_meeting_pre_edit_path(@community.id, @nextMeeting.id) %></p>
+                <div class="meeting-index">
+                  <p class="meeting-index-letter">予定しているミーティング</p>
                 </div>
-                <div class="meeting-name"><%= @nextMeeting.name %></div>
-                <p id="meetingCountTimer"></p>
+                <div class="meeting-pre-edit">
+                  <%= link_to community_meeting_pre_edit_path(@community.id, @nextMeeting.id) do %></p>
+                    <i class="fa-regular fa-pen-to-square"></i>
+                  <% end %>
+                </div>
+                <div class="meeting-name">
+                  <% if @nextMeeting.name.present? %>
+                    <%= @nextMeeting.name %>
+                  <% else %>
+                    <p>題名がありません</p>
+                  <% end %>
+                </div>
+                <p class="meeting-count-timer" id="meetingCountTimer"></p>
                 <div class="meeting-date">
                   <% if @nextMeeting.date.present? %>
                     <%= @nextMeeting.date.to_s(:datetime_jp) %>
@@ -38,10 +46,10 @@
         <% if @meetingsInProgress.present? %>
           <% @meetingsInProgress.each do |meeting| %>
           <div class="meeting-in-progress">
-            <div class="meeting-index">
-              <p class="meeting-index-letter">編集中</p>
-            </div>
             <div class="meeting-content">
+              <div class="meeting-index">
+                <p class="meeting-index-letter">編集中のミーティング</p>
+              </div>
               <div class="meeting-name"><%= meeting.name %></div>
               <div class="meeting-cta"><%= link_to "議事録に戻る", edit_community_meeting_path(@community.id, meeting.id) %></div>
             </div>

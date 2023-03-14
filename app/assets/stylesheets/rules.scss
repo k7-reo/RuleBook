@@ -9,33 +9,13 @@
 }
 
 .community-rule-box {
-  width: 320px;
-  margin-left: 24px;
-  margin-right: 24px;
-  margin-bottom: 16px;
+  width: 280px;
+  margin: 16px;
   padding: 16px;
-  background-color: rgba(7,134,140,0.1);
-  color: #303030;
+  background-color: rgba(52, 56, 66, 0.5);
   border: 1px solid #07868c;
   border-radius: 16px;
 }
-
-.community-rule-genre {
-  position: relative;
-  top: 16px;
-  background-color: #fff;
-  height: 32px;
-  line-height: 32px;
-  color: #07868c;
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 16px;
-  padding-right: 16px;
-  border: 1px solid #07868c;
-  border-radius: 50px;
-  width: fit-content;
-}
-
 
 .community-rule-box-edit {
   color: #fff;
@@ -44,14 +24,13 @@
   position: relative;
   bottom: 8px;
   left: 8px;
-  border-bottom: dotted 1px;
 }
 
 .community-rule-box-content {
   height: 40px;
+  font-size: 120%;
   font-weight: bold;
-  margin: 8px 24px;
-  color: #fff;
+  margin: 0 24px 8px 24px;
   display: flex;
   align-items: center;
 }
@@ -60,9 +39,33 @@
   font-weight: bold;
   margin-left: 24px;
   margin-right: 24px;
-  margin-bottom: 24px;
-  font-size: 160%;
-  color: #fff;
+  margin-bottom: 16px;
+  font-size: 120%;
+}
+
+.community-rule-box-member {
+  margin: 2px 24px;
+  font-size: 80%;
+}
+
+.community-rule-box-genre {
+  margin: 2px 24px 16px 24px;
+  font-size: 80%;
+}
+
+.community-rule-box-genre-title,
+.community-rule-box-member-title {
+  margin-right: 4px;
+}
+
+.community-rule-box-genre-name {
+  background-color: #44c48a;
+  padding: 2px;
+}
+
+.community-rule-box-member-name {
+  background-color: #07868c;
+  padding: 2px;
 }
 
 .point-letter {

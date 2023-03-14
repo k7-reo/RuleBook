@@ -1,7 +1,9 @@
+  <div class="community-background">
+    <%= attachment_image_tag @community, :community_image, format: 'jpeg', fallback: "plants.jpg" %>
+  </div>
   <div class="community-info">
     <%= render 'communities/info', community: @community, currentUser: @currentUser %>
   </div>
-
   <div class="community-main">
     <div class="all-privileges round">
       <div>
@@ -9,27 +11,18 @@
           <p class="section-title">報酬一覧</p>
           <p><%= link_to "報酬を新規作成", new_community_privilege_path(@community.id) %></p>
         </div>
-        <table>
-          <thead>
-            <tr>
-              <th>内容</th>
-              <th>消費ポイント</th>
-              <th colspan="2"></th>
-            </tr>
-          </thead>
-          <tbody>
+        <div>
           <% @community.privileges.each do |privilege| %>
-            <tr>
-              <td><%= privilege.content %></td>
-              <td><%= privilege.point %></td>
-              <td>
+            <div>
+              <div><%= privilege.content %></div>
+              <div><%= privilege.point %></div>
+              <div>
                 <span><%= link_to '削除', community_privilege_path(@community.id, privilege.id), method: :delete %></span>
                 <span><%= link_to "編集", edit_community_privilege_path(@community, privilege.id) %></span>
-              </td>
-            </tr>
+              </div>
+            </div>
           <% end %>
-          </tbody>
-        </table>
+        </div>
       </div>
     </div>
     <div class="all-penalties round">

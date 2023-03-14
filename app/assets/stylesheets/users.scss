@@ -41,3 +41,24 @@
   font-size: 160%;
   font-weight: bold;
 }
+
+.community-all-menbers {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+
+//user.index
+.community-menber-sum {
+  width:560px;
+  background-color: rgba(52, 56, 66, 0.8);
+  border-radius: 8px;
+  display: flex;
+  margin: 8px;
+  padding: 8px;
+}
+
+.community-menber-sum-left {
+  text-align: center;
+  width: 96px;
+}

@@ -1,37 +1,34 @@
+  <div class="community-background">
+    <%= attachment_image_tag @community, :community_image, format: 'jpeg', fallback: "plants.jpg" %>
+  </div>
   <div class="community-info">
     <%= render 'communities/info', community: @community, currentUser: @currentUser %>
   </div>
-
   <div class="community-main">
-    <div class="round">
-      <div class="member-header">
-        <p class="section-title">メンバー一覧</p>
+    <div class="community-all-menbers">
+    <% @communityUsers.each do |communityUser| %>
+      <div class="community-menber-sum">
+        <div class="community-menber-sum-left">
+          <div>
+            <%= attachment_image_tag communityUser.user, :profile_image, :fill, 80, 80, format: 'jpeg', fallback: "f_f_event_98_s512_f_event_98_0bg.jpg", size:'80x80'%>
+          </div>
+          <div>
+            <%= link_to community_user_path(@community.id, communityUser.user.id) do %>
+              <%= communityUser.user.name %>
+            <% end %>
+          </div>
+        </div>
+        <div class="community-all-menber-sum-left">
+          <div>
+            <% communityUser.user.roles.each.with_index(1) do |role, index| %>
+              <div><span>役割<%= index %></span><%= role.content %></div>
+            <% end %>
+          </div>
+          <div>
+            今月の変動ポイント<span><%= communityUser.point %></span>今月の配当ポイント<span><%= communityUser.monthly_point %></span>
+          </div>
+        </div>
       </div>
-      <table>
-        <thead>
-          <tr>
-            <th></th>
-            <th>名前</th>
-            <th>今月の獲得ポイント</th>
-            <th>保有ポイント</th>
-          </tr>
-        </thead>
-        <tbody>
-        <% @communityUsers.each do |communityUser| %>
-          <tr>
-            <td>
-              <%= attachment_image_tag communityUser.user, :profile_image, :fill, 60, 60, format: 'jpeg', fallback: "f_f_event_98_s512_f_event_98_0bg.jpg", size:'60x60'%>
-            </td>
-            <td>
-              <%= link_to community_user_path(@community.id, communityUser.user.id) do %>
-                <%= communityUser.user.name %>
-              <% end %>
-            </td>
-            <td><%= communityUser.point %></td>
-            <td><%= communityUser.monthly_point %></td>
-          </tr>
-        <% end %>
-        </tbody>
-      </table>
+    <% end %>
     </div>
   </div>

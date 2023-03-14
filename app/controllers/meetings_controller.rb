@@ -31,14 +31,23 @@ class MeetingsController < ApplicationController
   def update
     @community = Community.find(params[:community_id])
     meeting = Meeting.find(params[:id])
-    userIds = params[:meeting][:user_ids]
+    if meeting.users.present?
+      oldUserIds = meeting.users.pluck(:id)#もともと登録されているユーザーの#idを配列で取得
+    end
+    newUserIds = params[:meeting][:user_ids] #新しく登録されるユーザー
     if params[:change]
       meeting.update(meeting_params)
       redirect_to community_meetings_path(@community.id)
     elsif params[:save] #一時保存だったら
       meeting.status = 1
-      if userIds.present?
-        userIds.each do |user_id| #user_idsで配列されているuser一人一人をruleに関連づける。(MeetingUser中間テーブルに保存。)
+      if oldUserIds.present?
+        oldUserIds.each do |userId|
+          user = MeetingUser.find_by(meeting_id: meeting.id, user_id: userId.to_i)
+          user.destroy
+        end
+      end
+      if newUserIds.present?
+        newUserIds.each do |user_id| #user_idsで配列されているuser一人一人をruleに関連づける。(MeetingUser中間テーブルに保存。)
           user = User.find(user_id.to_i)
           meeting.users << user #関連付ける。
         end
@@ -52,8 +61,14 @@ class MeetingsController < ApplicationController
       redirect_to community_meetings_path(@community.id)
     elsif params[:done] #MTG終了だったら
       meeting.status = 2
-      if userIds.present?
-        userIds.each do |user_id| #user_idsで配列されているuser一人一人をruleに関連づける。(MeetingUser中間テーブルに保存。)
+      if oldUserIds.present?
+        oldUserIds.each do |userId|
+          user = MeetingUser.find_by(meeting_id: meeting.id, user_id: userId.to_i)
+          user.destroy
+        end
+      end
+      if newUserIds.present?
+        newUserIds.each do |user_id| #user_idsで配列されているuser一人一人をruleに関連づける。(MeetingUser中間テーブルに保存。)
           user = User.find(user_id.to_i)
           meeting.users << user #関連付ける。
         end
@@ -97,7 +112,7 @@ class MeetingsController < ApplicationController
       end
     end
     @meetingsInProgress = Meeting.where(community_id: params[:community_id], status: 1) #実施中のMTG
-    @pastMeetings = Meeting.where(community_id: params[:community_id], status: 2)
+    @pastMeetings = Meeting.where(community_id: params[:community_id], status: 2).order(updated_at: :desc)
   end
 
   private

@@ -1,3 +1,6 @@
+  <div class="community-background">
+    <%= attachment_image_tag @community, :community_image, format: 'jpeg', fallback: "plants.jpg" %>
+  </div>
   <div class="community-info">
     <%= render 'communities/info', community: @community, currentUser: @currentUser %>
   </div>
@@ -9,43 +12,43 @@
           <% @records.each do |record| %>
             <% if record.action_type == "Motto" %>
               <% if record.version == 1 %>
-                <p class="record-content"><span class="record-motto">スローガン</span>「<%= record.content %>」が作成されました。<br><span class="record-date"><%= record.created_at.to_s(:datetime_jp) %></span></p>
+                <p class="record-content"><span class="record-motto">スローガン</span>「<%= record.content %>」が<%= record.user.name %>によって作成されました。<br><span class="record-date"><%= record.created_at.to_s(:datetime_jp) %></span></p>
               <% elsif record.version == 0 %>
-                <p class="record-content"><span class="record-motto">スローガン</span>「<%= record.content %>」が削除されました。<br><span class="record-date"><%= record.created_at.to_s(:datetime_jp) %></span></p>
+                <p class="record-content"><span class="record-motto">スローガン</span>「<%= record.content %>」が<%= record.user.name %>によって削除されました。<br><span class="record-date"><%= record.created_at.to_s(:datetime_jp) %></span></p>
               <% else %>
-                <p class="record-content"><span class="record-motto">スローガン</span>「<%= record.content %>」が編集されました。<br><span class="record-date"><%= record.created_at.to_s(:datetime_jp) %></span></p>
+                <p class="record-content"><span class="record-motto">スローガン</span>「<%= record.content %>」が<%= record.user.name %>によって編集されました。<br><span class="record-date"><%= record.created_at.to_s(:datetime_jp) %></span></p>
               <% end %>
             <% elsif record.action_type == "Rule" %>
               <% if record.version == 1 %>
-                <p class="record-content"><span class="record-rule">ルール</span>「<%= record.content %>」が作成されました。<br><span class="record-date"><%= record.created_at.to_s(:datetime_jp) %></span></p>
+                <p class="record-content"><span class="record-rule">ルール</span>「<%= record.content %>」が<%= record.user.name %>によって作成されました。<br><span class="record-date"><%= record.created_at.to_s(:datetime_jp) %></span></p>
               <% elsif record.version == 0 %>
-                <p class="record-content"><span class="record-rule">ルール</span>「<%= record.content %>」が削除されました。<br><span class="record-date"><%= record.created_at.to_s(:datetime_jp) %></span></p>
+                <p class="record-content"><span class="record-rule">ルール</span>「<%= record.content %>」が<%= record.user.name %>によって削除されました。<br><span class="record-date"><%= record.created_at.to_s(:datetime_jp) %></span></p>
               <% else %>
-                <p class="record-content"><span class="record-rule">ルール</span>「<%= record.content %>」が編集されました。<br><span class="record-date"><%= record.created_at.to_s(:datetime_jp) %></span></p>
+                <p class="record-content"><span class="record-rule">ルール</span>「<%= record.content %>」が<%= record.user.name %>によって編集されました。<br><span class="record-date"><%= record.created_at.to_s(:datetime_jp) %></span></p>
               <% end %>
             <% elsif record.action_type == "Privilege" %>
               <% if record.version == 1 %>
-                <p class="record-content"><span class="record-privilege">報酬</span>「<%= record.content %>」が作成されました。<br><span class="record-date"><%= record.created_at.to_s(:datetime_jp) %></span></p>
+                <p class="record-content"><span class="record-privilege">報酬</span>「<%= record.content %>」が<%= record.user.name %>によって作成されました。<br><span class="record-date"><%= record.created_at.to_s(:datetime_jp) %></span></p>
               <% elsif record.version == 0 %>
-                <p class="record-content"><span class="record-privilege">報酬</span>「<%= record.content %>」が削除されました。<br><span class="record-date"><%= record.created_at.to_s(:datetime_jp) %></span></p>
+                <p class="record-content"><span class="record-privilege">報酬</span>「<%= record.content %>」が<%= record.user.name %>によって削除されました。<br><span class="record-date"><%= record.created_at.to_s(:datetime_jp) %></span></p>
               <% else %>
-                <p class="record-content"><span class="record-privilege">報酬</span>「<%= record.content %>」が編集されました。<br><span class="record-date"><%= record.created_at.to_s(:datetime_jp) %></span></p>
+                <p class="record-content"><span class="record-privilege">報酬</span>「<%= record.content %>」が<%= record.user.name %>によって編集されました。<br><span class="record-date"><%= record.created_at.to_s(:datetime_jp) %></span></p>
               <% end %>
             <% elsif record.action_type == "Penalty" %>
               <% if record.version == 1 %>
-                <p class="record-content"><span class="record-penalty">ペナルティ</span>「<%= record.content %>」が作成されました。<br><span class="record-date"><%= record.created_at.to_s(:datetime_jp) %></span></p>
+                <p class="record-content"><span class="record-penalty">ペナルティ</span>「<%= record.content %>」が<%= record.user.name %>によって作成されました。<br><span class="record-date"><%= record.created_at.to_s(:datetime_jp) %></span></p>
               <% elsif record.version == 0 %>
-                <p class="record-content"><span class="record-penalty">ペナルティ</span>「<%= record.content %>」が削除されました。<br><span class="record-date"><%= record.created_at.to_s(:datetime_jp) %></span></p>
+                <p class="record-content"><span class="record-penalty">ペナルティ</span>「<%= record.content %>」が<%= record.user.name %>によって削除されました。<br><span class="record-date"><%= record.created_at.to_s(:datetime_jp) %></span></p>
               <% else %>
-                <p class="record-content"><span class="record-penalty">ペナルティ</span>「<%= record.content %>」が編集されました。<br><span class="record-date"><%= record.created_at.to_s(:datetime_jp) %></span></p>
+                <p class="record-content"><span class="record-penalty">ペナルティ</span>「<%= record.content %>」が<%= record.user.name %>によって編集されました。<br><span class="record-date"><%= record.created_at.to_s(:datetime_jp) %></span></p>
               <% end %>
             <% elsif record.action_type == "Goal" %>
               <% if record.version == 1 %>
-                <p class="record-content"><span class="record-goal">ゴール</span>「<%= record.content %>」が作成されました。<br><span class="record-date"><%= record.created_at.to_s(:datetime_jp) %></span></p>
+                <p class="record-content"><span class="record-goal">ゴール</span>「<%= record.content %>」が<%= record.user.name %>によって作成されました。<br><span class="record-date"><%= record.created_at.to_s(:datetime_jp) %></span></p>
               <% elsif record.version == 0 %>
-                <p class="record-content"><span class="record-goal">ゴール</span>「<%= record.content %>」が削除されました。<br><span class="record-date"><%= record.created_at.to_s(:datetime_jp) %></span></p>
+                <p class="record-content"><span class="record-goal">ゴール</span>「<%= record.content %>」が<%= record.user.name %>によって削除されました。<br><span class="record-date"><%= record.created_at.to_s(:datetime_jp) %></span></p>
               <% else %>
-                <p class="record-content"><span class="record-goal">ゴール</span>「<%= record.content %>」が編集されました。<br><span class="record-date"><%= record.created_at.to_s(:datetime_jp) %></span></p>
+                <p class="record-content"><span class="record-goal">ゴール</span>「<%= record.content %>」が<%= record.user.name %>によって編集されました。<br><span class="record-date"><%= record.created_at.to_s(:datetime_jp) %></span></p>
               <% end %>
             <% end %>
           <% end %>

@@ -13,7 +13,7 @@
     <div>
       <label for="inputImage">プロフィール画像</label>
       <div><%= attachment_image_tag @user, :profile_image, :fill, 120, 120, fallback: "f_f_event_98_s512_f_event_98_0bg.jpg", size:'120x120' %></div>
-      <div><%= f.attachment_field :profile_image, placeholder: "プロフィール画像" %></div>
+      <div><%= f.attachment_field :profile_image, placeholder: "画像を選択してください" %></div>
     </div>
     <div>
       <p><%= f.submit "編集完了" %></p>

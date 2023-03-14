@@ -82,7 +82,7 @@ class RulesController < ApplicationController
     @community = Community.find(params[:community_id])
     rule = Rule.find(params[:id])
     rule.updating_user_id = current_user.id
-    oldUserIds = rule.users.pluck(:id) #配列で取得
+    oldUserIds = rule.users.pluck(:id) #idを配列で取得
     newUserIds = params[:rule][:user_ids].map(&:to_i) #文字の配列として受け取ったidを数に変換
     if rule.update(rule_params)
       destroyUserIds = oldUserIds - newUserIds

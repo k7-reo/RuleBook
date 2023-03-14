@@ -1,26 +1,35 @@
+  <div class="community-background">
+    <%= attachment_image_tag @community, :community_image, format: 'jpeg', fallback: "plants.jpg" %>
+  </div>
   <div class="community-info">
     <%= render 'communities/info', community: @community, currentUser: @currentUser %>
   </div>
-
   <div class="community-main">
-    <div class="rules round">
+    <div class="rules">
       <div class="rules-header">
-        <p class="section-title">ルール一覧</p>
         <p><%= link_to "ルール新規作成", new_community_rule_path(@community.id) %></p>
       </div>
       <% if @rules.present? %>
       <div class="community-rules">
         <% @rules.each do |rule| %>
         <div class="community-rule">
-          <div class="community-rule-genre"><%= rule.genre %></div>
           <div class="community-rule-box">
             <div class="community-rule-box-edit">
-              <p><%= link_to "詳細表示", community_rule_path(@community.id, rule.id) %></p>
+              <%= link_to community_rule_path(@community.id, rule.id) do %>
+                <i class="fa-regular fa-pen-to-square"></i>
+              <% end %>
             </div>
             <div class="community-rule-box-content">
               <p class="community-rule-box-content-script"><%= rule.content %><p>
             </div>
             <div class="community-rule-box-point"><%= rule.point %><span class="point-letter"> ポイント</span></div>
+            <div class="community-rule-box-member">
+              <span class="community-rule-box-member-title">対象メンバー</span>
+              <% rule.users.each do |user| %>
+                <span class="community-rule-box-member-name"><%= user.name %></span>
+              <% end %>
+            </div>
+            <div class="community-rule-box-genre"><span class="community-rule-box-genre-title">ジャンル</span><span class="community-rule-box-genre-name"><%= rule.genre %></span></div>
             <div class="community-rule-box-cta"><%= link_to "実行", community_rule_execute_path(@community.id, rule.id), class: "rule-execute-btn" %></div>
           </div>
         </div>

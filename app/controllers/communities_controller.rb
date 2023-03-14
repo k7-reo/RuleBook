@@ -88,6 +88,12 @@ class CommunitiesController < ApplicationController
     community.update(community_params)
     redirect_to community_detail_path(community.id)
   end
+  
+  #def unselect_background
+  #  community = Community.find(params[:id])
+  #  community.community_image_id
+  #  community.save
+  #end
 
   private
 
