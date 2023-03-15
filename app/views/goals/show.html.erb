@@ -1,0 +1,31 @@
+  <div class="community-background">
+    <%= attachment_image_tag @community, :community_image, format: 'jpeg', fallback: "plants.jpg" %>
+  </div>
+  <div class="community-info">
+    <%= render 'communities/info', community: @community, currentUser: @currentUser %>
+  </div>
+  <div class="community-main">
+    <div class="community-goal">
+      <% if @goal.present? %>
+      <div class="community-goal-edit">
+        <%= link_to edit_community_goal_path(@community.id) do %>
+          <i class="fa-regular fa-pen-to-square"></i>
+        <% end %>
+      </div>
+      <% end %>
+      <% if @goal.present? %>
+        <div class="community-goal-content"><%= @goal.content %></p></div>
+        <% if @goal.deadline.present? %>
+          <div class="till-community-goal">達成までの残り時間</div>
+          <div class="goal-deadline">
+            <p class="goal-deadline-timer" id="goalCountTimer"></p>
+          </div>
+        <% end %>
+      <% else %>
+        <div>
+          <p class="alt-text">コミュニティのメンバー全員で目指すゴールを決めましょう！</p>
+          <p class="community-goal-new"><%= link_to "ゴール設定", new_community_goal_path(@community.id), class: "community-goal-new-cta" %></p>
+        </div>
+      <% end %>
+    </div>
+  </div>

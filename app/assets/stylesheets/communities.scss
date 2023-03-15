@@ -25,7 +25,6 @@
   padding: 8px;
   text-align: center;
   font-weight: bold;
-  color: #fff;
 }
 
 //_info
@@ -54,82 +53,74 @@
 }
 
 //_info
-.community-info-detail {
-  font-size: 80%;
-  margin-top: 3px;
-  margin-left: 6px;
-}
-
-//_info
 .community-detail-link {
   color: #44c48a;
+  margin-left: 2px;
 }
 
 //show 上部
 .community-dashboard-top {
   box-sizing: border-box;
   width: 100%;
+  //border-bottom: 1px solid rgba(68, 196, 138, 0.3);
 }
 
 //show 下部
 .community-dashboard-bottom {
   display: flex;
   justify-content: space-between;
-  font-size: 80%;
 }
 
 //show 数値
-.community-figures {
+.dashboard-figures {
   width: 136px;
   color: #fff;
   display: flex;
   flex-direction: column;
-  margin: 8px;
+  margin-left: 8px;
 }
 
 //show ミーティング
-.community-meetings {
+.dashboard-meetings {
   display: flex;
   flex-direction: column;
   width: 320px;
-  margin: 8px;
 
 }
 
 //show モットー
-.community-mottos {
+.dashboard-mottos {
   background-color: rgba(52, 56, 66, 0.5);
   border-radius: 8px;
   width: 400px;
-  height: fit-content;
-  margin: 16px;
+  margin: 8px;
 }
 
 //show メンバー、履歴
-.community-users {
-  background-color: rgba(68, 196, 138, 0.3);
+.dashboard-users {
+  background-color: rgba(52, 56, 66, 0.5);
   border-radius: 8px;
   width: 136px;
-  height: fit-content;
-  margin: 16px;
+  margin: 8px;
 }
 
-.late-activities {
-  background-color: rgba(255,209,57, 0.2);
+.dashboard-late-activities {
+  background-color: rgba(52, 56, 66, 0.5);
   border-radius: 8px;
-  margin: 16px;
+  margin: 8px 16px 8px 8px;
+  width: 400px;
 }
 
 //show 数値
-.community-figure {
-  background-color: rgba(7,134,140,0.4);
+.dashboard-figure {
+  background-color: rgba(52, 56, 66, 0.5);
   text-align: center;
   border-radius: 8px;
   margin: 8px;
 }
 
 //show 数値
-.community-figure-title {
+.dashboard-figure-title {
   height: 24px;
   line-height: 24px;
   background-color: #07868c;
@@ -137,7 +128,7 @@
 }
 
 //show 数値
-.community-figure-content {
+.dashboard-figure-content {
   font-size: 240%;
   font-weight: bold;
   justify-content: center;
@@ -146,12 +137,10 @@
 
 //show メンバー
 .community-user-list {
-  display: flex;
-  items-align: center;
-  flex-direction: column;
-  white-space: nowrap;
   overflow: scroll;
   margin-top: 8px;
+  height: 50vh;
+  overflow: scroll;
 }
 
 //show メンバー
@@ -164,39 +153,55 @@
 }
 
 //show メンバー
+.community-users-cta {
+  text-align: right;
+  position: relative;
+  top: 4px;
+  right: 4px;
+}
+
+//show メンバー
 .community-user {
   margin: 8px;
+  text-align: center;
 }
 
 //show メンバー
 .profile_image {
   border-radius: 50%;
-  text-align: center;
-}
-
-//show メンバー
-.community-user-name {
-  text-align: center;
-  margin-top: 0;
-  margin-bottom: 0;
 }
 
 //show ゴール
-.goal {
+.community-goal {
   text-align: center;
   background-color: rgba(52, 56, 66, 0.5);
   border-radius: 8px;
-  margin: 8px;
+  margin: 16px 16px 8px 16px;
   padding: 16px;
 }
 
 //show ゴール
-.goal-edit, .goal-new {
-  width: fit-content;
-  margin-left: auto;
+.community-goal-edit {
+  text-align: right;
   position: relative;
   left: 8px;
   bottom: 8px;
+}
+
+.community-goal-new-cta {
+  background-color: #ffffff;
+  font-weight: bold;
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid #343842;
+  color: #343842;
+  width: fit-content;
+}
+
+.community-goal-new-cta:hover {
+  background-color: #343842;
+  border: 1px solid #ffffff;
+  color: #ffffff;
 }
 
 //show ゴール【未使用】
@@ -209,20 +214,15 @@
 }
 
 //show ゴール
-.goal-header {
-  text-align: right;
-}
-
-//show ゴール
-.goal-content-letters {
-  font-size: 160%;
+.community-goal-content {
+  font-size: 240%;
   font-weight: bold;
 }
 
 //show ゴール
-.till-goal {
+.till-community-goal {
   color: #ffd139;
-  margin-top: 32px;
+  margin-top: 24px;
 }
 
 //show ゴール
@@ -241,23 +241,30 @@ p#goalCountTimer span {
 
 //スローガン
 .mottos-title {
-  background-color: #343842;
+  background-color: #848A99;
   border-radius: 8px 8px 0 0;
   height: 24px;
   line-height: 24px;
   text-align: center;
 }
 
+.community-motto-list {
+  height: 50vh;
+  overflow: scroll;
+}
+
 //スローガン
 .community-motto-box {
   text-align: center;
-  padding: 16px;
+  padding: 8px;
 }
 
 //show スローガン
 .community-mottos-edit {
-  width: fit-content;
-  margin-left: auto;
+  text-align: right;
+  position: relative;
+  top: 4px;
+  right: 4px;
 }
 
 //show スローガン
@@ -280,7 +287,6 @@ p#goalCountTimer span {
 
 //show スローガン
 .community-motto-box-content {
-  height: 40px;
   margin-left: auto;
   margin-right: auto;
   width: fit-content;
@@ -312,7 +318,7 @@ p#goalCountTimer span {
 
 //show ミーティング
 .meeting-content {
-  background-color: rgba(244,120,66,0.2);
+  background-color: rgba(52, 56, 66, 0.5);
   margin: 8px;
   padding-bottom:8px;
   border-radius: 8px;
@@ -320,12 +326,15 @@ p#goalCountTimer span {
 
 //show ミーティング
 .meeting-pre-edit {
-  width: fit-content;
-  margin-left: auto;
+  text-align: right;
+  position: relative;
+  top: 4px;
+  right: 4px;
 }
 
 //show ミーティング
 .meeting-name {
+  font-size: 120%;
   font-weight: bold;
   margin-top: 8px;
   margin-bottom: 8px;
@@ -358,7 +367,8 @@ p#goalCountTimer span {
 
 //show ミーティング
 .meeting-cta-btn:hover {
-color: #343842;
+  background-color: #f47842;
+  color: #ffffff;
 }
 
 .late-activities-title {
@@ -366,19 +376,28 @@ color: #343842;
   border-radius: 8px 8px 0 0;
   text-align: center;
   height: 24px;
-  line-header: 24px;
+  line-height: 24px;
 }
 
 //show レコード
 .late-activities-cta {
-  margin-right: 8px;
   text-align: right;
+  position: relative;
+  top: 4px;
+  right: 4px;
+}
+
+//show レコード
+.thirtydays-each-record {
+  background-color: rgba(52, 56, 66, 0.5);
+  margin: 8px;
+  border-radius: 8px;
+  width: fit-content;
 }
 
 //show レコード
 .ten-days-record {
-  height: 400px;
-  overflow: hidden;
+  height: 50vh;
   overflow: scroll;
 }
 

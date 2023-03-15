@@ -6,42 +6,35 @@
   </div>
   <div class="community-main">
     <div class="community-dashboard-top">
-      <div class="goal">
-            <div class="goal-header">
-              <% if @goal.present? %>
-                <div class="goal-edit">
-                  <%= link_to edit_community_goal_path(@community.id) do %>
-                    <i class="fa-regular fa-pen-to-square"></i>
-                  <% end %>
-                </div>
-              <% elsif %>
-                <p class="goal-new"><%= link_to "ゴール作成", new_community_goal_path(@community.id) %></p>
-              <% end %>
-              </div>
-            <% if @goal.present? %>
-              <div class="goal-content">
-                <p class="goal-content-letters"><%= @goal.content %></p>
-              </div>
-              <% if @goal.deadline.present? %>
-                <div class="till-goal">
-                  <p class="till-goal-letters">ゴール達成まで残り</p>
-                </div>
-                <div class="goal-deadline">
-                  <p class="goal-deadline-timer" id="goalCountTimer"></p>
-                </div>
-              <% end %>
-            <% else %>
-              <div>
-                <p class="alt-text">コミュニティのメンバー全員で目指す目標を決めましょう！</p>
-              </div>
-            <% end %>
+      <div class="community-goal">
+        <% if @goal.present? %>
+        <div class="community-goal-edit">
+          <%= link_to edit_community_goal_path(@community.id) do %>
+            <i class="fa-regular fa-pen-to-square"></i>
+          <% end %>
+        </div>
+        <% end %>
+        <% if @goal.present? %>
+          <div class="community-goal-content"><%= @goal.content %></p></div>
+          <% if @goal.deadline.present? %>
+            <div class="till-community-goal">達成までの残り時間</div>
+            <div class="goal-deadline">
+              <p class="goal-deadline-timer" id="goalCountTimer"></p>
+            </div>
+          <% end %>
+        <% else %>
+          <div>
+            <p class="alt-text">コミュニティのメンバー全員で目指すゴールを決めましょう！</p>
+            <p class="community-goal-new"><%= link_to "ゴール設定", new_community_goal_path(@community.id), class: "community-goal-new-cta" %></p>
           </div>
+        <% end %>
+      </div>
     </div>
     <div class="community-dashboard-bottom">
-      <div class="community-figures">
-        <div class="community-figure">
-          <p class="community-figure-title">ルール数</p>
-          <p class="community-figure-content">
+      <div class="dashboard-figures">
+        <div class="dashboard-figure">
+          <p class="dashboard-figure-title">ルール数</p>
+          <p class="dashboard-figure-content">
             <% if @community.rules.present? %>
               <%= @community.rules.count %>
             <% else %>
@@ -49,9 +42,9 @@
             <% end %>
           </p>
         </div>
-        <div class="community-figure">
-          <p class="community-figure-title">報酬数</p>
-          <p class="community-figure-content">
+        <div class="dashboard-figure">
+          <p class="dashboard-figure-title">報酬数</p>
+          <p class="dashboard-figure-content">
             <% if @community.privileges.present? %>
               <%= @community.privileges.count %>
             <% else %>
@@ -59,9 +52,9 @@
             <% end %>
           </p>
         </div>
-        <div class="community-figure">
-          <p class="community-figure-title">ペナルティ数</p>
-          <p class="community-figure-content">
+        <div class="dashboard-figure">
+          <p class="dashboard-figure-title">ペナルティ数</p>
+          <p class="dashboard-figure-content">
             <% if @community.penalties.present? %>
               <%= @community.penalties.count %>
             <% else %>
@@ -69,9 +62,9 @@
             <% end %>
           </p>
         </div>
-        <div class="community-figure">
-          <p class="community-figure-title">ルール実行数</p>
-          <p class="community-figure-content">
+        <div class="dashboard-figure">
+          <p class="dashboard-figure-title">ルール実行数</p>
+          <p class="dashboard-figure-content">
             <% if @excutedRules.present? %>
               <%= @excutedRules.count %>
             <% else %>
@@ -79,12 +72,12 @@
             <% end %>
           </p>
         </div>
-        <div class="community-figure">
-          <p class="community-figure-title">メンバー人数<p>
-          <p class="community-figure-content"><%= @community.users.count %></p>
+        <div class="dashboard-figure">
+          <p class="dashboard-figure-title">メンバー人数<p>
+          <p class="dashboard-figure-content"><%= @community.users.count %></p>
         </div>
       </div>
-      <div class="community-meetings">
+      <div class="dashboard-meetings">
         <% if @nextMeeting.present? %>
             <div class="next-meeting">
               <div class="meeting-content">
@@ -129,14 +122,14 @@
           <% end %>
         <% end %>
       </div>
-      <div class="community-mottos">
+      <div class="dashboard-mottos">
           <div class="mottos-title">スローガン</div>
           <div class="community-mottos-edit">
             <%= link_to community_mottos_path(@community.id) do %>
-              <i class="fa-regular fa-pen-to-square"></i>
+              <i class="fa-solid fa-ellipsis"></i>
             <% end %>
           </div>
-          <div>
+          <div class="community-motto-list">
             <% if @mottos.present? %>
               <% @mottos.each.with_index(1) do |motto, index| %>
               <div class="community-motto">
@@ -153,8 +146,13 @@
             <% end %>
           </div>
         </div>
-      <div class="community-users">
+      <div class="dashboard-users">
         <div class="community-users-title">所属メンバー</div>
+        <p class="community-users-cta">
+          <%= link_to community_users_path(@community.id) do %>
+            <i class="fa-solid fa-ellipsis"></i>
+          <% end %>
+        </p>
         <div class="community-user-list">
         <% @community.users.each do |user| %>
           <div class="community-user">
@@ -166,12 +164,17 @@
         <% end %>
         </div>
       </div>
-      <div class="late-activities">
+      <div class="dashboard-late-activities">
         <div class="late-activities-title">更新履歴</div>
-        <p class="late-activities-cta"><%= link_to "過去30日の活動履歴", community_records_path(@community.id) %></p>
+        <p class="late-activities-cta">
+          <%= link_to community_records_path(@community.id) do %>
+            <i class="fa-solid fa-ellipsis"></i>
+          <% end %>
+        </p>
         <div class="ten-days-record">
           <% if @records.present? %>
             <% @records.each do |record| %>
+            <div class="each-record">
               <% if record.action_type == "Motto" %>
                 <% if record.version == 1 %>
                   <p class="record-content"><span class="record-motto">スローガン</span>「<%= record.content %>」が<%= record.user.name %>によって作成されました。<br><span class="record-date"><%= record.created_at.to_s(:datetime_jp) %></span></p>
@@ -213,6 +216,7 @@
                   <p class="record-content"><span class="record-goal">ゴール</span>「<%= record.content %>」が<%= record.user.name %>によって編集されました。<br><span class="record-date"><%= record.created_at.to_s(:datetime_jp) %></span></p>
                 <% end %>
               <% end %>
+            </div>
             <% end %>
           <% else %>
             <p>まだこのコミュニティの活動はありません。</p>

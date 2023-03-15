@@ -1,8 +1,11 @@
+  <div class="community-background">
+    <%= attachment_image_tag @community, :community_image, format: 'jpeg', fallback: "plants.jpg" %>
+  </div>
   <div class="community-info">
     <%= render 'communities/info', community: @community, currentUser: @currentUser %>
   </div>
   <div class="community-main">
-    <div class="round">
+    <div>
       <div class="mottos-header">
         <p class="section-title">スローガン一覧</p>
         <p><%= link_to "スローガン新規作成", new_community_motto_path(@community.id) %></p>

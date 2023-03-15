@@ -1,3 +1,75 @@
 // Place all the styles related to the privileges controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.all-privileges, .all-penalties {
+  display: flex;
+}
+.each-privilege {
+  width: 280px;
+  margin: 16px;
+  background-color: rgba(52, 56, 66, 0.5);
+  border-radius: 16px;
+}
+
+.each-privilege-title {
+  background-color: #ffd139;
+  border-radius: 16px 16px 0 0;
+  height: 24px;
+  line-height: 24px;
+  text-align: center;
+  color: #343842;
+  font-weight: bold;
+}
+
+.each-privilege-edit, .each-penalty-edit {
+  text-align: right;
+  position: relative;
+  top: 4px;
+  right: 4px;
+}
+
+.each-privilege-content, .each-penalty-content {
+  height: 40px;
+  font-size: 120%;
+  font-weight: bold;
+  margin: 8px 40px;
+  display: flex;
+  align-items: center;
+}
+
+.each-privilege-point {
+  font-size: 160%;
+  font-weight: bold;
+  margin: 8px 40px 16px 40px;
+  color: #ffd139;
+}
+
+.point-letter {
+  font-size: 62.5%;
+}
+
+.each-penalty {
+  width: 280px;
+  margin: 16px;
+  background-color: rgba(52, 56, 66, 0.5);
+  border-radius: 16px;
+}
+
+.each-penalty-title {
+  background-color: #44c48a;
+  border-radius: 16px 16px 0 0;
+  height: 24px;
+  line-height: 24px;
+  text-align: center;
+  color: #343842;
+  font-weight: bold;
+}
+
+.each-penalty-point {
+  font-size: 160%;
+  font-weight: bold;
+  margin: 8px 40px 16px 40px;
+  color: #44c48a;
+}

@@ -13,7 +13,6 @@
   margin: 16px;
   padding: 16px;
   background-color: rgba(52, 56, 66, 0.5);
-  border: 1px solid #07868c;
   border-radius: 16px;
 }
 
@@ -40,7 +39,7 @@
   margin-left: 24px;
   margin-right: 24px;
   margin-bottom: 16px;
-  font-size: 120%;
+  font-size: 160%;
 }
 
 .community-rule-box-member {
@@ -86,5 +85,7 @@
 }
 
 .rule-execute-btn:hover {
-border-bottom: inherit;
+  background-color: #ffffff;
+  color: #07868c;
+  border: 1px solid #07868c;
 }

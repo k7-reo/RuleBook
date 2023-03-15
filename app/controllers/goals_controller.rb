@@ -49,11 +49,12 @@ class GoalsController < ApplicationController
     newRecord.save
   end
 
-  def index
-    @community = Community.find(params[:id])
+  def show
+    @community = Community.find(params[:community_id])
     @currentUser = CommunityUser.find_by(user_id: current_user.id) #community-info表示に利用
+    @goal = Goal.find_by(community_id: params[:community_id])
   end
-  
+
   def destroy
     community = Community.find(params[:community_id])
     goal = Goal.find_by(community_id: params[:community_id])

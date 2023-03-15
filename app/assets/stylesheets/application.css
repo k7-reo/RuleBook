@@ -48,14 +48,18 @@ a:hover {
 } /*コンテンツが作成されてない時の文章*/
 
 .page-title {
-  padding-top: 24px;
-  margin-left: 8px;
+  color: #ffffff;
+  font-weight: bold;
+  margin-top: 16px;
+  margin-left: 16px;
+  font-size: 120%;
 }
 
 .section-title {
-  color: #a4a4a4;
+  color: #d6dbe6;
   font-weight: bold;
-  margin-top: 0;
+  margin-top: 16px;
+  margin-left: 16px;
 }
 
 /*ヘッダー部*/
@@ -106,7 +110,7 @@ header {
   right: 0;
   width: 200px;
   padding-top: 60px;
-  height: 250px;
+  height: 100%;
   z-index: 1002;
   transform: translateX(200px);
   transition: .5s;

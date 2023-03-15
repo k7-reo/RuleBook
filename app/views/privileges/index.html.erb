@@ -5,53 +5,46 @@
     <%= render 'communities/info', community: @community, currentUser: @currentUser %>
   </div>
   <div class="community-main">
-    <div class="all-privileges round">
+    <div class="privileges">
       <div>
         <div class="all-privileges-header">
-          <p class="section-title">報酬一覧</p>
           <p><%= link_to "報酬を新規作成", new_community_privilege_path(@community.id) %></p>
         </div>
-        <div>
+        <div class="all-privileges">
           <% @community.privileges.each do |privilege| %>
-            <div>
-              <div><%= privilege.content %></div>
-              <div><%= privilege.point %></div>
-              <div>
-                <span><%= link_to '削除', community_privilege_path(@community.id, privilege.id), method: :delete %></span>
-                <span><%= link_to "編集", edit_community_privilege_path(@community, privilege.id) %></span>
+            <div class="each-privilege">
+              <div class="each-privilege-title">報酬</div>
+              <div class="each-privilege-edit">
+                <%= link_to edit_community_privilege_path(@community, privilege.id) do %>
+                  <i class="fa-regular fa-pen-to-square"></i>
+                <% end %>
               </div>
+              <div class="each-privilege-content"><%= privilege.content %></div>
+              <div class="each-privilege-point"><%= privilege.point %><span class="point-letter">ポイント消費</span></div>
             </div>
           <% end %>
         </div>
       </div>
     </div>
-    <div class="all-penalties round">
+    <div class="penalties">
       <div>
         <div class="all-penalties-header">
-          <p class="section-title">ペナルティ一覧</p>
           <p><%= link_to "ペナルティを新規作成", new_community_penalty_path(@community.id) %></p>
         </div>
-        <table>
-          <thead>
-            <tr>
-              <th>内容</th>
-              <th>回復ポイント</th>
-              <th colspan="2"></th>
-            </tr>
-          </thead>
-          <tbody>
+        <div class="all-penalties">
           <% @community.penalties.each do |penalty| %>
-            <tr>
-              <td><%= penalty.content %></td>
-              <td><%= penalty.point %></td>
-              <td>
-                <span><%= link_to '削除', community_penalty_path(@community.id, penalty.id), method: :delete %></span>
-                <span><%= link_to "編集", edit_community_penalty_path(@community, penalty.id) %></span>
-              </td>
-            </tr>
+            <div class="each-penalty">
+              <div class="each-penalty-title">ペナルティ</div>
+              <div class="each-penalty-edit">
+                <%= link_to edit_community_penalty_path(@community, penalty.id) do %>
+                  <i class="fa-regular fa-pen-to-square"></i>
+                <% end %>
+              </div>
+              <div class="each-penalty-content"><%= penalty.content %></div>
+              <div class="each-penalty-point"><%= penalty.point %><span class="point-letter">ポイント回復</span></div>
+            </div>
           <% end %>
-          </tbody>
-        </table>
+        </div>
       </div>
     </div>
   </div>

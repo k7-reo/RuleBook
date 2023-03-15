@@ -24,8 +24,12 @@
             <%= f.text_area :point, placeholder: "マイナス設定不可" %>
           </div>
         </div>
+        <div>
           <%= f.submit "編集完了" %>
         </div>
       <% end %>
+      <div>
+        <span><%= link_to '削除', community_penalty_path(@community.id, @penalty.id), method: :delete %></span>
       </div>
+    </div>
   </div>
