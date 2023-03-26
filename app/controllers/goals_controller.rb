@@ -28,12 +28,12 @@ class GoalsController < ApplicationController
   def edit
     @community = Community.find(params[:community_id])
     @currentUser = CommunityUser.find_by(user_id: current_user.id) #community-info表示に利用
-    @goal = Goal.find_by(community_id: params[:community_id])
+    @goal = Goal.find(params[:id])
   end
 
   def update
     community = Community.find(params[:community_id])
-    goal = Goal.find_by(community_id: params[:community_id])
+    goal = Goal.find(params[:id])
     goal.update(goal_params)
     redirect_to community_path(community.id)
     #履歴登録↓
@@ -52,12 +52,19 @@ class GoalsController < ApplicationController
   def show
     @community = Community.find(params[:community_id])
     @currentUser = CommunityUser.find_by(user_id: current_user.id) #community-info表示に利用
-    @goal = Goal.find_by(community_id: params[:community_id])
+    @goal = Goal.find(params[:id])
+  end
+
+  def index
+    @community = Community.find(params[:community_id])
+    @currentUser = CommunityUser.find_by(user_id: current_user.id) #community-info表示に利用
+    @activeGoal = Goal.find_by(community_id: params[:community_id], status: true)
+    @pastGoals = Goal.where(community_id: params[:community_id], status: false)
   end
 
   def destroy
     community = Community.find(params[:community_id])
-    goal = Goal.find_by(community_id: params[:community_id])
+    goal = Goal.find(params[:id])
     #履歴登録↓
     record = Record.new
     record.community_id = community.id
@@ -70,6 +77,23 @@ class GoalsController < ApplicationController
     record.save
     goal.destroy
     redirect_to community_path(community.id)
+  end
+
+  def achieved #達成ctaクリック
+    community = Community.find(params[:community_id])
+    goal = Goal.find_by(community_id: params[:community_id], id: params[:goal_id])
+    goal.achievement = true
+    goal.status = false
+    goal.save
+    redirect_to community_goals_path(community.id)
+  end
+
+  def unachieved #未達成ctaクリック
+    community = Community.find(params[:community_id])
+    goal = Goal.find_by(community_id: params[:community_id], id: params[:goal_id])
+    goal.status = false
+    goal.save
+    redirect_to community_goals_path(community.id)
   end
 
   private

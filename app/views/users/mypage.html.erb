@@ -1,11 +1,14 @@
   <div class="community-background">
-    <%= attachment_image_tag @community, :community_image, format: 'jpeg', fallback: "plants.jpg" %>
+    <%= attachment_image_tag @community, :community_image, format: 'jpeg', fallback: "sunset_mountains.jpg" %>
   </div>
   <div class="community-info">
     <%= render 'communities/info', community: @community, currentUser: @currentUser %>
   </div>
   <div class="community-main">
-    <div class="role round">
+    <% @executedRuleStandbies.each do |standby| %>
+      <%= standby.rule.content %>
+    <% end %>
+    <div class="role">
       <div class="role-header">
         <p class="section-title"><%= @community.community_name %>におけるあなたの役割</p>
         <p><%= link_to "役割作成", new_community_user_role_path(@community.id, current_user.id) %></p>
@@ -14,8 +17,12 @@
         <% if @roles.present? %>
           <% @roles.each do |role| %>
             <div class="role-content">
-              <span class="role-content-letters"><%= role.content %></span>
-            　<span class="role-content-edit-link"><%= link_to "編集", edit_community_user_role_path(@community.id, @user.user_id, role.id) %></span>
+              <div class="role-content-letters"><%= role.content %></div>
+            　<div class="role-content-edit-link">
+                <%= link_to edit_community_user_role_path(@community.id, @user.user_id, role.id) do %>
+                  <i class="fa-regular fa-pen-to-square"></i>
+                <% end %>
+              </div>
             </div>
           <% end %>
         <% else %>
@@ -23,7 +30,7 @@
         <% end %>
       </div>
     </div>
-    <div class="point round">
+    <div class="point">
       <div>
         <p class="section-title">獲得ポイント</p>
         <p class="my-point"><%= @user.point %></p>
@@ -34,7 +41,7 @@
       <div>
       </div>
     </div>
-    <div class="monthly_point round">
+    <div class="monthly_point">
       <div>
         <p class="section-title">配当ポイント</p>
         <p class="my-monthly-point"><%= @user.monthly_point %></p>
@@ -49,7 +56,7 @@
         <p class="section-title">今月実行したペナルティ</p> <!-- standbyテーブルから取得 -->
       </div>
     </div>
-    <div class="privileges-for-now round">
+    <div class="privileges-for-now">
       <p class="section-title">今月受けられる報酬</p> <!-- 特典のポイントより個人のポイントが高ければ選択肢に現れる -->
       <% if @activePrivileges.present? %>
         <div class="comment">
@@ -78,7 +85,7 @@
         <p>今月取得可能な報酬はありません。</p>
       <% end %>
     </div>
-    <div class="penalties-for-now round">
+    <div class="penalties-for-now">
       <p class="section-title" >今月中に実行が必要なペナルティ</p>
       <% if @activePenalties.present? %>
         <div class="comment">
@@ -107,5 +114,20 @@
       <% else %>
         <p>今月実行しなければならないペナルティはありません。</p>
       <% end %>
+    </div>
+    <div class="memo">
+      <div class="memo-header">
+        <p class="section-title">自分だけメモ</p>
+        <!-- %= link_to "メモ作成", new_community_user_role_path(@community.id, current_user.id) % -->
+      </div>
+      <div class="memo-content">
+        <% if @user.memo.present? %>
+          <%= @user.memo %>
+          <%= link_to "メモ編集", community_user_editmemo_path(@community.id, @user.user_id) %>
+          <%= link_to "メモ削除", community_user_erasememo_path(@community.id, @user.user_id) %>
+        <% else %>
+          <%= link_to "メモ作成", community_user_editmemo_path(@community.id, @user.user_id) %>
+        <% end %>
+      </div>
     </div>
   </div>

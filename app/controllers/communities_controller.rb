@@ -44,8 +44,8 @@ class CommunitiesController < ApplicationController
     @meetingsInProgress = Meeting.where(community_id: params[:id], status: 1) #実施中のMTG
     @rules = Rule.where(community_id: params[:id])
     @mottos = Motto.where(community_id: params[:id])
-    @records = Record.where(community_id: params[:id], updated_at: Time.zone.today.ago(30.days)..Time.zone.today.end_of_day).order(updated_at: :desc).limit(10)
-    @goal = Goal.find_by(community_id: params[:id])
+    @records = Record.where(community_id: params[:id], updated_at: Time.zone.today.ago(30.days)..Time.zone.today.end_of_day).order(updated_at: :desc)
+    @goal = Goal.find_by(community_id: params[:id], status: true)
     if @goal.present? #if文にしないとなぜかエラーがでる。
       gon.deadline = @goal.deadline #gem 'gon'を利用してRailsからJavaScriptオブジェクトに変換
     end
@@ -86,9 +86,13 @@ class CommunitiesController < ApplicationController
   def update
     community = Community.find(params[:id])
     community.update(community_params)
+    if params[:default_background]
+      community.community_image_id.clear
+      community.save
+    end
     redirect_to community_detail_path(community.id)
   end
-  
+
   #def unselect_background
   #  community = Community.find(params[:id])
   #  community.community_image_id

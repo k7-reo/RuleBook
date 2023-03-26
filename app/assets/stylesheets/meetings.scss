@@ -2,9 +2,49 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.active-meetings {
+  margin-top: 16px;
+}
+
+.meetings {
+  display: flex;
+}
+
+.next-meeting, .meeting-in-progress {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  width: 400px;
+}
+
 .past-meeting-content {
-  background-color: rgba(255,209,57, 0.1);
+  background-color: rgba(52, 56, 66, 0.5);
   margin: 32px;
   padding: 16px;
   border-radius: 16px;
+}
+
+.meeting-index-letter {
+  color: #343842;
+  line-height: 24px; /*meeting-indexのheightに合わせる */
+  font-weight: bold;
+}
+
+.meeting-content {
+  background-color: rgba(52, 56, 66, 0.5);
+  margin: 8px;
+  padding-bottom: 16px;
+  border-radius: 8px;
+}
+
+.past-meeting-content-top {
+  display: flex;
+}
+
+.past-meeting-detail {
+  margin-left: auto;
+  position: relative;
+  bottom: 8px;
+  left: 8px;
+
 }

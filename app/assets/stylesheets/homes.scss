@@ -7,12 +7,13 @@
 }
 
 .my-communities {
-  background-color: #321e1e;
+  border-radius: 16px;
   border: 2px solid #ffffff;
 }
 
 .requesting-community, .communities-search {
-  background-color: #4b2f2f;
+  border-radius: 16px;
+  background-color: rgba(32,35,43, 0.5);
 }
 
 .my-communities-header {
@@ -26,7 +27,7 @@
 
 .search-btn {
   color: #ffffff;
-  background-color: #44c48a;
+  background-color: rgba(32,35,43, 0.5);
   border-style: none; /*デフォルトの枠線デザインを消去*/
   border-radius: 15px;
 }

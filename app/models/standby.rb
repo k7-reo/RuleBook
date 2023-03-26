@@ -1,6 +1,6 @@
 class Standby < ApplicationRecord
   belongs_to :community
-  belongs_to :rule, optional: true
+  belongs_to :rule, class_name: 'Rule', foreign_key: :rule_id, optional: true
   belongs_to :motto, optional: true
   belongs_to :penalty, optional: true
   belongs_to :privilege, optional: true

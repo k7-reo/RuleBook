@@ -1,7 +1,9 @@
+  <div class="community-background">
+    <%= attachment_image_tag @community, :community_image, format: 'jpeg', fallback: "sunset_mountains.jpg" %>
+  </div>
   <div class="community-info">
     <%= render 'communities/info', community: @community, currentUser: @currentUser %>
   </div>
-
   <div class="community-main">
     <p class="page-title">ゴール新規作成</p>
     <div class="comment">
@@ -11,7 +13,7 @@
       </p>
     </div>
     <div>
-      <%= form_with(model: [@community, @goal], url: community_goal_path{@community.id}, local: true) do |f| %>
+      <%= form_with(model: [@community, @goal], url: community_goals_path{@community.id}, local: true) do |f| %>
         <div>
           <label><%= f.label :content, "メンバー全員で達成したいゴール" %><span class="form-note">必須</span></label>
           <div>

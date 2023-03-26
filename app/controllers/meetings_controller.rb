@@ -1,5 +1,10 @@
 class MeetingsController < ApplicationController
 
+  def show
+    @community = Community.find(params[:community_id])
+    @currentUser = CommunityUser.find_by(user_id: current_user.id)
+  end
+
   def new
     @community = Community.find(params[:community_id])
     @currentUser = CommunityUser.find_by(user_id: current_user.id)
@@ -81,12 +86,13 @@ class MeetingsController < ApplicationController
       if meeting.update(meeting_params)
         redirect_to community_meetings_path(@community.id)
         if meeting.next_name.present? || meeting.next_agenda.present? || meeting.next_date.present?
-          nextMeeting = Meeting.new(meeting_params)
+          nextMeeting = Meeting.new
           nextMeeting.community_id = @community.id
           nextMeeting.user_id = current_user.id
           nextMeeting.name = meeting.next_name
           nextMeeting.date = meeting.next_date
           nextMeeting.agenda = meeting.next_agenda
+          nextMeeting.place = meeting.next_place
           nextMeeting.save
         end
       end
@@ -118,7 +124,7 @@ class MeetingsController < ApplicationController
   private
 
   def meeting_params
-    params.require(:meeting).permit(:name, :next_name, :community_id, :user_id, :content, :todo, :agenda, :next_agenda, :date, :next_date, :status)
+    params.require(:meeting).permit(:name, :next_name, :community_id, :user_id, :content, :todo, :agenda, :next_agenda, :date, :next_date, :status, :place, :next_place)
   end
 
 end

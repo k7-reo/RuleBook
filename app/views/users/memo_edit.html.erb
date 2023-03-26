@@ -1,0 +1,27 @@
+  <div class="community-background">
+    <%= attachment_image_tag @community, :community_image, format: 'jpeg', fallback: "sunset_mountains.jpg" %>
+  </div>
+  <div class="community-info">
+    <%= render 'communities/info', community: @community, currentUser: @currentUser %>
+  </div>
+  <div class="community-main">
+    <p class="page-title">メモ編集</p>
+    <div class="comment">
+      <p>
+        あなたにしか表示されないメモ機能です。
+      </p>
+    </div>
+    <div>
+      <%= form_with(model: [@community, @user], url: community_user_updatememo_path(@community.id),local:true) do |f| %>
+        <div>
+          <label><%= f.label :memo, "内容" %></label>
+          <div>
+          <%= f.text_area :memo %>
+          </div>
+        </div>
+        <div>
+        <%= f.submit "編集完了" %>
+        </div>
+      <% end %>
+    </div>
+  </div>

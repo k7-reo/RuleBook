@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_03_10_011907) do
+ActiveRecord::Schema.define(version: 2023_03_26_151730) do
 
   create_table "communities", force: :cascade do |t|
     t.string "community_name"
@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 2023_03_10_011907) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "monthly_point", default: 0
+    t.text "memo"
     t.index ["community_id"], name: "index_community_users_on_community_id"
     t.index ["user_id"], name: "index_community_users_on_user_id"
   end
@@ -42,6 +43,8 @@ ActiveRecord::Schema.define(version: 2023_03_10_011907) do
     t.datetime "deadline"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "achievement", default: false, null: false
+    t.boolean "status", default: true, null: false
   end
 
   create_table "meeting_users", force: :cascade do |t|
@@ -68,6 +71,8 @@ ActiveRecord::Schema.define(version: 2023_03_10_011907) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "next_name"
+    t.string "place"
+    t.string "next_place"
   end
 
   create_table "mottos", force: :cascade do |t|

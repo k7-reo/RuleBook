@@ -1,5 +1,5 @@
   <div class="community-background">
-    <%= attachment_image_tag @community, :community_image, format: 'jpeg', fallback: "plants.jpg" %>
+    <%= attachment_image_tag @community, :community_image, format: 'jpeg', fallback: "sunset_mountains.jpg" %>
   </div>
   <div class="community-info">
     <%= render 'communities/info', community: @community, currentUser: @currentUser %>
@@ -9,34 +9,60 @@
       <div class="rules-header">
         <p><%= link_to "ルール新規作成", new_community_rule_path(@community.id) %></p>
       </div>
-      <% if @rules.present? %>
-      <div class="community-rules">
-        <% @rules.each do |rule| %>
-        <div class="community-rule">
-          <div class="community-rule-box">
-            <div class="community-rule-box-edit">
+      <div class="all-positive-rules-wrapper">
+      <% if @positiveRules.present? %>
+        <div class="all-positive-rules">
+        <% @positiveRules.each do |rule| %>
+          <div class="each-rule">
+            <div class="each-positive-rule-title">プラス</div>
+            <div class="each-rule-edit">
               <%= link_to community_rule_path(@community.id, rule.id) do %>
                 <i class="fa-regular fa-pen-to-square"></i>
               <% end %>
             </div>
-            <div class="community-rule-box-content">
-              <p class="community-rule-box-content-script"><%= rule.content %><p>
-            </div>
-            <div class="community-rule-box-point"><%= rule.point %><span class="point-letter"> ポイント</span></div>
-            <div class="community-rule-box-member">
-              <span class="community-rule-box-member-title">対象メンバー</span>
+            <div class="each-rule-content"><p><%= rule.content %></p></div>
+            <div class="each-positive-rule-point"><%= rule.point %><span class="point-letter">ポイント</span></div>
+            <div class="each-rule-member">
+              <span class="each-rule-member-title">対象メンバー</span>
               <% rule.users.each do |user| %>
-                <span class="community-rule-box-member-name"><%= user.name %></span>
+                <span class="each-positive-rule-member-name"><%= user.name %></span>
               <% end %>
             </div>
-            <div class="community-rule-box-genre"><span class="community-rule-box-genre-title">ジャンル</span><span class="community-rule-box-genre-name"><%= rule.genre %></span></div>
-            <div class="community-rule-box-cta"><%= link_to "実行", community_rule_execute_path(@community.id, rule.id), class: "rule-execute-btn" %></div>
+            <div class="each-positive-rule-execute"><%= link_to "実行", community_rule_execute_path(@community.id, rule.id), class: "each-positive-rule-execute-cta" %></div>
           </div>
-        </div>
         <% end %>
+        </div>
       <% else %>
-        <p>このコミュニティにはまだルールがありません。</p>
+        <p>このコミュニティにはまだプラスポイントのルールがありません。</p>
       <% end %>
+      </div>
+      <div class="all-negative-rules-wrapper">
+      <% if @negativeRules.present? %>
+        <div class="all-negative-rules">
+        <% @negativeRules.each do |rule| %>
+          <div class="each-rule">
+            <div class="each-negative-rule-title">マイナス</div>
+            <div class="each-rule-edit">
+              <%= link_to community_rule_path(@community.id, rule.id) do %>
+                <i class="fa-regular fa-pen-to-square"></i>
+              <% end %>
+            </div>
+            <div class="each-rule-content"><%= rule.content %></div>
+            <div class="each-negative-rule-point"><%= rule.point %><span class="point-letter">ポイント</span></div>
+            <div class="each-rule-member">
+              <span class="each-rule-member-title">対象メンバー</span>
+              <% rule.users.each do |user| %>
+                <span class="each-negative-rule-member-name"><%= user.name %></span>
+              <% end %>
+            </div>
+            <div class="each-negative-rule-execute"><%= link_to "実行", community_rule_execute_path(@community.id, rule.id), class: "each-negative-rule-execute-cta" %></div>
+          </div>
+        <% end %>
+        </div>
+      <% else %>
+        <p>このコミュニティにはまだマイナスポイントのルールがありません。</p>
+      <% end %>
+      </div>
       </div>
     </div>
   </div>

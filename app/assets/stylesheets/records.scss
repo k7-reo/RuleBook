@@ -2,6 +2,11 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.thirtydays-record {
+  height: 100vh;
+  overflow-y: scroll;
+}
+
 .record-content {
   padding: 8px;
   width: fit-contetn;

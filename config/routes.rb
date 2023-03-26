@@ -14,11 +14,13 @@ Rails.application.routes.draw do
   get "forbid/:id" => 'penalties#forbid', as:"forbid"
   get "accept/:id" => "communities#accept", as:"accept"
 
-  resources :users do
-  end
+  resources :users
   resources :communities do #URLがcommunityディレクトリ配下にrules、mottos、usersがくる
     get "detail" => 'communities#detail' #コミュニティの詳細説明への遷移
-    resource :goal
+    resources :goals do
+      get "achieved" => 'goals#achieved'
+      get "unachieved" => 'goals#unachieved'
+    end
     resources :meetings do
       get "pre_edit" => 'meetings#pre_edit'
     end
@@ -36,6 +38,9 @@ Rails.application.routes.draw do
     end
     resources :users do
       get "mypage" => "users#mypage"
+      get "editmemo" => "users#memo_edit"
+      patch "updatememo" => "users#memo_update"
+      get "erasememo" => "users#memo_erase"
       resources :roles
     end
     resources :records, only: [:index, :show]

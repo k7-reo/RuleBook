@@ -146,7 +146,7 @@ main {
 }
 
 .community-info {
-  background-color: rgba(52, 56, 66, 0.5);
+  background-color: rgba(32, 35, 43, 0.9);
   border-bottom: 1px solid rgba(68, 196, 138, 0.3);
   position: fixed;
   top: 56px; /*header-areaのheightとpaddingの合計の高さに合わせる*/
@@ -163,12 +163,8 @@ main {
   width: 100%;
 }
 
-/*セクションごとの枠*/
-.round {
-  padding: 16px;
-  margin: 16px;
-  background-color: rgba(52, 56, 66, 0.8);
-  border-radius: 8px;
+.tra-background {
+  background-color: rgba(32,35,43, 0.4);
 }
 
 .comment {
@@ -234,4 +230,14 @@ tbody td:first-child {
 tbody td:last-child {
   border-top-right-radius: 25px;
   border-bottom-right-radius: 25px;
+}
+
+.footer-content {
+  box-sizing: content-box;
+  position: fixed;
+  bottom: 0;
+  height: 40px;
+  width: 100%;
+  background-color: rgba(52, 56, 66, 0.5);
+  margin: 16px;
 }

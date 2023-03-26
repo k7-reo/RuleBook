@@ -1,33 +1,28 @@
   <div class="community-background">
-    <%= attachment_image_tag @community, :community_image, format: 'jpeg', fallback: "plants.jpg" %>
+    <%= attachment_image_tag @community, :community_image, format: 'jpeg', fallback: "sunset_mountains.jpg" %>
   </div>
   <div class="community-info">
     <%= render 'communities/info', community: @community, currentUser: @currentUser %>
   </div>
   <div class="community-main">
-    <div>
-      <div class="mottos-header">
-        <p class="section-title">スローガン一覧</p>
-        <p><%= link_to "スローガン新規作成", new_community_motto_path(@community.id) %></p>
-      </div>
-      <table>
-        <thead>
-          <tr>
-            <th>内容</th>
-            <th colspan="1"></th>
-          </tr>
-        </thead>
-        <tbody>
-        <% @community.mottos.each do |motto| %>
-          <tr>
-            <td><%= motto.content %></td>
-            <td>
-              <%= link_to "編集", edit_community_motto_path(@community, motto.id) %>
-              <%= link_to "削除", community_motto_path(@community.id, motto.id), method: :delete %>
-            </td>
-          </tr>
-        <% end %>
-        </tbody>
-      </table>
+    <div class="mottos-header">
+      <p class="section-title">スローガン一覧</p>
+      <p class="motto-new"><%= link_to "スローガン新規作成", new_community_motto_path(@community.id) %></p>
+    </div>
+    <div class="all-mottos">
+      <% @community.mottos.each do |motto| %>
+        <div class="each-motto">
+          <div class="each-motto-edit">
+            <%= link_to edit_community_motto_path(@community, motto.id) do %>
+              <i class="fa-regular fa-pen-to-square"></i>
+            <% end %>
+          </div>
+          <div class="each-motto-content"><%= motto.content %></div>
+          <div class="each-motto-creator">
+            <span class="each-motto-creator-title">作成者</span>
+            <span class="each-motto-creator-name"><%= motto.user.name %></span>
+          </div>
+        </div>
+      <% end %>
     </div>
   </div>

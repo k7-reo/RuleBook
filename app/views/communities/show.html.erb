@@ -1,21 +1,19 @@
   <div class="community-background">
-    <%= attachment_image_tag @community, :community_image, format: 'jpeg', fallback: "plants.jpg" %>
+    <%= attachment_image_tag @community, :community_image, format: 'jpeg', fallback: "sunset_mountains.jpg" %>
   </div>
   <div class="community-info">
     <%= render 'communities/info', community: @community, currentUser: @currentUser %>
   </div>
   <div class="community-main">
     <div class="community-dashboard-top">
-      <div class="community-goal">
+      <div class="dashboard-goal">
         <% if @goal.present? %>
-        <div class="community-goal-edit">
-          <%= link_to edit_community_goal_path(@community.id) do %>
-            <i class="fa-regular fa-pen-to-square"></i>
-          <% end %>
-        </div>
-        <% end %>
-        <% if @goal.present? %>
-          <div class="community-goal-content"><%= @goal.content %></p></div>
+          <div class="dashboard-goal-edit">
+            <%= link_to community_goals_path(@community.id) do %>
+              <i class="fa-solid fa-ellipsis"></i>
+            <% end %>
+          </div>
+          <div class="dashboard-goal-content"><%= @goal.content %></p></div>
           <% if @goal.deadline.present? %>
             <div class="till-community-goal">達成までの残り時間</div>
             <div class="goal-deadline">
@@ -25,7 +23,7 @@
         <% else %>
           <div>
             <p class="alt-text">コミュニティのメンバー全員で目指すゴールを決めましょう！</p>
-            <p class="community-goal-new"><%= link_to "ゴール設定", new_community_goal_path(@community.id), class: "community-goal-new-cta" %></p>
+            <p class="dashboard-goal-new"><%= link_to "ゴール設定", new_community_goal_path(@community.id), class: "dashboard-goal-new-cta" %></p>
           </div>
         <% end %>
       </div>
@@ -79,10 +77,10 @@
       </div>
       <div class="dashboard-meetings">
         <% if @nextMeeting.present? %>
-            <div class="next-meeting">
-              <div class="meeting-content">
+            <div class="dashboard-next-meeting">
+              <div class="dashboard-meeting-content">
                 <div class="meeting-index">
-                  <p class="meeting-index-letter">予定しているミーティング</p>
+                  <p class="dashboard-meeting-index-letter">予定しているミーティング</p>
                 </div>
                 <div class="meeting-pre-edit">
                   <%= link_to community_meeting_pre_edit_path(@community.id, @nextMeeting.id) do %>
@@ -97,23 +95,33 @@
                   <% end %>
                 </div>
                 <p class="meeting-count-timer" id="meetingCountTimer"></p>
-                <div class="meeting-date">
+                <div class="meeting-detail">
                   <% if @nextMeeting.date.present? %>
                     <%= @nextMeeting.date.to_s(:datetime_jp) %>
+                  <% end %><br>
+                  <% if @nextMeeting.place.present? %>
+                     @<%= @nextMeeting.place %>
                   <% end %>
                 </div>
-                <div class="meeting-cta"><%= link_to "ミーティングを始める", edit_community_meeting_path(@community.id, @nextMeeting.id), class: "meeting-cta-btn" %></div>
+                <div class="meeting-start"><%= link_to "ミーティングを始める", edit_community_meeting_path(@community.id, @nextMeeting.id), class: "meeting-start-cta" %></div>
               </div>
             </div>
         <% else %>
-          <p class="alt-text">実施予定のミーティングはありません。</p>
+          <div class="dashboard-next-meeting">
+            <div class="dashboard-meeting-content">
+              <div class="meeting-index">
+                  <p class="dashboard-meeting-index-letter">予定しているミーティング</p>
+                </div>
+              <p class="alt-text">実施予定はありません。</p>
+            </div>
+          </div>
         <% end %>
         <% if @meetingsInProgress.present? %>
           <% @meetingsInProgress.each do |meeting| %>
-          <div class="meeting-in-progress">
-            <div class="meeting-content">
+          <div class="dashboard-meeting-in-progress">
+            <div class="dashboard-meeting-content">
               <div class="meeting-index">
-                <p class="meeting-index-letter">編集中のミーティング</p>
+                <p class="dashboard-meeting-index-letter">編集中のミーティング</p>
               </div>
               <div class="meeting-name"><%= meeting.name %></div>
               <div class="meeting-cta"><%= link_to "議事録に戻る", edit_community_meeting_path(@community.id, meeting.id) %></div>
@@ -123,23 +131,21 @@
         <% end %>
       </div>
       <div class="dashboard-mottos">
-          <div class="mottos-title">スローガン</div>
-          <div class="community-mottos-edit">
+          <div class="dashboard-mottos-title">スローガン</div>
+          <div class="dashboard-mottos-edit">
             <%= link_to community_mottos_path(@community.id) do %>
               <i class="fa-solid fa-ellipsis"></i>
             <% end %>
           </div>
-          <div class="community-motto-list">
+          <div class="dashboard-motto-list">
             <% if @mottos.present? %>
               <% @mottos.each.with_index(1) do |motto, index| %>
-              <div class="community-motto">
-                <div class="community-motto-box">
-                  <div><%= index %></div>
-                  <div class="community-motto-box-content">
-                    <p class="community-motto-box-content-letters"><%= motto.content %></p>
+                <div class="dashboard-each-motto">
+                  <div class="dashboard-each-motto-index"><%= index %></div>
+                  <div class="dashboard-each-motto-content">
+                    <p class="dashboard-each-motto-content-letters"><%= motto.content %></p>
                   </div>
                 </div>
-              </div>
               <% end %>
             <% else %>
               <p class="alt-text">このコミュニティにはまだスローガンがありません。</p>
@@ -165,55 +171,55 @@
         </div>
       </div>
       <div class="dashboard-late-activities">
-        <div class="late-activities-title">更新履歴</div>
+        <div class="late-activities-title">30日間の更新履歴</div>
         <p class="late-activities-cta">
           <%= link_to community_records_path(@community.id) do %>
             <i class="fa-solid fa-ellipsis"></i>
           <% end %>
         </p>
-        <div class="ten-days-record">
+        <div class="dashboard-ten-days-record">
           <% if @records.present? %>
             <% @records.each do |record| %>
             <div class="each-record">
               <% if record.action_type == "Motto" %>
                 <% if record.version == 1 %>
-                  <p class="record-content"><span class="record-motto">スローガン</span>「<%= record.content %>」が<%= record.user.name %>によって作成されました。<br><span class="record-date"><%= record.created_at.to_s(:datetime_jp) %></span></p>
+                  <p class="dashboard-record-content"><span class="record-motto">スローガン</span>「<%= record.content %>」が<%= record.user.name %>によって作成されました。<br><span class="record-date"><%= record.created_at.to_s(:datetime_jp) %></span></p>
                 <% elsif record.version == 0 %>
-                  <p class="record-content"><span class="record-motto">スローガン</span>「<%= record.content %>」が<%= record.user.name %>によって削除されました。<br><span class="record-date"><%= record.created_at.to_s(:datetime_jp) %></span></p>
+                  <p class="dashboard-record-content"><span class="record-motto">スローガン</span>「<%= record.content %>」が<%= record.user.name %>によって削除されました。<br><span class="record-date"><%= record.created_at.to_s(:datetime_jp) %></span></p>
                 <% else %>
-                  <p class="record-content"><span class="record-motto">スローガン</span>「<%= record.content %>」が<%= record.user.name %>によって編集されました。<br><span class="record-date"><%= record.created_at.to_s(:datetime_jp) %></span></p>
+                  <p class="dashboard-record-content"><span class="record-motto">スローガン</span>「<%= record.content %>」が<%= record.user.name %>によって編集されました。<br><span class="record-date"><%= record.created_at.to_s(:datetime_jp) %></span></p>
                 <% end %>
               <% elsif record.action_type == "Rule" %>
                 <% if record.version == 1 %>
-                  <p class="record-content"><span class="record-rule">ルール</span>「<%= record.content %>」が<%= record.user.name %>によって作成されました。<br><span class="record-date"><%= record.created_at.to_s(:datetime_jp) %></span></p>
+                  <p class="dashboard-record-content"><span class="record-rule">ルール</span>「<%= record.content %>」が<%= record.user.name %>によって作成されました。<br><span class="record-date"><%= record.created_at.to_s(:datetime_jp) %></span></p>
                 <% elsif record.version == 0 %>
-                  <p class="record-content"><span class="record-rule">ルール</span>「<%= record.content %>」が<%= record.user.name %>によって削除されました。<br><span class="record-date"><%= record.created_at.to_s(:datetime_jp) %></span></p>
+                  <p class="dashboard-record-content"><span class="record-rule">ルール</span>「<%= record.content %>」が<%= record.user.name %>によって削除されました。<br><span class="record-date"><%= record.created_at.to_s(:datetime_jp) %></span></p>
                 <% else %>
-                  <p class="record-content"><span class="record-rule">ルール</span>「<%= record.content %>」が<%= record.user.name %>によって編集されました。<br><span class="record-date"><%= record.created_at.to_s(:datetime_jp) %></span></p>
+                  <p class="dashboard-record-content"><span class="record-rule">ルール</span>「<%= record.content %>」が<%= record.user.name %>によって編集されました。<br><span class="record-date"><%= record.created_at.to_s(:datetime_jp) %></span></p>
                 <% end %>
               <% elsif record.action_type == "Privilege" %>
                 <% if record.version == 1 %>
-                  <p class="record-content"><span class="record-privilege">報酬</span>「<%= record.content %>」が<%= record.user.name %>によって作成されました。<br><span class="record-date"><%= record.created_at.to_s(:datetime_jp) %></span></p>
+                  <p class="dashboard-record-content"><span class="record-privilege">報酬</span>「<%= record.content %>」が<%= record.user.name %>によって作成されました。<br><span class="record-date"><%= record.created_at.to_s(:datetime_jp) %></span></p>
                 <% elsif record.version == 0 %>
-                  <p class="record-content"><span class="record-privilege">報酬</span>「<%= record.content %>」が<%= record.user.name %>によって削除されました。<br><span class="record-date"><%= record.created_at.to_s(:datetime_jp) %></span></p>
+                  <p class="dashboard-record-content"><span class="record-privilege">報酬</span>「<%= record.content %>」が<%= record.user.name %>によって削除されました。<br><span class="record-date"><%= record.created_at.to_s(:datetime_jp) %></span></p>
                 <% else %>
-                  <p class="record-content"><span class="record-privilege">報酬</span>「<%= record.content %>」が<%= record.user.name %>によって編集されました。<br><span class="record-date"><%= record.created_at.to_s(:datetime_jp) %></span></p>
+                  <p class="dashboard-record-content"><span class="record-privilege">報酬</span>「<%= record.content %>」が<%= record.user.name %>によって編集されました。<br><span class="record-date"><%= record.created_at.to_s(:datetime_jp) %></span></p>
                 <% end %>
               <% elsif record.action_type == "Penalty" %>
                 <% if record.version == 1 %>
-                  <p class="record-content"><span class="record-penalty">ペナルティ</span>「<%= record.content %>」が<%= record.user.name %>によって作成されました。<br><span class="record-date"><%= record.created_at.to_s(:datetime_jp) %></span></p>
+                  <p class="dashboard-record-content"><span class="record-penalty">ペナルティ</span>「<%= record.content %>」が<%= record.user.name %>によって作成されました。<br><span class="record-date"><%= record.created_at.to_s(:datetime_jp) %></span></p>
                 <% elsif record.version == 0 %>
-                  <p class="record-content"><span class="record-penalty">ペナルティ</span>「<%= record.content %>」が<%= record.user.name %>によって削除されました。<br><span class="record-date"><%= record.created_at.to_s(:datetime_jp) %></span></p>
+                  <p class="dashboard-record-content"><span class="record-penalty">ペナルティ</span>「<%= record.content %>」が<%= record.user.name %>によって削除されました。<br><span class="record-date"><%= record.created_at.to_s(:datetime_jp) %></span></p>
                 <% else %>
-                  <p class="record-content"><span class="record-penalty">ペナルティ</span>「<%= record.content %>」が<%= record.user.name %>によって編集されました。<br><span class="record-date"><%= record.created_at.to_s(:datetime_jp) %></span></p>
+                  <p class="dashboard-record-content"><span class="record-penalty">ペナルティ</span>「<%= record.content %>」が<%= record.user.name %>によって編集されました。<br><span class="record-date"><%= record.created_at.to_s(:datetime_jp) %></span></p>
                 <% end %>
               <% elsif record.action_type == "Goal" %>
                 <% if record.version == 1 %>
-                  <p class="record-content"><span class="record-goal">ゴール</span>「<%= record.content %>」が<%= record.user.name %>によって作成されました。<br><span class="record-date"><%= record.created_at.to_s(:datetime_jp) %></span></p>
+                  <p class="dashboard-record-content"><span class="record-goal">ゴール</span>「<%= record.content %>」が<%= record.user.name %>によって作成されました。<br><span class="record-date"><%= record.created_at.to_s(:datetime_jp) %></span></p>
                 <% elsif record.version == 0 %>
-                  <p class="record-content"><span class="record-goal">ゴール</span>「<%= record.content %>」が<%= record.user.name %>によって削除されました。<br><span class="record-date"><%= record.created_at.to_s(:datetime_jp) %></span></p>
+                  <p class="dashboard-record-content"><span class="record-goal">ゴール</span>「<%= record.content %>」が<%= record.user.name %>によって削除されました。<br><span class="record-date"><%= record.created_at.to_s(:datetime_jp) %></span></p>
                 <% else %>
-                  <p class="record-content"><span class="record-goal">ゴール</span>「<%= record.content %>」が<%= record.user.name %>によって編集されました。<br><span class="record-date"><%= record.created_at.to_s(:datetime_jp) %></span></p>
+                  <p class="dashboard-record-content"><span class="record-goal">ゴール</span>「<%= record.content %>」が<%= record.user.name %>によって編集されました。<br><span class="record-date"><%= record.created_at.to_s(:datetime_jp) %></span></p>
                 <% end %>
               <% end %>
             </div>

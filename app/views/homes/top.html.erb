@@ -1,6 +1,6 @@
   <p class="page-title">コミュニティ一覧</p>
 
-  <div class="my-communities round">
+  <div class="my-communities">
     <div class="my-communities-header">
       <p class="section-title">所属コミュニティ</p>
       <p class="new-community"><%= link_to "コミュニティ新規作成", new_community_path %></p>
@@ -46,7 +46,7 @@
     </div>
   </div>
 
-  <div class="requesting-community round">
+  <div class="requesting-community">
     <p class="section-title">参加申請中コミュニティ</p>
     <% if @requesting_communities.present? %>
       <table>
@@ -74,7 +74,7 @@
     <% end %>
   </div>
 
-  <div class="communities-search round">
+  <div class="communities-search">
     <p class="section-title">コミュニティ検索</p>
     <div class="search-box">
       <%= form_with(url: search_path, method: :get, local: true, class: "search-form") do |form| %>

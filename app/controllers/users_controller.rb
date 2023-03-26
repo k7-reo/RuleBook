@@ -33,6 +33,28 @@ class UsersController < ApplicationController
     @activePenalties = Penalty.where("community_id = ? and -(point) >= ?", @community.id, @user.monthly_point)
     @currentUser = CommunityUser.find_by(user_id: current_user.id) #community-info表示に利用
     @roles = Role.where(user_id: current_user.id, community_id: @community.id)
+    @executedRuleStandbies = Standby.where(executed_user_id: current_user.id, community_id: @community.id, action_type: "rule")
+  end
+
+  def memo_edit
+    @community = Community.find(params[:community_id])
+    @currentUser = CommunityUser.find_by(user_id: current_user.id) #community-info表示に利用
+    @user = CommunityUser.find_by(user_id: current_user.id, community_id: @community.id)
+  end
+
+  def memo_update
+    community = Community.find(params[:community_id])
+    user = CommunityUser.find_by(user_id: current_user.id, community_id: community.id)
+    user.update(community_user_params)
+    redirect_to community_user_mypage_path(community.id, user.id)
+  end
+
+  def memo_erase
+    community = Community.find(params[:community_id])
+    user = CommunityUser.find_by(user_id: current_user.id, community_id: community.id)
+    user.memo.clear
+    user.save
+    redirect_to community_user_mypage_path(community.id, user.id)
   end
 
   private
@@ -45,4 +67,7 @@ class UsersController < ApplicationController
     params.require(:community).permit(:community_name, :introduction, :owner_id)
   end
 
+  def community_user_params
+    params.require(:community_user).permit(:memo)
+  end
 end

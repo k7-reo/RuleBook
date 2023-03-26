@@ -2,68 +2,96 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.community-rules {
+.all-positive-rules-wrapper, .all-negative-rules-wrapper {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  overflow-x: scroll;
 }
 
-.community-rule-box {
+.all-positive-rules, .all-negative-rules {
+  display: flex;
+}
+
+.each-rule {
   width: 280px;
   margin: 16px;
-  padding: 16px;
   background-color: rgba(52, 56, 66, 0.5);
   border-radius: 16px;
 }
 
-.community-rule-box-edit {
-  color: #fff;
-  width: fit-content;
-  margin-left: auto;
-  position: relative;
-  bottom: 8px;
-  left: 8px;
+.each-positive-rule-title {
+  background-color: #f47842;
+  border-radius: 16px 16px 0 0;
+  height: 24px;
+  line-height: 24px;
+  text-align: center;
+  color: #343842;
+  font-weight: bold;
 }
 
-.community-rule-box-content {
-  height: 40px;
+.each-negative-rule-title {
+  background-color: #07868c;
+  border-radius: 16px 16px 0 0;
+  height: 24px;
+  line-height: 24px;
+  text-align: center;
+  color: #343842;
+  font-weight: bold;
+}
+
+.each-rule-edit {
+  color: #fff;
+  text-align: right;
+  position: relative;
+  top: 4px;
+  right: 4px;
+}
+
+.each-rule-content {
+  height: 48px;
   font-size: 120%;
   font-weight: bold;
-  margin: 0 24px 8px 24px;
+  margin: 8px 32px;
   display: flex;
-  align-items: center;
+  overflow: scroll;
 }
 
-.community-rule-box-point {
-  font-weight: bold;
-  margin-left: 24px;
-  margin-right: 24px;
-  margin-bottom: 16px;
+.each-positive-rule-point {
   font-size: 160%;
+  font-weight: bold;
+  margin: 8px 32px;
+  color: #f47842;
 }
 
-.community-rule-box-member {
-  margin: 2px 24px;
+.each-negative-rule-point {
+  font-size: 160%;
+  font-weight: bold;
+  margin: 8px 32px;
+  color: #07868c;
+}
+
+.each-rule-member {
+  margin: 2px 32px 16px 32px;
   font-size: 80%;
 }
 
-.community-rule-box-genre {
-  margin: 2px 24px 16px 24px;
-  font-size: 80%;
-}
-
-.community-rule-box-genre-title,
-.community-rule-box-member-title {
+.each-rule-member-title {
   margin-right: 4px;
 }
 
-.community-rule-box-genre-name {
-  background-color: #44c48a;
+.each-positive-rule-member-name {
+  background-color: #ffd139;
   padding: 2px;
+  color: #343842;
 }
 
-.community-rule-box-member-name {
-  background-color: #07868c;
+.each-negative-rule-member-name {
+  background-color: #44c48a;
+  padding: 2px;
+  color: #343842;
+}
+
+.each-rule-genre-name {
+  background-color: #848A99 ;
   padding: 2px;
 }
 
@@ -71,21 +99,38 @@
   font-size: 62.5%; /*.community-rule-box-pointから逆算して100%に戻す */
 }
 
-.rule-execute-btn {
+.each-positive-rule-execute-cta {
   display: block;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 0 16px 16px 16px;
   padding-top: 8px;
   padding-bottom: 8px;
-  background-color: #07868c;
-  border-radius: 16px;
-  color: #fff;
+  background-color: #ffffff;
+  border-radius: 8px;
+  border: 1px solid #f47842;
+  color: #f47842;
   font-weight: bold;
   text-align: center; //テキスト要素を左右中央寄せ
 }
 
-.rule-execute-btn:hover {
+.each-positive-rule-execute-cta:hover {
+  background-color: #f47842;
+  color: #ffffff;
+}
+
+.each-negative-rule-execute-cta {
+  display: block;
+  margin: 0 16px 16px 16px;
+  padding-top: 8px;
+  padding-bottom: 8px;
   background-color: #ffffff;
-  color: #07868c;
+  border-radius: 8px;
   border: 1px solid #07868c;
+  color: #07868c;
+  font-weight: bold;
+  text-align: center; //テキスト要素を左右中央寄せ
+}
+
+.each-negative-rule-execute-cta:hover {
+  background-color: #07868c;
+  color: #ffffff;
 }

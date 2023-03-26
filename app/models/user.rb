@@ -5,6 +5,7 @@ class User < ApplicationRecord
   #アソシエーション
   has_many :community_users, dependent: :destroy
   has_many :communities, through: :community_users
+  has_many :goals
   has_many :rule_users
   has_many :rules, through: :rule_users
   has_many :rules

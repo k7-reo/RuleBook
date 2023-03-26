@@ -4,20 +4,19 @@
 
 .community-info-contents {
   display: flex;
+  overflow-x: scroll;
   justify-content: space-between;
   margin-top: auto;
-  margin-bottom: auto;
 }
 
 //_info
 .community-navigation-items {
   display: flex;
+  white-space: nowrap; //自動改行させない
   margin-top: 0px;
   margin-bottom: 0px;
   text-align: center;
   padding-left: 0px;
-  white-space: nowrap;
-  overflow: scroll;
 }
 
 //_info
@@ -41,118 +40,143 @@
 .community-basic-info {
   display: flex;
   padding: 8px; //.community-navigation-itemのpaddingに合わせる。
-  margin-right: 8px;
-  color: #fff;
 }
 
 //_info
-.community-name {
+.community-basic-info-name-title {
+  font-size: 80%;
+  line-height: 24px ;
+  white-space: nowrap; //自動改行させない
+}
+
+//_info
+.community-basic-info-name-content {
   font-weight: bold;
+  color: #44c48a;
+  margin-left: 4px;
+  max-width: 100px;
+  white-space: nowrap; //自動改行させない
+  overflow-x: scroll;
+}
+
+//_info
+.community-basic-info-detail-cta {
   color: #44c48a;
   margin-left: 4px;
 }
 
-//_info
-.community-detail-link {
-  color: #44c48a;
-  margin-left: 2px;
-}
-
-//show 上部
+//上部
 .community-dashboard-top {
   box-sizing: border-box;
   width: 100%;
   //border-bottom: 1px solid rgba(68, 196, 138, 0.3);
 }
 
-//show 下部
+//下部
 .community-dashboard-bottom {
   display: flex;
   justify-content: space-between;
+  height: calc(100vh - 330px); //100vhからheader全体とdashboard-topを引く
 }
 
-//show 数値
+//ゴール全体
+.dashboard-goal {
+  text-align: center;
+  background-color: rgba(32, 35, 43, 0.75);
+  border-radius: 8px;
+  margin: 16px 16px 8px 16px;
+  padding: 16px;
+}
+
+//数値全体
 .dashboard-figures {
   width: 136px;
+  min-width: 104px;
   color: #fff;
   display: flex;
   flex-direction: column;
   margin-left: 8px;
 }
 
-//show ミーティング
+//ミーティング全体
 .dashboard-meetings {
   display: flex;
   flex-direction: column;
   width: 320px;
+  min-width: 176px;
 
 }
 
-//show モットー
+//モットー全体
 .dashboard-mottos {
-  background-color: rgba(52, 56, 66, 0.5);
+  background-color: rgba(32, 35, 43, 0.75);
   border-radius: 8px;
-  width: 400px;
+  width: 480px;
+  min-width: 176px;
   margin: 8px;
+  max-height: calc(100% - 16px);
 }
 
-//show メンバー、履歴
+//メンバー全体
 .dashboard-users {
-  background-color: rgba(52, 56, 66, 0.5);
+  background-color: rgba(32, 35, 43, 0.75);
   border-radius: 8px;
   width: 136px;
+  min-width: 104px;
   margin: 8px;
+  max-height: calc(100% - 16px);
 }
 
+//履歴全体
 .dashboard-late-activities {
-  background-color: rgba(52, 56, 66, 0.5);
+  background-color: rgba(32, 35, 43, 0.75);
   border-radius: 8px;
   margin: 8px 16px 8px 8px;
   width: 400px;
+  min-width: 176px;
+  max-height: calc(100% - 16px);
 }
 
-//show 数値
+//数値
 .dashboard-figure {
-  background-color: rgba(52, 56, 66, 0.5);
+  background-color: rgba(32, 35, 43, 0.75);
   text-align: center;
   border-radius: 8px;
   margin: 8px;
 }
 
-//show 数値
+//数値
 .dashboard-figure-title {
   height: 24px;
   line-height: 24px;
   background-color: #07868c;
   border-radius: 8px 8px 0 0;
+  font-weight: bold;
 }
 
-//show 数値
+//数値
 .dashboard-figure-content {
   font-size: 240%;
   font-weight: bold;
-  justify-content: center;
-  align-items: center;
 }
 
-//show メンバー
+//メンバー
 .community-user-list {
   overflow: scroll;
-  margin-top: 8px;
-  height: 50vh;
-  overflow: scroll;
 }
 
-//show メンバー
+//メンバー
 .community-users-title {
   background-color: #44c48a;
   border-radius: 8px 8px 0 0;
   height: 24px;
   line-height: 24px;
   text-align: center;
+  color: #343842;
+  font-weight: bold;
 }
 
-//show メンバー
+//メンバー
 .community-users-cta {
   text-align: right;
   position: relative;
@@ -160,35 +184,27 @@
   right: 4px;
 }
 
-//show メンバー
+//メンバー
 .community-user {
-  margin: 8px;
+  margin: 16px;
   text-align: center;
 }
 
-//show メンバー
+//メンバー
 .profile_image {
   border-radius: 50%;
 }
 
-//show ゴール
-.community-goal {
-  text-align: center;
-  background-color: rgba(52, 56, 66, 0.5);
-  border-radius: 8px;
-  margin: 16px 16px 8px 16px;
-  padding: 16px;
-}
-
-//show ゴール
-.community-goal-edit {
+//ゴール
+.dashboard-goal-edit {
   text-align: right;
   position: relative;
   left: 8px;
   bottom: 8px;
 }
 
-.community-goal-new-cta {
+//ゴール
+.dashboard-goal-new-cta {
   background-color: #ffffff;
   font-weight: bold;
   padding: 8px;
@@ -198,13 +214,14 @@
   width: fit-content;
 }
 
-.community-goal-new-cta:hover {
+//ゴール
+.dashboard-goal-new-cta:hover {
   background-color: #343842;
   border: 1px solid #ffffff;
   color: #ffffff;
 }
 
-//show ゴール【未使用】
+//ゴール【未使用】
 .goal-title {
   background-color: #343842;
   border-radius: 8px 8px 0 0;
@@ -213,26 +230,27 @@
   text-align: center;
 }
 
-//show ゴール
-.community-goal-content {
+//ゴール
+.dashboard-goal-content {
   font-size: 240%;
   font-weight: bold;
+  margin-bottom: 16px;
 }
 
-//show ゴール
+//ゴール
 .till-community-goal {
   color: #ffd139;
-  margin-top: 24px;
+  margin-top: 8px;
 }
 
-//show ゴール
+//ゴール
 .goal-deadline-timer {
   font-size: 320%;
   font-weight: bold;
   color: #ffd139;
 }
 
-//show ゴール
+//ゴール
 p#goalCountTimer span {
   font-size: 31.25%; /* goal-deadline-timerから100%に戻す */
   font-weight: 400;
@@ -240,91 +258,82 @@ p#goalCountTimer span {
 }
 
 //スローガン
-.mottos-title {
-  background-color: #848A99;
+.dashboard-mottos-title {
+  background-color: #343842;
   border-radius: 8px 8px 0 0;
   height: 24px;
   line-height: 24px;
   text-align: center;
-}
-
-.community-motto-list {
-  height: 50vh;
-  overflow: scroll;
+  font-weight: bold;
 }
 
 //スローガン
-.community-motto-box {
-  text-align: center;
-  padding: 8px;
-}
-
-//show スローガン
-.community-mottos-edit {
+.dashboard-mottos-edit {
   text-align: right;
   position: relative;
   top: 4px;
   right: 4px;
 }
 
-//show スローガン
-.community-motto-index {
-  margin-left: auto;
-  margin-right: auto;
-  background-color: #44c48a;
-  height: 32px;
-  width: 32px;
-  border-radius: 50px;
-  position: relative;
-  top: 16px;
+//スローガン
+.dashboard-motto-list {
+  height: calc(100% - 48px);
+  overflow-y: scroll;
 }
 
-//show スローガン
-.community-motto-index-number {
-  line-height: 32px;
+//スローガン
+.dashboard-each-motto {
   text-align: center;
+  padding: 8px;
 }
 
-//show スローガン
-.community-motto-box-content {
+//スローガン
+.dashboard-each-motto-index {
   margin-left: auto;
   margin-right: auto;
-  width: fit-content;
+  background-color: #ffffff;
+  height: 20px;
+  width: 20px;
+  border-radius: 50px;
+  line-height: 20px;
+  color: #343842;
 }
 
-//show スローガン
-.community-motto-box-content-letters {
+//スローガン
+.dashboard-each-motto-content {
+  margin: 2px 24px 0 24px;
   font-weight: bold;
   font-size: 120%;
 }
 
-//show ミーティング
-.next-meeting, .meeting-in-progress {
+//ミーティング
+.dashboard-next-meeting, .dashboard-meeting-in-progress {
   text-align: center;
 }
 
-//show ミーティング
+//ミーティング
 .meeting-index {
   background-color: #f47842;
   height: 24px;
   border-radius: 8px 8px 0 0;
 }
 
-//show ミーティング
-.meeting-index-letter {
-  color: #fff;
+//ミーティング
+.dashboard-meeting-index-letter {
+  color: #343842;
+  font-weight: bold;
   line-height: 24px; /*meeting-indexのheightに合わせる */
 }
 
-//show ミーティング
-.meeting-content {
-  background-color: rgba(52, 56, 66, 0.5);
+//ミーティング
+.dashboard-meeting-content {
+  background-color: rgba(32, 35, 43, 0.75);
   margin: 8px;
-  padding-bottom:8px;
+  padding-bottom: 8px;
   border-radius: 8px;
 }
 
-//show ミーティング
+//ミーティング
 .meeting-pre-edit {
   text-align: right;
   position: relative;
@@ -332,7 +341,7 @@ p#goalCountTimer span {
   right: 4px;
 }
 
-//show ミーティング
+//ミーティング
 .meeting-name {
   font-size: 120%;
   font-weight: bold;
@@ -341,19 +350,19 @@ p#goalCountTimer span {
   color: #f47842;
 }
 
-//show ミーティング
+//ミーティング
 .meeting-count-timer {
   font-size: 160%;
   font-weight: bold;
 }
 
-//show ミーティング
-.meeting-date {
+//ミーティング
+.meeting-detail {
   font-size: 80%;
 }
 
-//show ミーティング
-.meeting-cta-btn {
+//ミーティング
+.meeting-start-cta {
   display: block;
   margin: 16px 8px 0 8px;
   padding-top: 8px;
@@ -365,21 +374,24 @@ p#goalCountTimer span {
   border: 1px solid #f47842;
 }
 
-//show ミーティング
-.meeting-cta-btn:hover {
+//ミーティング
+.meeting-start-cta:hover {
   background-color: #f47842;
   color: #ffffff;
 }
 
+//レコード
 .late-activities-title {
   background-color: #ffd139;
   border-radius: 8px 8px 0 0;
   text-align: center;
   height: 24px;
   line-height: 24px;
+  color: #343842;
+  font-weight: bold;
 }
 
-//show レコード
+//レコード
 .late-activities-cta {
   text-align: right;
   position: relative;
@@ -387,7 +399,7 @@ p#goalCountTimer span {
   right: 4px;
 }
 
-//show レコード
+//レコード
 .thirtydays-each-record {
   background-color: rgba(52, 56, 66, 0.5);
   margin: 8px;
@@ -395,10 +407,15 @@ p#goalCountTimer span {
   width: fit-content;
 }
 
-//show レコード
-.ten-days-record {
-  height: 50vh;
-  overflow: scroll;
+//レコード
+.dashboard-ten-days-record {
+  height: calc(100% - 48px);
+  overflow-y: scroll;
+}
+
+//レコード
+.dashboard-record-content {
+  padding: 8px;
 }
 
 //コミュニティ編集

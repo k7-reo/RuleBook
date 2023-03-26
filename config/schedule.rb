@@ -19,15 +19,19 @@
 
 # Learn more: http://github.com/javan/whenever
 
-require File.expand_path(File.dirname(__FILE__) + "/environment") # Rails.root(Railsメソッド)を使用するために必要
+require File.expand_path(File.dirname(__FILE__) + '/environment') # Rails.root(Railsメソッド)を使用するために必要
 rails_env = ENV['RAILS_ENV'] || :development # cronを実行する環境変数(:development, :product, :test)
 set :environment, rails_env # cronを実行する環境変数をセット
 set :output, "#{Rails.root}/log/crontab.log" # cronのログ出力用ファイル
 
-every '0 0 1 * *' do #毎月1日00:00に実行
+every 1.month, at: 'start of the month at 0am' do
   rake "users_point:total_monthly_point"
 end
 
-every '10 14 * * *' do #毎日14:10に実行
-  rake "sample_task:reo_point_add"
-end
+#every '21 15 24 * *' do #この形式の時間設定だとなぜか動かない。
+#  rake "sample_task:reo_point_add"
+#end
+
+#every 3.minutes do
+#  rake "users_point:total_monthly_point"
+#end
