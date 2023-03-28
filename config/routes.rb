@@ -42,6 +42,7 @@ Rails.application.routes.draw do
       patch "updatememo" => "users#memo_update"
       get "erasememo" => "users#memo_erase"
       resources :roles
+      resources :memo
     end
     resources :records, only: [:index, :show]
     get "join_request" => "communities#join_request"

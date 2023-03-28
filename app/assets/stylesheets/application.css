@@ -130,6 +130,7 @@ header {
 }
 
 main {
+  font-size: 80%;
   color: #ffffff; /*文字白*/
   text-decoration: none;
   padding-top: 56px; /* header-areaの高さにmargin-topを合わせる。 */
@@ -150,21 +151,16 @@ main {
   border-bottom: 1px solid rgba(68, 196, 138, 0.3);
   position: fixed;
   top: 56px; /*header-areaのheightとpaddingの合計の高さに合わせる*/
-  height: 40px;
+  height: 32px;
   width: 100%;
   z-index: 10;
 }
 
 .community-main {
   position: fixed;
-  top: 96px; /*headher-areaとcommunity-infoのtopとheightの合計*/
-  font-size: 80%;
+  top: 88px; /*headher-areaとcommunity-infoのtopとheightの合計*/
   box-sizing: border-box;
   width: 100%;
-}
-
-.tra-background {
-  background-color: rgba(32,35,43, 0.4);
 }
 
 .comment {

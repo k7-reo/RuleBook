@@ -2,7 +2,7 @@ class UsersController < ApplicationController
 
   def index
     @currentUser = CommunityUser.find_by(user_id: current_user.id) #community-info表示に利用
-    @communityUsers = CommunityUser.where(community_id: params[:community_id]).order(point: :desc)
+    @communityUsers = CommunityUser.where(community_id: params[:community_id], status: 1).order(point_abs: :desc)
     @community = Community.find(params[:community_id])
   end
 
@@ -33,7 +33,7 @@ class UsersController < ApplicationController
     @activePenalties = Penalty.where("community_id = ? and -(point) >= ?", @community.id, @user.monthly_point)
     @currentUser = CommunityUser.find_by(user_id: current_user.id) #community-info表示に利用
     @roles = Role.where(user_id: current_user.id, community_id: @community.id)
-    @executedRuleStandbies = Standby.where(executed_user_id: current_user.id, community_id: @community.id, action_type: "rule")
+    @executedRuleStandbies = Standby.where(executed_user_id: current_user.id, community_id: @community.id, action_type: "rule", approval: "true", updated_at: Time.current.all_month).order(updated_at: :desc)
   end
 
   def memo_edit

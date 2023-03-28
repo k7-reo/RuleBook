@@ -6,6 +6,13 @@
   </div>
   <div class="community-main">
     <div class="community-dashboard-top">
+      <div class="dashboard-quote">
+        <div class="dashboard-quote-content"><%= @advice.quote %></div>
+        <div class="dashboard-quote-detail">
+          <span class="dashboard-quote-person"><%= @advice.person %></span>
+          <span class="dashboard-quote-biography"><%= @advice.biography %></span>
+        </div>
+      </div>
       <div class="dashboard-goal">
         <% if @goal.present? %>
           <div class="dashboard-goal-edit">
@@ -152,24 +159,6 @@
             <% end %>
           </div>
         </div>
-      <div class="dashboard-users">
-        <div class="community-users-title">所属メンバー</div>
-        <p class="community-users-cta">
-          <%= link_to community_users_path(@community.id) do %>
-            <i class="fa-solid fa-ellipsis"></i>
-          <% end %>
-        </p>
-        <div class="community-user-list">
-        <% @community.users.each do |user| %>
-          <div class="community-user">
-            <%= link_to community_user_path(@community.id, user.id) do %>
-              <div class="profile_image"><%= attachment_image_tag user, :profile_image, :fill, 48, 48, format: 'jpeg', fallback: "f_f_event_98_s512_f_event_98_0bg.jpg", size:'48x48'%></div>
-              <p class="community-user-name"><%= user.name %></p>
-            <% end %>
-          </div>
-        <% end %>
-        </div>
-      </div>
       <div class="dashboard-late-activities">
         <div class="late-activities-title">30日間の更新履歴</div>
         <p class="late-activities-cta">

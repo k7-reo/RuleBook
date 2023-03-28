@@ -135,6 +135,8 @@ class RulesController < ApplicationController
       standby.detail = detail
       standby.community_id = @community.id
       standby.rule_id = @rule.id
+      standby.content = @rule.content
+      standby.point = @rule.point
       standby.action_type = 'rule'
       standby.save!
     end
@@ -151,9 +153,10 @@ class RulesController < ApplicationController
   def approval #ルール承認
     standby = Standby.find(params[:id])
     @community_user = CommunityUser.find_by(user_id: standby.executed_user_id, community_id: standby.community_id)#whereは条件にあっているデータを複数とってくる。今回は1つのデータを取る前提なのでfind_byを利用。
-    @community_user.point += standby.rule.point
+    @community_user.point += standby.point
     @community_user.save
     standby.checked = true #true=確認済み。今後ユーザーが受けてきたルールのカウントをする際には、trueの数をカウントすればいい。
+    standby.approval = true
     standby.save
     redirect_to receive_path
   end

@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_03_26_151730) do
+ActiveRecord::Schema.define(version: 2023_03_28_031159) do
+
+  create_table "advices", force: :cascade do |t|
+    t.string "quote"
+    t.string "person"
+    t.string "biography"
+    t.string "community_genre"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "communities", force: :cascade do |t|
     t.string "community_name"
@@ -150,7 +159,6 @@ ActiveRecord::Schema.define(version: 2023_03_26_151730) do
 
   create_table "standbies", force: :cascade do |t|
     t.integer "community_id"
-    t.integer "motto_id"
     t.integer "rule_id"
     t.integer "penalty_id"
     t.integer "privilege_id"
@@ -161,6 +169,9 @@ ActiveRecord::Schema.define(version: 2023_03_26_151730) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "detail"
+    t.string "content"
+    t.integer "point"
+    t.boolean "approval", default: false, null: false
   end
 
   create_table "users", force: :cascade do |t|

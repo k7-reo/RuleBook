@@ -2,11 +2,12 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+//_info
 .community-info-contents {
   display: flex;
   overflow-x: scroll;
   justify-content: space-between;
-  margin-top: auto;
+  line-height: 32px;
 }
 
 //_info
@@ -21,9 +22,9 @@
 
 //_info
 .community-navigation-item {
-  padding: 8px;
+  padding-left: 8px;
+  padding-right: 8px;
   text-align: center;
-  font-weight: bold;
 }
 
 //_info
@@ -32,20 +33,13 @@
 }
 
 //_info
-.community-navigation-link:hover {
-  border-bottom: inherit;
-}
-
-//_info
 .community-basic-info {
   display: flex;
-  padding: 8px; //.community-navigation-itemのpaddingに合わせる。
 }
 
 //_info
 .community-basic-info-name-title {
   font-size: 80%;
-  line-height: 24px ;
   white-space: nowrap; //自動改行させない
 }
 
@@ -63,12 +57,16 @@
 .community-basic-info-detail-cta {
   color: #44c48a;
   margin-left: 4px;
+  margin-right: 8px;
 }
 
 //上部
 .community-dashboard-top {
   box-sizing: border-box;
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-top: 8px;
   //border-bottom: 1px solid rgba(68, 196, 138, 0.3);
 }
 
@@ -76,7 +74,19 @@
 .community-dashboard-bottom {
   display: flex;
   justify-content: space-between;
-  height: calc(100vh - 330px); //100vhからheader全体とdashboard-topを引く
+  height: calc(100vh - 380px); //100vhからheader全体とdashboard-topを引く
+}
+
+//コメント
+.dashboard-quote {
+  background-color: #F6F6FF;
+  color: #343842;
+  margin: 8px 16px;
+  padding: 8px 24px;
+  border-radius: 32px;
+  height: 32px;
+  display: grid;
+  place-items: center start;
 }
 
 //ゴール全体
@@ -84,7 +94,7 @@
   text-align: center;
   background-color: rgba(32, 35, 43, 0.75);
   border-radius: 8px;
-  margin: 16px 16px 8px 16px;
+  margin: 8px 16px;
   padding: 16px;
 }
 
@@ -104,7 +114,7 @@
   flex-direction: column;
   width: 320px;
   min-width: 176px;
-
+  height: 424px;
 }
 
 //モットー全体
@@ -114,7 +124,7 @@
   width: 480px;
   min-width: 176px;
   margin: 8px;
-  max-height: calc(100% - 16px);
+  height: 424px;
 }
 
 //メンバー全体
@@ -124,7 +134,7 @@
   width: 136px;
   min-width: 104px;
   margin: 8px;
-  max-height: calc(100% - 16px);
+  height: 424px;
 }
 
 //履歴全体
@@ -134,7 +144,21 @@
   margin: 8px 16px 8px 8px;
   width: 400px;
   min-width: 176px;
-  max-height: calc(100% - 16px);
+  height: 424px;
+}
+
+//コメント
+.dashboard-quote-content {
+  font-weight: bold;
+}
+
+//コメント
+.dashboard-quote-detail {
+  font-size: 80%;
+}
+
+.dashboard-quote-person {
+  margin-right: 8px;
 }
 
 //数値
@@ -158,11 +182,14 @@
 .dashboard-figure-content {
   font-size: 240%;
   font-weight: bold;
+  height: 48px;
+  line-header: 48px;
 }
 
 //メンバー
 .community-user-list {
-  overflow: scroll;
+  height: calc(100% - 48px);
+  overflow-y: scroll;
 }
 
 //メンバー
@@ -291,19 +318,21 @@ p#goalCountTimer span {
 .dashboard-each-motto-index {
   margin-left: auto;
   margin-right: auto;
-  background-color: #ffffff;
-  height: 20px;
-  width: 20px;
+  background-color: #fff;
+  height: 16px;
+  width: 16px;
   border-radius: 50px;
-  line-height: 20px;
+  line-height: 16px;
   color: #343842;
+  font-weight: bold;
 }
 
 //スローガン
 .dashboard-each-motto-content {
-  margin: 2px 24px 0 24px;
   font-weight: bold;
   font-size: 120%;
+  margin-left: 8px;
+  margin-right: 8px;
 }
 
 //ミーティング
@@ -409,6 +438,8 @@ p#goalCountTimer span {
 
 //レコード
 .dashboard-ten-days-record {
+  margin-left: 8px;
+  margin-right: 8px;
   height: calc(100% - 48px);
   overflow-y: scroll;
 }

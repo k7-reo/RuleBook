@@ -88,6 +88,7 @@ class PrivilegesController < ApplicationController
     standby.executing_user_id = current_user.id
     standby.executed_user_id = current_user.id
     standby.checked = true
+    standby.approval = true
     standby.save
     redirect_to community_privileges_path(@community.id)
   end

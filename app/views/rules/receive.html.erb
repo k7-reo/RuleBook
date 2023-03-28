@@ -1,7 +1,7 @@
-  <p class="page-title"><%= @user.name %>宛の受信BOX</p>
+  <div class="page-title"><%= @user.name %>宛の受信BOX</div>
 
-  <div class="round">
-    <p class="section-title"><%= @user.name %>に実行されたルール</p>
+  <div class="excuted-rules">
+    <div class="section-title">実行されたルール</div>
     <% if @standbyRules.present? %>
       <table>
         <thead>
@@ -20,8 +20,8 @@
           <tr>
             <td><%= link_to standby.community.community_name, community_path(standby.community_id) %></td>
             <td><%= standby.executing_user.name %></td>
-            <td><%= standby.rule.content %></td>
-            <td><%= standby.rule.point %></td>
+            <td><%= standby.content %></td>
+            <td><%= standby.point %></td>
             <td><%= standby.rule.created_at.to_s(:datetime_jp) %></td>
             <td><%= standby.detail %></td>
             <td>
@@ -33,11 +33,11 @@
         </tbody>
       </table>
     <% else %>
-      <p>あなたに対して実行されたルールはありません。</p>
+      <div class="alt-text">あなたに対して実行されたルールはありません。</div>
     <% end %>
   </div>
-  <div class="round">
-    <p class="section-title"><%= @user.name %>へのペナルティ完了許可の依頼</p>
+  <div class="excuted-penalties">
+    <div class="section-title">ペナルティ完了確認の依頼</div>
     <% if @standbyPenalties.present? %>
       <table>
         <thead>
@@ -55,8 +55,8 @@
           <tr>
             <td><%= link_to standby.community.community_name, community_path(standby.community_id) %></td>
             <td><%= standby.executing_user.name %></td>
-            <td><%= standby.penalty.content %></td>
-            <td><%= standby.penalty.point %></td>
+            <td><%= standby.content %></td>
+            <td><%= standby.point %></td>
             <td><%= standby.penalty.created_at.to_s(:datetime_jp) %></td>
             <td><%= link_to '承認する', forgive_path(standby) %></td>
             <td><%= link_to '否認する', forbid_path(standby) %></td>
@@ -65,11 +65,11 @@
         </tbody>
       </table>
     <% else %>
-      <p>あなたに送られたペナルティ完了の許可依頼はありません。</p>
+      <div class="alt-text">あなたに送られたペナルティ完了の許可依頼はありません。</div>
     <% end %>
     </div>
-  <div class="round">
-    <p class="section-title"><%= @user.name %>がオーナーのコミュニティへの参加申請</p>
+  <div class="join-requests">
+    <div class="section-title">オーナーコミュニティへの参加申請</div>
     <% if @unaccepted_users.present? %>
       <table>
         <thead>
@@ -90,6 +90,6 @@
         </tbody>
       </table>
     <% else %>
-      <p>参加依頼はありません。</p>
+      <div class="alt-text">参加依頼はありません。</div>
     <% end %>
   </div>

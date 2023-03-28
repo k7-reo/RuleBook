@@ -86,10 +86,12 @@ class PenaltiesController < ApplicationController
     standby.executing_user_id = current_user.id
     standby.community_id = @community.id
     standby.penalty_id = @penalty.id
+    standby.content = @penalty.content
+    standby.point = @penalty.point
     standby.action_type = 'penalty'
     standby.save!
     community_user = CommunityUser.find_by(user_id: current_user.id, community_id: @community.id)
-    community_user.monthly_point += standby.penalty.point
+    community_user.monthly_point += standby.point
     community_user.save
     redirect_to community_privileges_path(@community.id)
   end
@@ -100,6 +102,7 @@ class PenaltiesController < ApplicationController
     #community_user.point += standby.penalty.point
     #community_user.save
     standby.checked = true #true=確認済み。今後ユーザーが受けてきたルールのカウントをする際には、trueの数をカウントすればいい。
+    standby.approval = true
     standby.save
     redirect_to receive_path
   #  excuting_userのreceiveに「許可が通りました。」notice
@@ -108,7 +111,7 @@ class PenaltiesController < ApplicationController
   def forbid #penalty実行否認
     standby = Standby.find(params[:id])
     community_user = CommunityUser.find_by(user_id: standby.executed_user_id, community_id: standby.community_id)#whereは条件にあっているデータを複数とってくる。今回は1つのデータを取る前提なのでfind_byを利用。
-    community_user.monthly_point -= standby.penalty.point
+    community_user.monthly_point -= standby.point
     community_user.save
     standby.checked = true
     standby.save

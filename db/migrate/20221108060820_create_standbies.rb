@@ -6,7 +6,7 @@ class CreateStandbies < ActiveRecord::Migration[5.2]
       t.integer :rule_id, optional: true
       t.integer :penalty_id, optional: true
       t.integer :privilege_id, optional: true
-      t.string :action_type, default: '', null: false #mottoかruleかpenaltyかprivilegeか
+      t.string :action_type, default: '', null: false #ruleかpenaltyかprivilegeか
       t.integer :executing_user_id
       t.integer :executed_user_id
       t.boolean :checked, default: false, null: false #false→receiveに表示、true→ユーザーの承認or否認完了

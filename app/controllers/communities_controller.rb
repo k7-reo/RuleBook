@@ -32,6 +32,7 @@ class CommunitiesController < ApplicationController
 
   def show
     @community = Community.find(params[:id])
+    @communityUsers = CommunityUser.where(community_id: params[:id], status: 1)
     @user = User.find(current_user.id)
     @nextMeeting = Meeting.find_by(community_id:  params[:id], status: 0) #実施前のMTG
     if @nextMeeting.present? #次のミーティングまでのカウントダウン実装javascriptに使う数値を定義。
@@ -50,6 +51,7 @@ class CommunitiesController < ApplicationController
       gon.deadline = @goal.deadline #gem 'gon'を利用してRailsからJavaScriptオブジェクトに変換
     end
     @excutedRules = Standby.where(community_id: params[:id], action_type: "rule", created_at: Time.current.all_month) #今月created_atのデータに絞っている。
+    @advice = Advice.order("RANDOM()").first
     @currentUser = CommunityUser.find_by(user_id: current_user.id) #community-info表示に利用
   end
 
