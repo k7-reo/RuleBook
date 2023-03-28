@@ -161,6 +161,8 @@ main {
   top: 88px; /*headher-areaとcommunity-infoのtopとheightの合計*/
   box-sizing: border-box;
   width: 100%;
+  height: calc(100vh - 88px);
+  border: 1px solid #fff;
 }
 
 .comment {

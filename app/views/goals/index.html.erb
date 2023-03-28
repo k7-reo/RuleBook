@@ -5,8 +5,6 @@
     <%= render 'communities/info', community: @community, currentUser: @currentUser %>
   </div>
   <div class="community-main">
-    <div class="goal-header">
-    </div>
     <div class="active-goal">
       <% if @activeGoal.present? %>
         <div class="active-goal-edit">
@@ -45,7 +43,7 @@
         </div>
       <% end %>
     </div>
-    <div clss="past-golas">
+    <div class="past-goals">
       <div class="section-title">過去設定したゴール</div>
       <% if @pastGoals.present? %>
       <div class="all-past-goals">

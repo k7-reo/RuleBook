@@ -8,10 +8,13 @@
     <div class="my-page-all">
       <div class="mypage-left">
         <div class="role">
-          <div class="role-header">
-            <div><%= link_to "役割作成", new_community_user_role_path(@community.id, current_user.id) %></div>
+          <div class="role-title">あなたの役割</div>
+          <div class="role-new">
+            <%= link_to new_community_user_role_path(@community.id, current_user.id) do %>
+              <i class="fa-regular fa-square-plus"></i>
+            <% end %>
           </div>
-          <div>
+          <div class="all-roles">
             <% if @roles.present? %>
               <% @roles.each do |role| %>
                 <div class="role-content">
@@ -32,23 +35,22 @@
           <div class="individual-point">
             <div class="individual-point-title">獲得ポイント</div>
             <div class="my-point"><%= @user.point %></div>
-            <div>
-              <div class="section-title">今月実行されたルール</div> <!-- standbyテーブルから取得 -->
-              <div>
-                <% @executedRuleStandbies.each do |standby| %>
-                  <%= standby.content %>
-                  <%= standby.point %>
-                  <%= standby.updated_at.to_s(:datetime_jp) %>
-                <% end %>
-              </div>
+            <div class="my-excuted-rules">
+              <% @executedRuleStandbies.each do |standby| %>
+                <div class="my-each-excuted-rule">
+                  <div><%= standby.content %></div>
+                  <div><%= standby.point %></div>
+                  <div><%= standby.updated_at.to_s(:datetime_jp) %></div>
+                </div>
+              <% end %>
+            </div>
+            <div class="comment">
+              <div>※承認したルールのみ反映。</div>
             </div>
           </div>
           <div class="individual-monthly-point">
             <div class="individual-monthly-point-title">利用可能ポイント</div>
             <div class="my-monthly-point"><%= @user.monthly_point %></div>
-            <div class="comment">
-              <div>※余剰ポイントは翌月に繰り越されます。</div>
-            </div>
             <div class="my-tasks">
               <div class="my-tasks-remaining">
                 <div class="privileges-remaining">
@@ -81,6 +83,9 @@
                       <% end %>
                     </div>
                   <% end %>
+                </div>
+                <div class="comment">
+                  <div>※余剰ポイントは翌月に繰り越されます。</div>
                 </div>
               </div>
               <div class="my-tasks-done">

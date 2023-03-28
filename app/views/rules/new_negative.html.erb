@@ -5,19 +5,15 @@
     <%= render 'communities/info', community: @community, currentUser: @currentUser %>
   </div>
   <div class="community-main">
-    <p class="page-title">ルール新規作成</p>
+    <p class="page-title">マイナスルール新規作成</p>
     <div class="comment">
-      <p>
+      <div>
         <b>ルール作成のポイント</b><br>
-        <br>
         ゴール達成が遠のく行動には、マイナスのポイントを設定しましょう。<br>
-        <br>
         強制ではないけど、やるとゴール達成に近づく、モチベーションがアップする行動には<br>
         マイナスのポイントを設定しましょう<br>
-        <br>
         線引きが難しいルールの設定は避けスローガンに設定しましょう。<br>
-        <br>
-      </p>
+      </div>
     </div>
     <div>
       <%= form_with(model:[@community, @rule], url: community_rules_path{@community.id}, local:true) do |f| %> <!--modelが配列してある理由：ネストしている時は親(community)のインスタンスも必要になる-->
@@ -25,9 +21,9 @@
         <div>
           <%= f.text_area :content %>
         </div>
-        <label><%= f.label :point, "ポイント増減" %><span class="form-note">必須</span></label>
+        <label><%= f.label :point, "減少ポイント" %><span class="form-note">必須</span></label>
         <div>
-          <%= f.text_field :point, placeholder: "マイナス指定可" %>
+          <%= f.text_field :point, placeholder: "マイナス指定" %>
         </div>
         <label><%= f.label :genre, "ジャンル" %><span class="form-note">必須</span></label>
         <div>

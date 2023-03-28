@@ -60,28 +60,39 @@
   margin-right: 8px;
 }
 
+//info除く全体
+.community-dashboard-wrapper {
+  margin: auto;
+  width: 1200px;
+}
+
 //上部
 .community-dashboard-top {
   box-sizing: border-box;
   width: 100%;
-  display: flex;
-  flex-direction: column;
-  margin-top: 8px;
+  padding: 16px;
   //border-bottom: 1px solid rgba(68, 196, 138, 0.3);
+}
+
+.community-dashboard-middle {
+  box-sizing: border-box;
+  width: 100%;
+  display: flex;
+  padding: 16px;
 }
 
 //下部
 .community-dashboard-bottom {
+  box-sizing: border-box;
   display: flex;
-  justify-content: space-between;
   height: calc(100vh - 380px); //100vhからheader全体とdashboard-topを引く
+  padding: 16px;
 }
 
 //コメント
 .dashboard-quote {
   background-color: #F6F6FF;
   color: #343842;
-  margin: 8px 16px;
   padding: 8px 24px;
   border-radius: 32px;
   height: 32px;
@@ -94,8 +105,8 @@
   text-align: center;
   background-color: rgba(32, 35, 43, 0.75);
   border-radius: 8px;
-  margin: 8px 16px;
   padding: 16px;
+  margin: 8px;
 }
 
 //数値全体
@@ -105,7 +116,6 @@
   color: #fff;
   display: flex;
   flex-direction: column;
-  margin-left: 8px;
 }
 
 //ミーティング全体
@@ -114,7 +124,6 @@
   flex-direction: column;
   width: 320px;
   min-width: 176px;
-  height: 424px;
 }
 
 //モットー全体
@@ -123,28 +132,18 @@
   border-radius: 8px;
   width: 480px;
   min-width: 176px;
-  margin: 8px;
   height: 424px;
-}
-
-//メンバー全体
-.dashboard-users {
-  background-color: rgba(32, 35, 43, 0.75);
-  border-radius: 8px;
-  width: 136px;
-  min-width: 104px;
   margin: 8px;
-  height: 424px;
 }
 
 //履歴全体
 .dashboard-late-activities {
   background-color: rgba(32, 35, 43, 0.75);
   border-radius: 8px;
-  margin: 8px 16px 8px 8px;
   width: 400px;
   min-width: 176px;
   height: 424px;
+  margin: 8px;
 }
 
 //コメント
@@ -157,6 +156,7 @@
   font-size: 80%;
 }
 
+//コメント
 .dashboard-quote-person {
   margin-right: 8px;
 }
@@ -286,7 +286,7 @@ p#goalCountTimer span {
 
 //スローガン
 .dashboard-mottos-title {
-  background-color: #343842;
+  background-color: #44c48a;
   border-radius: 8px 8px 0 0;
   height: 24px;
   line-height: 24px;

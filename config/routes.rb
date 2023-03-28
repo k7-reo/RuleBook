@@ -28,6 +28,8 @@ Rails.application.routes.draw do
       get "execute" => 'rules#execute' #ルール実行画面への遷移
       post "execute" => 'rules#execute_create' #ルール実行申請。standbyテーブルにテーブルを新しく作成。
     end
+    get "new_positive_rule" => 'rules#new_positive'
+    get "new_negative_rule" => 'rules#new_negative'
     resources :mottos
     resources :privileges do
       get "execute" => 'privileges#execute' #今すぐ受けられる特典を「実行」したときのアクション

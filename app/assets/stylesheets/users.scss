@@ -23,15 +23,40 @@
 //mypage/show役割
 .role, .others-role {
   margin: 8px;
+  background-color: rgba(52, 56, 66, 0.5);
+  border-radius: 16px;
 }
+
+.role-new {
+  height: 8px;
+  color: #fff;
+  text-align: right;
+  position: relative;
+  top: 4px;
+  right: 4px;
+}
+
+.all-roles {
+  padding-bottom: 8px;
+}
+
+//mypage役割
+.role-title {
+  background-color: #343842;
+  border-radius: 16px 16px 0 0;
+  height: 24px;
+  line-height: 24px;
+  text-align: center;
+  font-weight: bold;
+}
+
 
 //mypage/show役割
 .role-content, .others-role-content {
   width: fit-content;
   background-color: #F6F6FF;
   border-radius: 50px;
-  margin-top: 8px;
-  margin-bottom: 8px;
+  margin: 8px 16px;
   padding: 8px 16px;
   color: #343842;
   display: flex;
@@ -108,15 +133,17 @@
 //mypage/index獲得ポイント
 .my-point {
   color: #44c48a;
-  font-size: 160%;
+  font-size: 200%;
   font-weight: bold;
+  margin: 16px;
 }
 
 //mypage利用可能ポイント
 .my-monthly-point {
   color: #07868c;
-  font-size: 160%;
+  font-size: 200%;
   font-weight: bold;
+  margin: 16px;
 }
 
 //index

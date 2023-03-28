@@ -28,10 +28,6 @@
   align-items: center;
 }
 
-.active-goal-deadline {
-
-}
-
 .active-goal-deadline, .active-goal-creator {
   margin: 2px 16px;
   font-size: 80%;
@@ -47,9 +43,16 @@
   color: #343842;
 }
 
-
 .active-goal-creator-name {
   background-color: #f47842;
   padding: 2px;
   color: #343842;
+}
+
+.past-goals {
+  width: fit-content;
+  margin: 16px;
+  padding: 16px;
+  background-color: rgba(52, 56, 66, 0.5);
+  border-radius: 16px;
 }

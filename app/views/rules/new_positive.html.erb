@@ -1,0 +1,44 @@
+  <div class="community-background">
+    <%= attachment_image_tag @community, :community_image, format: 'jpeg', fallback: "sunset_mountains.jpg" %>
+  </div>
+  <div class="community-info">
+    <%= render 'communities/info', community: @community, currentUser: @currentUser %>
+  </div>
+  <div class="community-main">
+    <p class="page-title">プラスルール新規作成</p>
+    <div class="comment">
+      <div>
+        <b>ルール作成のポイント</b><br>
+        ゴール達成が遠のく行動には、マイナスのポイントを設定しましょう。<br>
+        強制ではないけど、やるとゴール達成に近づく、モチベーションがアップする行動には<br>
+        マイナスのポイントを設定しましょう<br>
+        線引きが難しいルールの設定は避けスローガンに設定しましょう。<br>
+      </div>
+    </div>
+    <div>
+      <%= form_with(model:[@community, @rule], url: community_rules_path{@community.id}, local:true) do |f| %> <!--modelが配列してある理由：ネストしている時は親(community)のインスタンスも必要になる-->
+        <label><%= f.label :content, "ルール内容" %><span class="form-note">必須</span></label>
+        <div>
+          <%= f.text_area :content %>
+        </div>
+        <label><%= f.label :point, "増加ポイント" %><span class="form-note">必須</span></label>
+        <div>
+          <%= f.text_field :point, placeholder: "プラス指定" %>
+        </div>
+        <label><%= f.label :genre, "ジャンル" %><span class="form-note">必須</span></label>
+        <div>
+          <%= f.text_field :genre %>
+        </div>
+        <label><%= f.label :user_ids, "対象メンバー" %><span class="form-note">必須</span></label>
+        <div>
+          <%= collection_check_boxes(:rule, :user_ids, User.joins(:community_users).where(community_users: {community_id: params[:community_id]}), :id, :name, include_hidden: false) do |user| %>
+            <%= user.check_box %>
+            <%= user.text %>
+          <% end %>
+        </div>
+        <div>
+          <%= f.submit '新規作成' %>
+        </div>
+      <% end %>
+    </div>
+  </div>

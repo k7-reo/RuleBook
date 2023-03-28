@@ -2,6 +2,41 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.positive-rules-wrapper, .negative-rules-wrapper {
+  margin: 16px;
+  background-color: rgba(52, 56, 66, 0.5);
+  border-radius: 16px;
+}
+
+.positive-rules-title {
+  background-color: #f47842;
+  border-radius: 16px 16px 0 0;
+  height: 24px;
+  line-height: 24px;
+  text-align: center;
+  color: #343842;
+  font-weight: bold;
+}
+
+.negative-rules-title {
+  background-color: #07868c;
+  border-radius: 16px 16px 0 0;
+  height: 24px;
+  line-height: 24px;
+  text-align: center;
+  color: #343842;
+  font-weight: bold;
+}
+
+.rule-new {
+  height: 8px;
+  color: #fff;
+  text-align: right;
+  position: relative;
+  top: 4px;
+  right: 4px;
+}
+
 .all-positive-rules-wrapper, .all-negative-rules-wrapper {
   display: flex;
   overflow-x: scroll;
@@ -14,32 +49,12 @@
 .each-rule {
   width: 280px;
   margin: 16px;
-  background-color: rgba(52, 56, 66, 0.5);
+  background-color: #F6F6FF;
   border-radius: 16px;
-}
-
-.each-positive-rule-title {
-  background-color: #f47842;
-  border-radius: 16px 16px 0 0;
-  height: 24px;
-  line-height: 24px;
-  text-align: center;
   color: #343842;
-  font-weight: bold;
-}
-
-.each-negative-rule-title {
-  background-color: #07868c;
-  border-radius: 16px 16px 0 0;
-  height: 24px;
-  line-height: 24px;
-  text-align: center;
-  color: #343842;
-  font-weight: bold;
 }
 
 .each-rule-edit {
-  color: #fff;
   text-align: right;
   position: relative;
   top: 4px;
