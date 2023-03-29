@@ -5,24 +5,30 @@
     <%= render 'communities/info', community: @community, currentUser: @currentUser %>
   </div>
   <div class="community-main">
-    <div class="mottos-header">
-      <p class="section-title">スローガン一覧</p>
-      <p class="motto-new"><%= link_to "スローガン新規作成", new_community_motto_path(@community.id) %></p>
-    </div>
-    <div class="all-mottos">
-      <% @community.mottos.each do |motto| %>
-        <div class="each-motto">
-          <div class="each-motto-edit">
-            <%= link_to edit_community_motto_path(@community, motto.id) do %>
-              <i class="fa-regular fa-pen-to-square"></i>
-            <% end %>
-          </div>
-          <div class="each-motto-content"><%= motto.content %></div>
-          <div class="each-motto-creator">
-            <span class="each-motto-creator-title">作成者</span>
-            <span class="each-motto-creator-name"><%= motto.user.name %></span>
-          </div>
+    <div class="mottos">
+      <div class="mottos-header">
+        <div class="section-title">スローガン一覧</div>
+        <div class="motto-new">
+          <%= link_to new_community_motto_path(@community.id) do %>
+            <i class="fa-regular fa-square-plus"></i>
+          <% end %>
         </div>
-      <% end %>
+      </div>
+      <div class="all-mottos">
+        <% @community.mottos.each do |motto| %>
+          <div class="each-motto">
+            <div class="each-motto-edit">
+              <%= link_to edit_community_motto_path(@community, motto.id) do %>
+                <i class="fa-regular fa-pen-to-square"></i>
+              <% end %>
+            </div>
+            <div class="each-motto-content"><%= motto.content %></div>
+            <div class="each-motto-creator">
+              <span class="each-motto-creator-title">作成者</span>
+              <span class="each-motto-creator-name"><%= motto.user.name %></span>
+            </div>
+          </div>
+        <% end %>
+      </div>
     </div>
   </div>

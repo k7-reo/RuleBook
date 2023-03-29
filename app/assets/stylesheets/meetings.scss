@@ -2,24 +2,104 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.active-meetings {
-  margin-top: 16px;
+.meetings {
+  margin: 16px;
+  background-color: rgba(52, 56, 66, 0.5);
+  border-radius: 16px;
 }
 
-.meetings {
+.meetings-header {
   display: flex;
+  justify-content: space-between;
+}
+
+.all-active-meetings {
+  display: flex;
+  justify-content: center;
+}
+
+.meeting-pre-edit {
+  width: fit-content;
+  margin-left: auto;
+  position: relative;
+  bottom: 8px;
+  left: 8px;
+  height: 0px;
 }
 
 .next-meeting, .meeting-in-progress {
-  margin-left: auto;
-  margin-right: auto;
   text-align: center;
   width: 400px;
 }
 
-.past-meeting-content {
+.next-meeting-content {
+  background-color: #f47842;
+  margin: 16px;
+  padding: 16px;
+  border-radius: 18px;
+}
+
+.meeting-in-progress-content {
+  background-color: #ffd139;
+  margin: 16px;
+  padding: 16px;
+  border-radius: 18px;
+}
+
+.meeting-detail {
+  font-size: 80%;
+  margin-bottom: 16px;
+}
+
+.meeting-start-cta {
+  display: block;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  background-color: #fff;
+  color: #f47842;
+  font-weight: bold;
+  border-radius: 8px;
+  border: 1px solid #f47842;
+}
+
+.meeting-start-cta:hover {
+  background-color: #f47842;
+  border: 1px solid #ffffff;
+  color: #ffffff;
+}
+
+.back-to-meeting-cta {
+  display: block;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  background-color: #fff;
+  color: #ffd139;
+  font-weight: bold;
+  border-radius: 8px;
+  border: 1px solid #ffd139;
+}
+
+.back-to-meeting-cta:hover {
+  background-color: #ffd139;
+  border: 1px solid #ffffff;
+  color: #ffffff;
+}
+
+.past-meetings {
+  margin: 16px;
   background-color: rgba(52, 56, 66, 0.5);
-  margin: 32px;
+  border-radius: 16px;
+}
+
+.past-meetings-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.past-meeting-content {
+  background-color: #d6dbe6;
+  color: #343842;
+  margin: 16px;
   padding: 16px;
   border-radius: 16px;
 }
@@ -28,13 +108,6 @@
   color: #343842;
   line-height: 24px; /*meeting-indexのheightに合わせる */
   font-weight: bold;
-}
-
-.meeting-content {
-  background-color: rgba(52, 56, 66, 0.5);
-  margin: 8px;
-  padding-bottom: 16px;
-  border-radius: 8px;
 }
 
 .past-meeting-content-top {

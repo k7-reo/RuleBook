@@ -6,46 +6,62 @@
   </div>
   <div class="community-main">
     <div class="privileges">
-      <div>
-        <div class="all-privileges-header">
-          <p class="privilege-new"><%= link_to "報酬を新規作成", new_community_privilege_path(@community.id) %></p>
+      <div class="privileges-wrapper">
+        <div class="privileges-header">
+          <div class="section-title">報酬一覧</div>
+          <div class="privilege-new">
+            <%= link_to new_community_privilege_path(@community.id) do %>
+              <i class="fa-regular fa-square-plus"></i>
+            <% end %>
+          </div>
         </div>
         <div class="all-privileges-wrapper">
           <div class="all-privileges">
-            <% @community.privileges.each do |privilege| %>
-              <div class="each-privilege">
-                <div class="each-privilege-title">報酬</div>
-                <div class="each-privilege-edit">
-                  <%= link_to edit_community_privilege_path(@community, privilege.id) do %>
-                    <i class="fa-regular fa-pen-to-square"></i>
-                  <% end %>
+            <% if @community.privileges.present? %>
+              <% @community.privileges.each do |privilege| %>
+                <div class="each-privilege">
+                  <div class="each-privilege-edit">
+                    <%= link_to edit_community_privilege_path(@community, privilege.id) do %>
+                      <i class="fa-regular fa-pen-to-square"></i>
+                    <% end %>
+                  </div>
+                  <div class="each-privilege-content"><%= privilege.content %></div>
+                  <div class="each-privilege-point"><%= privilege.point %><span class="point-letter">ポイント消費</span></div>
                 </div>
-                <div class="each-privilege-content"><%= privilege.content %></div>
-                <div class="each-privilege-point"><%= privilege.point %><span class="point-letter">ポイント消費</span></div>
-              </div>
+              <% end %>
+            <% else %>
+              <div>このコミュニティにはまだ報酬がありません。</div>
             <% end %>
           </div>
         </div>
       </div>
     </div>
     <div class="penalties">
-      <div>
-        <div class="all-penalties-header">
-          <p><%= link_to "ペナルティを新規作成", new_community_penalty_path(@community.id) %></p>
+      <div class="penalties-wrapper">
+        <div class="penalties-header">
+          <div class="section-title">ペナルティ一覧</div>
+          <div class="penalties-new">
+            <%= link_to new_community_penalty_path(@community.id) do %>
+              <i class="fa-regular fa-square-plus"></i>
+            <% end %>
+          </div>
         </div>
         <div class="all-penalties-wrapper">
           <div class="all-penalties">
-            <% @community.penalties.each do |penalty| %>
-              <div class="each-penalty">
-                <div class="each-penalty-title">ペナルティ</div>
-                <div class="each-penalty-edit">
-                  <%= link_to edit_community_penalty_path(@community, penalty.id) do %>
-                    <i class="fa-regular fa-pen-to-square"></i>
-                  <% end %>
+            <% if @community.penalties.present? %>
+              <% @community.penalties.each do |penalty| %>
+                <div class="each-penalty">
+                  <div class="each-penalty-edit">
+                    <%= link_to edit_community_penalty_path(@community, penalty.id) do %>
+                      <i class="fa-regular fa-pen-to-square"></i>
+                    <% end %>
+                  </div>
+                  <div class="each-penalty-content"><%= penalty.content %></div>
+                  <div class="each-penalty-point"><%= penalty.point %><span class="point-letter">ポイント回復</span></div>
                 </div>
-                <div class="each-penalty-content"><%= penalty.content %></div>
-                <div class="each-penalty-point"><%= penalty.point %><span class="point-letter">ポイント回復</span></div>
-              </div>
+              <% end %>
+            <% else %>
+              <div>このコミュニティにはまだペナルティがありません。</div>
             <% end %>
           </div>
         </div>

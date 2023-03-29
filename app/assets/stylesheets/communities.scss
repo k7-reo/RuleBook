@@ -85,7 +85,6 @@
 .community-dashboard-bottom {
   box-sizing: border-box;
   display: flex;
-  height: calc(100vh - 380px); //100vhからheader全体とdashboard-topを引く
   padding: 16px;
 }
 
@@ -107,6 +106,7 @@
   border-radius: 8px;
   padding: 16px;
   margin: 8px;
+  border: 1px solid #343842;
 }
 
 //数値全体
@@ -341,17 +341,13 @@ p#goalCountTimer span {
 }
 
 //ミーティング
-.meeting-index {
+.dashboard-meeting-index {
   background-color: #f47842;
   height: 24px;
   border-radius: 8px 8px 0 0;
-}
-
-//ミーティング
-.dashboard-meeting-index-letter {
   color: #343842;
   font-weight: bold;
-  line-height: 24px; /*meeting-indexのheightに合わせる */
+  line-height: 24px;
 }
 
 //ミーティング
@@ -363,15 +359,16 @@ p#goalCountTimer span {
 }
 
 //ミーティング
-.meeting-pre-edit {
+.dashboard-meeting-pre-edit {
   text-align: right;
   position: relative;
   top: 4px;
   right: 4px;
+  height: 0;
 }
 
 //ミーティング
-.meeting-name {
+.dashboard-meeting-name {
   font-size: 120%;
   font-weight: bold;
   margin-top: 8px;
@@ -380,18 +377,18 @@ p#goalCountTimer span {
 }
 
 //ミーティング
-.meeting-count-timer {
+.dashboard-meeting-count-timer {
   font-size: 160%;
   font-weight: bold;
 }
 
 //ミーティング
-.meeting-detail {
+.dashboard-meeting-detail {
   font-size: 80%;
 }
 
 //ミーティング
-.meeting-start-cta {
+.dashboard-meeting-start-cta, .dashboard-back-to-meeting-cta {
   display: block;
   margin: 16px 8px 0 8px;
   padding-top: 8px;
@@ -404,8 +401,9 @@ p#goalCountTimer span {
 }
 
 //ミーティング
-.meeting-start-cta:hover {
+.dashboard-meeting-start-cta:hover, .dashboard-back-to-meeting-cta:hover {
   background-color: #f47842;
+  border: 1px solid #ffffff;
   color: #ffffff;
 }
 

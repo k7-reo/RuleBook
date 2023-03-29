@@ -7,17 +7,19 @@
   <div class="community-main">
     <div class="rules">
       <div class="positive-rules-wrapper">
-        <div class="positive-rules-title">プラスルール</div>
-        <div class="rule-new">
-          <%= link_to community_new_positive_rule_path(@community.id) do %>
-            <i class="fa-regular fa-square-plus"></i>
-          <% end %>
+        <div class="positive-rules-header">
+          <div class="section-title">プラスルール一覧</div>
+          <div class="rule-new">
+            <%= link_to community_new_positive_rule_path(@community.id) do %>
+              <i class="fa-regular fa-square-plus"></i>
+            <% end %>
+          </div>
         </div>
         <div class="all-positive-rules-wrapper">
           <div class="all-positive-rules">
             <% if @positiveRules.present? %>
               <% @positiveRules.each do |rule| %>
-                <div class="each-rule">
+                <div class="each-positive-rule">
                   <div class="each-rule-edit">
                     <%= link_to community_rule_path(@community.id, rule.id) do %>
                       <i class="fa-regular fa-pen-to-square"></i>
@@ -26,10 +28,12 @@
                   <div class="each-rule-content"><p><%= rule.content %></p></div>
                   <div class="each-positive-rule-point"><%= rule.point %><span class="point-letter">ポイント</span></div>
                   <div class="each-rule-member">
-                    <span class="each-rule-member-title">対象メンバー</span>
-                    <% rule.users.each do |user| %>
-                      <span class="each-positive-rule-member-name"><%= user.name %></span>
-                    <% end %>
+                    <div class="each-rule-member-title">対象メンバー</div>
+                    <div class="each-rule-members">
+                      <% rule.users.each do |user| %>
+                        <span class="each-positive-rule-member-name"><%= user.name %></span>
+                      <% end %>
+                    </div>
                   </div>
                   <div class="each-positive-rule-execute"><%= link_to "実行", community_rule_execute_path(@community.id, rule.id), class: "each-positive-rule-execute-cta" %></div>
                 </div>
@@ -41,17 +45,19 @@
         </div>
       </div>
       <div class="negative-rules-wrapper">
-        <div class="negative-rules-title">マイナスルール</div>
-        <div class="rule-new">
-          <%= link_to community_new_negative_rule_path(@community.id) do%>
-            <i class="fa-regular fa-square-plus"></i>
-          <% end %>
+        <div class="negative-rules-header">
+          <div class="section-title">マイナスルール一覧</div>
+          <div class="rule-new">
+            <%= link_to community_new_negative_rule_path(@community.id) do%>
+              <i class="fa-regular fa-square-plus"></i>
+            <% end %>
+          </div>
         </div>
         <div class="all-negative-rules-wrapper">
           <div class="all-negative-rules">
             <% if @negativeRules.present? %>
               <% @negativeRules.each do |rule| %>
-                <div class="each-rule">
+                <div class="each-negative-rule">
                   <div class="each-rule-edit">
                     <%= link_to community_rule_path(@community.id, rule.id) do %>
                       <i class="fa-regular fa-pen-to-square"></i>
@@ -60,10 +66,12 @@
                   <div class="each-rule-content"><%= rule.content %></div>
                   <div class="each-negative-rule-point"><%= rule.point %><span class="point-letter">ポイント</span></div>
                   <div class="each-rule-member">
-                    <span class="each-rule-member-title">対象メンバー</span>
-                    <% rule.users.each do |user| %>
-                      <span class="each-negative-rule-member-name"><%= user.name %></span>
-                    <% end %>
+                    <div class="each-rule-member-title">対象メンバー</div>
+                    <div class="each-rule-members">
+                      <% rule.users.each do |user| %>
+                        <span class="each-negative-rule-member-name"><%= user.name %></span>
+                      <% end %>
+                    </div>
                   </div>
                   <div class="each-negative-rule-execute"><%= link_to "実行", community_rule_execute_path(@community.id, rule.id), class: "each-negative-rule-execute-cta" %></div>
                 </div>
