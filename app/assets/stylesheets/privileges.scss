@@ -67,3 +67,40 @@
 .point-letter {
   font-size: 62.5%;
 }
+
+.privilege-new, .penalty-new {
+  padding-bottom: 32px;
+  text-align: center;
+}
+
+.privilege-new-cta {
+  background-color: #ffffff;
+  font-weight: bold;
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid #f47842;
+  color: #f47842;
+  width: fit-content;
+}
+
+.privilege-new-cta:hover {
+  background-color: #f47842;
+  border: 1px solid #ffffff;
+  color: #ffffff;
+}
+
+.penalty-new-cta {
+  background-color: #ffffff;
+  font-weight: bold;
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid #07868c;
+  color: #07868c;
+  width: fit-content;
+}
+
+.penalty-new-cta:hover {
+  background-color: #07868c;
+  border: 1px solid #ffffff;
+  color: #ffffff;
+}

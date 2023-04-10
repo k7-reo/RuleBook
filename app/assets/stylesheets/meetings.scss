@@ -16,6 +16,7 @@
 .all-active-meetings {
   display: flex;
   justify-content: center;
+  padding: 8px;
 }
 
 .meeting-pre-edit {
@@ -29,19 +30,19 @@
 
 .next-meeting, .meeting-in-progress {
   text-align: center;
-  width: 400px;
+  width: 440px;
 }
 
 .next-meeting-content {
   background-color: #f47842;
-  margin: 16px;
+  margin: 8px;
   padding: 16px;
   border-radius: 18px;
 }
 
 .meeting-in-progress-content {
   background-color: #ffd139;
-  margin: 16px;
+  margin: 8px;
   padding: 16px;
   border-radius: 18px;
 }
@@ -79,6 +80,10 @@
   border: 1px solid #ffd139;
 }
 
+.meeting-new {
+  padding-bottom: 32px;
+}
+
 .back-to-meeting-cta:hover {
   background-color: #ffd139;
   border: 1px solid #ffffff;
@@ -96,10 +101,16 @@
   justify-content: space-between;
 }
 
-.past-meeting-content {
+.all-past-meetings {
+  display: flex;
+  flex-direction: column;
+  padding: 8px;
+}
+
+.each-past-meeting {
   background-color: #d6dbe6;
   color: #343842;
-  margin: 16px;
+  margin: 8px;
   padding: 16px;
   border-radius: 16px;
 }
@@ -110,7 +121,7 @@
   font-weight: bold;
 }
 
-.past-meeting-content-top {
+.past-meeting-top {
   display: flex;
 }
 

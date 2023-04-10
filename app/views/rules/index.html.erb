@@ -1,5 +1,5 @@
   <div class="community-background">
-    <%= attachment_image_tag @community, :community_image, format: 'jpeg', fallback: "sunset_mountains.jpg" %>
+    <%= attachment_image_tag @community, :community_image, format: 'jpeg' %>
   </div>
   <div class="community-info">
     <%= render 'communities/info', community: @community, currentUser: @currentUser %>
@@ -9,15 +9,17 @@
       <div class="positive-rules-wrapper">
         <div class="positive-rules-header">
           <div class="section-title">プラスルール一覧</div>
-          <div class="rule-new">
-            <%= link_to community_new_positive_rule_path(@community.id) do %>
-              <i class="fa-regular fa-square-plus"></i>
+          <div class="rule-new-header">
+            <% if @positiveRules.present? %>
+              <%= link_to community_new_positive_rule_path(@community.id) do %>
+                <i class="fa-regular fa-square-plus"></i>
+              <% end %>
             <% end %>
           </div>
         </div>
-        <div class="all-positive-rules-wrapper">
-          <div class="all-positive-rules">
-            <% if @positiveRules.present? %>
+        <% if @positiveRules.present? %>
+          <div class="all-positive-rules-wrapper">
+            <div class="all-positive-rules">
               <% @positiveRules.each do |rule| %>
                 <div class="each-positive-rule">
                   <div class="each-rule-edit">
@@ -38,24 +40,27 @@
                   <div class="each-positive-rule-execute"><%= link_to "実行", community_rule_execute_path(@community.id, rule.id), class: "each-positive-rule-execute-cta" %></div>
                 </div>
               <% end %>
-            <% else %>
-              <div>このコミュニティにはまだプラスポイントのルールがありません。</div>
-            <% end %>
+            </div>
           </div>
-        </div>
+        <% else %>
+          <div class="alt-text">ゴール達成に向けて賞賛すべき行動にプラスルールを付与しましょう。</div>
+          <div class="positive-rule-new"><%= link_to "プラスルール設定", community_new_positive_rule_path(@community.id), class: "positive-rule-new-cta" %></div>
+        <% end %>
       </div>
       <div class="negative-rules-wrapper">
         <div class="negative-rules-header">
           <div class="section-title">マイナスルール一覧</div>
-          <div class="rule-new">
-            <%= link_to community_new_negative_rule_path(@community.id) do%>
-              <i class="fa-regular fa-square-plus"></i>
+          <div class="rule-new-header">
+            <% if @negativeRules.present? %>
+              <%= link_to community_new_negative_rule_path(@community.id) do%>
+                <i class="fa-regular fa-square-plus"></i>
+              <% end %>
             <% end %>
           </div>
         </div>
-        <div class="all-negative-rules-wrapper">
-          <div class="all-negative-rules">
-            <% if @negativeRules.present? %>
+        <% if @negativeRules.present? %>
+          <div class="all-negative-rules-wrapper">
+            <div class="all-negative-rules">
               <% @negativeRules.each do |rule| %>
                 <div class="each-negative-rule">
                   <div class="each-rule-edit">
@@ -76,11 +81,12 @@
                   <div class="each-negative-rule-execute"><%= link_to "実行", community_rule_execute_path(@community.id, rule.id), class: "each-negative-rule-execute-cta" %></div>
                 </div>
               <% end %>
-            <% else %>
-              <div>このコミュニティにはまだマイナスポイントのルールがありません。</div>
-            <% end %>
             </div>
           </div>
+        <% else %>
+          <div class="alt-text">このコミュニティにはまだマイナスポイントのルールがありません。</div>
+          <div class="negative-rule-new"><%= link_to "マイナスルール設定", community_new_negative_rule_path(@community.id), class: "negative-rule-new-cta" %></div>
+        <% end %>
       </div>
     </div>
   </div>

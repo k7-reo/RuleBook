@@ -6,80 +6,127 @@
 .my-page-all {
   box-sizing: border-box;
   display: flex;
+  width: 100%;
+  height: 100%;
 }
 
 //mypageメイン
 .mypage-left {
-  width: 84%;
+  width: 72%;
   padding: 8px;
+  height: 100%;
 }
 
 //mypage自分だけメモ
 .mypage-right {
-  width: 16%;
+  width: 28%;
   border-left: 1px solid rgba(68, 196, 138, 0.3);
 }
 
 //mypage/show役割
-.role, .others-role {
+.my-roles, .others-roles {
   margin: 8px;
   background-color: rgba(52, 56, 66, 0.5);
   border-radius: 16px;
+  height: 24%;
 }
 
-.role-new {
-  height: 0px;
-  color: #fff;
-  text-align: right;
-  position: relative;
-  top: 4px;
-  right: 4px;
+.roles-header {
+  display: flex;
+  justify-content: space-between;
 }
 
-.all-roles {
-  padding-bottom: 8px;
+.my-all-roles-wrapper {
+  box-sizing: border-box;
+  height: calc(100% - 36px);
+  overflow-y: scroll;
 }
 
-//mypage役割
-.role-title {
-  background-color: #343842;
-  border-radius: 16px 16px 0 0;
-  height: 24px;
-  line-height: 24px;
-  text-align: center;
-  font-weight: bold;
+.my-all-roles {
+  padding: 8px;
+  display: flex;
+  flex-wrap: wrap;
 }
-
 
 //mypage/show役割
-.role-content, .others-role-content {
+.my-each-role, .others-role-content {
   width: fit-content;
   background-color: #F6F6FF;
   border-radius: 50px;
-  margin: 8px 16px;
-  padding: 8px 16px;
+  margin: 8px;
+  padding: 8px 12px;
   color: #343842;
   display: flex;
+  white-space: nowrap;
+  align-items: center;
+}
+
+.my-each-role-index {
+  font-size: 120%;
+  font-weight: bold;
+  background-color: #44c48a;
+  color: #ffffff;
+  width: 24px;
+  height: 24px;
+  border-radius: 16px;
+  text-align: center;
+  line-height: 24px;
 }
 
 //mypage役割
-.role-content-letters {
+.my-each-role-content {
   font-size: 150%;
   font-weight: bold;
+  margin-left: 4px;
 }
 
-//mypage役割
-.role-content-edit-link {
-  padding-top: 4px;
+.role-new {
+  padding-bottom: 32px;
+  text-align: center;
+}
+
+.role-new-cta {
+  background-color: #ffffff;
+  font-weight: bold;
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid #44c48a;
+  color: #44c48a;
+  width: fit-content;
+}
+
+.role-new-cta:hover {
+  background-color: #44c48a;
+  border: 1px solid #ffffff;
+  color: #ffffff;
 }
 
 //mypageポイント
-.individual-activity {
+.my-activity {
+  height: calc( 76% - 32px);
   display: flex;
+  width: 100%;
 }
 
 //mypage獲得ポイント
-.individual-point-title {
+.my-point-detail {
+  width : calc(100% * 1/3);
+  height: calc(100% - 16px);
+  background-color: rgba(52, 56, 66, 0.5);
+  margin: 8px;
+  border-radius: 16px;
+}
+
+//mypage利用可能ポイント
+.my-monthly-point-detail {
+  width : calc(100% * 2/3);
+  height: calc(100% - 16px);
+  background-color: rgba(52, 56, 66, 0.5);
+  margin: 8px;
+  border-radius: 16px;
+}
+//mypage獲得ポイント
+.my-point-title {
   background-color: #44c48a;
   border-radius: 16px 16px 0 0;
   height: 24px;
@@ -89,16 +136,8 @@
   font-weight: bold;
 }
 
-//mypage獲得ポイント
-.individual-point {
-  width : calc(100% * 1/3);
-  background-color: rgba(52, 56, 66, 0.5);
-  margin: 8px;
-  border-radius: 16px;
-}
-
 //mypage利用可能ポイント
-.individual-monthly-point-title {
+.my-monthly-point-title {
   background-color: #07868c;
   border-radius: 16px 16px 0 0;
   height: 24px;
@@ -108,63 +147,199 @@
   font-weight: bold;
 }
 
-//mypage利用可能ポイント
-.individual-monthly-point {
-  width : calc(100% * 2/3);
-  background-color: rgba(52, 56, 66, 0.5);
-  margin: 8px;
-  border-radius: 16px;
-}
-
-//mypage利用可能ポイント
-.my-tasks {
-  display: flex;
-}
-
-.my-tasks-remaining, .my-tasks-done {
-  width: 50%;
-}
-
-//mypage利用可能ポイント
-.privilege-note {
-  color: #ffd139;
+//mypage/index獲得ポイント
+.my-point-index {
+  font-size: 50%;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 16px;
 }
 
 //mypage/index獲得ポイント
 .my-point {
-  color: #44c48a;
-  font-size: 200%;
+  font-size: 220%;
   font-weight: bold;
-  margin: 16px;
+  margin: 0 16px;
+  padding-bottom: 16px;
+  text-align: center;
+  border-bottom: 1px solid #44c48a;
 }
 
-//mypage利用可能ポイント
 .my-monthly-point {
-  color: #07868c;
-  font-size: 200%;
+  font-size: 220%;
   font-weight: bold;
-  margin: 16px;
+  margin: 0 16px;
+  padding-bottom: 16px;
+  text-align: center;
+  border-bottom: 1px solid #07868c;
+}
+
+//mypage獲得ポイント
+.my-all-rules {
+  display: flex;
+  flex-direction: column;
+  height: calc(100% - 114px);
+  width: 100%;
+}
+
+//mypage利用可能ポイント ※my-excuted-rules-wrapperと同階層
+.my-all-tasks {
+  display: flex;
+  height: calc(100% - 114px);
+  width: 100%;
+}
+
+.my-all-remaining-tasks-wrapper,
+.my-all-done-tasks-wrapper {
+  width: 50%;
+}
+
+.my-all-remaining-tasks-wrapper {
+  border-right: 1px dotted #07868c;
+}
+
+.my-all-excuted-rules-wrapper, .my-all-remaining-tasks,
+.my-all-done-tasks {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: scroll;
+}
+
+.my-all-excuted-rules, .my-remaining-privileges,
+.my-remaining-penalties, .my-done-privileges,
+.my-done-penalties {
+  display: flex;
+  flex-direction: column;
+}
+
+.my-each-excuted-rule, .my-each-done-privilege,
+.my-each-done-penalty {
+  margin: 8px 16px;
+  padding: 8px;
+  background-color: #d6dbe6;
+  color: #343842;
+  border-radius: 8px;
+}
+
+.my-each-remaining-privilege, .my-each-remaining-penalty {
+  margin: 8px 16px;
+  padding: 8px;
+  background-color: #07868c;
+  border-radius: 8px;
+}
+
+.my-each-remaining-privilege-execute-cta,
+.my-each-remaining-penalty-execute-cta {
+  display: inline-block;
+  width: 100%;
+  height: 24px;
+  line-height: 24px;
+  text-align: center;
+  background-color: #ffffff;
+  border: 1px solid #07868c;
+  color: #07868c;
+  border-radius: 8px;
+  font-weight: bold;
+}
+
+.my-each-remaining-privilege-execute-cta:hover,
+.my-each-remaining-penalty-execute-cta:hover {
+  background-color: #07868c;
+  border: 1px solid #ffffff;
+  color: #ffffff;
 }
 
 //index
-.community-all-menbers {
+.community-all-members {
   display: flex;
   flex-wrap: wrap;
-  margin-top: 16px;
+  margin: 8px;
 }
 
 //index
-.community-menber-sum {
-  width: 560px;
-  background-color: rgba(52, 56, 66, 0.5);
+.community-member-sum {
+  background-color: #ffd139;
+  color: #343842;
   border-radius: 16px;
   display: flex;
-  margin: 16px;
-  padding: 16px;
+  margin: 8px;
+  padding: 8px;
 }
 
 //index
-.community-menber-sum-left {
+.community-member-sum-left {
   text-align: center;
   width: 96px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.community-member-sum-right {
+  width: 320px;
+}
+
+.member-all-roles-wrapper {
+  height: 112px;
+  overflow: scroll;
+}
+
+.member-all-roles {
+  margin: 8px;
+  display: flex;
+  flex-direction: column;
+}
+
+.member-each-role {
+  padding-top: 4px;
+  padding-bottom: 4px;
+  display: flex;
+  align-items: center;
+}
+
+.member-each-role:not(:last-child) {
+  border-bottom: 1px dotted #f47842;
+}
+
+.member-each-role-index {
+  background-color: #f47842;
+  color: #ffffff;
+  padding: 4px 8px;
+  font-size: 80%;
+  border-radius: 16px;
+  text-align: center;
+  white-space: nowrap;
+  height: 16px;
+  line-height: 16px;
+}
+
+.member-each-role-content {
+  margin-left: 4px;
+  font-weight: bold;
+}
+
+.member-points {
+  display: flex;
+}
+
+.member-point, .member-monthly_point {
+  background-color: #ffffff;
+  border-radius: 8px;
+  margin: 8px;
+  padding: 8px;
+  width: 50%;
+}
+
+.member-point-title, .member-monthly-point-title {
+  text-align: center;
+  font-size: 80%;
+  color: #343842;
+}
+
+.member-point-content, .member-monthly-point-content {
+  text-align: center;
+  font-size: 150%;
+  font-weight: bold;
+  color: #f47842;
 }

@@ -1,11 +1,11 @@
   <div class="community-background">
-    <%= attachment_image_tag @community, :community_image, format: 'jpeg', fallback: "sunset_mountains.jpg" %>
+    <%= attachment_image_tag @community, :community_image, format: 'jpeg' %>
   </div>
   <div class="community-info">
     <%= render 'communities/info', community: @community, currentUser: @currentUser %>
   </div>
   <div class="community-main">
-    <p class="page-title">過去30日のアクティビティ</p>
+    <p class="page-title">過去1年間の更新履歴</p>
     <div class="thirtydays-record">
       <div>
         <% if @records.present? %>

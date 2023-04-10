@@ -1,31 +1,48 @@
   <div class="community-background">
-    <%= attachment_image_tag @community, :community_image, format: 'jpeg', fallback: "sunset_mountains.jpg" %>
+    <%= attachment_image_tag @community, :community_image, format: 'jpeg' %>
   </div>
   <div class="community-info">
     <%= render 'communities/info', community: @community, currentUser: @currentUser %>
   </div>
   <div class="community-main">
-    <div class="community-all-menbers">
+    <div class="community-all-members">
     <% @communityUsers.each do |communityUser| %>
-      <div class="community-menber-sum">
-        <div class="community-menber-sum-left">
-          <div>
-            <%= attachment_image_tag communityUser.user, :profile_image, :fill, 80, 80, format: 'jpeg', fallback: "f_f_event_98_s512_f_event_98_0bg.jpg", size:'80x80'%>
-          </div>
-          <div>
-            <%= link_to community_user_path(@community.id, communityUser.user.id) do %>
+      <div class="community-member-sum">
+        <div class="community-member-sum-left">
+          <%= link_to community_user_path(@community.id, communityUser.user.id), class: "member-sum-cta" do %>
+            <div>
+              <%= attachment_image_tag communityUser.user, :profile_image, :fill, 80, 80, format: 'jpeg', fallback: "f_f_event_98_s512_f_event_98_0bg.jpg", size:'80x80'%>
+            </div>
+            <div>
               <%= communityUser.user.name %>
-            <% end %>
-          </div>
+            </div>
+          <% end %>
         </div>
-        <div class="community-all-menber-sum-left">
-          <div>
-            <% communityUser.user.roles.each.with_index(1) do |role, index| %>
-              <div><span>役割<%= index %></span><%= role.content %></div>
-            <% end %>
+        <div class="community-member-sum-right">
+          <div class="member-all-roles-wrapper">
+            <div class="member-all-roles">
+              <% roles = Role.where(community_id: @community.id, user_id: communityUser.user_id) %>
+              <% if roles.present? %>
+                <% roles.each.with_index(1) do |role, index| %>
+                  <div class="member-each-role">
+                    <div class="member-each-role-index">役割<%= index %></div>
+                    <div class="member-each-role-content"><%= role.content %></div>
+                  </div>
+                <% end %>
+              <% else %>
+                <div class="alt-text">まだ役割が設定されていません。</div>
+              <% end %>
+            </div>
           </div>
-          <div>
-            今月の変動ポイント<span><%= communityUser.point %></span>今月の配当ポイント<span><%= communityUser.monthly_point %></span>
+          <div class="member-points">
+            <div class="member-point">
+              <div class="member-point-title">獲得ポイント</div>
+              <div class="member-point-content"><%= communityUser.point %></div>
+            </div>
+            <div class="member-monthly_point">
+              <div class="member-monthly-point-title">利用可能ポイント</div>
+              <div class="member-monthly-point-content"><%= communityUser.monthly_point %></div>
+            </div>
           </div>
         </div>
       </div>

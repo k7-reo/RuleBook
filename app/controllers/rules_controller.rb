@@ -19,7 +19,7 @@ class RulesController < ApplicationController
     @community = Community.find(params[:community_id])
     @currentUser = CommunityUser.find_by(user_id: current_user.id) #community-info表示に利用
   end
-  
+
   def new_negative
     @rule = Rule.new
     @community = Community.find(params[:community_id])
@@ -153,7 +153,7 @@ class RulesController < ApplicationController
     @user = current_user
     @standbyRules = Standby.where(action_type: 'rule', executed_user_id: current_user.id, checked: false).order(created_at: :asc) #自分に送られたルール実行
     @standbyPenalties = Standby.where(action_type: 'penalty', executed_user_id: current_user.id, checked: false).order(created_at: :asc) #自分に送られたペナルティ承認依頼
-    @unaccepted_users = CommunityUser.joins(:community).where(status: 0).where(communities: {owner_id: current_user.id}) #自分に送られたコミュティ参加依頼受信
+    @unacceptedUsers = CommunityUser.joins(:community).where(status: 0).where(communities: {owner_id: current_user.id}) #自分に送られたコミュティ参加依頼受信
   end
 
   def approval #ルール承認

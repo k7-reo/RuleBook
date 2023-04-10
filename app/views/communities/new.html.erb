@@ -1,35 +1,34 @@
   <p class="page-title">新規コミュニティ作成</p>
   <div>
-    <%= form_with model: @community, url: communities_path, local:true do |f| %> <!-- url: でprefixを利用してcommunities#createを指定。-->
-      <div>
-        <label><%= f.label :community_name, "コミュニティ名" %><span class="form-note">必須</span></label>
+    <%= form_with model: @community, url: communities_path, local:true, class: "form" do |f| %> <!-- url: でprefixを利用してcommunities#createを指定。-->
+      <div class="form-section">
+        <label><%= f.label :community_name, "コミュニティ名", class: "form-label" %><span class="form-note">必須</span></label>
         <div>
-          <%= f.text_field :community_name, placeholder: "250文字まで" %>
+          <%= f.text_field :community_name, placeholder: "250文字まで", class: "form-area-small" %>
         </div>
       </div>
-      <div>
+      <!-- コミュニティの種類を増やせる段階で公開
+      <div class="form-section">
         <label><%= f.label :genre, "コミュニティジャンル" %><span class="form-note">必須</span></label>
         <div>
           <%= f.select :genre, [["夫婦・カップル", "夫婦・カップル"], ["家族", "家族"], ["兄弟・姉妹", "兄弟・姉妹"], ["友達", "友達"], ["その他", "その他"]], include_blank: "選択してください" %>
         </div>
       </div>
-      <div>
-        <label><%= f.label :introduction, "コミュニティ概要" %></label>
+      -->
+      <div class="form-section">
+        <label><%= f.label :introduction, "コミュニティ概要", class: "form-label" %></label>
         <div>
-          <%= f.text_area :introduction, placeholder: "30文字以内推奨" %>
+          <%= f.text_area :introduction, placeholder: "30文字以内推奨", class: "form-area-large" %>
         </div>
       </div>
-      <div>
-        <label><%= f.label :manual, "コミュニティ利用上の注意" %></label>
+      <div class="form-section">
+        <label><%= f.label :manual, "コミュニティ利用上の注意", class: "form-label" %></label>
         <div>
-          <%= f.text_area :manual, placeholder: "任意" %>
+          <%= f.text_area :manual, placeholder: "独自の使い方があれば記載しましょう！", class: "form-area-large" %>
         </div>
       </div>
-      <div>
-        <%= f.submit '作成' %>
+      <div class="submittion">
+        <%= f.submit '作成', class: "done-btn" %>
       </div>
     <% end %>
-  </div>
-  <div>
-    <%= link_to "TOPへ", root_path %>
   </div>

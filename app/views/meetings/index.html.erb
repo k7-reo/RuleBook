@@ -1,5 +1,5 @@
   <div class="community-background">
-    <%= attachment_image_tag @community, :community_image, format: 'jpeg', fallback: "sunset_mountains.jpg" %>
+    <%= attachment_image_tag @community, :community_image, format: 'jpeg' %>
   </div>
   <div class="community-info">
     <%= render 'communities/info', community: @community, currentUser: @currentUser %>
@@ -8,13 +8,6 @@
     <div class="meetings">
       <div class="meetings-header">
         <div class="section-title">アクティブなミーティング</div>
-        <div class="meeting-new">
-          <% unless @nextMeeting.present? %>
-            <%= link_to new_community_meeting_path(@community.id) do %>
-              <i class="fa-regular fa-square-plus"></i>
-            <% end %>
-          <% end %>
-        </div>
       </div>
       <div class="all-active-meetings">
         <% if @nextMeeting.present? %>
@@ -29,7 +22,7 @@
                 <% if @nextMeeting.name.present? %>
                   <%= @nextMeeting.name %>
                 <% else %>
-                  <p>題名がありません</p>
+                  <div class="alt-text">題名がありません</div>
                 <% end %>
               </div>
               <div class="meeting-count-timer" id="meetingCountTimer"></div>
@@ -47,10 +40,8 @@
         <% else %>
           <div class="next-meeting">
             <div class="meeting-content">
-              <div class="meeting-index">
-                  <div class="meeting-index-letter">予定しているミーティング</div>
-                </div>
-              <div class="alt-text">実施予定のミーティングはありません。</div>
+              <div class="alt-text">メンバーのコミュニケーションの場を定期的に設けましょう！<br>かしこまった内容ではなく、一緒に映画を見るなどでもいいですね。</div>
+              <div class="meeting-new"><%= link_to "ミーティング設定", new_community_meeting_path(@community.id), class: "dashboard-meeting-new-cta" %></div>
             </div>
           </div>
         <% end %>
@@ -70,13 +61,23 @@
       <div class="past-meetings-header">
         <div class="section-title">過去のミーティング一覧</div>
       </div>
-      <div class="past-meeting">
+      <div class="all-past-meetings">
         <% if @pastMeetings.present? %>
           <% @pastMeetings.each do |meeting| %>
-          <div class="past-meeting-content">
-            <div class="past-meeting-content-top">
-              <div class="past-meeting-name"><%= meeting.name %></div>
-              <div class="past-meeting-date"><%= meeting.date.to_s(:datetime_jp) %></div>
+          <div class="each-past-meeting">
+            <div class="past-meeting-top">
+              <div class="past-meeting-name">
+                <% if meeting.name.present? %>
+                  <%= meeting.name %>
+                <% end %>
+              </div>
+              <div class="past-meeting-date">
+                <% if meeting.date.present? %>
+                  <%= meeting.date.to_s(:datetime_jp) %>
+                <% else %>
+                  <%= meeting.updated_at.to_s(:datetime_jp) %>
+                <% end %>
+              </div>
               <div class="past-meeting-detail">
                 <%= link_to community_meeting_path(@community.id, meeting.id), class: "past-meeting-detail-cta" do %>
                   <i class="fa-solid fa-ellipsis"></i>

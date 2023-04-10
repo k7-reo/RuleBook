@@ -13,9 +13,14 @@
   justify-content: space-between;
 }
 
+.all-mottos-wrapper {
+  display: flex;
+  overflow-x: scroll;
+}
+
 .all-mottos {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
 }
 
 .each-motto {
@@ -57,4 +62,9 @@
 .each-motto-creator-name {
   background-color: #07868c;
   padding: 2px;
+}
+
+.motto-new {
+  padding-bottom: 32px;
+  text-align: center;
 }

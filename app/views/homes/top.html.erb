@@ -1,121 +1,98 @@
-  <p class="page-title">コミュニティ一覧</p>
-
+  <div class="page-title">コミュニティ一覧</div>
   <div class="my-communities">
     <div class="my-communities-header">
-      <p class="section-title">所属コミュニティ</p>
-      <p class="new-community"><%= link_to "コミュニティ新規作成", new_community_path %></p>
+      <div class="section-title">所属コミュニティ</div>
+      <div class="new-community">
+        <%= link_to new_community_path do %>
+          <i class="fa-regular fa-square-plus"></i>
+        <% end %>
+      </div>
     </div>
     <div>
-      <% if @my_communities.present? %>
-        <table class="my-communities-table">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>コミュニティ名</th>
-              <th>コミュニティ説明</th>
-              <th>参加人数</th>
-              <th colspan="4"></th>
-            </tr>
-          </thead>
-          <tbody>
-            <% @my_communities.each do |community| %>
-              <tr>
-                <td><%= community.id %></td>
-                <td>
-                  <span><%= link_to community.community_name, community_path(community.id) %></span>
-                </td>
-                <td><%= community.introduction %></td>
-                <td><%= community.users.count %></td>
-                <td>
-                    <span><%= link_to '入室', community_path(community.id) %></span>
-                    <span><%= link_to '退出', community_out_path(community.id), method: :delete %></span>
-                  <% if community.owner_id == current_user.id %>
-                    <span><%= link_to '編集', edit_community_path(community.id) %></span>
-                    <span><%= link_to '削除', community_path(community.id), method: :delete %></span>
-                    <span class="owner_sign">●</span>
-                  <% end %>
-                </td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
-        <p>あなたがオーナーのコミュニティには<span class="owner_sign">●</span>が表示されます。</p>
+      <% if @myCommunities.present? %>
+        <div class="my-all-communities">
+          <% @myCommunities.each do |community| %>
+            <div class="my-each-community">
+              <div class="my-each-community-sign">
+                <% if community.owner_id == current_user.id %>
+                  <div class="owner-sign">オーナー</div>
+                <% end %>
+              </div>
+              <div class="my-each-community-name"><%= community.community_name %></div>
+              <div class="my-each-community-introduction"><%= community.introduction %></div>
+              <div class="my-each-community-id">コミュニティID：<%= community.id %></div>
+              <div class="my-each-community-member">
+                <% communityUsers = CommunityUser.where(community_id: community.id) %>
+                <div>参加者数：<%= communityUsers.count %></div>
+              </div>
+              <div class="my-each-community-action">
+                <div class="my-each-community-each-action"><%= link_to '入室', community_path(community.id), class: "my-each-community-each-action-cta" %></div>
+                <% unless community.owner_id == current_user.id %>
+                  <div class="my-each-community-each-action"><%= link_to '脱退', community_out_path(community.id), method: :delete, class: "my-each-community-each-action-cta" %></div>
+                <% end %>
+                <% if community.owner_id == current_user.id %>
+                  <div class="my-each-community-each-action"><%= link_to '編集', edit_community_path(community.id), class: "my-each-community-each-action-cta" %></div>
+                  <div class="my-each-community-each-action"><%= link_to '削除', community_path(community.id), method: :delete, class: "my-each-community-each-action-cta" %></div>
+                <% end %>
+              </div>
+            </div>
+          <% end %>
+        </div>
       <% else %>
-        <p>現在、所属しているコミュニティはありません。</p>
+        <div class="alt-text">所属しているコミュニティはありません。</div>
       <% end %>
     </div>
   </div>
-
-  <div class="requesting-community">
-    <p class="section-title">参加申請中コミュニティ</p>
-    <% if @requesting_communities.present? %>
-      <table>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>コミュニティ名</th>
-            <th colspan="1"></th>
-          </tr>
-        </thead>
-        <tbody>
-        <% @requesting_communities.each do |community| %>
-          <tr>
-            <td><%= community.id %></td>
-            <td><%= community.community_name %></td>
-            <td>
-              <span><%= link_to '申請を取り消す', community_out_path(community.id), method: :delete %></span>
-            </td>
-          </tr>
+  <div class="requesting-communities">
+    <div class="requesting-communities-header">
+      <div class="section-title">参加申請中コミュニティ</div>
+    </div>
+    <% if @requestingCommunities.present? %>
+      <div class="all-requesting-communities">
+        <% @requestingCommunities.each do |community| %>
+          <div class="each-requesting-community">
+            <div class="each-requesting-community-name"><%= community.community_name %></div>
+            <div class="each-requesting-community-action"><%= link_to '申請を取り消す', community_out_path(community.id), method: :delete, class: "each-requesting-community-action-cta" %></div>
+          </div>
         <% end %>
-        </tbody>
-      </table>
+      </div>
     <% else %>
-      <p>現在、参加申請しているコミュニティはありません。</p>
+      <div class="all-requesting-communities-alt-view">
+        <div class="alt-text">参加を申請しているコミュニティはありません。</div>
+      </div>
     <% end %>
   </div>
 
   <div class="communities-search">
-    <p class="section-title">コミュニティ検索</p>
+    <div class="communities-search-header">
+      <div class="section-title">コミュニティ検索</div>
+    </div>
     <div class="search-box">
       <%= form_with(url: search_path, method: :get, local: true, class: "search-form") do |form| %>
-        <%= form.text_field :keyword, placeholder: "コミュニティ名記入", class: "search-input" %>
-        <%= form.submit "コミュニティ検索", class: "search-btn" %>
+        <%= form.text_field :keyword, placeholder: "コミュニティID検索", class: "search-input" %>
+        <%= form.submit "検索", class: "search-btn" %>
       <% end %>
+      <div class="comment">※半角数字</div>
     </div>
     <div class="seach-result">
-    <% if @searched_communities.present? %>
-      <table>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>コミュニティ名</th>
-            <th colspan="2"></th>
-          </tr>
-        </thead>
-        <tbody>
-        <% @searched_communities.each do |community| %>
+    <% if @searchedCommunities.present? %>
+      <div class="all-seach-results">
+        <% @searchedCommunities.each do |community| %>
           <% if community.users.exclude?(current_user) %><!-- ログインしないとcurrent_userを参照できないのでundefind エラーが出るので注意。 -->
-            <tr>
-              <td><%= community.id %></td>
-              <td><%= community.community_name %></td>
-              <td>
-                <span><%= link_to '参加申請', community_join_request_path(community.id) %></span>
-              </td>
+            <div class="each-seach-result">
+              <div class="each-seach-result-name"><%= community.community_name %></div>
+              <div class="each-seach-result-request"><%= link_to '参加申請', community_join_request_path(community.id), class: "each-seach-result-request-cta" %></div>
               <% if community.owner_id == current_user.id %>
-                <td>
-                    ※あなたがオーナーです。
-                </td>
+                <div>※あなたがオーナーです。</div>
               <% end %>
-            </tr>
+            </div>
           <% end %>
         <% end %>
-        </tbody>
-      </table>
+      <div>
     <% else %>
-      <p>
-        該当するコミュニティはありません。<br>
-        ※全てのコミュニティを表示するには、空の状態で検索ボタンをクリックしてください。
-      </p>
+      <div class="all-seach-results-alt-view">
+        <div class="alt-text">該当するコミュニティはありません。</div>
+      </div>
     <% end %>
     </div>
   </div>

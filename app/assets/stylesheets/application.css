@@ -20,7 +20,7 @@ body {
   padding: 0;
   box-sizing: border-box;
   /* font-family: ""; ※全角半角でズレたりしない適切なフォントを選ぶ*/
-  background: linear-gradient(160deg, #272727, #000000);
+  background: linear-gradient(160deg, #07868c, #44c48a);
   overflow-x: hidden; /* 画面外の要素を非表示にできる(slide-menu非表示) */
   height: 100vh;
 }
@@ -44,10 +44,13 @@ a:hover {
 }
 
 .alt-text {
-  margin: 16px;
-} /*コンテンツが作成されてない時の文章*/
+  padding: 16px;
+  text-align: center;
+}
 
 .page-title {
+  height: 24px;
+  line-height: 24px;
   color: #ffffff;
   font-weight: bold;
   margin-top: 16px;
@@ -56,6 +59,8 @@ a:hover {
 }
 
 .section-title {
+  height: 16px;
+  line-height: 16px;
   color: #ffffff;
   font-weight: bold;
   margin-top: 16px;
@@ -111,6 +116,7 @@ header {
   width: 200px;
   padding-top: 60px;
   height: 100%;
+  text-align: right;
   z-index: 1002;
   transform: translateX(200px);
   transition: .5s;
@@ -120,21 +126,27 @@ header {
   transform: translateX(0);
 }
 
-.slide-menu ul {
-  padding-left: 0;
-  padding-right: 10px
+.slide-menu-user-name {
+  padding-right: 10px;
+  font-weight: bold;
 }
 
-.slide-menu li {
-  text-align: right;
+.slide-menu-list {
+  padding-left: 0;
+  padding-right: 10px;
+  font-size: 80%;
 }
 
 main {
+  box-sizing: border-box;
   font-size: 80%;
   color: #ffffff; /*文字白*/
   text-decoration: none;
-  padding-top: 56px; /* header-areaの高さにmargin-topを合わせる。 */
-  height: calc(100vh - 56px); /* header-areaの高さを引く。 */
+  position: relative;
+  top: 56px; /* header-areaの高さに合わせる。 */
+  height: calc(100% - 56px); /* header-areaの高さを引く。 */
+  width: 100%;
+  border: 1px solid #dddddd;
 }
 
 .community-background img {
@@ -169,17 +181,12 @@ main {
   font-size: 80%;
 }
 
-.form-note {
-  font-size: 80%;
-  color: #ff5757;
-  margin-left: 8px;
-}
-
-/*ヘッダーの項目から「・」を抜く*/
+/*「・」を抜く*/
 ul {
   list-style: none;
 }
 
+/*テーブル全体*/
 table {
   border-collapse: separate;
   border-spacing: 1px 12px;
@@ -195,41 +202,36 @@ thead {
 /*テーブルのデータ全体*/
 tbody {
   color: #343842;
-}
-
-/*テーブルデータの奇数行*/
-tbody tr:nth-child(odd) {
   background-color: #dddddd;
 }
 
-/*テーブルデータの偶数行*/
-tbody tr:nth-child(even) {
-  background-color: #a4a4a5;
-}
-
 th, td {
-  padding: 10px 15px;
+  padding: 8px 16px;
 }
 
+/*テーブルスレッドの最左のセル*/
 th:first-child, td:first-child {
-  padding-left: 15px
+  padding-left: 16px
 }
 
+/*テーブルスレッドの最右のセル*/
 th:last-child, td:last-child {
-  padding-right: 15px
+  padding-right: 16px
 }
 
-/*テーブルデータの最初の列*/
+/*テーブルデータの最初の行*/
 tbody td:first-child {
-  border-top-left-radius: 25px;
-  border-bottom-left-radius: 25px;
+  border-top-left-radius: 24px;
+  border-bottom-left-radius: 24px;
 }
 
+/*テーブルデータの最後の行*/
 tbody td:last-child {
-  border-top-right-radius: 25px;
-  border-bottom-right-radius: 25px;
+  border-top-right-radius: 24px;
+  border-bottom-right-radius: 24px;
 }
 
+/*後々広告入れる用 */
 .footer-content {
   box-sizing: content-box;
   position: fixed;
@@ -238,4 +240,99 @@ tbody td:last-child {
   width: 100%;
   background-color: rgba(52, 56, 66, 0.5);
   margin: 16px;
+}
+
+.form {
+  width: fit-content;
+  margin: 16px;
+}
+
+.form-section {
+  padding: 8px 32px;
+  margin: 4px 0;
+  width: fit-content;
+  background-color: rgba(52, 56, 66, 0.5);
+  border-radius: 16px;
+}
+
+.form-label {
+  font-weight: bold;
+  font-size: 80%;
+}
+
+.form-area-small {
+  resize: horizontal;
+  width: 316px;
+  height: 16px;
+  margin: inherit;
+  padding: 2px;
+  border: inherit;
+}
+
+.form-area-large {
+  resize: horizontal;
+  width: 316px;
+  height: 80px;
+  margin: inherit;
+  padding: 2px;
+  border: inherit;
+  font-family: inherit;
+}
+
+.form-check-box {
+  display: flex;
+}
+
+/*チェックボックスのラベルのズレ微調整*/
+.form-check-box-label {
+  font-size: 80%;
+  position: relative;
+  bottom: 1px;
+}
+
+.form-select-file {
+  font-size: 80%;
+  margin-top: 4px;
+}
+
+/*フォームタイトル横の補足欄*/
+.form-note {
+  background-color:  #ff5757;
+  font-size: 80%;
+  color: #ffffff;
+  margin-left: 4px;
+  padding: 2px;
+}
+
+/* 「プラス」アイコン*/
+.fa-square-plus {
+  position: relative;
+  top: 4px;
+  right: 8px;
+}
+
+.fa-circle {
+  color: #f47842;
+}
+
+.search-btn, .done-btn {
+  position: relative;
+  top: 1px;
+  width: fit-content;
+  height: 24px;
+  color: #343842;
+  background-color: #ffd139;
+  border-style: none; /*デフォルトの枠線デザインを消去*/
+  border-radius: 15px;
+  font-weight: bold;
+}
+
+.search-btn:hover, .done-btn:hover {
+  font-weight: bold;
+  color: #343842;
+  background-color: #f47842;
+}
+
+.non-decorated-link {
+  margin-left: 16px;
 }

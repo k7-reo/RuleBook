@@ -70,7 +70,7 @@
     </div>
   <div class="join-requests">
     <div class="section-title">オーナーコミュニティへの参加申請</div>
-    <% if @unaccepted_users.present? %>
+    <% if @unacceptedUsers.present? %>
       <table>
         <thead>
           <tr>
@@ -80,7 +80,7 @@
           </tr>
         </thead>
         <tbody>
-          <% @unaccepted_users.each do |users| %>
+          <% @unacceptedUsers.each do |users| %>
           <tr>
             <td><%= users.community.community_name %></td>
             <td><%= users.user.name %></td>

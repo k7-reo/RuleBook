@@ -4,7 +4,7 @@
 
 .active-goal {
   width: fit-content;
-  margin: 16px;
+  margin: 16px auto 16px auto;
   padding: 16px;
   background-color: #ffd139;
   border-radius: 16px;
@@ -49,8 +49,17 @@
   color: #ffffff;
 }
 
-.active-goal-achievement-cta {
+.active-goal-achievement {
+  display: flex;
+  justify-content: center;
+}
+
+.active-goal-achievement-true-cta,
+.active-goal-achievement-false-cta {
   display: block;
+  width: 160px;
+  margin-left: 4px;
+  margin-right: 4px;
   padding-top: 8px;
   padding-bottom: 8px;
   background-color: #ffffff;
@@ -61,14 +70,20 @@
   text-align: center;
 }
 
-.active-goal-achievement-cta:hover {
+.active-goal-achievement-true-cta:hover,
+.active-goal-achievement-false-cta:hover {
   background-color: #ffd139;
   border: 1px solid #ffffff;
   color: #ffffff;
 }
 
+.goal-new {
+  padding-bottom: 16px;
+  text-align: center;
+}
+
 .past-goals {
-  width: fit-content;
+  width: calc(100% - 32px);
   margin: 16px;
   background-color: rgba(52, 56, 66, 0.5);
   border-radius: 16px;
@@ -76,4 +91,18 @@
 
 .past-goals-header {
   display: flex;
+}
+
+.all-past-goals {
+  display:flex;
+  flex-direction: column;
+  padding: 8px;
+}
+
+.each-past-goal {
+  margin: 8px;
+  padding: 16px;
+  background-color: #d6dbe6;
+  color: #343842;
+  border-radius: 16px;
 }

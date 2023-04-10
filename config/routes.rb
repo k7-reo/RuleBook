@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   get "accept/:id" => "communities#accept", as:"accept"
 
   resources :users
+  resources :articles
   resources :communities do #URLがcommunityディレクトリ配下にrules、mottos、usersがくる
     get "detail" => 'communities#detail' #コミュニティの詳細説明への遷移
     resources :goals do

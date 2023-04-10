@@ -42,7 +42,7 @@ class CommunitiesController < ApplicationController
         gon.day = @nextMeeting.date.day
       end
     end
-    @meetingsInProgress = Meeting.where(community_id: params[:id], status: 1) #実施中のMTG
+    @meetingsInProgress = Meeting.find_by(community_id: params[:id], status: 1) #実施中のMTG
     @rules = Rule.where(community_id: params[:id])
     @mottos = Motto.where(community_id: params[:id])
     @records = Record.where(community_id: params[:id], updated_at: Time.zone.today.ago(30.days)..Time.zone.today.end_of_day).order(updated_at: :desc)
@@ -51,8 +51,9 @@ class CommunitiesController < ApplicationController
       gon.deadline = @goal.deadline #gem 'gon'を利用してRailsからJavaScriptオブジェクトに変換
     end
     @excutedRules = Standby.where(community_id: params[:id], action_type: "rule", created_at: Time.current.all_month) #今月created_atのデータに絞っている。
-    @advice = Advice.order("RANDOM()").first
+    @coupleAdvice = Advice.where(community_genre: "夫婦・カップル").order("RANDOM()").first
     @currentUser = CommunityUser.find_by(user_id: current_user.id) #community-info表示に利用
+    @acceptedUsers = CommunityUser.where(community_id: params[:id], status: 1)
   end
 
   def join_request
@@ -94,12 +95,6 @@ class CommunitiesController < ApplicationController
     end
     redirect_to community_detail_path(community.id)
   end
-
-  #def unselect_background
-  #  community = Community.find(params[:id])
-  #  community.community_image_id
-  #  community.save
-  #end
 
   private
 

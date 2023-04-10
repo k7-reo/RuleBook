@@ -1,39 +1,43 @@
-  <p class="page-title">コミュニティ編集</p>
+  <div class="page-title">コミュニティ編集</div>
   <div>
-    <%= form_with(model:[@community], local:true) do |f| %>
-      <div>
-        <label><%= f.label :community_name, "コミュニティ名" %><span class="form-note">必須</span></label>
+    <%= form_with(model:[@community], local:true, class: "form") do |f| %>
+      <div class="form-section">
+        <label><%= f.label :community_name, "コミュニティ名", class: "form-label" %><span class="form-note">必須</span></label>
         <div>
-          <%= f.text_field :community_name, placeholder: "250文字まで" %>
+          <%= f.text_field :community_name, placeholder: "250文字まで", class: "form-area-small" %>
         </div>
       </div>
-      <div>
-        <label><%= f.label :genre, "コミュニティジャンル" %><span class="form-note">必須</span></label>
+      <!-- コミュニティの種類を増やせる段階で公開
+      <div class="form-section">
+        <label><%= f.label :genre, "コミュニティジャンル", class: "form-label" %><span class="form-note">必須</span></label>
         <div>
           <%= f.select :genre, [["夫婦・カップル", "夫婦・カップル"], ["家族", "家族"], ["兄弟・姉妹", "兄弟・姉妹"], ["友達", "友達"], ["その他", "その他"]], include_blank: "選択してください" %>
         </div>
       </div>
-      <div>
-        <label><%= f.label :introduction, "コミュニティ概要" %></label>
+      -->
+      <div class="form-section">
+        <label><%= f.label :introduction, "コミュニティ概要", class: "form-label" %></label>
         <div>
-          <%= f.text_area :introduction, placeholder: "30文字以内" %>
+          <%= f.text_area :introduction, placeholder: "250文字まで", class: "form-area-large" %>
         </div>
       </div>
-      <div>
-        <label><%= f.label :manual, "コミュニティ利用上の注意" %></label>
+      <div class="form-section">
+        <label><%= f.label :manual, "コミュニティ利用上の注意", class: "form-label" %></label>
         <div>
-          <%= f.text_area :manual %>
+          <%= f.text_area :manual, placeholder: "独自の使い方があれば記載しましょう！", class: "form-area-large" %>
         </div>
       </div>
-      <div>
-        <label><%= f.label :profile_image, "背景画像" %></label>
-        <div class="community-background-edit"><%= attachment_image_tag @community, :community_image, format: 'jpeg', fallback: "sunset_mountains.jpg" %></div>
-        <div><%= f.attachment_field :community_image, placeholder: "画像を選択してください" %></div>
-        <%= check_box_tag :default_background %>
-        <%= label_tag :default_background, "デフォルト画像に戻す" %>
+      <div class="form-section">
+        <label><%= f.label :profile_image, "背景画像", class: "form-label" %></label>
+        <div class="community-background-edit"><%= attachment_image_tag @community, :community_image, format: 'jpeg', fallback: "default_background.jpg" %></div>
+        <div><%= f.attachment_field :community_image, placeholder: "画像を選択してください", class: "form-select-file" %></div>
+        <div class="form-check-box">
+          <div><%= check_box_tag :default_backgroundclass, class: "form-check-box-item" %></div>
+          <div><%= label_tag :default_background, "デフォルト画像に戻す", class: "form-check-box-label" %></div>
+        </div>
       </div>
-      <div>
-        <%= f.submit '編集完了' %>
+      <div class="submittion">
+        <%= f.submit '編集完了', class: "done-btn" %>
       </div>
     <% end %>
   </div>

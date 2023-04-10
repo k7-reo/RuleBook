@@ -10,13 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_03_28_031159) do
+ActiveRecord::Schema.define(version: 2023_04_06_020054) do
 
   create_table "advices", force: :cascade do |t|
     t.string "quote"
     t.string "person"
     t.string "biography"
     t.string "community_genre"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "articles", force: :cascade do |t|
+    t.string "title", null: false
+    t.text "content", null: false
+    t.string "content_genre"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -28,7 +36,7 @@ ActiveRecord::Schema.define(version: 2023_03_28_031159) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "manual"
-    t.string "genre"
+    t.string "genre", default: "夫婦・カップル"
     t.string "community_image_id"
   end
 

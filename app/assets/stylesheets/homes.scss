@@ -2,47 +2,211 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.owner_sign {
-  color: #44c48a;
-}
-
 .my-communities {
+  margin: 16px;
+  padding-bottom: 16px;
   border-radius: 16px;
-  border: 2px solid #ffffff;
+  border: 1px solid #ffffff;
 }
 
-.requesting-community, .communities-search {
+.my-communities-header,
+.requesting-communities-header,
+.communities-search-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.my-all-communities {
+  padding: 8px;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+}
+
+.my-each-community-sign {
+  width: fit-content;
+  margin-left: auto;
+}
+
+.owner-sign {
+  background-color: #ffd139;
+  color: #343842;
+  font-weight: bold;
+  font-size: 80%;
+  padding: 2px 4px;
+  border-radius: 16px;
+  position: relative;
+  bottom: 8px;
+  left: 8px;
+}
+
+.my-each-community {
+  width: 320px;
+  background-color: #07868c;
+  margin: 8px;
+  padding: 16px;
+  border-radius: 16px;
+}
+
+.my-each-community-name {
+  font-size: 120%;
+  font-weight: bold;
+  height: 24px;
+}
+
+.my-each-community-introduction {
+  height: 16px;
+  padding-bottom: 8px;
+  border-bottom: 1px dotted #ffffff;
+}
+
+.my-each-community-id {
+  height: 16px;
+  margin-top: 8px;
+}
+
+.my-each-community-member {
+  height: 16px;
+  margin-top: 2px;
+}
+
+.my-each-community-action {
+  display: flex;
+  justify-content: center;
+  padding-top: 16px;
+}
+
+.my-each-community-each-action-cta {
+  height: 16px;
+  display: inline-block;
+  padding: 4px 8px;
+  margin: 0 8px;
+  white-space: nowrap;
+  background-color: #44c48a;
+  color: #343842;
+  border-radius: 8px;
+  font-size: 80%;
+  font-weight: bold;
+}
+
+.my-communities-owner-sign {
+  padding: 0 16px 16px 16px;
+  font-size: 80%;
+}
+
+.requesting-communities, .communities-search {
+  margin: 16px;
   border-radius: 16px;
   background-color: rgba(32,35,43, 0.5);
 }
 
-.my-communities-header {
+.each-requesting-community-name,
+.each-seach-result-name {
+  height: 24px;
+  line-height: 24px;
+  font-weight: bold;
+  font-size: 120%;
+  margin-right: 16px;
+}
+
+.search-box {
+  margin: 16px 16px 0 16px;
+}
+
+.all-seach-results, .all-requesting-communities {
+  padding: 8px;
   display: flex;
 }
 
-.new_community {
-  margin-left: auto;
-  border-bottom: dotted 1px;
+.each-seach-result {
+  width: fit-content;
+  background-color: #ffffff;
+  border: 1px solid #f47842;
+  color: #343842;
+  display: flex;
+  align-items: center;
+  margin: 8px;
+  padding: 16px;
+  border-radius: 16px;
 }
 
-.search-btn {
-  color: #ffffff;
-  background-color: rgba(32,35,43, 0.5);
-  border-style: none; /*デフォルトの枠線デザインを消去*/
-  border-radius: 15px;
+.each-requesting-community {
+  width: fit-content;
+  background-color: #ffffff;
+  border: 1px solid #ffd139;
+  color: #343842;
+  display: flex;
+  align-items: center;
+  margin: 8px;
+  padding: 16px;
+  border-radius: 16px;
 }
 
-.search-btn:hover{
-  color: #ffffff;
+.each-requesting-community-action-cta {
+  height: 16px;
+  display: inline-block;
+  padding: 4px 8px;
+  white-space: nowrap;
   background-color: #ffd139;
+  border-radius: 8px;
+  font-size: 80%;
+  font-weight: bold;
 }
 
-.home-title {
+.each-requesting-community-action-cta:hover {
+  color: #ffffff;
+}
+
+.each-seach-result-request-cta {
+  height: 16px;
+  display: inline-block;
+  padding: 4px 8px;
+  white-space: nowrap;
+  background-color: #f47842;
+  border-radius: 8px;
+  font-size: 80%;
+  font-weight: bold;
+}
+
+.each-seach-result-request-cta:hover {
+  color: #ffffff;
+}
+
+.all-requesting-communities-alt-view,
+.all-seach-results-alt-view {
+  height: 90px;
+}
+
+//home
+.home-all {
+  padding: 16px;
+}
+
+//home
+.home-header {
   padding-top: 24px;
   margin-bottom: 0;
 }
 
-.home-subtitle {
+.home-header-catchphrase {
+  letter-spacing: 4px;
+  color: #44c48a;
+}
+
+.home-header-logo {
+  font-size: 400%;
+  font-weight: bold;
+  height: 56px;
+  line-height: 56px;
+  color: #44c48a;
+}
+
+.home-header-discription {
   margin-top: 8px;
-  margin-bottom: 40px;
+  font-weight: bold;
+}
+
+.home-main {
+  padding-top: 40px;
+  color: #d6dbe6;
 }

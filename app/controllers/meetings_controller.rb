@@ -86,14 +86,17 @@ class MeetingsController < ApplicationController
       if meeting.update(meeting_params)
         redirect_to community_meetings_path(@community.id)
         if meeting.next_name.present? || meeting.next_agenda.present? || meeting.next_date.present?
-          nextMeeting = Meeting.new
-          nextMeeting.community_id = @community.id
-          nextMeeting.user_id = current_user.id
-          nextMeeting.name = meeting.next_name
-          nextMeeting.date = meeting.next_date
-          nextMeeting.agenda = meeting.next_agenda
-          nextMeeting.place = meeting.next_place
-          nextMeeting.save
+          existMeeting = Meeting.find_by(community_id: @community.id, status: 0)
+          unless existMeeting.present?
+            nextMeeting = Meeting.new
+            nextMeeting.community_id = @community.id
+            nextMeeting.user_id = current_user.id
+            nextMeeting.name = meeting.next_name
+            nextMeeting.date = meeting.next_date
+            nextMeeting.agenda = meeting.next_agenda
+            nextMeeting.place = meeting.next_place
+            nextMeeting.save
+          end
         end
       end
     end

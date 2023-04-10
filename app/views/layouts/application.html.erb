@@ -25,22 +25,33 @@
         <% end %>
       </div>
       <div class="slide-menu">
-        <ul>
         <% if user_signed_in? %>
-          <li><%= link_to "通知BOX", receive_path %></li>
-          <li><%= link_to "コミュニティ一覧", top_path %></li>
-          <li><%= link_to "各種設定", setting_path %></li>
-          <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
-          <li>利用規約</li>
-          <li>プライバシーポリシー</li>
+          <div class="slide-menu-user-name"><%= current_user.name %></div>
+          <ul class="slide-menu-list">
+            <li>
+              <span>
+                <% if @standbyRules.present? || @standbyPenalties.present? || @unacceptedUsers.present? %>
+                  <i class="fa-solid fa-circle"></i>
+                <% end %>
+              </span>
+              <span><%= link_to "通知BOX", receive_path %></span>
+            </li>
+            <li><%= link_to "コミュニティ一覧", top_path %></li>
+            <li><%= link_to "各種設定", setting_path %></li>
+            <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
+            <li>利用規約</li>
+            <li>プライバシーポリシー</li>
+            <li><%= link_to "TOP", home_path %></li>
+          </ul>
         <% else %>
-          <li><%= link_to "TOPページ", root_path %></li>
-          <li><%= link_to "新規登録", new_user_registration_path %></li>
-          <li><%= link_to "ログイン", new_user_session_path %></li>
-          <li>利用規約</li>
-          <li>プライバシーポリシー</li>
+          <ul class="slide-menu-list">
+            <li><%= link_to "TOPページ", root_path %></li>
+            <li><%= link_to "新規登録", new_user_registration_path %></li>
+            <li><%= link_to "ログイン", new_user_session_path %></li>
+            <li>利用規約</li>
+            <li>プライバシーポリシー</li>
+          </ul>
         <% end %>
-        </ul>
       </div>
     </header>
     <main>

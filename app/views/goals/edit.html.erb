@@ -1,41 +1,41 @@
   <div class="community-background">
-    <%= attachment_image_tag @community, :community_image, format: 'jpeg', fallback: "sunset_mountains.jpg" %>
+    <%= attachment_image_tag @community, :community_image, format: 'jpeg' %>
   </div>
   <div class="community-info">
     <%= render 'communities/info', community: @community, currentUser: @currentUser %>
   </div>
   <div class="community-main">
     <div>
-      <p class="page-title">ゴール編集</p>
-      <div class="comment">
-        <p>ゴール設定のポイント</p>
-        <p>
-          緊急度は高くないけど重要度が高いこと。
-        </p>
-      </div>
+      <div class="page-title">ゴール編集</div>
       <div>
-        <%= form_with(model:[@community, @goal], local:true) do |f| %>
-          <div>
-            <label><%= f.label :content, "メンバー全員で達成したいゴール" %><span class="form-note">必須</span></label>
+        <%= form_with(model:[@community, @goal], local:true, class: "form") do |f| %>
+          <div class="form-section">
+            <label><%= f.label :content, "メンバー全員で達成したいゴール", class: "form-label" %><span class="form-note">必須</span></label>
+            <div class="comment">
+              <i class="fa-solid fa-circle-info"></i>
+              <div>
+                緊急度は高くないけど重要度が高いこと。
+              </div>
+            </div>
             <div>
-              <%= f.text_area :content, placeholder: "メンバー全員で達成したい内容" %>
+              <%= f.text_area :content, class: "form-area-small" %>
             </div>
           </div>
-          <div>
-            <label><%= f.label :deadline, "ゴール達成期限" %><span class="form-note">必須</span></label>
+          <div class="form-section">
+            <label><%= f.label :deadline, "ゴール達成期限", class: "form-label" %><span class="form-note">必須</span></label>
             <div class="comment">
-              <p>ゴール設定のポイント</p>
-              <p>
+              <i class="fa-solid fa-circle-info"></i>
+              <div>
               期限の指定は任意ですが、程よい緊張感を保つ為にも設定することをお勧めします。<br>
               特に期間指定の無いゴールについてはまず「１ヶ月」を期限にして頑張ってみましょう。
-              </p>
+              </div>
             </div>
             <div>
               <%= f.datetime_field :deadline %>
             </div>
           </div>
           <div>
-            <%= f.submit '編集完了' %>
+            <%= f.submit '編集完了', class: "done-btn" %>
           </div>
         <% end %>
       </div>

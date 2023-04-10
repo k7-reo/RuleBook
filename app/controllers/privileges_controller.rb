@@ -87,6 +87,8 @@ class PrivilegesController < ApplicationController
     standby.action_type = 'privilege'
     standby.executing_user_id = current_user.id
     standby.executed_user_id = current_user.id
+    standby.content = privilege.content
+    standby.point = privilege.point
     standby.checked = true
     standby.approval = true
     standby.save
