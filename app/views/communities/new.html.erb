@@ -1,10 +1,19 @@
-  <p class="page-title">新規コミュニティ作成</p>
+  <div class="page-title">新規コミュニティ作成</div>
   <div>
     <%= form_with model: @community, url: communities_path, local:true, class: "form" do |f| %> <!-- url: でprefixを利用してcommunities#createを指定。-->
       <div class="form-section">
         <label><%= f.label :community_name, "コミュニティ名", class: "form-label" %><span class="form-note">必須</span></label>
         <div>
           <%= f.text_field :community_name, placeholder: "250文字まで", class: "form-area-small" %>
+        </div>
+        <div id="error_explanation">
+          <% if @community.errors.any? && @community.errors.has_key?(:community_name) %>
+            <ul class="all-error-messages">
+              <% @community.errors[:community_name].each do |message| %>
+                <li class="each-error-message"><%= message %></li>
+              <% end %>
+            </ul>
+          <% end %>
         </div>
       </div>
       <!-- コミュニティの種類を増やせる段階で公開
@@ -16,13 +25,13 @@
       </div>
       -->
       <div class="form-section">
-        <label><%= f.label :introduction, "コミュニティ概要", class: "form-label" %></label>
+        <label><%= f.label :introduction, "コミュニティ概要", class: "form-label" %><span class="form-note-optional">任意</span></label>
         <div>
           <%= f.text_area :introduction, placeholder: "30文字以内推奨", class: "form-area-large" %>
         </div>
       </div>
       <div class="form-section">
-        <label><%= f.label :manual, "コミュニティ利用上の注意", class: "form-label" %></label>
+        <label><%= f.label :manual, "コミュニティ利用上の注意", class: "form-label" %><span class="form-note-optional">任意</span></label>
         <div>
           <%= f.text_area :manual, placeholder: "独自の使い方があれば記載しましょう！", class: "form-area-large" %>
         </div>

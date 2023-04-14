@@ -6,4 +6,5 @@ class Rule < ApplicationRecord
   belongs_to :updating_user, class_name: 'User', foreign_key: :updating_user_id, optional: true
   has_many :standbies
   has_many :records
+  
 end

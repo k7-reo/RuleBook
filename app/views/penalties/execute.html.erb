@@ -9,15 +9,15 @@
     <p>完了したペナルティ：<%= @penalty.content %></p>
     <p>回復ポイント：<%= @penalty.point %></p>
     <div>
-      <%= form_with model: @standby, url: community_penalty_execute_path(@community.id, @penalty.id), local:true do |f| %>
-        <div>
-          <label><%= f.label :executed_user_id, "ペナルティ完了を許可してもらうユーザー" %><span class="form-note">必須</span></label>
+      <%= form_with model: @standby, url: community_penalty_execute_path(@community.id, @penalty.id), local:true, class: "form" do |f| %>
+        <div class="form-section">
+          <label><%= f.label :executed_user_id, "ペナルティ完了を許可してもらうユーザー", class: "form-label" %><span class="form-note">必須</span></label>
           <div>
-            <%= f.collection_select :executed_user_id, User.joins(:community_users).where(community_users: {community_id: params[:community_id]}), :id, :name, include_blank: "ユーザーを選択してください" %>
+            <%= f.collection_select :executed_user_id, User.joins(:community_users).where(community_users: {community_id: params[:community_id]}), :id, :name, include_blank: "ユーザー選択" %>
           </div>
         </div>
-        <div>
-          <%= f.submit '実行完了申請' %>
+        <div class="submittion">
+          <%= f.submit '実行完了申請', class: "done-btn" %>
         </div>
       <% end %>
     </div>

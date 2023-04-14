@@ -5,30 +5,30 @@
     <%= render 'communities/info', community: @community, currentUser: @currentUser %>
   </div>
   <div class="community-main">
-    <p class="page-title">報酬新規作成</p>
-    <div class="comment">
-      <p>
-        <b>制定ポイント</b><br>
-        コミュニティのゴール達成に向けて<br>
-        更に意欲が湧くような報酬はなんですか？
-      </p>
-    </div>
+    <div class="page-title">報酬新規作成</div>
     <div>
-      <%= form_with(model:[@community, @privilege], local:true) do |f| %>
-      <div>
-        <label><%= f.label :content, "内容" %><span class="form-note">必須</span></label>
-        <div>
-          <%= f.text_area :content, placeholder: "報酬内容をここに" %>
+      <%= form_with(model:[@community, @privilege], local:true, class: "form") do |f| %>
+        <div class="form-section">
+          <label><%= f.label :content, "内容", class: "form-label" %><span class="form-note">必須</span></label>
+          <div>
+            <%= f.text_area :content, placeholder: "報酬内容をここに", class: "form-area-small" %>
+          </div>
+          <div class="comment">
+            <i class="fa-solid fa-circle-info">設定のヒント</i>
+            <div class="comment-content">
+              コミュニティのゴール達成に向けて<br>
+              更に意欲が湧くような報酬はなんですか？
+            </div>
+          </div>
         </div>
-      </div>
-      <div>
-        <label><%= f.label :point, "消費する配当ポイント" %><span class="form-note">必須</span></label>
-        <div>
-          <%= f.text_field :point, placeholder: "行使するのに必要なポイントをここに" %>
+        <div class="form-section">
+          <label><%= f.label :point, "消費する累積ポイント", class: "form-label" %><span class="form-note">必須</span></label>
+          <div>
+            <%= f.text_field :point, placeholder: "行使するのに必要なポイントをここに", class: "form-area-small" %>
+          </div>
         </div>
-      </div>
-        <div>
-          <%= f.submit '作成' %>
+        <div class="submittion">
+          <%= f.submit '作成', class: "done-btn" %>
         </div>
       <% end %>
     </div>

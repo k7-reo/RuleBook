@@ -97,8 +97,8 @@
                   <div class="dashboard-meeting-index">
                     <div class="dashboard-meeting-index-letter">編集中のミーティング</div>
                   </div>
-                  <div class="dashboard-meeting-name"><%= meeting.name %></div>
-                  <div class="dashboard-back-to-meeting"><%= link_to "議事録に戻る", edit_community_meeting_path(@community.id, meeting.id), class: "dashboard-back-to-meeting-cta" %></div>
+                  <div class="dashboard-meeting-name"><%= @meetingsInProgress.name %></div>
+                  <div class="dashboard-back-to-meeting"><%= link_to "議事録に戻る", edit_community_meeting_path(@community.id, @meetingsInProgress.id), class: "dashboard-back-to-meeting-cta" %></div>
                 </div>
               </div>
             <% else %>
@@ -185,7 +185,7 @@
             <% end %>
           </div>
           <div class="dashboard-late-activities">
-            <div class="late-activities-title">30日間の更新履歴</div>
+            <div class="late-activities-title">30日間の設定履歴</div>
             <div class="late-activities-cta">
               <%= link_to community_records_path(@community.id) do %>
                 <i class="fa-solid fa-ellipsis"></i>

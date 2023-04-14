@@ -5,33 +5,31 @@
     <%= render 'communities/info', community: @community, currentUser: @currentUser %>
   </div>
   <div class="community-main">
-    <p class="page-title">ペナルティ編集</p>
-    <div class="comment">
-      <p>
-        <b>制定ポイント</b><br>
-        相手がゴール達成の意欲を失わないようなないようにしましょう。<br>
-      </p>
-    </div>
+    <div class="page-title">ペナルティ編集</div>
     <div>
-      <%= form_with(model:[@community, @penalty], local:true) do |f| %>
-        <div>
-          <label><%= f.label :content, "内容" %><span class="form-note">必須</span></label>
+      <%= form_with(model:[@community, @penalty], local:true, class: "form") do |f| %>
+        <div class="form-section">
+          <label><%= f.label :content, "内容", class: "form-label" %><span class="form-note">必須</span></label>
           <div>
-            <%= f.text_area :content %>
+            <%= f.text_area :content, class: "form-area-small" %>
+          </div>
+          <div class="comment">
+            <i class="fa-solid fa-circle-info">設定のヒント</i>
+            <div class="comment-content">
+              相手がゴール達成のモチベーションが下がるような内容は控えましょう。
+            </div>
           </div>
         </div>
-        <div>
-          <label><%= f.label :point, "ペナルティ実行による回復ポイント" %><span class="form-note">必須</span></label>
+        <div class="form-section">
+          <label><%= f.label :point, "ペナルティ実行による回復ポイント", class: "form-label" %><span class="form-note">必須</span></label>
           <div>
-            <%= f.text_area :point, placeholder: "マイナス設定不可" %>
+            <%= f.text_field :point, placeholder: "マイナス設定不可", class: "form-area-small" %>
           </div>
         </div>
-        <div>
-          <%= f.submit "編集完了" %>
+        <div class="submittion">
+          <%= f.submit "編集完了", class: "done-btn" %>
+          <%= link_to '削除', community_penalty_path(@community.id, @penalty.id), method: :delete, class: "alt-link-cta" %>
         </div>
       <% end %>
-      <div>
-        <span><%= link_to '削除', community_penalty_path(@community.id, @penalty.id), method: :delete %></span>
-      </div>
     </div>
   </div>

@@ -24,7 +24,7 @@ class UsersController < ApplicationController
   def update
     user = User.find_by(id: current_user.id)
     user.update(user_params)
-    redirect_to setting_path
+    redirect_to top_path
   end
 
   def mypage
@@ -37,27 +37,6 @@ class UsersController < ApplicationController
     @executedRules = Standby.where(executed_user_id: current_user.id, community_id: @community.id, action_type: "rule", approval: "true", updated_at: Time.current.all_month).order(updated_at: :desc)
     @finishedPrivileges = Standby.where(executed_user_id: current_user.id, community_id: @community.id, action_type: "privilege", approval: "true", updated_at: Time.current.all_month).order(updated_at: :desc)
     @finishedPenalties = Standby.where(executed_user_id: current_user.id, community_id: @community.id, action_type: "penalty", approval: "true", updated_at: Time.current.all_month).order(updated_at: :desc)
-  end
-
-  def memo_edit
-    @community = Community.find(params[:community_id])
-    @currentUser = CommunityUser.find_by(user_id: current_user.id) #community-info表示に利用
-    @user = CommunityUser.find_by(user_id: current_user.id, community_id: @community.id)
-  end
-
-  def memo_update
-    community = Community.find(params[:community_id])
-    user = CommunityUser.find_by(user_id: current_user.id, community_id: community.id)
-    user.update(community_user_params)
-    redirect_to community_user_mypage_path(community.id, user.id)
-  end
-
-  def memo_erase
-    community = Community.find(params[:community_id])
-    user = CommunityUser.find_by(user_id: current_user.id, community_id: community.id)
-    user.memo.clear
-    user.save
-    redirect_to community_user_mypage_path(community.id, user.id)
   end
 
   private

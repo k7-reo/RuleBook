@@ -2,30 +2,9 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-//mypage全体
-.my-page-all {
-  box-sizing: border-box;
-  display: flex;
-  width: 100%;
-  height: 100%;
-}
-
-//mypageメイン
-.mypage-left {
-  width: 72%;
-  padding: 8px;
-  height: 100%;
-}
-
-//mypage自分だけメモ
-.mypage-right {
-  width: 28%;
-  border-left: 1px solid rgba(68, 196, 138, 0.3);
-}
-
 //mypage/show役割
 .my-roles, .others-roles {
-  margin: 8px;
+  margin: 16px  16px 8px 16px;
   background-color: rgba(52, 56, 66, 0.5);
   border-radius: 16px;
   height: 24%;
@@ -105,7 +84,7 @@
 .my-activity {
   height: calc( 76% - 32px);
   display: flex;
-  width: 100%;
+  padding: 0 8px;
 }
 
 //mypage獲得ポイント
@@ -125,6 +104,7 @@
   margin: 8px;
   border-radius: 16px;
 }
+
 //mypage獲得ポイント
 .my-point-title {
   background-color: #44c48a;

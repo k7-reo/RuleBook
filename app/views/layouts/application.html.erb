@@ -8,6 +8,7 @@
     <%= include_gon %> <!-- gem 'gon'利用に必要な記述 -->
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <script src="https://kit.fontawesome.com/a3d3283c4c.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
   </head>
 
   <body>
@@ -37,7 +38,7 @@
               <span><%= link_to "通知BOX", receive_path %></span>
             </li>
             <li><%= link_to "コミュニティ一覧", top_path %></li>
-            <li><%= link_to "各種設定", setting_path %></li>
+            <li><%= link_to "ユーザー情報", edit_user_path(current_user.id) %></li>
             <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
             <li>利用規約</li>
             <li>プライバシーポリシー</li>
@@ -57,13 +58,19 @@
     <main>
       <%= yield %>
     </main>
+    <script>
+      $(document).ready(function() {
+        $(".fa-circle-info").click(function() {
+          $(this).siblings(".comment-content").toggle();
+        });
+      });
+    </script>
+    <script>
+      //サイドメニュースライド
+      document.querySelector('.sign-in-user-profile-image').addEventListener('click', function(){
+        this.classList.toggle('active');
+        document.querySelector('.slide-menu').classList.toggle('active');
+      })
+    </script>
   </body>
 </html>
-
-<script>
-  //サイドメニュースライド
-  document.querySelector('.sign-in-user-profile-image').addEventListener('click', function(){
-    this.classList.toggle('active');
-    document.querySelector('.slide-menu').classList.toggle('active');
-  })
-</script>

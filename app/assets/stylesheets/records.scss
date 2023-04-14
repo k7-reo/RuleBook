@@ -55,3 +55,8 @@
   padding-left: 2px;
   padding-right: 2px;
 }
+
+.thirtydays-record {
+  height: calc(100% - 40px);
+  overflow: scroll;
+}

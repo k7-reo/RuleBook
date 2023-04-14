@@ -11,6 +11,8 @@ class Community < ApplicationRecord
   has_many :meetings, dependent: :destroy
   #背景画像
   attachment :community_image
+  
+  validates :community_name, presence: { message: "コミュニティ名が登録されていません。" }
 
   def self.search(search)
     if search != ""

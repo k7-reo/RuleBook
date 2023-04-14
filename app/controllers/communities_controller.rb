@@ -17,7 +17,6 @@ class CommunitiesController < ApplicationController
       community_user.save
       redirect_to community_path(@community)
     else
-      @community = Community.new
       render 'new'
     end
   end
@@ -54,6 +53,27 @@ class CommunitiesController < ApplicationController
     @coupleAdvice = Advice.where(community_genre: "夫婦・カップル").order("RANDOM()").first
     @currentUser = CommunityUser.find_by(user_id: current_user.id) #community-info表示に利用
     @acceptedUsers = CommunityUser.where(community_id: params[:id], status: 1)
+
+    # 今月のstandbiesデータを取得する
+    current_month = Date.current.beginning_of_month..Date.current.end_of_month
+    @standbies = Standby.where(created_at: current_month)
+
+    # カレンダーに表示するためのJSON形式のデータを作成する
+    @events = []
+    @standbies.each do |standby|
+      # action_typeがruleの場合、ルールの実行記録を作成する
+      if standby.action_type == "rule"
+        event = {
+          title: "#{standby.executed_user_id}にルール（#{standby.content}）が実行されました",
+          start: standby.created_at
+        }
+        @events << event
+      end
+      # action_typeがpenaltyの場合、ペナルティの実行記録を作成する
+      # （同様にprivilegeの場合も追加で記述する）
+      # ...
+    end
+
   end
 
   def join_request
@@ -87,14 +107,16 @@ class CommunitiesController < ApplicationController
   end
 
   def update
-    community = Community.find(params[:id])
-    community.update(community_params)
+  @community = Community.find(params[:id])
+  if @community.update(community_params)
     if params[:default_background]
-      community.community_image_id.clear
-      community.save
+      @community.community_image_id = nil
     end
-    redirect_to community_detail_path(community.id)
+    redirect_to community_detail_path(@community.id)
+  else
+    render 'edit'
   end
+end
 
   private
 

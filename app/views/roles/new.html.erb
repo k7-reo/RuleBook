@@ -5,23 +5,23 @@
     <%= render 'communities/info', community: @community, currentUser: @currentUser %>
   </div>
   <div class="community-main">
-    <p class="page-title">役割新規作成</p>
-    <div class="comment">
-      <p>
-        <b>制定ポイント</b><br>
-        ゴール達成を意識して、自分が担うべき役割を考えましょう。<br>
-      </p>
-    </div>
+    <div class="page-title">役割新規作成</div>
     <div>
-      <%= form_with(model: [@community, @user, @role], local: true) do |f| %>
-        <div>
-          <label><%= f.label :content, "このコミュニティにおけるあなたの役" %><span class="form-note">必須</span></label>
+      <%= form_with(model: [@community, @user, @role], local: true, class: "form") do |f| %>
+        <div class="form-section">
+          <label><%= f.label :content, "このコミュニティにおけるあなたの役割", class: "form-label" %><span class="form-note">必須</span></label>
           <div>
-            <%= f.text_area :content %>
+            <%= f.text_field :content, class: "form-area-small" %>
+          </div>
+          <div class="comment">
+            <i class="fa-solid fa-circle-info"> 設定のヒント</i>
+            <div class="comment-content">
+              ゴール達成を意識して、自分が担うべき役割を考えましょう。
+            </div>
           </div>
         </div>
-        <div>
-          <%= f.submit '作成' %>
+        <div class="submittion">
+          <%= f.submit '作成', class: "done-btn" %>
         </div>
       <% end %>
     </div>

@@ -10,33 +10,35 @@
     </div>
     <div>
       <% if @myCommunities.present? %>
-        <div class="my-all-communities">
-          <% @myCommunities.each do |community| %>
-            <div class="my-each-community">
-              <div class="my-each-community-sign">
-                <% if community.owner_id == current_user.id %>
-                  <div class="owner-sign">オーナー</div>
-                <% end %>
+        <div class="my-all-communities-wrapper">
+          <div class="my-all-communities">
+            <% @myCommunities.each do |community| %>
+              <div class="my-each-community">
+                <div class="my-each-community-sign">
+                  <% if community.owner_id == current_user.id %>
+                    <div class="owner-sign">オーナー</div>
+                  <% end %>
+                </div>
+                <div class="my-each-community-name"><%= community.community_name %></div>
+                <div class="my-each-community-introduction"><%= community.introduction %></div>
+                <div class="my-each-community-id">コミュニティID：<%= community.id %></div>
+                <div class="my-each-community-member">
+                  <% communityUsers = CommunityUser.where(community_id: community.id, status: 1) %>
+                  <div>参加者数：<%= communityUsers.count %></div>
+                </div>
+                <div class="my-each-community-action">
+                  <div class="my-each-community-each-action"><%= link_to '入室', community_path(community.id), class: "my-each-community-each-action-cta" %></div>
+                  <% unless community.owner_id == current_user.id %>
+                    <div class="my-each-community-each-action"><%= link_to '脱退', community_out_path(community.id), method: :delete, class: "my-each-community-each-action-cta" %></div>
+                  <% end %>
+                  <% if community.owner_id == current_user.id %>
+                    <div class="my-each-community-each-action"><%= link_to '編集', edit_community_path(community.id), class: "my-each-community-each-action-cta" %></div>
+                    <div class="my-each-community-each-action"><%= link_to '削除', community_path(community.id), method: :delete, class: "my-each-community-each-action-cta" %></div>
+                  <% end %>
+                </div>
               </div>
-              <div class="my-each-community-name"><%= community.community_name %></div>
-              <div class="my-each-community-introduction"><%= community.introduction %></div>
-              <div class="my-each-community-id">コミュニティID：<%= community.id %></div>
-              <div class="my-each-community-member">
-                <% communityUsers = CommunityUser.where(community_id: community.id) %>
-                <div>参加者数：<%= communityUsers.count %></div>
-              </div>
-              <div class="my-each-community-action">
-                <div class="my-each-community-each-action"><%= link_to '入室', community_path(community.id), class: "my-each-community-each-action-cta" %></div>
-                <% unless community.owner_id == current_user.id %>
-                  <div class="my-each-community-each-action"><%= link_to '脱退', community_out_path(community.id), method: :delete, class: "my-each-community-each-action-cta" %></div>
-                <% end %>
-                <% if community.owner_id == current_user.id %>
-                  <div class="my-each-community-each-action"><%= link_to '編集', edit_community_path(community.id), class: "my-each-community-each-action-cta" %></div>
-                  <div class="my-each-community-each-action"><%= link_to '削除', community_path(community.id), method: :delete, class: "my-each-community-each-action-cta" %></div>
-                <% end %>
-              </div>
-            </div>
-          <% end %>
+            <% end %>
+          </div>
         </div>
       <% else %>
         <div class="alt-text">所属しているコミュニティはありません。</div>
@@ -62,7 +64,6 @@
       </div>
     <% end %>
   </div>
-
   <div class="communities-search">
     <div class="communities-search-header">
       <div class="section-title">コミュニティ検索</div>
@@ -88,7 +89,7 @@
             </div>
           <% end %>
         <% end %>
-      <div>
+      </div>
     <% else %>
       <div class="all-seach-results-alt-view">
         <div class="alt-text">該当するコミュニティはありません。</div>

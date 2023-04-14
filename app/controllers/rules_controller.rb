@@ -4,8 +4,17 @@ class RulesController < ApplicationController
   def index
     @community = Community.find(params[:community_id]) #意味：Communityモデルから該当するidのレコードをfind(探し出す)する。findはidしか引数にできない。paramがないとcontorollerはデータを受け取れない。アクションないでrule_idも呼び出されているので、しっかり[:community_id]を指定。
     @currentUser = CommunityUser.find_by(user_id: current_user.id) #community-info表示に利用
-    @negativeRules = Rule.where("community_id = ? and point <= ?", @community.id, 0)
-    @positiveRules = Rule.where("community_id = ? and point >= ?", @community.id, 0)
+    @genres = Rule.distinct.pluck(:genre)
+    @selected_genre = params[:genre] || "すべて"
+    @rules = Rule.includes(:community).where(community_id: @community.id)
+    if @selected_genre != "すべて"
+      @rules = @rules.where(genre: @selected_genre)
+    end
+     # +ポイントのルールをジャンルでソート
+    @positiveRules = @rules.where("point > 0").order(:genre)
+    # -ポイントのルールをジャンルでソート
+    @negativeRules = @rules.where("point <= 0").order(:genre)
+
   end
 
   def show
@@ -125,6 +134,7 @@ class RulesController < ApplicationController
   def execute #ルール実行html表示のアクション
     @community = Community.find(params[:community_id])
     @rule = Rule.find(params[:rule_id])
+    @targetUsers = User.joins(:rule_users).where(rule_users: {rule_id: params[:rule_id]}).where.not(id: current_user.id)
     @standby = Standby.new
     @currentUser = CommunityUser.find_by(user_id: current_user.id) #community-info表示に利用
   end

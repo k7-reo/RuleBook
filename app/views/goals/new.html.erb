@@ -10,27 +10,27 @@
       <%= form_with(model: [@community, @goal], url: community_goals_path{@community.id}, local: true, class: "form") do |f| %>
         <div class="form-section">
           <label><%= f.label :content, "メンバー全員で達成したいゴール", class: "form-label" %><span class="form-note">必須</span></label>
-          <div class="comment">
-            <i class="fa-solid fa-circle-info"></i>
-            <div>
-              緊急度は高くないけど重要度が高いこと。
-            </div>
-          </div>
           <div>
             <%= f.text_area :content, class: "form-area-small" %>
           </div>
+          <div class="comment">
+            <i class="fa-solid fa-circle-info"> 設定のヒント</i>
+            <div class="comment-content">
+              緊急度は高くないけど重要度が高いこと。
+            </div>
+          </div>
         </div>
         <div class="form-section">
-          <label><%= f.label :deadline, "ゴール達成期限", class: "form-label" %><span class="form-note">必須</span></label>
+          <label><%= f.label :deadline, "ゴール達成期限", class: "form-label" %><span class="form-note-optional">任意</span></label>
+          <div>
+            <%= f.datetime_field :deadline %>
+          </div>
           <div class="comment">
-            <i class="fa-solid fa-circle-info"></i>
-            <div>
+            <i class="fa-solid fa-circle-info"> 設定のヒント</i>
+            <div class="comment-content">
             設定は任意ですが、程よい緊張感を保つ為にも設定することをお勧めします。<br>
             特に期間指定の無いゴールについてはまず「１ヶ月」を期限にして頑張ってみましょう。
             </div>
-          </div>
-          <div>
-            <%= f.datetime_field :deadline %>
           </div>
         </div>
         <div class="submittion">

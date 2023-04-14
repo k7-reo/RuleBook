@@ -5,28 +5,26 @@
     <%= render 'communities/info', community: @community, currentUser: @currentUser %>
   </div>
   <div class="community-main">
-    <p class="page-title">スローガン編集</p>
-    <div class="comment">
-      <p>制定ポイント</p>
-      <p>
-        ゴール達成のためにメンバー全員が心がけることを記載してください。<br>
-        みんなで話し合って決めてみましょう！
-      </p>
-    </div>
+    <div class="page-title">スローガン編集</div>
     <div>
-      <%= form_with(model:[@community, @motto], local:true) do |f| %>
-        <div>
-          <label><%= f.label :content, "内容" %><span class="form-note">必須</span></label>
+      <%= form_with(model:[@community, @motto], local:true, class: "form") do |f| %>
+        <div class="form-section">
+          <label><%= f.label :content, "内容", class: "form-label" %><span class="form-note">必須</span></label>
           <div>
-          <%= f.text_area :content %>
+            <%= f.text_area :content, class: "form-area-small" %>
+          </div>
+          <div class="comment">
+            <i class="fa-solid fa-circle-info">設定のヒント</i>
+            <div class="comment-content">
+              ゴール達成のためにメンバー全員が心がけることを記載してください。<br>
+              みんなで話し合って決めてみましょう！
+            </div>
           </div>
         </div>
         <div>
-        <%= f.submit "編集完了" %>
+        <%= f.submit "編集完了", class: "done-btn" %>
+        <%= link_to "削除", community_motto_path(@community.id, @motto.id), method: :delete, class: "alt-link-cta" %>
         </div>
       <% end %>
-    </div>
-    <div>
-      <p><%= link_to "削除", community_motto_path(@community.id, @motto.id), method: :delete %></p>
     </div>
   </div>

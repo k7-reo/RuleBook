@@ -5,27 +5,33 @@
     <%= render 'communities/info', community: @community, currentUser: @currentUser %>
   </div>
   <div class="community-main">
-    <p class="page-title">ルール実行</p>
-    <p>実行するルール：<%= @rule.content %></p>
-    <p>加減ポイント：<%= @rule.point %></p>
+    <div class="page-title">ルール実行</div>
+    <div class="executing-rule-info">
+      <div class="executing-rule-info-content">実行するルール：<%= @rule.content %></div>
+      <div class="executing-rule-info-point">加減ポイント：<%= @rule.point %></div>
+    </div>
     <div>
-      <%= form_with model: @standby, url: community_rule_execute_path(@community.id, @rule.id), local:true do |f| %>
-        <div>
-          <label>対象メンバー選択<span class="form-note">必須</span></label>
-          <div>
-            <%= collection_check_boxes(:standby, :executed_user_id, User.joins(:rule_users).where(rule_users: {rule_id: params[:rule_id]}), :id, :name, include_hidden: false) do |user| %>
-              <%= user.check_box %>
-              <%= user.text %>
+      <%= form_with model: @standby, url: community_rule_execute_path(@community.id, @rule.id), local:true, class: "form" do |f| %>
+        <div class="form-section">
+          <label><%= f.label :executed_user_id, "対象メンバー", class: "form-label" %><span class="form-note">必須</span></label>
+          <div class="form-check-box">
+            <% if @targetUsers.present? %>
+              <%= collection_check_boxes(:standby, :executed_user_id, @targetUsers, :id, :name, include_hidden: false) do |user| %>
+                <div><%= user.check_box %></div>
+                <div class="form-check-box-label"><%= user.text %></div>
+              <% end %>
+            <% else %>
+              対象ユーザーが設定されていません。
             <% end %>
           </div>
         </div>
-        <div>
-          <label><%= f.label :detail, "補足" %></label>
+        <div class="form-section">
+          <label><%= f.label :detail, "補足", class: "form-label" %><span class="form-note-optional">任意</span></label>
           <div>
-            <%= f.text_area :detail %>
+            <%= f.text_area :detail, class: "form-area-large" %>
           </div>
         </div>
-        <div><%= f.submit '対象にルール行使' %></div>
+        <div class="submittion"><%= f.submit '対象にルール行使', class: "done-btn" %></div>
       <% end %>
     </div>
   </div>

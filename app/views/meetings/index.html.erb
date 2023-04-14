@@ -22,26 +22,32 @@
                 <% if @nextMeeting.name.present? %>
                   <%= @nextMeeting.name %>
                 <% else %>
-                  <div class="alt-text">題名がありません</div>
+                  題名がありません
                 <% end %>
               </div>
               <div class="meeting-count-timer" id="meetingCountTimer"></div>
               <div class="meeting-detail">
                 <% if @nextMeeting.date.present? %>
                   <%= @nextMeeting.date.to_s(:datetime_jp) %>
+                <% else %>
+                  日時未定
                 <% end %><br>
                 <% if @nextMeeting.place.present? %>
-                   @<%= @nextMeeting.place %>
+                  @<%= @nextMeeting.place %>
+                <% else %>
+                  場所未定
                 <% end %>
               </div>
               <div class="meeting-start"><%= link_to "ミーティングを始める", edit_community_meeting_path(@community.id, @nextMeeting.id), class: "meeting-start-cta" %></div>
             </div>
           </div>
         <% else %>
-          <div class="next-meeting">
-            <div class="meeting-content">
-              <div class="alt-text">メンバーのコミュニケーションの場を定期的に設けましょう！<br>かしこまった内容ではなく、一緒に映画を見るなどでもいいですね。</div>
-              <div class="meeting-new"><%= link_to "ミーティング設定", new_community_meeting_path(@community.id), class: "dashboard-meeting-new-cta" %></div>
+          <div class="next-meeting-alt-view-wrapper">
+            <div class="next-meeting-alt-view">
+              <div class="meeting-content">
+                <div class="alt-text">メンバーのコミュニケーションの場を定期的に設けましょう！<br>かしこまった内容ではなく、一緒に映画を見るなどでもいいですね。</div>
+                <div class="meeting-new"><%= link_to "ミーティング設定", new_community_meeting_path(@community.id), class: "dashboard-meeting-new-cta" %></div>
+              </div>
             </div>
           </div>
         <% end %>
@@ -50,6 +56,7 @@
           <div class="meeting-in-progress">
             <div class="meeting-in-progress-content">
               <div class="meeting-name"><%= meeting.name %></div>
+              <div class="meeting-in-progress-text">編集中です...</div>
               <div class="back-to-meeting"><%= link_to "議事録に戻る", edit_community_meeting_path(@community.id, meeting.id), class: "back-to-meeting-cta" %></div>
             </div>
           </div>
@@ -61,7 +68,8 @@
       <div class="past-meetings-header">
         <div class="section-title">過去のミーティング一覧</div>
       </div>
-      <div class="all-past-meetings">
+      <div class="all-past-meetings-wrapper">
+        <div class="all-past-meetings">
         <% if @pastMeetings.present? %>
           <% @pastMeetings.each do |meeting| %>
           <div class="each-past-meeting">
@@ -102,6 +110,7 @@
         <% else %>
           <div class="alt-text">過去に行ったミーティングはありません。</div>
         <% end %>
+      </div>
       </div>
     </div>
   </div>

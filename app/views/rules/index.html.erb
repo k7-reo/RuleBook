@@ -6,6 +6,12 @@
   </div>
   <div class="community-main">
     <div class="rules">
+      <div class="rules-sort">
+        <%= form_tag(community_rules_path, method: :get) do %>
+          <%= select_tag(:genre, options_for_select(["すべて"] + @genres, @selected_genre), include_blank: false) %>
+          <%= submit_tag("ジャンル絞り込み", class: "btn btn-primary", class: "done-btn") %>
+        <% end %>
+      </div>
       <div class="positive-rules-wrapper">
         <div class="positive-rules-header">
           <div class="section-title">プラスルール一覧</div>
@@ -23,7 +29,7 @@
               <% @positiveRules.each do |rule| %>
                 <div class="each-positive-rule">
                   <div class="each-rule-edit">
-                    <%= link_to community_rule_path(@community.id, rule.id) do %>
+                    <%= link_to edit_community_rule_path(@community.id, rule.id) do %>
                       <i class="fa-regular fa-pen-to-square"></i>
                     <% end %>
                   </div>
@@ -64,7 +70,7 @@
               <% @negativeRules.each do |rule| %>
                 <div class="each-negative-rule">
                   <div class="each-rule-edit">
-                    <%= link_to community_rule_path(@community.id, rule.id) do %>
+                    <%= link_to edit_community_rule_path(@community.id, rule.id) do %>
                       <i class="fa-regular fa-pen-to-square"></i>
                     <% end %>
                   </div>

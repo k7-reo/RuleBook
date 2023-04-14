@@ -46,6 +46,7 @@ a:hover {
 .alt-text {
   padding: 16px;
   text-align: center;
+  font-size: 80%;
 }
 
 .page-title {
@@ -178,7 +179,17 @@ main {
 }
 
 .comment {
+  margin-top: 2px;
   font-size: 80%;
+}
+
+.comment:hover {
+  color: #44c48a;
+  font-weight: bold;
+}
+
+.comment-content {
+  display: none; /* 初期状態では非表示 */
 }
 
 /*「・」を抜く*/
@@ -264,19 +275,20 @@ tbody td:last-child {
   resize: horizontal;
   width: 316px;
   height: 16px;
-  margin: inherit;
   padding: 2px;
   border: inherit;
+  font-family: monospace;
+  margin-bottom: 4px;
 }
 
 .form-area-large {
   resize: horizontal;
   width: 316px;
   height: 80px;
-  margin: inherit;
   padding: 2px;
   border: inherit;
-  font-family: inherit;
+  font-family: monospace;
+  margin-bottom: 4px;
 }
 
 .form-check-box {
@@ -288,6 +300,8 @@ tbody td:last-child {
   font-size: 80%;
   position: relative;
   bottom: 1px;
+  height: 20px;
+  line-height: 20px
 }
 
 .form-select-file {
@@ -297,7 +311,15 @@ tbody td:last-child {
 
 /*フォームタイトル横の補足欄*/
 .form-note {
-  background-color:  #ff5757;
+  background-color: #ff5757;
+  font-size: 80%;
+  color: #ffffff;
+  margin-left: 4px;
+  padding: 2px;
+}
+
+.form-note-optional {
+  background-color: #848A99;
   font-size: 80%;
   color: #ffffff;
   margin-left: 4px;
@@ -320,10 +342,13 @@ tbody td:last-child {
   top: 1px;
   width: fit-content;
   height: 24px;
+  line-height: 24px;
+  padding-left: 8px;
+  padding-right: 8px;
   color: #343842;
   background-color: #ffd139;
   border-style: none; /*デフォルトの枠線デザインを消去*/
-  border-radius: 15px;
+  border-radius: 16px;
   font-weight: bold;
 }
 
@@ -333,6 +358,39 @@ tbody td:last-child {
   background-color: #f47842;
 }
 
+.alt-link-cta {
+  display: inline-block;
+  position: relative;
+  top: 1px;
+  background-color: #d6dbe6;
+  color: #343842;
+  width: fit-content;
+  padding-left: 8px;
+  padding-right: 8px;
+  height: 24px;
+  line-height: 24px;
+  margin-left: 0;
+  font-weight: bold;
+  border-radius: 16px;
+}
+
+.alt-link-cta:hover {
+  background-color: #343842;
+  color: #d6dbe6;
+}
+
 .non-decorated-link {
   margin-left: 16px;
+}
+
+textarea {
+  display:block;
+}
+
+.all-error-messages {
+  margin: 0;
+  padding: 0;
+  color: #ff5757;
+  font-weight: bold;
+  font-size: 80%;
 }

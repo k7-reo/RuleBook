@@ -1,26 +1,21 @@
-<p class="page-title">個人情報変更</p>
-
+<div class="page-title">個人情報変更</div>
 <div>
-  <%= form_with model: @user, local:true do |f| %>
-    <div>
-      <label for="inputName">ユーザーネーム</label>
-      <div><%= f.text_field :name, autofocus: true, id:"inputName", placeholder:"ユーザー名" %></div>
+  <%= form_with model: @user, local:true, class: "form" do |f| %>
+    <div class="form-section">
+      <label for="inputName", class="form-label">ユーザーネーム</label><span class="form-note">必須</span>
+      <div><%= f.text_field :name, autofocus: true, id:"inputName", placeholder:"ユーザー名", class: "form-area-small" %></div>
     </div>
-    <div>
-      <label for="inputEmail">メールアドレス</label>
-      <div><%= f.text_field :email, id:"inputEmail", placeholder:"メールアドレス" %></div>
+    <div class="form-section">
+      <label for="inputEmail", class="form-label">メールアドレス</label><span class="form-note">必須</span>
+      <div><%= f.text_field :email, id:"inputEmail", placeholder:"メールアドレス", class: "form-area-small" %></div>
     </div>
-    <div>
-      <label for="inputImage">プロフィール画像</label>
+    <div class="form-section">
+      <label for="inputImage", class="form-label">プロフィール画像</label><span class="form-note-optional">任意</span>
       <div><%= attachment_image_tag @user, :profile_image, :fill, 120, 120, fallback: "f_f_event_98_s512_f_event_98_0bg.jpg", size:'120x120' %></div>
-      <div><%= f.attachment_field :profile_image, placeholder: "画像を選択してください" %></div>
+      <div><%= f.attachment_field :profile_image, placeholder: "画像を選択してください", class: "form-check-box-label" %></div>
     </div>
-    <div>
-      <p><%= f.submit "編集完了" %></p>
+    <div class="submittion">
+      <div><%= f.submit "編集完了", class: "done-btn" %></div>
     </div>
   <% end %>
-</div>
-
-<div>
-  <%= link_to "TOPへ", top_path %>
 </div>
