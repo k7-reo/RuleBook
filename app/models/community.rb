@@ -9,9 +9,7 @@ class Community < ApplicationRecord
   has_many :penalties, dependent: :destroy
   has_many :records, dependent: :destroy
   has_many :meetings, dependent: :destroy
-  #背景画像
-  attachment :community_image
-  
+  has_one_attached :community_image #ActiveStrageによる画像保存機能
   validates :community_name, presence: { message: "コミュニティ名が登録されていません。" }
 
   def self.search(search)

@@ -109,8 +109,9 @@ class CommunitiesController < ApplicationController
   def update
   @community = Community.find(params[:id])
   if @community.update(community_params)
+    @community.community_image.attach(params[:community][:community_image])
     if params[:default_background]
-      @community.community_image_id = nil
+      @community.community_image = nil
     end
     redirect_to community_detail_path(@community.id)
   else

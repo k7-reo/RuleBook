@@ -17,6 +17,5 @@ class User < ApplicationRecord
   has_many :roles, dependent: :destroy
   has_many :meeting_users
   has_many :meetings, through: :meeting_users
-  #アイコン画像添付
-  attachment :profile_image
+  has_one_attached :profile_image #ActiveStrageによる画像保存機能
 end

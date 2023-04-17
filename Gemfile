@@ -1,10 +1,10 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.6.3'
+ruby '3.1.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.2.5'
+gem 'rails', '~> 6.1.4'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 # Use Puma as the app server
@@ -72,3 +72,5 @@ gem "refile", require: "refile/rails", github: 'manfe/refile' # 画像投稿用g
 gem "refile-mini_magick" # 画像加工用（サイズ調整など）gem
 
 gem 'gon' #RailsからJavaScriptにデータを渡すgem https://qiita.com/mosa_siru/items/e69eee47a183b13cfb62
+
+gem 'image_processing', '~> 1.12'

@@ -22,7 +22,13 @@
       </div>
       <div class="sign-in-user">
         <% if user_signed_in? %>
-          <div class="sign-in-user-profile-image"><%= attachment_image_tag current_user, :profile_image, :fill, 40, 40, format: 'jpeg', fallback: "f_f_event_98_s512_f_event_98_0bg.jpg", size:'40x40', class: "sign-in-user-profile-image-cta"%></div>
+          <div class="sign-in-user-profile-image">
+            <% if current_user.profile_image.attached? %>
+              <%= image_tag current_user.profile_image.variant(resize: "40x40"), class: "sign-in-user-profile-image-cta" %>
+            <% else %>
+              <%= image_tag("f_f_event_98_s512_f_event_98_0bg.jpg", style: "width: 40px; height: 40px;", class: "sign-in-user-profile-image-cta") %>
+            <% end %>
+          </div>
         <% end %>
       </div>
       <div class="slide-menu">

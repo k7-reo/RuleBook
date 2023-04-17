@@ -38,8 +38,14 @@
       </div>
       <div class="form-section">
         <label><%= f.label :profile_image, "背景画像", class: "form-label" %><span class="form-note-optional">任意</span></label>
-        <div class="community-background-edit"><%= attachment_image_tag @community, :community_image, format: 'jpeg', fallback: "default_background.jpg" %></div>
-        <div><%= f.attachment_field :community_image, placeholder: "画像を選択してください", class: "form-select-file" %></div>
+        <div class="community-background-edit">
+          <% if @community.community_image.attached? %>
+            <%= image_tag @community.community_image %>
+          <% else %>
+            <%= image_tag("default_background.jpg") %>
+          <% end %>
+        </div>
+        <div><%= f.file_field :community_image, class: "form-select-file" %></div>
         <div class="form-check-box">
           <div><%= check_box_tag :default_background, class: "form-check-box-item" %></div>
           <div><%= label_tag :default_background, "デフォルト画像に戻す", class: "form-check-box-label" %></div>

@@ -11,8 +11,14 @@
     </div>
     <div class="form-section">
       <label for="inputImage", class="form-label">プロフィール画像</label><span class="form-note-optional">任意</span>
-      <div><%= attachment_image_tag @user, :profile_image, :fill, 120, 120, fallback: "f_f_event_98_s512_f_event_98_0bg.jpg", size:'120x120' %></div>
-      <div><%= f.attachment_field :profile_image, placeholder: "画像を選択してください", class: "form-check-box-label" %></div>
+      <div>
+        <% if @user.profile_image.attached? %>
+          <%= image_tag @user.profile_image.variant(resize: "120x120") %>
+        <% else %>
+          <%= image_tag("f_f_event_98_s512_f_event_98_0bg.jpg", style: "width: 120px; height: 120px;") %>
+        <% end %>
+      </div>
+      <div><%= f.file_field :profile_image, placeholder: "画像を選択してください", class: "form-check-box-label" %></div>
     </div>
     <div class="submittion">
       <div><%= f.submit "編集完了", class: "done-btn" %></div>

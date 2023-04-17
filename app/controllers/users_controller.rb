@@ -23,8 +23,12 @@ class UsersController < ApplicationController
 
   def update
     user = User.find_by(id: current_user.id)
-    user.update(user_params)
-    redirect_to top_path
+    if user.update(user_params)
+      user.profile_image.attach(params[:user][:profile_image])
+      redirect_to top_path
+    else
+      render 'edit'
+    end
   end
 
   def mypage
