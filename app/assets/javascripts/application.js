@@ -14,3 +14,15 @@
 //= require activestorage
 //= require turbolinks
 //= require_tree .
+
+// FullCalendarのスタイルシート
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullCalendar.min.css" />
+
+//jQueryのスクリプトタグ
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+// moment.jsのスクリプトタグ
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+
+// FullCalendarのスクリプトタグ
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullCalendar.min.js"></script>

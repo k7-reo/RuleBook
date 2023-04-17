@@ -1,5 +1,7 @@
   <div class="community-background">
-    <%= attachment_image_tag @community, :community_image, format: 'jpeg' %>
+    <% if @community.community_image.attached? %>
+      <%= image_tag @community.community_image %>
+    <% end %>
   </div>
   <div class="community-info">
     <%= render 'communities/info', community: @community, currentUser: @currentUser %>

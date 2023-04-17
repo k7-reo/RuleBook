@@ -247,13 +247,36 @@
   padding: 8px;
 }
 
+.community-member-sum:hover {
+  background-color: #ffd139;
+  color: #343842;
+  border-radius: 16px;
+  display: flex;
+  margin: 8px;
+  padding: 6px;
+  border: 2px solid #f47842;
+  font-weight: inherit;
+}
+
 //index
 .community-member-sum-left {
   text-align: center;
   width: 96px;
   display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.community-member-profile-image {
+  border-radius: 40px;
+}
+
+.community-member-name {
+  font-weight: bold;
+  word-break: break-all; /*半角英数字でも折り返しできるようになる*/
+  max-width: 100%;
 }
 
 .community-member-sum-right {
@@ -287,12 +310,18 @@
   color: #ffffff;
   padding: 4px 8px;
   font-size: 80%;
+  font-weight: normal;
   border-radius: 16px;
   text-align: center;
   white-space: nowrap;
   height: 16px;
   line-height: 16px;
 }
+
+.member-each-role-index:hover {
+  font-weight: inherit;
+}
+
 
 .member-each-role-content {
   margin-left: 4px;
