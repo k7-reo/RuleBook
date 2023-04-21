@@ -16,13 +16,21 @@
       <div class="header-area">
         <div class="site-logo">
           <%= link_to top_path do %>
-            <%= image_tag 'COLABO_logo', size: '70x42' %>
+            <%= image_tag 'gachiru', size: '200x40' %>
           <% end %>
+        </div>
+        <div class="site-concept">
+            愛に頼らない快適なパートナーシップ
         </div>
       </div>
       <div class="sign-in-user">
         <% if user_signed_in? %>
           <div class="sign-in-user-profile-image">
+            <span>
+              <% if @standbyRules.present? || @standbyPenalties.present? || @unacceptedUsers.present? %>
+                <i class="fa-solid fa-circle notification-on-picture"></i>
+              <% end %>
+            </span>
             <% if current_user.profile_image.attached? %>
               <%= image_tag current_user.profile_image.variant(resize: "40x40"), class: "sign-in-user-profile-image-cta" %>
             <% else %>
@@ -65,6 +73,7 @@
       <%= yield %>
     </main>
     <script>
+      //コメントの表示/非表示
       $(document).ready(function() {
         $(".fa-circle-info").click(function() {
           $(this).siblings(".comment-content").toggle();

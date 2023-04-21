@@ -30,11 +30,13 @@
 }
 
 .active-goal-deadline {
+  height: 16px;
   margin: 2px 16px;
   font-size: 80%;
 }
 
 .active-goal-creator {
+  height: 16px;
   margin: 2px 16px 16px 16px;
   font-size: 80%;
 }
@@ -83,7 +85,16 @@
   text-align: center;
 }
 
+.active-goal-alt-view-wrapper {
+  height: 137px;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+}
+
 .past-goals {
+  height: calc(100% - 217px);
   width: calc(100% - 32px);
   margin: 16px;
   background-color: rgba(52, 56, 66, 0.5);
@@ -92,6 +103,11 @@
 
 .past-goals-header {
   display: flex;
+}
+
+.all-past-goals-wrapper {
+  height: calc(100% - 32px);
+  overflow: scroll;
 }
 
 .all-past-goals {

@@ -92,6 +92,7 @@ class RulesController < ApplicationController
     @community = Community.find(params[:community_id])
     @rule = Rule.find(params[:id])
     @currentUser = CommunityUser.find_by(user_id: current_user.id) #community-info表示に利用
+    render "edit"
   end
 
   def update

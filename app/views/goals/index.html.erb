@@ -38,10 +38,12 @@
           <% end %>
         </div>
       <% else %>
-        <div>
-          <div class="alt-text">コミュニティのメンバー全員で目指すゴールを決めましょう！</div>
-          <div class="goal-new"><%= link_to "ゴール設定", new_community_goal_path(@community.id), class: "dashboard-goal-new-cta" %></div>
-          <!-- ↑dashbordのゴール設定ctaと同じ見た目にしたいのでclass名同様にしてる  -->
+        <div class="active-goal-alt-view-wrapper">
+          <div class="active-goal-alt-view">
+            <div class="alt-text">コミュニティのメンバー全員で目指すゴールを決めましょう！</div>
+            <div class="goal-new"><%= link_to "ゴール設定", new_community_goal_path(@community.id), class: "dashboard-goal-new-cta" %></div>
+            <!-- ↑dashbordのゴール設定ctaと同じ見た目にしたいのでclass名同様にしてる  -->
+          </div>
         </div>
       <% end %>
     </div>
@@ -49,26 +51,28 @@
       <div class="past-goals-header">
         <div class="section-title">過去設定したゴール</div>
       </div>
-      <% if @pastGoals.present? %>
+      <div class="all-past-goals-wrapper">
         <div class="all-past-goals">
-          <% @pastGoals.each do |goal| %>
-            <div class="each-past-goal">
-              <div class="each-past-goal-content"><%= goal.content %></div>
-              <div class="each-past-goal-deadline"><%= goal.deadline.to_s(:datetime_jp) %></div>
-              <div class="each-past-goal-achievement">
-                <% if goal.achievement == true %>
-                  達成
-                <% else %>
-                  未達成
-                <% end %>
+          <% if @pastGoals.present? %>
+            <% @pastGoals.each do |goal| %>
+              <div class="each-past-goal">
+                <div class="each-past-goal-content"><%= goal.content %></div>
+                <div class="each-past-goal-deadline"><%= goal.deadline.to_s(:datetime_jp) %></div>
+                <div class="each-past-goal-achievement">
+                  <% if goal.achievement == true %>
+                    達成
+                  <% else %>
+                    未達成
+                  <% end %>
+                </div>
               </div>
+            <% end %>
+          <% else %>
+            <div class="alt-text">
+              ゴールはどんどんアップデートしていきましょう！
             </div>
           <% end %>
         </div>
-      <% else %>
-        <div class="alt-text">
-          ゴールはどんどんアップデートしていきましょう！
-        </div>
-      <% end %>
+      </div>
     </div>
   </div>

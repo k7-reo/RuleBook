@@ -72,46 +72,47 @@
       </div>
       <div class="all-past-meetings-wrapper">
         <div class="all-past-meetings">
-        <% if @pastMeetings.present? %>
-          <% @pastMeetings.each do |meeting| %>
-          <div class="each-past-meeting">
-            <div class="past-meeting-top">
-              <div class="past-meeting-name">
-                <% if meeting.name.present? %>
-                  <%= meeting.name %>
-                <% end %>
+          <% if @pastMeetings.present? %>
+            <% @pastMeetings.each do |meeting| %>
+              <div class="each-past-meeting">
+                <div class="past-meeting-top">
+                  <div class="past-meeting-name">
+                    <% if meeting.name.present? %>
+                      <%= meeting.name %>
+                    <% end %>
+                  </div>
+                  <div class="past-meeting-date">
+                    <% if meeting.date.present? %>
+                      <%= meeting.date.to_s(:datetime_jp) %>
+                    <% else %>
+                      <%= meeting.updated_at.to_s(:datetime_jp) %>
+                    <% end %>
+                  </div>
+                  <div class="past-meeting-detail">
+                    <%= link_to community_meeting_path(@community.id, meeting.id), class: "past-meeting-detail-cta" do %>
+                      <i class="fa-solid fa-ellipsis"></i>
+                    <% end %>
+                  </div>
+                </div>
+                <div class="past-meeting-content-bottom">
+                  <div class="past-meeting-member">
+                    <span>参加者</span>
+                    <span>
+                      <% meeting.users.each do |user| %>
+                        <%= user.name %>
+                      <% end %>
+                    </span>
+                  </div>
+                  <div class="past-meeting-agenda">
+                    <%= safe_join(meeting.agenda.split("\n"),tag(:br)) %>
+                  </div>
+                </div>
               </div>
-              <div class="past-meeting-date">
-                <% if meeting.date.present? %>
-                  <%= meeting.date.to_s(:datetime_jp) %>
-                <% else %>
-                  <%= meeting.updated_at.to_s(:datetime_jp) %>
-                <% end %>
-              </div>
-              <div class="past-meeting-detail">
-                <%= link_to community_meeting_path(@community.id, meeting.id), class: "past-meeting-detail-cta" do %>
-                  <i class="fa-solid fa-ellipsis"></i>
-                <% end %>
-              </div>
-            </div>
-            <div class="past-meeting-content-bottom">
-              <div class="past-meeting-member">
-                <span>参加者</span>
-                <span>
-                  <% meeting.users.each do |user| %>
-                    <%= user.name %>
-                  <% end %>
-                </span>
-              </div>
-              <div class="past-meeting-agenda">
-                <%= safe_join(meeting.agenda.split("\n"),tag(:br)) %>
-              </div>
-            </div>
-          </div>
+            <% end %>
+          <% else %>
+            <div class="alt-text">過去に行ったミーティングはありません。</div>
           <% end %>
-        <% else %>
-          <div class="alt-text">過去に行ったミーティングはありません。</div>
-        <% end %>
+        </div>
       </div>
       </div>
     </div>

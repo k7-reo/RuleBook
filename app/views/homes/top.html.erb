@@ -41,7 +41,7 @@
           </div>
         </div>
       <% else %>
-        <div class="alt-text">所属しているコミュニティはありません。</div>
+        <div class="alt-text">所属しているコミュニティはありません。<br>自分のコミュニティを作成するか、既存コミュニティへ参加申請をしましょう。</div>
       <% end %>
     </div>
   </div>
@@ -73,7 +73,7 @@
         <%= form.text_field :keyword, placeholder: "コミュニティID検索", class: "search-input" %>
         <%= form.submit "検索", class: "search-btn" %>
       <% end %>
-      <div class="comment">※半角数字</div>
+      <div class="notes">※半角数字</div>
     </div>
     <div class="seach-result">
     <% if @searchedCommunities.present? %>
