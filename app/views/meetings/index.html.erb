@@ -7,118 +7,124 @@
     <%= render 'communities/info', community: @community, currentUser: @currentUser %>
   </div>
   <div class="community-main">
-    <div class="meetings">
-      <div class="meetings-header">
-        <div class="section-title">アクティブなミーティング</div>
-      </div>
-      <div class="all-active-meetings">
-        <% if @nextMeeting.present? %>
-          <div class="next-meeting">
-            <div class="next-meeting-content">
-              <div class="meeting-pre-edit">
-                <%= link_to community_meeting_pre_edit_path(@community.id, @nextMeeting.id) do %>
-                  <i class="fa-regular fa-pen-to-square"></i>
-                <% end %>
-              </div>
-              <div class="meeting-name">
-                <% if @nextMeeting.name.present? %>
-                  <%= @nextMeeting.name %>
-                <% else %>
-                  題名がありません
-                <% end %>
-              </div>
-              <div class="meeting-count-timer" id="meetingCountTimer"></div>
-              <div class="meeting-detail">
-                <% if @nextMeeting.date.present? %>
-                  <%= @nextMeeting.date.to_s(:datetime_jp) %>
-                <% else %>
-                  日時未定
-                <% end %><br>
-                <% if @nextMeeting.place.present? %>
-                  @<%= @nextMeeting.place %>
-                <% else %>
-                  場所未定
-                <% end %>
-              </div>
-              <div class="meeting-start"><%= link_to "ミーティングを始める", edit_community_meeting_path(@community.id, @nextMeeting.id), class: "meeting-start-cta" %></div>
-            </div>
+    <div class="meetings-all">
+      <div class="meetings-left">
+        <div class="active-meetings">
+          <div class="meetings-header">
+            <div class="section-title">アクティブな会議</div>
           </div>
-        <% else %>
-          <div class="next-meeting-alt-view-wrapper">
-            <div class="next-meeting-alt-view">
-              <div class="meeting-content">
-                <div class="alt-text">メンバーのコミュニケーションの場を定期的に設けましょう！<br>かしこまった内容ではなく、一緒に映画を見るなどでもいいですね。</div>
-                <div class="meeting-new"><%= link_to "ミーティング設定", new_community_meeting_path(@community.id), class: "dashboard-meeting-new-cta" %></div>
-              </div>
-            </div>
-          </div>
-        <% end %>
-        <% if @meetingsInProgress.present? %>
-          <% @meetingsInProgress.each do |meeting| %>
-          <div class="meeting-in-progress">
-            <div class="meeting-in-progress-content">
-              <div class="meeting-name"><%= meeting.name %></div>
-              <div class="meeting-in-progress-text">編集中です...</div>
-              <div class="back-to-meeting"><%= link_to "議事録に戻る", edit_community_meeting_path(@community.id, meeting.id), class: "back-to-meeting-cta" %></div>
-            </div>
-          </div>
-          <% end %>
-        <% end %>
-      </div>
-    </div>
-    <div class="past-meetings">
-      <div class="past-meetings-header">
-        <div class="section-title">過去のミーティング一覧</div>
-      </div>
-      <div class="all-past-meetings-wrapper">
-        <div class="all-past-meetings">
-          <% if @pastMeetings.present? %>
-            <% @pastMeetings.each do |meeting| %>
-              <div class="each-past-meeting">
-                <div class="past-meeting-top">
-                  <div class="past-meeting-name">
-                    <% if meeting.name.present? %>
-                      <%= meeting.name %>
+          <div class="all-active-meetings">
+            <% if @nextMeeting.present? %>
+              <div class="next-meeting">
+                <div class="next-meeting-content">
+                  <div class="meeting-pre-edit">
+                    <%= link_to community_meeting_pre_edit_path(@community.id, @nextMeeting.id) do %>
+                      <i class="fa-regular fa-pen-to-square"></i>
                     <% end %>
                   </div>
-                  <div class="past-meeting-date">
-                    <% if meeting.date.present? %>
-                      <%= meeting.date.to_s(:datetime_jp) %>
+                  <div class="meeting-name">
+                    <% if @nextMeeting.name.present? %>
+                      <%= @nextMeeting.name %>
                     <% else %>
-                      <%= meeting.updated_at.to_s(:datetime_jp) %>
+                      題名がありません
                     <% end %>
                   </div>
-                  <div class="past-meeting-detail">
-                    <%= link_to community_meeting_path(@community.id, meeting.id), class: "past-meeting-detail-cta" do %>
-                      <i class="fa-solid fa-ellipsis"></i>
+                  <div class="meeting-count-timer" id="meetingCountTimer"></div>
+                  <div class="meeting-detail">
+                    <% if @nextMeeting.date.present? %>
+                      <%= @nextMeeting.date.to_s(:datetime_jp) %>
+                    <% else %>
+                      日時未定
+                    <% end %><br>
+                    <% if @nextMeeting.place.present? %>
+                      @<%= @nextMeeting.place %>
+                    <% else %>
+                      場所未定
                     <% end %>
                   </div>
+                  <div class="meeting-start"><%= link_to "会議を始める", edit_community_meeting_path(@community.id, @nextMeeting.id), class: "meeting-start-cta" %></div>
                 </div>
-                <div class="past-meeting-content-bottom">
-                  <div class="past-meeting-member">
-                    <span>参加者</span>
-                    <span>
-                      <% meeting.users.each do |user| %>
-                        <%= user.name %>
-                      <% end %>
-                    </span>
-                  </div>
-                  <div class="past-meeting-agenda">
-                    <%= safe_join(meeting.agenda.split("\n"),tag(:br)) %>
+              </div>
+            <% else %>
+              <div class="next-meeting-alt-view-wrapper">
+                <div class="next-meeting-alt-view">
+                  <div class="meeting-content">
+                    <div class="alt-text">メンバーのコミュニケーションの場を定期的に設けましょう！<br>かしこまった内容ではなく、一緒に映画を見るなどでもいいですね。</div>
+                    <div class="meeting-new"><%= link_to "会議を設定", new_community_meeting_path(@community.id), class: "dashboard-meeting-new-cta" %></div>
                   </div>
                 </div>
               </div>
             <% end %>
-          <% else %>
-            <div class="alt-text">過去に行ったミーティングはありません。</div>
-          <% end %>
+            <% if @meetingsInProgress.present? %>
+              <% @meetingsInProgress.each do |meeting| %>
+              <div class="meeting-in-progress">
+                <div class="meeting-in-progress-content">
+                  <div class="meeting-name"><%= meeting.name %></div>
+                  <div class="meeting-in-progress-text">編集中です...</div>
+                  <div class="back-to-meeting"><%= link_to "議事録に戻る", edit_community_meeting_path(@community.id, meeting.id), class: "back-to-meeting-cta" %></div>
+                </div>
+              </div>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+        <div class="past-meetings">
+          <div class="past-meetings-header">
+            <div class="section-title">過去の会議一覧</div>
+          </div>
+          <div class="all-past-meetings-wrapper">
+            <div class="all-past-meetings">
+              <% if @pastMeetings.present? %>
+                <% @pastMeetings.each do |meeting| %>
+                  <div class="each-past-meeting">
+                    <div class="past-meeting-top">
+                      <div class="past-meeting-name">
+                        <% if meeting.name.present? %>
+                          <%= meeting.name %>
+                        <% end %>
+                      </div>
+                      <div class="past-meeting-date">
+                        <% if meeting.date.present? %>
+                          <%= meeting.date.to_s(:datetime_jp) %>
+                        <% else %>
+                          <%= meeting.updated_at.to_s(:datetime_jp) %>
+                        <% end %>
+                      </div>
+                      <div class="past-meeting-detail">
+                        <%= link_to community_meeting_path(@community.id, meeting.id), class: "past-meeting-detail-cta" do %>
+                          <i class="fa-solid fa-ellipsis"></i>
+                        <% end %>
+                      </div>
+                    </div>
+                    <div class="past-meeting-content-bottom">
+                      <div class="past-meeting-member">
+                        <span>参加者</span>
+                        <span>
+                          <% meeting.users.each do |user| %>
+                            <%= user.name %>
+                          <% end %>
+                        </span>
+                      </div>
+                      <div class="past-meeting-agenda">
+                        <%= safe_join(meeting.agenda.split("\n"),tag(:br)) %>
+                      </div>
+                    </div>
+                  </div>
+                <% end %>
+              <% else %>
+                <div class="alt-text">過去に行ったミーティングはありません。</div>
+              <% end %>
+            </div>
+          </div>
         </div>
       </div>
+      <div class="meetings-right">
+        <%= render 'articles/meeting_articles' %>
       </div>
     </div>
   </div>
 
-    <script>
+  <script>
   //次のミーティングまでのカウントダウン
     //指定日程を定義
     var y = gon.year; // 年

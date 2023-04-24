@@ -7,25 +7,32 @@
     <%= render 'communities/info', community: @community, currentUser: @currentUser %>
   </div>
   <div class="community-main">
-    <div class="page-title">スローガン作成</div>
-    <div>
-      <%= form_with(model: [@community, @motto], url: community_mottos_path{@community.id}, local:true, class: "form") do |f| %> <!-- communityモデル、mottoモデルそれぞれにデータを保存するため、両モデル指定-->
-        <div class="form-section">
-          <label><%= f.label :content, "内容", class: "form-label" %><span class="form-note">必須</span></label>
-          <div>
-          <%= f.text_area :content, class: "form-area-small" %>
-          </div>
-          <div class="comment">
-            <i class="fa-solid fa-circle-info">設定のヒント</i>
-            <div class="comment-content">
-              ゴール達成のためにメンバー全員が心がけることを記載してください。<br>
-              みんなで話し合って決めてみましょう！
+    <div class="mottos-all">
+      <div class="mottos-left">
+        <div class="page-title">スローガン作成</div>
+        <div>
+          <%= form_with(model: [@community, @motto], url: community_mottos_path{@community.id}, local:true, class: "form") do |f| %> <!-- communityモデル、mottoモデルそれぞれにデータを保存するため、両モデル指定-->
+            <div class="form-section">
+              <label><%= f.label :content, "内容", class: "form-label" %><span class="form-note">必須</span></label>
+              <div>
+              <%= f.text_area :content, class: "form-area-small" %>
+              </div>
+              <div class="comment">
+                <i class="fa-solid fa-circle-info">設定のヒント</i>
+                <div class="comment-content">
+                  ゴール達成のためにメンバー全員が心がけることを記載してください。<br>
+                  みんなで話し合って決めてみましょう！
+                </div>
+              </div>
             </div>
-          </div>
+            <div class="submittion">
+              <%= f.submit "作成", class: "done-btn" %>
+            </div>
+          <% end %>
         </div>
-        <div class="submittion">
-          <%= f.submit "作成", class: "done-btn" %>
-        </div>
-      <% end %>
+      </div>
+      <div class="mottos-right">
+        <%= render 'articles/motto_articles' %>
+      </div>
     </div>
   </div>

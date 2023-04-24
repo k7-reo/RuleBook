@@ -2,6 +2,22 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.goals-all {
+  display: flex;
+  height: 100%;
+  width: 100%;
+}
+
+.goals-left {
+  width: 80%;
+  height: 100%;
+}
+
+.goals-right {
+  width: 20%;
+  height: 100%;
+}
+
 .active-goal {
   width: fit-content;
   margin: 16px auto 16px auto;
@@ -49,6 +65,11 @@
   background-color: #f47842;
   padding: 2px;
   color: #ffffff;
+}
+
+.active-goal-deadline-time-expired {
+  color:#f47842;
+  font-weight: bold;
 }
 
 .active-goal-achievement {

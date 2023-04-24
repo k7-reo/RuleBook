@@ -2,6 +2,22 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.mottos-all {
+  display: flex;
+  height: 100%;
+  width: 100%;
+}
+
+.mottos-left {
+  width: 80%;
+  height: 100%;
+}
+
+.mottos-right {
+  width: 20%;
+  height: 100%;
+}
+
 .mottos {
   margin: 16px;
   background-color: rgba(52, 56, 66, 0.5);

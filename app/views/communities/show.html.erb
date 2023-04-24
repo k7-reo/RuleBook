@@ -17,6 +17,11 @@
                 <span class="dashboard-quote-person"><%= @coupleAdvice.person %></span>
                 <span class="dashboard-quote-biography"><%= @coupleAdvice.biography %></span>
               </div>
+            <% else %>
+              <div class="dashboard-quote-content">定期的にゴール、ルールなどの内容を見直しましょう！</div>
+              <div class="dashboard-quote-detail">
+                <span class="dashboard-quote-person">Gachiru.運営者</span>
+              </div>
             <% end %>
           </div>
         </div>
@@ -35,6 +40,12 @@
                       <% if @goal.deadline.present? %>
                         <div class="till-community-goal">達成までの残り時間</div>
                         <div class="goal-deadline-timer" id="goalCountTimer"></div>
+                        <div class="active-goal-achievement">
+                          <% if @goal.deadline < Time.now %>  <!-- 今よりdeadlineの方が小さい（deadlineを過ぎたら） -->
+                            <div class="active-goal-achievement-true"><%= link_to "達成", community_goal_achieved_path(@community.id, @goal.id), class: "active-goal-achievement-true-cta" %></div>
+                            <div class="active-goal-achievement-false"><%= link_to "未達成", community_goal_unachieved_path(@community.id, @goal.id), class: "active-goal-achievement-false-cta" %></div>
+                          <% end %>
+                        </div>
                       <% end %>
                     </div>
                   </div>
@@ -53,7 +64,7 @@
               <div class="dashboard-next-meeting">
                 <div class="dashboard-meeting-content">
                   <div class="dashboard-meeting-index">
-                    <div class="dashboard-meeting-index-letter">予定しているミーティング</div>
+                    <div class="dashboard-meeting-index-letter">予定している会議</div>
                   </div>
                   <div class="dashboard-meeting-pre-edit">
                     <%= link_to community_meeting_pre_edit_path(@community.id, @nextMeeting.id) do %>
@@ -82,14 +93,14 @@
                       <div class="dashboard-meeting-place">場所未定</div>
                     <% end %>
                   </div>
-                  <div class="dashboard-meeting-start"><%= link_to "ミーティングを始める", edit_community_meeting_path(@community.id, @nextMeeting.id), class: "dashboard-meeting-start-cta" %></div>
+                  <div class="dashboard-meeting-start"><%= link_to "会議を始める", edit_community_meeting_path(@community.id, @nextMeeting.id), class: "dashboard-meeting-start-cta" %></div>
                 </div>
               </div>
             <% else %>
               <div class="dashboard-next-meeting-alt-view-wrapper">
                 <div class="dashboard-next-meeting-alt-view">
-                  <div class="alt-text">ミーティング実施予定はありません。</div>
-                  <div class="dashboard-meeting-new"><%= link_to "ミーティング設定", new_community_meeting_path(@community.id), class: "dashboard-meeting-new-cta" %></div>
+                  <div class="alt-text">会議の実施予定はありません。</div>
+                  <div class="dashboard-meeting-new"><%= link_to "会議を設定", new_community_meeting_path(@community.id), class: "dashboard-meeting-new-cta" %></div>
                 </div>
               </div>
             <% end %>
@@ -97,7 +108,7 @@
               <div class="dashboard-meeting-in-progress">
                 <div class="dashboard-meeting-content">
                   <div class="dashboard-meeting-index">
-                    <div class="dashboard-meeting-index-letter">編集中のミーティング</div>
+                    <div class="dashboard-meeting-index-letter">編集中の会議</div>
                   </div>
                   <div class="dashboard-meeting-name"><%= @meetingsInProgress.name %></div>
                   <div class="dashboard-back-to-meeting"><%= link_to "議事録に戻る", edit_community_meeting_path(@community.id, @meetingsInProgress.id), class: "dashboard-back-to-meeting-cta" %></div>
@@ -106,7 +117,7 @@
             <% else %>
               <div class="dashboard-meeting-in-progress-alt-view-wrapper">
                 <div class="dashboard-meeting-in-progress-alt-view">
-                  <div class="alt-text">編集中のミーティング議事録はありません。</div>
+                  <div class="alt-text">編集中の会議議事録はありません。</div>
                 </div>
               </div>
             <% end %>
@@ -273,7 +284,7 @@
       // タイマー終了後
       if (distance < 0) {
         clearInterval(x);
-        document.getElementById("goalCountTimer").innerHTML = "制限時間終了です。<br>目標は達成できましたか？";
+        document.getElementById("goalCountTimer").innerHTML = "制限時間終了です";
       }
     }, 1000);
   //次のミーティングまでのカウントダウン

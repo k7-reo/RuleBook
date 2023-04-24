@@ -7,72 +7,76 @@
     <%= render 'communities/info', community: @community, currentUser: @currentUser %>
   </div>
   <div class="community-main">
-    <div class="active-goal">
-      <% if @activeGoal.present? %>
-        <div class="active-goal-edit">
-          <%= link_to edit_community_goal_path(@community.id, @activeGoal.id) do %>
-            <i class="fa-regular fa-pen-to-square"></i>
-          <% end %>
-        </div>
-        <div class="active-goal-content"><%= @activeGoal.content %></p></div>
-        <div class="active-goal-deadline">
-          <span class="active-goal-deadline-letter">達成期限</span>
-          <% if @activeGoal.deadline.present? %>
-            <span class="active-goal-deadline-time"><%= @activeGoal.deadline.to_s(:datetime_jp) %></span>
-          <% else %>
-            <span class="active-goal-deadline-time">なし</span>
-          <% end %>
-        </div>
-        <div class="active-goal-creator">
-          <span class="active-goal-creator-title">設定者</span>
-          <span class="active-goal-creator-name"><%= @activeGoal.user.name %></span>
-        </div>
-        <div class="active-goal-achievement">
-          <% if @activeGoal.deadline.present? %>
-            <% if @activeGoal.deadline > Time.now %> <!-- 今よりdeadlineの方が大きい（未来） -->
-              <div class="active-goal-achievement-true"><%= link_to "達成", community_goal_achieved_path(@community.id, @activeGoal.id), class: "active-goal-achievement-true-cta" %></div>
-            <% else %>
+    <div class="goals-all">
+      <div class="goals-left">
+        <div class="active-goal">
+          <% if @activeGoal.present? %>
+            <div class="active-goal-edit">
+              <%= link_to edit_community_goal_path(@community.id, @activeGoal.id) do %>
+                <i class="fa-regular fa-pen-to-square"></i>
+              <% end %>
+            </div>
+            <div class="active-goal-content"><%= @activeGoal.content %></p></div>
+            <div class="active-goal-deadline">
+              <span class="active-goal-deadline-letter">達成期限</span>
+              <% if @activeGoal.deadline.present? %>
+                <span class="active-goal-deadline-time"><%= @activeGoal.deadline.to_s(:datetime_jp) %></span>
+                <% if @activeGoal.deadline < Time.now %>
+                  <span class="active-goal-deadline-time-expired">期限が過ぎています。</span>
+                <% end %>
+              <% else %>
+                <span class="active-goal-deadline-time">なし</span>
+              <% end %>
+            </div>
+            <div class="active-goal-creator">
+              <span class="active-goal-creator-title">設定者</span>
+              <span class="active-goal-creator-name"><%= @activeGoal.user.name %></span>
+            </div>
+            <div class="active-goal-achievement">
               <div class="active-goal-achievement-true"><%= link_to "達成", community_goal_achieved_path(@community.id, @activeGoal.id), class: "active-goal-achievement-true-cta" %></div>
               <div class="active-goal-achievement-false"><%= link_to "未達成", community_goal_unachieved_path(@community.id, @activeGoal.id), class: "active-goal-achievement-false-cta" %></div>
-            <% end %>
-          <% end %>
-        </div>
-      <% else %>
-        <div class="active-goal-alt-view-wrapper">
-          <div class="active-goal-alt-view">
-            <div class="alt-text">コミュニティのメンバー全員で目指すゴールを決めましょう！</div>
-            <div class="goal-new"><%= link_to "ゴール設定", new_community_goal_path(@community.id), class: "dashboard-goal-new-cta" %></div>
-            <!-- ↑dashbordのゴール設定ctaと同じ見た目にしたいのでclass名同様にしてる  -->
-          </div>
-        </div>
-      <% end %>
-    </div>
-    <div class="past-goals">
-      <div class="past-goals-header">
-        <div class="section-title">過去設定したゴール</div>
-      </div>
-      <div class="all-past-goals-wrapper">
-        <div class="all-past-goals">
-          <% if @pastGoals.present? %>
-            <% @pastGoals.each do |goal| %>
-              <div class="each-past-goal">
-                <div class="each-past-goal-content"><%= goal.content %></div>
-                <div class="each-past-goal-deadline"><%= goal.deadline.to_s(:datetime_jp) %></div>
-                <div class="each-past-goal-achievement">
-                  <% if goal.achievement == true %>
-                    達成
-                  <% else %>
-                    未達成
-                  <% end %>
-                </div>
-              </div>
-            <% end %>
+            </div>
           <% else %>
-            <div class="alt-text">
-              ゴールはどんどんアップデートしていきましょう！
+            <div class="active-goal-alt-view-wrapper">
+              <div class="active-goal-alt-view">
+                <div class="alt-text">コミュニティのメンバー全員で目指すゴールを決めましょう！</div>
+                <div class="goal-new"><%= link_to "ゴール設定", new_community_goal_path(@community.id), class: "dashboard-goal-new-cta" %></div>
+                <!-- ↑dashbordのゴール設定ctaと同じ見た目にしたいのでclass名同様にしてる  -->
+              </div>
             </div>
           <% end %>
         </div>
+        <div class="past-goals">
+          <div class="past-goals-header">
+            <div class="section-title">過去設定したゴール</div>
+          </div>
+          <div class="all-past-goals-wrapper">
+            <div class="all-past-goals">
+              <% if @pastGoals.present? %>
+                <% @pastGoals.each do |goal| %>
+                  <div class="each-past-goal">
+                    <div class="each-past-goal-content"><%= goal.content %></div>
+                    <div class="each-past-goal-deadline"><%= goal.deadline.to_s(:datetime_jp) %></div>
+                    <div class="each-past-goal-achievement">
+                      <% if goal.achievement == true %>
+                        達成
+                      <% else %>
+                        未達成
+                      <% end %>
+                    </div>
+                  </div>
+                <% end %>
+              <% else %>
+                <div class="alt-text">
+                  ゴールはどんどんアップデートしていきましょう！
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="goals-right">
+        <%= render 'articles/goal_articles' %>
       </div>
     </div>
   </div>

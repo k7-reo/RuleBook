@@ -2,6 +2,20 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.rules-all {
+  display: flex;
+  height: 100%;
+}
+
+.rules-left {
+  width: 80%;
+  height: 100%;
+}
+
+.rules-right {
+  width: 20%;
+  height: 100%;
+}
 
 .rules-sort {
   margin-top: 16px;
@@ -9,7 +23,6 @@
   margin-left: auto;
   margin-right: 16px;
 }
-
 
 .positive-rules-wrapper, .negative-rules-wrapper {
   margin: 16px;

@@ -7,44 +7,51 @@
     <%= render 'communities/info', community: @community, currentUser: @currentUser %>
   </div>
   <div class="community-main">
-    <div class="page-title">ルール編集</div>
-    <div class="rule-info">
-      <div class="rule-info-creater">作成者：<%= @rule.creating_user.name %></div>
-      <div class="rule-info-updater">最終更新者：
-        <% if @rule.updating_user.present? %>
-          <%= @rule.updating_user.name %>
-        <% else %>
-          更新なし
-        <% end %>
-      </div>
-    </div>
-    <div>
-      <%= form_with(model:[@community, @rule], local:true, class: "form") do |f| %>
-        <div class="form-section">
-          <label><%= f.label :content, "ルール", class: "form-label" %><span class="form-note">必須</span></label>
-          <div><%= f.text_field :content, autofocus: true, class: "form-area-small" %></div>
-        </div>
-        <div class="form-section">
-          <label><%= f.label :point, "ポイント増減", class: "form-label" %><span class="form-note">必須</span></label>
-          <div><%= f.text_field :point, placeholder:"マイナス指定可", class: "form-area-small" %></div>
-        </div>
-        <div class="form-section">
-          <label><%= f.label :genre, "ジャンル", class: "form-label" %><span class="form-note">必須</span></label>
-          <div><%= f.text_field :genre, class: "form-area-small" %></div>
-        </div>
-        <div class="form-section">
-          <label><%= f.label :user_ids, "対象メンバー", class: "form-label" %><span class="form-note">必須</span></label>
-          <div class="form-check-box">
-            <%= collection_check_boxes(:rule, :user_ids, User.joins(:community_users).where(community_users: {community_id: params[:community_id]}), :id, :name, include_hidden: false) do |user| %>
-              <div><%= user.check_box %></div>
-              <div class="form-check-box-label"><%= user.text %></div>
+    <div class="rules-all">
+      <div class="rules-left">
+        <div class="page-title">ルール編集</div>
+        <div class="rule-info">
+          <div class="rule-info-creater">作成者：<%= @rule.creating_user.name %></div>
+          <div class="rule-info-updater">最終更新者：
+            <% if @rule.updating_user.present? %>
+              <%= @rule.updating_user.name %>
+            <% else %>
+              更新なし
             <% end %>
           </div>
         </div>
-        <div class="submittion">
-          <%= f.submit '編集完了', class: "done-btn" %>
-          <%= link_to "削除", community_rule_path(@community.id, @rule.id), method: :delete, class: "alt-link-cta" %>
+        <div>
+          <%= form_with(model:[@community, @rule], local:true, class: "form") do |f| %>
+            <div class="form-section">
+              <label><%= f.label :content, "ルール", class: "form-label" %><span class="form-note">必須</span></label>
+              <div><%= f.text_field :content, autofocus: true, class: "form-area-small" %></div>
+            </div>
+            <div class="form-section">
+              <label><%= f.label :point, "ポイント増減", class: "form-label" %><span class="form-note">必須</span></label>
+              <div><%= f.text_field :point, placeholder:"マイナス指定可", class: "form-area-small" %></div>
+            </div>
+            <div class="form-section">
+              <label><%= f.label :genre, "ジャンル", class: "form-label" %><span class="form-note">必須</span></label>
+              <div><%= f.text_field :genre, class: "form-area-small" %></div>
+            </div>
+            <div class="form-section">
+              <label><%= f.label :user_ids, "対象メンバー", class: "form-label" %><span class="form-note">必須</span></label>
+              <div class="form-check-box">
+                <%= collection_check_boxes(:rule, :user_ids, User.joins(:community_users).where(community_users: {community_id: params[:community_id]}), :id, :name, include_hidden: false) do |user| %>
+                  <div><%= user.check_box %></div>
+                  <div class="form-check-box-label"><%= user.text %></div>
+                <% end %>
+              </div>
+            </div>
+            <div class="submittion">
+              <%= f.submit '編集完了', class: "done-btn" %>
+              <%= link_to "削除", community_rule_path(@community.id, @rule.id), method: :delete, class: "alt-link-cta" %>
+            </div>
+          <% end %>
         </div>
-      <% end %>
+      </div>
+      <div class="rules-right">
+        <%= render 'articles/rule_articles' %>
+      </div>
     </div>
   </div>

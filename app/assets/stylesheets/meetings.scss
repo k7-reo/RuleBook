@@ -2,8 +2,24 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.meetings-all {
+  display: flex;
+  height: 100%;
+  width: 100%;
+}
+
+.meetings-left {
+  width: 80%;
+  height: 100%;
+}
+
+.meetings-right {
+  width: 20%;
+  height: 100%;
+}
+
 //一覧(index)
-.meetings {
+.active-meetings {
   margin: 16px;
   background-color: rgba(52, 56, 66, 0.5);
   border-radius: 16px;
@@ -80,7 +96,7 @@
 }
 
 .next-meeting-alt-view-wrapper {
-  height: 180px;
+  height: 176px;
   display: flex;
   justify-content: center;
   text-align: center;

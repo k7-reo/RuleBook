@@ -7,33 +7,40 @@
     <%= render 'communities/info', community: @community, currentUser: @currentUser %>
   </div>
   <div class="community-main">
-    <div class="page-title">ルール実行</div>
-    <div class="executing-rule-info">
-      <div class="executing-rule-info-content">実行するルール：<%= @rule.content %></div>
-      <div class="executing-rule-info-point">加減ポイント：<%= @rule.point %></div>
-    </div>
-    <div>
-      <%= form_with model: @standby, url: community_rule_execute_path(@community.id, @rule.id), local:true, class: "form" do |f| %>
-        <div class="form-section">
-          <label><%= f.label :executed_user_id, "対象メンバー", class: "form-label" %><span class="form-note">必須</span></label>
-          <div class="form-check-box">
-            <% if @targetUsers.present? %>
-              <%= collection_check_boxes(:standby, :executed_user_id, @targetUsers, :id, :name, include_hidden: false) do |user| %>
-                <div><%= user.check_box %></div>
-                <div class="form-check-box-label"><%= user.text %></div>
-              <% end %>
-            <% else %>
-              対象ユーザーが設定されていません。
-            <% end %>
-          </div>
+    <div class="rules-all">
+      <div class="rules-left">
+        <div class="page-title">ルール実行</div>
+        <div class="executing-rule-info">
+          <div class="executing-rule-info-content">実行するルール：<%= @rule.content %></div>
+          <div class="executing-rule-info-point">加減ポイント：<%= @rule.point %></div>
         </div>
-        <div class="form-section">
-          <label><%= f.label :detail, "補足", class: "form-label" %><span class="form-note-optional">任意</span></label>
-          <div>
-            <%= f.text_area :detail, class: "form-area-large" %>
-          </div>
+        <div>
+          <%= form_with model: @standby, url: community_rule_execute_path(@community.id, @rule.id), local:true, class: "form" do |f| %>
+            <div class="form-section">
+              <label><%= f.label :executed_user_id, "対象メンバー", class: "form-label" %><span class="form-note">必須</span></label>
+              <div class="form-check-box">
+                <% if @targetUsers.present? %>
+                  <%= collection_check_boxes(:standby, :executed_user_id, @targetUsers, :id, :name, include_hidden: false) do |user| %>
+                    <div><%= user.check_box %></div>
+                    <div class="form-check-box-label"><%= user.text %></div>
+                  <% end %>
+                <% else %>
+                  対象ユーザーが設定されていません。
+                <% end %>
+              </div>
+            </div>
+            <div class="form-section">
+              <label><%= f.label :detail, "補足", class: "form-label" %><span class="form-note-optional">任意</span></label>
+              <div>
+                <%= f.text_area :detail, class: "form-area-large" %>
+              </div>
+            </div>
+            <div class="submittion"><%= f.submit '対象にルール行使', class: "done-btn" %></div>
+          <% end %>
         </div>
-        <div class="submittion"><%= f.submit '対象にルール行使', class: "done-btn" %></div>
-      <% end %>
+      </div>
+      <div class="rules-right">
+        <%= render 'articles/rule_articles' %>
+      </div>
     </div>
   </div>

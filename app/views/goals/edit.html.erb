@@ -7,40 +7,118 @@
     <%= render 'communities/info', community: @community, currentUser: @currentUser %>
   </div>
   <div class="community-main">
-    <div>
-      <div class="page-title">ゴール編集</div>
-      <div>
-        <%= form_with(model:[@community, @goal], local:true, class: "form") do |f| %>
-          <div class="form-section">
-            <label><%= f.label :content, "メンバー全員で達成したいゴール", class: "form-label" %><span class="form-note">必須</span></label>
-            <div>
-              <%= f.text_area :content, class: "form-area-small" %>
-            </div>
-            <div class="comment">
-              <i class="fa-solid fa-circle-info">設定のヒント</i>
-              <div class="comment-content">
-                緊急度は高くないけど重要度が高いこと。
+    <div class="goals-all">
+      <div class="goals-left">
+        <div class="page-title">ゴール編集</div>
+        <div>
+          <%= form_with(model:[@community, @goal], local:true, class: "form") do |f| %>
+            <div class="form-section">
+              <label><%= f.label :content, "メンバー全員で達成したいゴール", class: "form-label" %><span class="form-note">必須</span></label>
+              <div>
+                <%= f.text_area :content, class: "form-area-small" %>
+              </div>
+              <div class="comment">
+                <i class="fa-solid fa-circle-info">ゴール設定の手順</i>
+                <div class="comment-content">
+                  <br>
+                  <b>①個々の目標の共有</b><br>
+                  夫婦双方が、個々に持っている目標や希望を共有しましょう。<br>
+                  将来的にどのようなことを達成したいのか、どのような人生を送りたいのかを明確にすることが大切です。<br>
+                  <br>
+                  <b>②優先順位をつける</b><br>
+                  <br>共有した目標や希望に対して、優先順位を付けましょう。<br>
+                  どの目標が最も重要で、どの目標がそれに次ぐものなのかを決めることが必要です。<br>
+                  <br>
+                  <b>③共通の目標の抽出する</b><br>
+                  各自の目標や希望を共有し、優先順位をつけたら、共通の目標を抽出しましょう。<br>
+                  共通の目標は、双方にとって優先順位の高いものである可能性が高く、達成することで関係がより強固になることがあります。<br>
+                  <br>
+                </div>
+              </div>
+              <div class="comment">
+                <i class="fa-solid fa-circle-info">ゴールが思い浮かばない場合</i>
+                <div class="comment-content">
+                  <br>
+                  <b>①興味や関心事に着目する</b><br>
+                  各自が個人的に興味や関心を持っていることを挙げ、それをヒントにゴールを設定することができます。<br>
+                  例えば、旅行好きな人ならば、1年以内に3回旅行に行く、海外旅行に行く、などの目標を設定しましょう。<br>
+                  <br>
+                  <b>②課題に着目する</b><br>
+                  各自が個人的に課題として感じていることを挙げ、それをヒントにゴールを設定することができます。<br>
+                  例えば、健康に関する課題がある場合は、健康的な食生活を維持する、運動をする、などの目標を設定しましょう。<br>
+                  <br>
+                  <b>③人生のライフステージに着目する</b><br>
+                  各自が現在の人生のライフステージに着目し、それをヒントにゴールを設定することができます。<br>
+                  例えば、子育て中の夫婦であれば、子供の教育に関する目標を設定しましょう。<br>
+                  <br>
+                  <b>④パートナーとの共通の価値観に着目する</b><br>
+                  パートナーと共通の価値観に着目し、それをヒントにゴールを設定することができます。<br>
+                  例えば、家族との時間を大切にするという共通の価値観がある場合は、家族との時間を増やすことを目標にしましょう。<br>
+                  <br>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="form-section">
-            <label><%= f.label :deadline, "ゴール達成期限", class: "form-label" %><span class="form-note-optional">任意</span></label>
-            <div>
-              <%= f.datetime_field :deadline %>
-            </div>
-            <div class="comment">
-              <i class="fa-solid fa-circle-info">設定のヒント</i>
-              <div class="comment-content">
-                期限の指定は任意ですが、程よい緊張感を保つ為にも設定することをお勧めします。<br>
-                特に期間指定の無いゴールについてはまず「１ヶ月」を期限にして頑張ってみましょう。
+            <div class="form-section">
+              <label><%= f.label :deadline, "ゴール達成期限", class: "form-label" %><span class="form-note-optional">任意</span></label>
+              <div>
+                <%= f.datetime_field :deadline %>
+              </div>
+              <div class="comment">
+                <i class="fa-solid fa-circle-info">期限設定のメリットとデメリット</i>
+                <div class="comment-content">
+                  <br>
+                  <b>メリット① 目標達成に向けた意識が高まる</b><br>
+                  ゴールの達成期限を設けることで、目標達成に向けた意識が高まり、モチベーションが向上することがあります。<br>
+                  <br>
+                  <b>メリット② ゴールの具体性が高まる</b><br>
+                  ゴールの達成期限を設けることで、ゴールの具体性が高まります。<br>
+                  具体的な期限を設けることで、ゴールに向かって具体的な計画を立てることができます。<br>
+                  <br>
+                  <b>メリット③ 結果の評価が容易になる</b><br>
+                  ゴールの達成期限を設けることで、結果の評価が容易になります。<br>
+                  期限が設けられているため、期限内にゴールが達成されたかどうかが判断しやすくなります。<br>
+                  <br>
+                  <b>デメリット① 達成期限に焦りやストレスを感じる</b><br>
+                  達成期限が設けられているため、その期限までにゴールを達成しなければならないという焦りやストレスを感じることがあります。<br>
+                  <br>
+                  <b>デメリット② ゴールの重要性が薄れる</b><br>
+                  達成期限が設けられることで、その期限までにゴールを達成することが目的化され、ゴール自体の重要性が薄れることがあります。<br>
+                  <br>
+                </div>
+              </div>
+              <div class="comment">
+                <i class="fa-solid fa-circle-info">期限を設定したほうが良い場合としないほうがいい場合</i>
+                <div class="comment-content">
+                  <br>
+                  <b>推奨① 長期的な目標に向けたサブゴール</b><br>
+                  例えば、10年後に海外旅行に行くために、1年後までに外国語を習得する、3年後までに海外旅行の予算を貯める、など。<br>
+                  <br>
+                  <b>推奨② 現在抱えている問題を解決するためのゴール</b><br>
+                  例えば、健康状態を改善するために1年以内に5キロの減量をする、転職するために1年以内に必要なスキルを身につける、など。<br>
+                  <br>
+                  <b>推奨③ 緊急かつ重要なタスク</b><br>
+                  例えば、納期が迫っているプロジェクトの完了、借金の返済、など。<br>
+                  <br>
+                  <b>非推奨① 習慣化したいこと</b><br>
+                  例えば、毎日30分運動する、1日1冊本を読む、など。<br>
+                  習慣化するまでには個人差があり、期限を設けるとストレスになることがあるため、期限を設けずに継続的に取り組むことが重要です。<br>
+                  <br>
+                  <b>非推奨② 自己成長や学習目標</b><br>
+                  例えば、新しい楽器を習得する、外国語を学ぶ、など。<br>
+                  学習の速度や達成までの時間に個人差があり、期限を設けることでモチベーションが下がることがあるため、期限を設けない方が良いことがあります。<br>
+                  <br>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="submittion">
-            <%= f.submit '編集完了', class: "done-btn" %>
-            <%= link_to '削除', community_goal_path(@community.id, @goal.id), method: :delete, class: "alt-link-cta" %>
-          </div>
-        <% end %>
+            <div class="submittion">
+              <%= f.submit '編集完了', class: "done-btn" %>
+              <%= link_to '削除', community_goal_path(@community.id, @goal.id), method: :delete, class: "alt-link-cta" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      <div class="goals-right">
+        <%= render 'articles/goal_articles' %>
       </div>
     </div>
   </div>

@@ -7,94 +7,99 @@
     <%= render 'communities/info', community: @community, currentUser: @currentUser %>
   </div>
   <div class="community-main">
-    <div class="rules">
-      <div class="rules-sort">
-        <%= form_tag(community_rules_path, method: :get) do %>
-          <%= select_tag(:genre, options_for_select(["すべて"] + @genres, @selected_genre), include_blank: false) %>
-          <%= submit_tag("ジャンル絞り込み", class: "btn btn-primary", class: "done-btn") %>
-        <% end %>
-      </div>
-      <div class="positive-rules-wrapper">
-        <div class="positive-rules-header">
-          <div class="section-title">プラスルール一覧</div>
-          <div class="rule-new-header">
-            <% if @positiveRules.present? %>
-              <%= link_to community_new_positive_rule_path(@community.id) do %>
-                <i class="fa-regular fa-square-plus"></i>
-              <% end %>
-            <% end %>
-          </div>
+    <div class="rules-all">
+      <div class="rules-left">
+        <div class="rules-sort">
+          <%= form_tag(community_rules_path, method: :get) do %>
+            <%= select_tag(:genre, options_for_select(["すべて"] + @genres, @selected_genre), include_blank: false) %>
+            <%= submit_tag("ジャンル絞り込み", class: "btn btn-primary", class: "done-btn") %>
+          <% end %>
         </div>
-        <% if @positiveRules.present? %>
-          <div class="all-positive-rules-wrapper">
-            <div class="all-positive-rules">
-              <% @positiveRules.each do |rule| %>
-                <div class="each-positive-rule">
-                  <div class="each-rule-edit">
-                    <%= link_to edit_community_rule_path(@community.id, rule.id) do %>
-                      <i class="fa-regular fa-pen-to-square"></i>
-                    <% end %>
-                  </div>
-                  <div class="each-rule-content"><p><%= rule.content %></p></div>
-                  <div class="each-positive-rule-point"><%= rule.point %><span class="point-letter">ポイント</span></div>
-                  <div class="each-rule-member">
-                    <div class="each-rule-member-title">対象メンバー</div>
-                    <div class="each-rule-members">
-                      <% rule.users.each do |user| %>
-                        <span class="each-positive-rule-member-name"><%= user.name %></span>
-                      <% end %>
-                    </div>
-                  </div>
-                  <div class="each-positive-rule-execute"><%= link_to "実行", community_rule_execute_path(@community.id, rule.id), class: "each-positive-rule-execute-cta" %></div>
-                </div>
+        <div class="positive-rules-wrapper">
+          <div class="positive-rules-header">
+            <div class="section-title">プラスルール一覧</div>
+            <div class="rule-new-header">
+              <% if @positiveRules.present? %>
+                <%= link_to community_new_positive_rule_path(@community.id) do %>
+                  <i class="fa-regular fa-square-plus"></i>
+                <% end %>
               <% end %>
             </div>
           </div>
-        <% else %>
-          <div class="alt-text">ゴール達成に向けて賞賛すべき行動にプラスルールを付与しましょう。</div>
-          <div class="positive-rule-new"><%= link_to "プラスルール設定", community_new_positive_rule_path(@community.id), class: "positive-rule-new-cta" %></div>
-        <% end %>
-      </div>
-      <div class="negative-rules-wrapper">
-        <div class="negative-rules-header">
-          <div class="section-title">マイナスルール一覧</div>
-          <div class="rule-new-header">
-            <% if @negativeRules.present? %>
-              <%= link_to community_new_negative_rule_path(@community.id) do%>
-                <i class="fa-regular fa-square-plus"></i>
-              <% end %>
-            <% end %>
-          </div>
-        </div>
-        <% if @negativeRules.present? %>
-          <div class="all-negative-rules-wrapper">
-            <div class="all-negative-rules">
-              <% @negativeRules.each do |rule| %>
-                <div class="each-negative-rule">
-                  <div class="each-rule-edit">
-                    <%= link_to edit_community_rule_path(@community.id, rule.id) do %>
-                      <i class="fa-regular fa-pen-to-square"></i>
-                    <% end %>
-                  </div>
-                  <div class="each-rule-content"><%= rule.content %></div>
-                  <div class="each-negative-rule-point"><%= rule.point %><span class="point-letter">ポイント</span></div>
-                  <div class="each-rule-member">
-                    <div class="each-rule-member-title">対象メンバー</div>
-                    <div class="each-rule-members">
-                      <% rule.users.each do |user| %>
-                        <span class="each-negative-rule-member-name"><%= user.name %></span>
+          <% if @positiveRules.present? %>
+            <div class="all-positive-rules-wrapper">
+              <div class="all-positive-rules">
+                <% @positiveRules.each do |rule| %>
+                  <div class="each-positive-rule">
+                    <div class="each-rule-edit">
+                      <%= link_to edit_community_rule_path(@community.id, rule.id) do %>
+                        <i class="fa-regular fa-pen-to-square"></i>
                       <% end %>
                     </div>
+                    <div class="each-rule-content"><p><%= rule.content %></p></div>
+                    <div class="each-positive-rule-point"><%= rule.point %><span class="point-letter">ポイント</span></div>
+                    <div class="each-rule-member">
+                      <div class="each-rule-member-title">対象メンバー</div>
+                      <div class="each-rule-members">
+                        <% rule.users.each do |user| %>
+                          <span class="each-positive-rule-member-name"><%= user.name %></span>
+                        <% end %>
+                      </div>
+                    </div>
+                    <div class="each-positive-rule-execute"><%= link_to "実行", community_rule_execute_path(@community.id, rule.id), class: "each-positive-rule-execute-cta" %></div>
                   </div>
-                  <div class="each-negative-rule-execute"><%= link_to "実行", community_rule_execute_path(@community.id, rule.id), class: "each-negative-rule-execute-cta" %></div>
-                </div>
+                <% end %>
+              </div>
+            </div>
+          <% else %>
+            <div class="alt-text">ゴール達成に向けて賞賛すべき行動にプラスルールを付与しましょう。</div>
+            <div class="positive-rule-new"><%= link_to "プラスルール設定", community_new_positive_rule_path(@community.id), class: "positive-rule-new-cta" %></div>
+          <% end %>
+        </div>
+        <div class="negative-rules-wrapper">
+          <div class="negative-rules-header">
+            <div class="section-title">マイナスルール一覧</div>
+            <div class="rule-new-header">
+              <% if @negativeRules.present? %>
+                <%= link_to community_new_negative_rule_path(@community.id) do%>
+                  <i class="fa-regular fa-square-plus"></i>
+                <% end %>
               <% end %>
             </div>
           </div>
-        <% else %>
-          <div class="alt-text">このコミュニティにはまだマイナスポイントのルールがありません。</div>
-          <div class="negative-rule-new"><%= link_to "マイナスルール設定", community_new_negative_rule_path(@community.id), class: "negative-rule-new-cta" %></div>
-        <% end %>
+          <% if @negativeRules.present? %>
+            <div class="all-negative-rules-wrapper">
+              <div class="all-negative-rules">
+                <% @negativeRules.each do |rule| %>
+                  <div class="each-negative-rule">
+                    <div class="each-rule-edit">
+                      <%= link_to edit_community_rule_path(@community.id, rule.id) do %>
+                        <i class="fa-regular fa-pen-to-square"></i>
+                      <% end %>
+                    </div>
+                    <div class="each-rule-content"><%= rule.content %></div>
+                    <div class="each-negative-rule-point"><%= rule.point %><span class="point-letter">ポイント</span></div>
+                    <div class="each-rule-member">
+                      <div class="each-rule-member-title">対象メンバー</div>
+                      <div class="each-rule-members">
+                        <% rule.users.each do |user| %>
+                          <span class="each-negative-rule-member-name"><%= user.name %></span>
+                        <% end %>
+                      </div>
+                    </div>
+                    <div class="each-negative-rule-execute"><%= link_to "実行", community_rule_execute_path(@community.id, rule.id), class: "each-negative-rule-execute-cta" %></div>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          <% else %>
+            <div class="alt-text">このコミュニティにはまだマイナスポイントのルールがありません。</div>
+            <div class="negative-rule-new"><%= link_to "マイナスルール設定", community_new_negative_rule_path(@community.id), class: "negative-rule-new-cta" %></div>
+          <% end %>
+        </div>
+      </div>
+      <div class="rules-right">
+        <%= render 'articles/rule_articles' %>
       </div>
     </div>
   </div>

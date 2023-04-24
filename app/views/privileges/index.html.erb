@@ -7,72 +7,79 @@
     <%= render 'communities/info', community: @community, currentUser: @currentUser %>
   </div>
   <div class="community-main">
-    <div class="privileges">
-      <div class="privileges-wrapper">
-        <div class="privileges-header">
-          <div class="section-title">報酬一覧</div>
-          <div class="privilege-new-header">
-            <% if @community.privileges.present? %>
-              <%= link_to new_community_privilege_path(@community.id) do %>
-                <i class="fa-regular fa-square-plus"></i>
-              <% end %>
-            <% end %>
-          </div>
-        </div>
-        <% if @community.privileges.present? %>
-          <div class="all-privileges-wrapper">
-            <div class="all-privileges">
-              <% @community.privileges.each do |privilege| %>
-                <div class="each-privilege">
-                  <div class="each-privilege-edit">
-                    <%= link_to edit_community_privilege_path(@community, privilege.id) do %>
-                      <i class="fa-regular fa-pen-to-square"></i>
-                    <% end %>
-                  </div>
-                  <div class="each-privilege-content"><%= privilege.content %></div>
-                  <div class="each-privilege-point"><%= privilege.point %><span class="point-letter">ポイント消費</span></div>
-                </div>
-              <% end %>
-            </div>
-          </div>
-        <% else %>
-          <div class="alt-text">ユーザーの累積ポイントがプラスの時に受けられる報酬を決めましょう！</div>
-          <div class="privilege-new"><%= link_to "報酬設定", new_community_privilege_path(@community.id), class: "privilege-new-cta" %></div>
-        <% end %>
-      </div>
-    </div>
-    <div class="penalties">
-      <div class="penalties-wrapper">
-        <div class="penalties-header">
-          <div class="section-title">ペナルティ一覧</div>
-          <div class="penalties-new-header">
-            <% if @community.penalties.present? %>
-              <%= link_to new_community_penalty_path(@community.id) do %>
-                <i class="fa-regular fa-square-plus"></i>
-              <% end %>
-            <% end %>
-          </div>
-        </div>
-        <% if @community.penalties.present? %>
-          <div class="all-penalties-wrapper">
-            <div class="all-penalties">
-                <% @community.penalties.each do |penalty| %>
-                  <div class="each-penalty">
-                    <div class="each-penalty-edit">
-                      <%= link_to edit_community_penalty_path(@community, penalty.id) do %>
-                        <i class="fa-regular fa-pen-to-square"></i>
-                      <% end %>
-                    </div>
-                    <div class="each-penalty-content"><%= penalty.content %></div>
-                    <div class="each-penalty-point"><%= penalty.point %><span class="point-letter">ポイント回復</span></div>
-                  </div>
+    <div class="privileges-penalties-all">
+      <div class="privileges-penalties-left">
+        <div class="privileges">
+          <div class="privileges-wrapper">
+            <div class="privileges-header">
+              <div class="section-title">報酬一覧</div>
+              <div class="privilege-new-header">
+                <% if @community.privileges.present? %>
+                  <%= link_to new_community_privilege_path(@community.id) do %>
+                    <i class="fa-regular fa-square-plus"></i>
+                  <% end %>
                 <% end %>
+              </div>
             </div>
+            <% if @community.privileges.present? %>
+              <div class="all-privileges-wrapper">
+                <div class="all-privileges">
+                  <% @community.privileges.each do |privilege| %>
+                    <div class="each-privilege">
+                      <div class="each-privilege-edit">
+                        <%= link_to edit_community_privilege_path(@community, privilege.id) do %>
+                          <i class="fa-regular fa-pen-to-square"></i>
+                        <% end %>
+                      </div>
+                      <div class="each-privilege-content"><%= privilege.content %></div>
+                      <div class="each-privilege-point"><%= privilege.point %><span class="point-letter">ポイント消費</span></div>
+                    </div>
+                  <% end %>
+                </div>
+              </div>
+            <% else %>
+              <div class="alt-text">ユーザーの累積ポイントがプラスの時に受けられる報酬を決めましょう！</div>
+              <div class="privilege-new"><%= link_to "報酬設定", new_community_privilege_path(@community.id), class: "privilege-new-cta" %></div>
+            <% end %>
           </div>
-        <% else %>
-          <div class="alt-text">ユーザーの累積ポイントがマイナスの時に受けるペナルティを決めましょう！</div>
-          <div class="penalty-new"><%= link_to "ペナルティ設定", new_community_penalty_path(@community.id), class: "penalty-new-cta" %></div>
-        <% end %>
+        </div>
+        <div class="penalties">
+          <div class="penalties-wrapper">
+            <div class="penalties-header">
+              <div class="section-title">ペナルティ一覧</div>
+              <div class="penalties-new-header">
+                <% if @community.penalties.present? %>
+                  <%= link_to new_community_penalty_path(@community.id) do %>
+                    <i class="fa-regular fa-square-plus"></i>
+                  <% end %>
+                <% end %>
+              </div>
+            </div>
+            <% if @community.penalties.present? %>
+              <div class="all-penalties-wrapper">
+                <div class="all-penalties">
+                    <% @community.penalties.each do |penalty| %>
+                      <div class="each-penalty">
+                        <div class="each-penalty-edit">
+                          <%= link_to edit_community_penalty_path(@community, penalty.id) do %>
+                            <i class="fa-regular fa-pen-to-square"></i>
+                          <% end %>
+                        </div>
+                        <div class="each-penalty-content"><%= penalty.content %></div>
+                        <div class="each-penalty-point"><%= penalty.point %><span class="point-letter">ポイント回復</span></div>
+                      </div>
+                    <% end %>
+                </div>
+              </div>
+            <% else %>
+              <div class="alt-text">ユーザーの累積ポイントがマイナスの時に受けるペナルティを決めましょう！</div>
+              <div class="penalty-new"><%= link_to "ペナルティ設定", new_community_penalty_path(@community.id), class: "penalty-new-cta" %></div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="privileges-penalties-right">
+        <%= render 'articles/privilege_penalty_articles' %>
       </div>
     </div>
   </div>

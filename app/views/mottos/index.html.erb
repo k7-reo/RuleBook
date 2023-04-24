@@ -7,39 +7,46 @@
     <%= render 'communities/info', community: @community, currentUser: @currentUser %>
   </div>
   <div class="community-main">
-    <div class="mottos">
-      <div class="mottos-header">
-        <div class="section-title">スローガン一覧</div>
-        <div class="header-motto-new">
+    <div class="mottos-all">
+      <div class="mottos-left">
+        <div class="mottos">
+          <div class="mottos-header">
+            <div class="section-title">スローガン一覧</div>
+            <div class="header-motto-new">
+              <% if @community.mottos.present? %>
+                <%= link_to new_community_motto_path(@community.id) do %>
+                  <i class="fa-regular fa-square-plus"></i>
+                <% end %>
+              <% end %>
+            </div>
+          </div>
           <% if @community.mottos.present? %>
-            <%= link_to new_community_motto_path(@community.id) do %>
-              <i class="fa-regular fa-square-plus"></i>
-            <% end %>
+            <div class="all-mottos-wrapper">
+              <div class="all-mottos">
+                <% @community.mottos.each do |motto| %>
+                  <div class="each-motto">
+                    <div class="each-motto-edit">
+                      <%= link_to edit_community_motto_path(@community, motto.id) do %>
+                        <i class="fa-regular fa-pen-to-square"></i>
+                      <% end %>
+                    </div>
+                    <div class="each-motto-content"><%= motto.content %></div>
+                    <div class="each-motto-creator">
+                      <span class="each-motto-creator-title">作成者</span>
+                      <span class="each-motto-creator-name"><%= motto.user.name %></span>
+                    </div>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          <% else %>
+              <div class="alt-text">ゴール達成のためにメンバー全員が心がけるべきことを決めましょう！</div>
+              <div class="motto-new"><%= link_to "スローガン設定", new_community_motto_path(@community.id), class: "dashboard-motto-new-cta" %></div>
           <% end %>
         </div>
       </div>
-      <% if @community.mottos.present? %>
-        <div class="all-mottos-wrapper">
-          <div class="all-mottos">
-            <% @community.mottos.each do |motto| %>
-              <div class="each-motto">
-                <div class="each-motto-edit">
-                  <%= link_to edit_community_motto_path(@community, motto.id) do %>
-                    <i class="fa-regular fa-pen-to-square"></i>
-                  <% end %>
-                </div>
-                <div class="each-motto-content"><%= motto.content %></div>
-                <div class="each-motto-creator">
-                  <span class="each-motto-creator-title">作成者</span>
-                  <span class="each-motto-creator-name"><%= motto.user.name %></span>
-                </div>
-              </div>
-            <% end %>
-          </div>
-        </div>
-      <% else %>
-          <div class="alt-text">ゴール達成のためにメンバー全員が心がけるべきことを決めましょう！</div>
-          <div class="motto-new"><%= link_to "スローガン設定", new_community_motto_path(@community.id), class: "dashboard-motto-new-cta" %></div>
-      <% end %>
+      <div class="mottos-right">
+        <%= render 'articles/motto_articles' %>
+      </div>
     </div>
   </div>

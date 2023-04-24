@@ -17,12 +17,6 @@ class RulesController < ApplicationController
 
   end
 
-  def show
-    @rule = Rule.find(params[:id])
-    @community = Community.find(params[:community_id])
-    @currentUser = CommunityUser.find_by(user_id: current_user.id) #community-info表示に利用
-  end
-
   def new_positive
     @rule = Rule.new
     @community = Community.find(params[:community_id])
