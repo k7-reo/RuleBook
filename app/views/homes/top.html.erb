@@ -73,8 +73,8 @@
         <%= form.text_field :keyword, placeholder: "コミュニティID検索", class: "search-input" %>
         <%= form.submit "検索", class: "search-btn" %>
       <% end %>
-      <div class="notes">※半角数字</div>
     </div>
+    <div class="notes">※半角数字</div>
     <div class="seach-result">
     <% if @searchedCommunities.present? %>
       <div class="all-seach-results">

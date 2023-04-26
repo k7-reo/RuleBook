@@ -2,13 +2,9 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.my-all-communities-wrapper {
-  display: flex;
-  overflow: scroll;
-}
-
 .my-communities {
   margin: 16px;
+  width: calc(100% - 32px);
   padding-bottom: 16px;
   border-radius: 16px;
   border: 1px solid #ffffff;
@@ -21,11 +17,16 @@
   justify-content: space-between;
 }
 
+.my-all-communities-wrapper {
+  width: 100%;
+  display: flex;
+  overflow: scroll;
+}
+
 .my-all-communities {
   padding: 8px;
   display: flex;
   flex-wrap: nowrap;
-  justify-content: center;
 }
 
 .my-each-community-sign {

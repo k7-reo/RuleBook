@@ -133,18 +133,17 @@ header {
   background-color: rgba(0, 0, 0, .8);
   position: fixed;
   top: 0;
-  right: 0;
-  width: 200px;
+  right: -220px;
+  width: 220px;
   padding-top: 60px;
   height: 100%;
   text-align: right;
   z-index: 1002;
-  transform: translateX(200px);
-  transition: .5s;
+  transition: all 0.3s ease-in-out; /* スライドアニメーションを設定 */
 }
 
-.slide-menu.active{
-  transform: translateX(0);
+.show-menu {
+  right: 0; /* スライドして表示される位置 */
 }
 
 .slide-menu-user-name {
@@ -198,7 +197,7 @@ main {
   border: 1px solid #fff;
 }
 
-.comment, .notes {
+.comment {
   margin-top: 2px;
   font-size: 80%;
 }
@@ -210,6 +209,13 @@ main {
 
 .comment-content {
   display: none; /* 初期状態では非表示 */
+}
+
+.notes {
+  margin-left: 16px;
+  margin-right: 16px;
+  margin-top: 2px;
+  font-size: 80%;
 }
 
 /*「・」を抜く*/

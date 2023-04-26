@@ -110,6 +110,12 @@
                 </div>
               </div>
             </div>
+            <div class="form-section">
+              <label><%= f.label :deadline, "ゴール開始日時", class: "form-label" %><span class="form-note-optional">任意</span></label>
+              <div>
+                <%= f.datetime_field :startline %>
+              </div>
+            </div>
             <div class="submittion">
               <%= f.submit '編集完了', class: "done-btn" %>
               <%= link_to '削除', community_goal_path(@community.id, @goal.id), method: :delete, class: "alt-link-cta" %>

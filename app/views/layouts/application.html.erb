@@ -15,7 +15,7 @@
     <header>
       <div class="header-area">
         <div class="site-logo">
-          <%= link_to top_path do %>
+          <%= link_to home_path do %>
             <%= image_tag 'gachiru', size: '200x40' %>
           <% end %>
         </div>
@@ -81,11 +81,39 @@
       });
     </script>
     <script>
-      //サイドメニュースライド
-      document.querySelector('.sign-in-user-profile-image').addEventListener('click', function(){
-        this.classList.toggle('active');
-        document.querySelector('.slide-menu').classList.toggle('active');
-      })
+      //slide-menuの表示・非表示
+      const profileImage = document.querySelector('.sign-in-user-profile-image-cta');
+      const slideMenu = document.querySelector('.slide-menu');
+
+      profileImage.addEventListener('click', () => {
+        slideMenu.classList.toggle('show-menu'); // show-menuクラスをトグルで付与・削除する
+      });
+
+      document.addEventListener('click', (event) => {
+        if (!event.target.closest('.slide-menu') && !event.target.matches('.sign-in-user-profile-image-cta')) {
+          // クリックされた要素がslide-menu自体ではなく、かつprofileImageでもない場合、show-menuクラスを削除する
+          slideMenu.classList.remove('show-menu');
+        }
+      });
+    </script>
+    <script>
+      //コミュニティ詳細表示の動き
+      $(document).ready(function() {
+        // コンテンツを非表示にする
+        $('.community-info-window').hide();
+        
+        // クリックされたらコンテンツを表示する
+        $('.community-basic-info-detail-cta').click(function() {
+          $('.community-info-window').show();
+        });
+        
+        // コンテンツ以外がクリックされたら非表示にする
+        $(document).on('click', function(e) {
+          if (!$(e.target).closest('.community-info-window, .community-basic-info-detail-cta').length) {
+            $('.community-info-window').hide();
+          }
+        });
+      });
     </script>
   </body>
 </html>

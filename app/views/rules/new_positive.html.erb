@@ -29,12 +29,13 @@
               <label><%= f.label :point, "増加ポイント", class: "form-label" %><span class="form-note">必須</span></label>
               <div>
                 <%= f.text_field :point, placeholder: "プラス指定", class: "form-area-small" %>
+                <div class="notes">※半角数字</div>
               </div>
             </div>
             <div class="form-section">
               <label><%= f.label :genre, "ジャンル", class: "form-label" %><span class="form-note">必須</span></label>
               <div>
-                <%= f.text_field :genre, class: "form-area-small" %>
+                <%= f.select :genre, [["お金", "お金"], ["家事", "家事"], ["キャリア・仕事", "キャリア・仕事"], ["育児", "育児"], ["人間関係・コミュニケーション", "人間関係・コミュニケーション"], ["セックス・性的関係", "セックス・性的関係"], ["趣味・休日", "趣味・休日"], ["行事・イベント", "行事・イベント"], ["健康管理・医療", "健康管理・医療"], ["住まい・生活環境", "住まい・生活環境"], ["プライバシー・個人情報", "プライバシー・個人情報"], ["その他", "その他"]], include_blank: "選択してください" %>
               </div>
             </div>
             <div class="form-section">

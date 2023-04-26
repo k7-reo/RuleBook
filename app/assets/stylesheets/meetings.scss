@@ -9,12 +9,12 @@
 }
 
 .meetings-left {
-  width: 80%;
+  width: 74%;
   height: 100%;
 }
 
 .meetings-right {
-  width: 20%;
+  width: 26%;
   height: 100%;
 }
 
@@ -51,7 +51,7 @@
 //一覧(index)
 .next-meeting, .meeting-in-progress {
   text-align: center;
-  width: 440px;
+  width: 320px;
 }
 
 //一覧(index)
@@ -68,7 +68,7 @@
   color: #343842;
   height: 24px;
   line-height: 24px;
-  width: 360px;
+  width: 240px;
   margin: 0 auto;
 }
 
@@ -113,7 +113,8 @@
 
 .meeting-in-progress-text {
   padding: 8px 0;
-  height: 20px;
+  height: 50px;
+  line-height: 50px;
   color: #343842;
   font-size: 80%;
 }

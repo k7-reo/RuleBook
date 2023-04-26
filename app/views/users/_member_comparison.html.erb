@@ -1,0 +1,87 @@
+<div class="member-comparison-all">
+  <div class="comparison-section">
+    <div class="comparison-title">今月の獲得ポイント</div>
+    <div class="comparison-content">
+      <% @communityUsers.each do |user| %>
+        <div class="comparison-each">
+          <div class="comparison-each-image">
+            <% if user.user.profile_image.attached? %>
+              <%= image_tag user.user.profile_image.variant(resize: "40x40"), class: "community-member-profile-image" %>
+            <% else %>
+              <%= image_tag("f_f_event_98_s512_f_event_98_0bg.jpg", style: "width: 40px; height: 40px;", class: "community-member-profile-image") %>
+            <% end %>
+          </div>
+          <div class="comparison-each-figure"><%= user.point %></div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="comparison-section">
+    <div class="comparison-title">今月のプラスルール取得数</div>
+    <div class="comparison-content">
+      <% @communityUsers.each do |user| %>
+        <div class="comparison-each">
+          <div class="comparison-each-image">
+            <% if user.user.profile_image.attached? %>
+              <%= image_tag user.user.profile_image.variant(resize: "40x40"), class: "community-member-profile-image" %>
+            <% else %>
+              <%= image_tag("f_f_event_98_s512_f_event_98_0bg.jpg", style: "width: 40px; height: 40px;", class: "community-member-profile-image") %>
+            <% end %>
+          </div>
+          <div class="comparison-each-figure"><%= Standby.where("community_id = ? AND point > 0 AND action_type = ? AND executed_user_id = ?", @community.id, "rule", user.user_id).count %></div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="comparison-section">
+    <div class="comparison-title">今月のマイナスルール取得数</div>
+    <div class="comparison-content">
+      <% @communityUsers.each do |user| %>
+        <div class="comparison-each">
+          <div class="comparison-each-image">
+            <% if user.user.profile_image.attached? %>
+              <%= image_tag user.user.profile_image.variant(resize: "40x40"), class: "community-member-profile-image" %>
+            <% else %>
+              <%= image_tag("f_f_event_98_s512_f_event_98_0bg.jpg", style: "width: 40px; height: 40px;", class: "community-member-profile-image") %>
+            <% end %>
+          </div>
+          <div class="comparison-each-figure"><%= Standby.where("community_id = ? AND point < 0 AND action_type = ? AND executed_user_id = ?", @community.id, "rule", user.user_id).count %></div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="comparison-section">
+    <div class="comparison-title">今月の利用可能ポイント</div>
+    <div class="comparison-content">
+      <% @communityUsers.each do |user| %>
+        <div class="comparison-each">
+          <div class="comparison-each-image">
+            <% if user.user.profile_image.attached? %>
+              <%= image_tag user.user.profile_image.variant(resize: "40x40"), class: "community-member-profile-image" %>
+            <% else %>
+              <%= image_tag("f_f_event_98_s512_f_event_98_0bg.jpg", style: "width: 40px; height: 40px;", class: "community-member-profile-image") %>
+            <% end %>
+          </div>
+          <div class="comparison-each-figure"><%= user.monthly_point %></div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="comparison-section">
+    <div class="comparison-title">ルール作成数</div>
+    <div class="comparison-content">
+      <% @communityUsers.each do |user| %>
+        <div class="comparison-each">
+          <div class="comparison-each-image">
+            <% if user.user.profile_image.attached? %>
+              <%= image_tag user.user.profile_image.variant(resize: "40x40"), class: "community-member-profile-image" %>
+            <% else %>
+              <%= image_tag("f_f_event_98_s512_f_event_98_0bg.jpg", style: "width: 40px; height: 40px;", class: "community-member-profile-image") %>
+            <% end %>
+          </div>
+          <div class="comparison-each-figure"><%= Rule.where(community_id: @community.id, user_id: user.user_id).count %></div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -7,134 +7,138 @@
     <%= render 'communities/info', community: @community, currentUser: @currentUser %>
   </div>
   <div class="community-main">
-    <div class="my-roles">
-      <div class="roles-header">
-        <div class="section-title">あなたの役割</div>
-        <div class="role-new-header">
-          <% if @myRoles.present? %>
-            <%= link_to new_community_user_role_path(@community.id, current_user.id) do %>
-              <i class="fa-regular fa-square-plus"></i>
-            <% end %>
-          <% end %>
-        </div>
-      </div>
-      <% if @myRoles.present? %>
-        <div class="my-all-roles-wrapper">
-          <div class="my-all-roles">
-            <% @myRoles.each.with_index(1) do |role, index| %>
-              <div class="my-each-role">
-                <div class="my-each-role-index"><%= index %></div>
-                <div class="my-each-role-content"><%= role.content %></div>
-              　<div class="my-each-role-edit-link">
-                  <%= link_to edit_community_user_role_path(@community.id, @user.user_id, role.id) do %>
-                    <i class="fa-regular fa-pen-to-square"></i>
-                  <% end %>
-                </div>
-              </div>
-            <% end %>
+    <div class="my-page-all">
+      <div class="my-page-top">
+        <div class="my-roles">
+          <div class="roles-header">
+            <div class="section-title">あなたの役割</div>
+            <div class="role-new-header">
+              <% if @myRoles.present? %>
+                <%= link_to new_community_user_role_path(@community.id, current_user.id) do %>
+                  <i class="fa-regular fa-square-plus"></i>
+                <% end %>
+              <% end %>
+            </div>
           </div>
-        </div>
-      <% else %>
-        <div class="alt-text">あなたの役割を明記しましょう！</div>
-        <div class="role-new"><%= link_to "役割設定", new_community_user_role_path(@community.id, current_user.id), class: "role-new-cta" %></div>
-      <% end %>
-    </div>
-    <div class="my-activity">
-      <div class="my-point-detail">
-        <div class="my-point-title">今月の獲得ポイント</div>
-        <div class="my-point-index">現在のポイント</div>
-        <div class="my-point"><%= @user.point %></div>
-        <div class="my-all-rules">
-          <% if @executedRules.present? %>
-            <div class="my-all-excuted-rules-wrapper">
-              <div class="section-title">今月実行されたルール</div>
-              <div class="my-all-excuted-rules">
-                <% @executedRules.each do |standby| %>
-                  <div class="my-each-excuted-rule">
-                    <div><%= standby.content %></div>
-                    <div><%= standby.point %>ポイント</div>
+          <% if @myRoles.present? %>
+            <div class="my-all-roles-wrapper">
+              <div class="my-all-roles">
+                <% @myRoles.each.with_index(1) do |role, index| %>
+                  <div class="my-each-role">
+                    <div class="my-each-role-index"><%= index %></div>
+                    <div class="my-each-role-content"><%= role.content %></div>
+                    <div class="my-each-role-edit-link">
+                      <%= link_to edit_community_user_role_path(@community.id, @user.user_id, role.id) do %>
+                        <i class="fa-regular fa-pen-to-square"></i>
+                      <% end %>
+                    </div>
                   </div>
                 <% end %>
-                <div class="notes"> ※承認したルールのみ反映。</div>
               </div>
             </div>
           <% else %>
-            <div class="alt-text">今月実行されたルールはありません。</div>
+            <div class="alt-text">あなたの役割を明記しましょう！</div>
+            <div class="role-new"><%= link_to "役割設定", new_community_user_role_path(@community.id, current_user.id), class: "role-new-cta" %></div>
           <% end %>
         </div>
       </div>
-      <div class="my-monthly-point-detail">
-        <div class="my-monthly-point-title">累積ポイント</div>
-        <div class="my-point-index">残りポイント</div>
-        <div class="my-monthly-point"><%= @user.monthly_point %></div>
-        <div class="my-all-tasks">
-          <div class="my-all-remaining-tasks-wrapper">
-            <% if @activePrivileges.present? || @activePenalties.present? %>
-              <div class="my-all-remaining-tasks">
-                <% if @activePrivileges.present? %>
-                  <div class="section-title">取得可能な報酬</div> <!-- 特典のポイントより個人のポイントが高ければ選択肢に現れる -->
-                  <div class="my-remaining-privileges">
-                    <% @activePrivileges.each do |privilege| %>
-                      <div class="my-each-remaining-privilege">
-                        <div><%= privilege.content %></div>
-                        <div><%= privilege.point %>ポイント消費</div>
-                        <div class="my-each-remaining-privilege-execute"><%= link_to "取得完了", community_privilege_execute_path(@community.id, privilege.id), class: "my-each-remaining-privilege-execute-cta" %></div>
+      <div class="my-page-bottom">
+          <div class="my-point-detail">
+            <div class="my-point-title">今月の獲得ポイント</div>
+            <div class="my-point-index">現在のポイント</div>
+            <div class="my-point"><%= @user.point %></div>
+            <div class="my-all-rules">
+              <% if @executedRules.present? %>
+                <div class="my-all-excuted-rules-wrapper">
+                  <div class="section-title">今月実行されたルール</div>
+                  <div class="my-all-excuted-rules">
+                    <% @executedRules.each do |standby| %>
+                      <div class="my-each-excuted-rule">
+                        <div><%= standby.content %></div>
+                        <div><%= standby.point %>ポイント</div>
                       </div>
                     <% end %>
+                    <div class="notes"> ※承認したルールのみ反映。</div>
                   </div>
-                <% end %>
-                <% if @activePenalties.present? %>
-                  <div class="section-title">実行可能なペナルティ</div>
-                  <div class="my-remaining-penalties">
-                    <% @activePenalties.each do |penalty| %>
-                      <div class="my-each-remaining-penalty">
-                        <div><%= penalty.content %></div>
-                        <div><%= penalty.point %>ポイント回復</div>
-                        <div class="my-each-remaining-penalty-execute"><%= link_to '完了許可申請', community_penalty_execute_path(@community.id, penalty.id), class: "my-each-remaining-penalty-execute-cta" %></div>
-                      </div>
-                    <% end %>
-                  </div>
-                <% end %>
-                <div class="notes">
-                  ※余剰ポイントは翌月に繰り越されます。<br>
-                  ※報酬の取得後に「取得完了」アクションを忘れないように注意してください。
                 </div>
-              </div>
-            <% else %>
-              <div class="alt-text">ポイントを貯めて受けられる報酬を<br>増やしましょう！</div>
-            <% end %>
+              <% else %>
+                <div class="alt-text">今月実行されたルールはありません。</div>
+              <% end %>
+            </div>
           </div>
-          <div class="my-all-done-tasks-wrapper">
-            <% if @finishedPrivileges.present? || @finishedPenalties.present? %>
-              <div class="my-all-done-tasks">
-                <% if @finishedPrivileges.present? %>
-                  <div class="section-title">今月取得した報酬</div>
-                  <div class="my-done-privileges">
-                    <% @finishedPrivileges.each do |standby| %>
-                      <div class="my-each-done-privilege">
-                        <div><%= standby.content %></div>
-                        <div><%= standby.point %>ポイント消費</div>
+          <div class="my-monthly-point-detail">
+            <div class="my-monthly-point-title">利用可能ポイント</div>
+            <div class="my-point-index">残りポイント</div>
+            <div class="my-monthly-point"><%= @user.monthly_point %></div>
+            <div class="my-all-tasks">
+              <div class="my-all-remaining-tasks-wrapper">
+                <% if @activePrivileges.present? || @activePenalties.present? %>
+                  <div class="my-all-remaining-tasks">
+                    <% if @activePrivileges.present? %>
+                      <div class="section-title">取得可能な報酬</div> <!-- 特典のポイントより個人のポイントが高ければ選択肢に現れる -->
+                      <div class="my-remaining-privileges">
+                        <% @activePrivileges.each do |privilege| %>
+                          <div class="my-each-remaining-privilege">
+                            <div><%= privilege.content %></div>
+                            <div><%= privilege.point %>ポイント消費</div>
+                            <div class="my-each-remaining-privilege-execute"><%= link_to "取得完了", community_privilege_execute_path(@community.id, privilege.id), class: "my-each-remaining-privilege-execute-cta" %></div>
+                          </div>
+                        <% end %>
+                      </div>
+                    <% end %>
+                    <% if @activePenalties.present? %>
+                      <div class="section-title">実行可能なペナルティ</div>
+                      <div class="my-remaining-penalties">
+                        <% @activePenalties.each do |penalty| %>
+                          <div class="my-each-remaining-penalty">
+                            <div><%= penalty.content %></div>
+                            <div><%= penalty.point %>ポイント回復</div>
+                            <div class="my-each-remaining-penalty-execute"><%= link_to '完了許可申請', community_penalty_execute_path(@community.id, penalty.id), class: "my-each-remaining-penalty-execute-cta" %></div>
+                          </div>
+                        <% end %>
+                      </div>
+                    <% end %>
+                    <div class="notes">
+                      ※余剰ポイントは翌月に繰り越されます。<br>
+                      ※報酬の取得後に「取得完了」アクションを忘れないように注意してください。
+                    </div>
+                  </div>
+                <% else %>
+                  <div class="alt-text">ポイントを貯めて受けられる報酬を<br>増やしましょう！</div>
+                <% end %>
+              </div>
+              <div class="my-all-done-tasks-wrapper">
+                <% if @finishedPrivileges.present? || @finishedPenalties.present? %>
+                  <div class="my-all-done-tasks">
+                    <% if @finishedPrivileges.present? %>
+                      <div class="section-title">今月取得した報酬</div>
+                      <div class="my-done-privileges">
+                        <% @finishedPrivileges.each do |standby| %>
+                          <div class="my-each-done-privilege">
+                            <div><%= standby.content %></div>
+                            <div><%= standby.point %>ポイント消費</div>
+                          </div>
+                        <% end %>
+                      </div>
+                    <% end %>
+                    <% if @finishedPenalties.present? %>
+                      <div class="section-title">今月実行したペナルティ</div>
+                      <div class="my-done-penalties">
+                        <% @finishedPenalties.each do |standby| %>
+                          <div class="my-each-done-penalty">
+                            <div><%= standby.content %></div>
+                            <div><%= standby.point %>ポイント回復</div>
+                          </div>
+                        <% end %>
                       </div>
                     <% end %>
                   </div>
-                <% end %>
-                <% if @finishedPenalties.present? %>
-                  <div class="section-title">今月実行したペナルティ</div>
-                  <div class="my-done-penalties">
-                    <% @finishedPenalties.each do |standby| %>
-                      <div class="my-each-done-penalty">
-                        <div><%= standby.content %></div>
-                        <div><%= standby.point %>ポイント回復</div>
-                      </div>
-                    <% end %>
-                  </div>
+                <% else %>
+                  <div class="alt-text">今月実行した報酬とペナルティが<br>表示されます。</div>
                 <% end %>
               </div>
-            <% else %>
-              <div class="alt-text">今月実行した報酬とペナルティが<br>表示されます。</div>
-            <% end %>
+            </div>
           </div>
-        </div>
       </div>
     </div>
   </div>

@@ -24,11 +24,6 @@ class CommunitiesController < ApplicationController
   def index #homes#topに統合
   end
 
-  def detail
-    @community = Community.find(params[:community_id])
-    @currentUser = CommunityUser.find_by(user_id: current_user.id) #community-info表示に利用
-  end
-
   def show
     @community = Community.find(params[:id])
     @communityUsers = CommunityUser.where(community_id: params[:id], status: 1)
@@ -54,26 +49,14 @@ class CommunitiesController < ApplicationController
     @currentUser = CommunityUser.find_by(user_id: current_user.id) #community-info表示に利用
     @acceptedUsers = CommunityUser.where(community_id: params[:id], status: 1)
 
-    # 今月のstandbiesデータを取得する
-    current_month = Date.current.beginning_of_month..Date.current.end_of_month
-    @standbies = Standby.where(created_at: current_month)
-
-    # カレンダーに表示するためのJSON形式のデータを作成する
-    @events = []
-    @standbies.each do |standby|
-      # action_typeがruleの場合、ルールの実行記録を作成する
-      if standby.action_type == "rule"
-        event = {
-          title: "#{standby.executed_user_id}にルール（#{standby.content}）が実行されました",
-          start: standby.created_at
-        }
-        @events << event
-      end
-      # action_typeがpenaltyの場合、ペナルティの実行記録を作成する
-      # （同様にprivilegeの場合も追加で記述する）
-      # ...
-    end
-
+    now = Time.current
+    total_time = @goal.deadline - @goal.startline
+    passed_time = now - @goal.startline
+    remaining_time = @goal.deadline - now
+    
+    @passed_ratio = (passed_time.to_f / total_time).clamp(0, 1)
+    @remaining_ratio = (remaining_time.to_f / total_time).clamp(0, 1)
+    
   end
 
   def join_request
@@ -113,7 +96,7 @@ class CommunitiesController < ApplicationController
     if params[:default_background]
       @community.community_image = nil
     end
-    redirect_to community_detail_path(@community.id)
+    redirect_to community_path(@community.id)
   else
     render 'edit'
   end

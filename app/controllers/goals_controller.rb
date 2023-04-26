@@ -93,7 +93,7 @@ class GoalsController < ApplicationController
   private
 
   def goal_params
-    params.require(:goal).permit(:community_id, :user_id, :content, :deadline)
+    params.require(:goal).permit(:community_id, :user_id, :content, :deadline, :startline)
   end
 
 end

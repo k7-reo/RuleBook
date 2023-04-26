@@ -13,9 +13,38 @@
       <div class="community-basic-info-name-title">参加中のコミュニティ</div>
       <div class="community-basic-info-name-content"><%= community.community_name %></div>
       <div class="community-basic-info-detail">
-        <%= link_to community_detail_path(community.id), class: "community-basic-info-detail-cta" do %>
-          <i class="fa-solid fa-circle-info"></i>
-        <% end %>
+        <i class="fa-solid fa-circle-info community-basic-info-detail-cta"></i>
+        <div class="community-info-window">
+          <div class="community-info-window-section">
+            <div class="community-info-window-section-title">コミュニティ名</div>
+            <div class="community-info-window-section-content-small">
+              <%= community.community_name %>
+            </div>
+          </div>
+          <div class="community-info-window-section">
+            <div class="community-info-window-section-title">概要</div>
+            <div class="community-info-window-section-content-large">
+              <% if community.introduction.present? %>
+                <%= safe_join(community.introduction.split("\n"),tag(:br)) %>
+              <% else %>
+                ※概要はありません。
+              <% end%>
+            </div>
+          </div>
+          <div class="community-info-window-section">
+            <div class="community-info-window-section-title">利用上の注意点</div>
+            <div class="community-info-window-section-content-large">
+              <% if community.manual.present? %>
+                <%= safe_join(community.manual.split("\n"),tag(:br)) %>
+              <% else %>
+                ※利用上の注意点はありません。
+              <% end%>
+            </div>
+          </div>
+          <div class="community-info-window-submittion">
+            <%= link_to "編集する", edit_community_path(community.id), class: "community-info-window-submittion-cta" %>
+          </div>
+         </div>
       </div>
     </div>
   </div>

@@ -2,12 +2,51 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+
+.members-all {
+  display: flex;
+  height: 100%;
+  width: 100%;
+}
+
+.members-left {
+  width: 74%;
+  height: 100%;
+}
+
+.members-right {
+  width: 26%;
+  height: 100%;
+  background-color: rgba(255,209,57, 0.6);
+  overflow-y: scroll;
+}
+
+.my-page-all {
+  height: 100%;
+  width: 100%;
+}
+
+.my-page-top {
+  height: 24%;
+  width: 100%;
+  display: flex;
+  padding: 8px;
+}
+
+.my-page-bottom {
+  height: calc(76% - 24px);
+  width: calc(100% - 16px);
+  display: flex;
+  padding: 0 8px;
+}
+
 //mypage/show役割
 .my-roles, .others-roles {
-  margin: 16px  16px 8px 16px;
+  margin: 8px;
   background-color: rgba(52, 56, 66, 0.5);
   border-radius: 16px;
-  height: 24%;
+  height: calc(100% - 8px);
+  width: calc(100% - 32px);
 }
 
 .roles-header {
@@ -57,6 +96,7 @@
   font-size: 150%;
   font-weight: bold;
   margin-left: 4px;
+  margin-right: 4px;
 }
 
 .role-new {
@@ -78,13 +118,6 @@
   background-color: #44c48a;
   border: 1px solid #ffffff;
   color: #ffffff;
-}
-
-//mypageポイント
-.my-activity {
-  height: calc( 76% - 32px);
-  display: flex;
-  padding: 0 8px;
 }
 
 //mypage獲得ポイント
@@ -261,7 +294,7 @@
 //index
 .community-member-sum-left {
   text-align: center;
-  width: 96px;
+  width: 80px;
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
@@ -280,7 +313,7 @@
 }
 
 .community-member-sum-right {
-  width: 320px;
+  width: 240px;
 }
 
 .member-all-roles-wrapper {
@@ -343,6 +376,7 @@
 .member-point-title, .member-monthly-point-title {
   text-align: center;
   font-size: 80%;
+  font-weight: bold;
   color: #343842;
 }
 
@@ -351,4 +385,41 @@
   font-size: 150%;
   font-weight: bold;
   color: #f47842;
+}
+
+.member-comparison-all {
+  padding: 16px;
+  height: calc(100% - 32px);
+}
+
+.comparison-section {
+  margin-bottom: 32px;
+}
+
+.comparison-title {
+  font-weight: bold;
+}
+
+.comparison-content {
+  margin-top: 8px;
+  display: flex;
+}
+
+.comparison-each {
+  margin-right: 8px;
+  background-color: #ffd139;
+  border-radius: 8px;
+  padding: 8px
+}
+
+.comparison-each-image {
+  height: 42px;
+}
+
+.comparison-each-figure {
+  text-align: center;
+  font-size: 120%;
+  font-weight: bold;
+  height: 16px;
+  color: #343842;
 }

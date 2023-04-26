@@ -7,109 +7,116 @@
     <%= render 'communities/info', community: @community, currentUser: @currentUser %>
   </div>
   <div class="community-main">
-    <p class="page-title"><%= @user.user.name %>の詳細</p>
-    <div class="others-role round">
-      <p class="section-title">役割</p>
-      <% if @roles.present? %>
-        <% @roles.each do |role| %>
-          <div class="others-role-content">
-            <span class="others-role-content-letters"><%= role.content %></span>
+    <div class="members-all">
+      <div class="members-left">
+        <p class="page-title"><%= @user.user.name %>の詳細</p>
+        <div class="others-role">
+          <p class="section-title">役割</p>
+          <% if @roles.present? %>
+            <% @roles.each do |role| %>
+              <div class="others-role-content">
+                <span class="others-role-content-letters"><%= role.content %></span>
+              </div>
+            <% end %>
+          <% else %>
+            <p>まだ役割が明記されていません。</p>
+          <% end %>
+        </div>
+        <div>
+          <p class="section-title">今月のポイント獲得進捗</p>
+          <p class="my-point"><%= @user.point %></p>
+          <div>
+            <!-- 実行されたルール -->
           </div>
-        <% end %>
-      <% else %>
-        <p>まだ役割が明記されていません。</p>
-      <% end %>
-    </div>
-    <div class="round">
-      <p class="section-title">今月のポイント獲得進捗</p>
-      <p class="my-point"><%= @user.point %></p>
-      <div>
-        <!-- 実行されたルール -->
-      </div>
-    </div>
-    <div class="round">
-      <p class="section-title">今月利用できる配当ポイント</p>
-      <p class="my-monthly-point"><%= @user.monthly_point %></p>
-      <div>
-        <!-- 受けた報酬 -->
-        <!-- 受けたペナルティ -->
-      </div>
-    </div>
-    <!-- 先月違反した&継続したルール一覧withポイント -->
-    <!-- 今月違反した&継続したルール一覧withポイント -->
-    <div class="round">
-      <p class="section-title"><%= @user.user.name %>が作成したルール</p>
-      <div>
-        <% if @rules.present? %>
-          <table>
-            <thead>
-              <tr>
-                <th>内容</th>
-                <th>増減ポイント</th>
-              </tr>
-            </thead>
-            <tbody>
-            <% @rules.each do |rule| %>
-              <tr>
-                <td><%= rule.content %></td>
-                <td><%= rule.point %></td>
-              </tr>
+        </div>
+        <div>
+          <p class="section-title">今月利用できる配当ポイント</p>
+          <p class="my-monthly-point"><%= @user.monthly_point %></p>
+          <div>
+            <!-- 受けた報酬 -->
+            <!-- 受けたペナルティ -->
+          </div>
+        </div>
+        <!-- 先月違反した&継続したルール一覧withポイント -->
+        <!-- 今月違反した&継続したルール一覧withポイント -->
+        <div>
+          <p class="section-title"><%= @user.user.name %>が作成したルール</p>
+          <div>
+            <% if @rules.present? %>
+              <table>
+                <thead>
+                  <tr>
+                    <th>内容</th>
+                    <th>増減ポイント</th>
+                  </tr>
+                </thead>
+                <tbody>
+                <% @rules.each do |rule| %>
+                  <tr>
+                    <td><%= rule.content %></td>
+                    <td><%= rule.point %></td>
+                  </tr>
+                <% end %>
+                </tbody>
+              </table>
+            <% else %>
+              <p>作成したルールはありません。</p>
             <% end %>
-            </tbody>
-          </table>
-        <% else %>
-          <p>作成したルールはありません。</p>
-        <% end %>
-      </div>
-    </div> <!-- 隠せるようにする -->
-    <div class="round">
-      <p class="section-title"><%= @user.user.name %>が作成した特典</p>
-      <div>
-        <% if @privileges.present? %>
-          <table>
-            <thead>
-              <tr>
-                <th>内容</th>
-                <th>利用ポイント</th>
-              </tr>
-            </thead>
-            <tbody>
-            <% @privileges.each do |privilege| %>
-              <tr>
-                <td><%= privilege.content %></td>
-                <td><%= privilege.point %></td>
-              </tr>
+          </div>
+        </div> <!-- 隠せるようにする -->
+        <div>
+          <p class="section-title"><%= @user.user.name %>が作成した特典</p>
+          <div>
+            <% if @privileges.present? %>
+              <table>
+                <thead>
+                  <tr>
+                    <th>内容</th>
+                    <th>利用ポイント</th>
+                  </tr>
+                </thead>
+                <tbody>
+                <% @privileges.each do |privilege| %>
+                  <tr>
+                    <td><%= privilege.content %></td>
+                    <td><%= privilege.point %></td>
+                  </tr>
+                <% end %>
+                </tbody>
+              </table>
+            <% else %>
+              <p>作成した特典はありません。</p>
             <% end %>
-            </tbody>
-          </table>
-        <% else %>
-          <p>作成した特典はありません。</p>
-        <% end %>
-      </div>
-    </div> <!-- 隠せるようにする -->
-    <div class="round">
-      <p class="section-title"><%= @user.user.name %>が作成した罰</p>
-      <div>
-        <% if @penalties.present? %>
-          <table>
-            <thead>
-              <tr>
-                <th>内容</th>
-                <th>回復ポイント</th>
-              </tr>
-            </thead>
-            <tbody>
-            <% @penalties.each do |penaltie| %>
-              <tr>
-                <td><%= penaltie.content %></td>
-                <td><%= penaltie.point %></td>
-              </tr>
+          </div>
+        </div> <!-- 隠せるようにする -->
+        <div>
+          <p class="section-title"><%= @user.user.name %>が作成した罰</p>
+          <div>
+            <% if @penalties.present? %>
+              <table>
+                <thead>
+                  <tr>
+                    <th>内容</th>
+                    <th>回復ポイント</th>
+                  </tr>
+                </thead>
+                <tbody>
+                <% @penalties.each do |penaltie| %>
+                  <tr>
+                    <td><%= penaltie.content %></td>
+                    <td><%= penaltie.point %></td>
+                  </tr>
+                <% end %>
+                </tbody>
+              </table>
+            <% else %>
+              <p>作成したペナルティはありません。</p>
             <% end %>
-            </tbody>
-          </table>
-        <% else %>
-          <p>作成したペナルティはありません。</p>
-        <% end %>
+          </div>
+        </div> <!-- 隠せるようにする -->
       </div>
-    </div> <!-- 隠せるようにする -->
+      <div class="members-right">
+        <%= render 'member_comparison' %>
+      </div>
+    </div>
   </div>

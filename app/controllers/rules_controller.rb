@@ -14,7 +14,6 @@ class RulesController < ApplicationController
     @positiveRules = @rules.where("point > 0").order(:genre)
     # -ポイントのルールをジャンルでソート
     @negativeRules = @rules.where("point <= 0").order(:genre)
-
   end
 
   def new_positive
