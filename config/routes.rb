@@ -8,11 +8,12 @@ Rails.application.routes.draw do
   get "home" => 'homes#home'
   get 'search' => 'homes#top'
   get "receive" => 'rules#receive'
-  get "approval/:id" => 'rules#approval', as: "approval" #as:""でURLはapprovalを残しつつ、 同viewのeachメソッドで取得しているstandbyRules_id(standbyRuleとして取得している)も参照できるような記載の仕方
+  get "approval/:id" => 'rules#approval', as: "approval" #as:""でURLはapprovalとしつつ、 receive.htmlに送っているStandbyのid(@standbyRuleとして取得している)も参照できるような記載の仕方
   get "denial/:id" => 'rules#denial', as: "denial"
-  get "forgive/:id" => 'penalties#forgive', as:"forgive" #as:""でURLはforgiveを残しつつ、 同viewのeachメソッドで取得しているstandby_id(standbyPenaltiesとして取得している)も参照できるような記載の仕方
+  get "forgive/:id" => 'penalties#forgive', as:"forgive" #as:""でURLはforgiveとしつつ、 receive.htmlに送っているStandbyのid(@standbyPenaltiesとして取得している)も参照できるような記載の仕方
   get "forbid/:id" => 'penalties#forbid', as:"forbid"
-  get "accept/:id" => "communities#accept", as:"accept"
+  get "accept/:id" => "communities#accept", as:"accept" #as:""でURLはforgiveとしつつ、 receive.htmlに送っているCommunityUserのid(@unacceptedUsersとして取得している)も参照できるような記載の仕方
+  get "decline/:id" => "communities#decline", as:"decline"
 
   resources :users do
     resources :notes

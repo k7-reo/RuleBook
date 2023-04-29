@@ -4,6 +4,8 @@ class PrivilegesController < ApplicationController
     @community = Community.find(params[:community_id])
     @user = CommunityUser.find_by(user_id: current_user.id, community_id: @community.id)
     @currentUser = CommunityUser.find_by(user_id: current_user.id) #community-info表示に利用
+    @activePrivileges = Privilege.where("community_id = ? and point <= ?", @community.id, @user.monthly_point) #whereの変異系：community_idが@community.idでpointが@user.monthly_pointのレコード取得。
+    @activePenalties = Penalty.where("community_id = ? and -(point) >= ?", @community.id, @user.monthly_point)
   end
 
   def new
@@ -41,6 +43,7 @@ class PrivilegesController < ApplicationController
   def update
     @community = Community.find(params[:community_id])
     privilege = Privilege.find(params[:id])
+    privilege.updating_user_id = current_user.id
     privilege.update(privilege_params)
     #履歴登録↓
     oldRecord = Record.find_by(privilege_id: privilege.id)

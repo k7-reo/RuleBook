@@ -134,6 +134,7 @@
   display: flex;
 	justify-content: center;
 	align-items: center;
+  overflow: scroll;
 }
 
 //info除く全体
@@ -522,8 +523,7 @@ div#goalCountTimer span {
   font-weight: bold;
   height: 24px;
   line-height: 24px;
-  margin-top: 8px;
-  margin-bottom: 8px;
+  margin-top: 16px;
   color: #f47842;
   white-space: nowrap;
   margin-left: auto;

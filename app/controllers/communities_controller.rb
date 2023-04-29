@@ -42,21 +42,28 @@ class CommunitiesController < ApplicationController
     @records = Record.where(community_id: params[:id], updated_at: Time.zone.today.ago(30.days)..Time.zone.today.end_of_day).order(updated_at: :desc)
     @goal = Goal.find_by(community_id: params[:id], status: true)
     if @goal.present? #if文にしないとなぜかエラーがでる。
+      #deadlineの文字カウントダウン
       gon.deadline = @goal.deadline #gem 'gon'を利用してRailsからJavaScriptオブジェクトに変換
+      #deadlineのラインカウントダウン
+      if @goal.deadline.present?
+        now = Time.current
+        if @goal.startline.present? #startが指定されてない時は、updated＿atをスタートにする
+          startline = @goal.startline
+        else @goal.startline.present?
+          startline = @goal.updated_at
+        end
+        total_time = @goal.deadline - startline
+        passed_time = now - startline
+        remaining_time = @goal.deadline - now
+        @passed_ratio = (passed_time.to_f / total_time).clamp(0, 1)
+        @remaining_ratio = (remaining_time.to_f / total_time).clamp(0, 1)
+      end
     end
     @excutedRules = Standby.where(community_id: params[:id], action_type: "rule", created_at: Time.current.all_month) #今月created_atのデータに絞っている。
     @coupleAdvice = Advice.where(community_genre: "夫婦・カップル").order("RANDOM()").first
     @currentUser = CommunityUser.find_by(user_id: current_user.id) #community-info表示に利用
     @acceptedUsers = CommunityUser.where(community_id: params[:id], status: 1)
-
-    now = Time.current
-    total_time = @goal.deadline - @goal.startline
-    passed_time = now - @goal.startline
-    remaining_time = @goal.deadline - now
-    
-    @passed_ratio = (passed_time.to_f / total_time).clamp(0, 1)
-    @remaining_ratio = (remaining_time.to_f / total_time).clamp(0, 1)
-    
+    #ゴールtimelineの表示
   end
 
   def join_request
@@ -65,10 +72,16 @@ class CommunitiesController < ApplicationController
     redirect_to top_path
   end
 
-  def accept #rules#receiveで承認許可したユーザーのstatusを2に変える
+  def accept #rules#receiveで承認許可したユーザーのstatusを1に変える
     user = CommunityUser.find(params[:id])
     user.status = 1
     user.save!
+    redirect_to receive_path
+  end
+  
+  def decline
+    user = CommunityUser.find(params[:id])
+    user.destroy
     redirect_to receive_path
   end
 

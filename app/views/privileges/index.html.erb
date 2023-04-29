@@ -32,6 +32,13 @@
                     </div>
                     <div class="each-privilege-content"><%= privilege.content %></div>
                     <div class="each-privilege-point"><%= privilege.point %><span class="point-letter">ポイント消費</span></div>
+                    <div class="each-privilege-execute">
+                      <% if privilege.point < @user.monthly_point %>
+                        <%= link_to "取得完了", community_privilege_execute_path(@community.id, privilege.id), class: "each-privilege-execute-can-cta" %>
+                      <% else %>
+                        <span class="each-privilege-execute-cannot-cta">※現在は取得できません。</span>
+                      <% end %>
+                    </div>
                   </div>
                 <% end %>
               </div>
@@ -64,6 +71,13 @@
                       </div>
                       <div class="each-penalty-content"><%= penalty.content %></div>
                       <div class="each-penalty-point"><%= penalty.point %><span class="point-letter">ポイント回復</span></div>
+                      <div class="each-penalty-execute">
+                      <% if -(penalty.point) > @user.monthly_point %>
+                        <%= link_to '完了許可申請', community_penalty_execute_path(@community.id, penalty.id), class: "each-penalty-execute-can-cta" %>
+                      <% else %>
+                        <span class="each-penalty-execute-cannot-cta">※現在は実行不要です。</span>
+                      <% end %>
+                    </div>
                     </div>
                   <% end %>
               </div>

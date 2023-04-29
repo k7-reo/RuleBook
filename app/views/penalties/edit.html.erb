@@ -10,6 +10,16 @@
    <div class="privileges-penalties-all">
       <div class="privileges-penalties-left">
         <div class="page-title">ペナルティ編集</div>
+        <div class="penalty-info">
+          <div class="penalty-info-creater">作成者：<%= @penalty.creating_user.name %></div>
+          <div class="penalty-info-updater">最終更新者：
+            <% if @penalty.updating_user.present? %>
+              <%= @penalty.updating_user.name %>
+            <% else %>
+              更新なし
+            <% end %>
+          </div>
+        </div>
         <div>
           <%= form_with(model:[@community, @penalty], local:true, class: "form") do |f| %>
             <div class="form-section">

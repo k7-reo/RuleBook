@@ -166,7 +166,6 @@ main {
   top: 56px; /* header-areaの高さに合わせる。 */
   height: calc(100% - 56px); /* header-areaの高さを引く。 */
   width: 100%;
-  border: 1px solid #dddddd;
 }
 
 .community-background img {
@@ -194,7 +193,6 @@ main {
   box-sizing: border-box;
   width: 100%;
   height: calc(100vh - 88px);
-  border: 1px solid #fff;
 }
 
 .comment {

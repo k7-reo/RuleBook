@@ -79,13 +79,59 @@
 }
 
 .each-privilege-point, .each-penalty-point {
+  height: 24px;
   font-size: 120%;
   font-weight: bold;
-  margin: 0 16px;
+  margin: 0 16px 16px 16px;
 }
 
 .point-letter {
   font-size: 62.5%;
+}
+
+.each-privilege-execute-can-cta {
+  display: block;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  background-color: #ffffff;
+  border: 1px solid #ffffff;
+  border-radius: 8px;
+  color: #ffd139;
+  font-weight: bold;
+  text-align: center; //テキスト要素を左右中央寄せ
+}
+
+.each-privilege-execute-can-cta:hover {
+  background-color: #ffd139;
+  border: 1px solid #343842;
+  color: #343842;
+}
+
+.each-penalty-execute-can-cta {
+  display: block;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  background-color: #ffffff;
+  border: 1px solid #ffffff;
+  border-radius: 8px;
+  color: #44c48a;
+  font-weight: bold;
+  text-align: center; //テキスト要素を左右中央寄せ
+}
+
+.each-penalty-execute-can-cta:hover {
+  background-color: #44c48a;
+  border: 1px solid #343842;
+  color: #343842;
+}
+
+.each-privilege-execute-cannot-cta,
+.each-penalty-execute-cannot-cta {
+  display: block;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  border-radius: 8px;
+  text-align: center; //テキスト要素を左右中央寄せ
 }
 
 .privilege-new, .penalty-new {

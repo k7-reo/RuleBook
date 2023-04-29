@@ -10,6 +10,16 @@
     <div class="privileges-penalties-all">
       <div class="privileges-penalties-left">
         <div class="page-title">報酬編集</div>
+        <div class="privilege-info">
+          <div class="privilege-info-creater">作成者：<%= @privilege.creating_user.name %></div>
+          <div class="privilege-info-updater">最終更新者：
+            <% if @privilege.updating_user.present? %>
+              <%= @privilege.updating_user.name %>
+            <% else %>
+              更新なし
+            <% end %>
+          </div>
+        </div>
         <div>
           <%= form_with(model:[@community, @privilege], local:true, class: "form") do |f| %>
             <div class="form-section">

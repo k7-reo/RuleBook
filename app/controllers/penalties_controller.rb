@@ -38,6 +38,7 @@ class PenaltiesController < ApplicationController
   def update
     @community = Community.find(params[:community_id])
     penalty = Penalty.find(params[:id])
+    penalty.updating_user_id = current_user.id
     penalty.update(penalty_params)
     #履歴登録↓
     oldRecord = Record.find_by(penalty_id: penalty.id)

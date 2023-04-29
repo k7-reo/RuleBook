@@ -1,94 +1,129 @@
   <div class="page-title"><%= @user.name %>宛の受信BOX</div>
-
-  <div class="excuted-rules">
-    <div class="section-title">実行されたルール</div>
+  <div class="executed-rules">
+    <div class="executed-rules-header">
+      <div class="section-title">受けたルール</div>
+    </div>
     <% if @standbyRules.present? %>
-      <table>
-        <thead>
-          <tr>
-            <th>コミュニティ</th>
-            <th>申請者</th>
-            <th>ルール</th>
-            <th>加減ポイント</th>
-            <th>申請日時</th>
-            <th>補足</th>
-            <th colspan="2"></th>
-          </tr>
-        </thead>
-        <tbody>
+      <div class="all-executed-rules-wrapper">
+        <div class="all-executed-rules">
           <% @standbyRules.each do |standby| %>
-          <tr>
-            <td><%= link_to standby.community.community_name, community_path(standby.community_id) %></td>
-            <td><%= standby.executing_user.name %></td>
-            <td><%= standby.content %></td>
-            <td><%= standby.point %></td>
-            <td><%= standby.rule.created_at.to_s(:datetime_jp) %></td>
-            <td><%= standby.detail %></td>
-            <td>
-              <%= link_to "承認する", approval_path(standby) %> <!-- 一つのstandbyレコードのみcotrollerに送りたい -->
-            　<%= link_to "否認する", denial_path(standby)  %> <!-- 一つのstandbyレコードのみcotrollerに送りたい -->
-            </td>
-          </tr>
+            <div class="each-executed-rule">
+                <% if standby.community.community_image.attached? %>
+                  <%= image_tag standby.community.community_image, class: "each-executed-rule-background" %>
+                <% else %>
+                  <%= image_tag("default_background_noword.png", class: "each-executed-rule-background") %>
+                <% end %>
+                <div class="each-executed-rule-community"><%= link_to standby.community.community_name, community_path(standby.community_id) %></div>
+                <div class="each-executed-rule-subject"><%= standby.content %></div>
+                <div class="each-executed-rule-point"><%= standby.point %><span class="point-letter">ポイント</span></div>
+                <div class="each-executed-rule-executing-user">
+                  <div class="each-executed-rule-executing-user-title">申請者</div>
+                  <div class="each-executed-rule-executing-user-name"><%= standby.executing_user.name %></div>
+                </div>
+                <div class="each-executed-rule-date">
+                  <div class="each-executed-rule-date-title">実行日時</div>
+                  <div class="each-executed-rule-date-subject"><%= standby.created_at.to_s(:datetime_jp) %></div>
+                </div>
+                <div class="each-executed-rule-note">
+                  <div class="each-executed-rule-note-title">補足</div>
+                  <div class="each-executed-rule-note-subject">
+                    <% if standby.detail.present? %>
+                      <%= standby.detail %>
+                    <% else %>
+                      ※特にありません。
+                    <% end %>
+                  </div>
+                </div>
+                <div class="each-executed-rule-submission">
+                  <%= link_to "承認する", approval_path(standby), class: "each-executed-rule-submission-cta" %> <!-- 一つのstandbyレコードのみcotrollerに送りたい -->
+                  <%= link_to "否認する", denial_path(standby), class: "each-executed-rule-submission-cta" %> <!-- 一つのstandbyレコードのみcotrollerに送りたい -->
+                </div>
+            </div>
           <% end %>
-        </tbody>
-      </table>
+        </div>
+      </div>
     <% else %>
       <div class="alt-text">あなたに対して実行されたルールはありません。</div>
     <% end %>
   </div>
-  <div class="excuted-penalties">
-    <div class="section-title">ペナルティ完了確認の依頼</div>
+  <div class="executed-penalties">
+    <div class="executed-penalties-header">
+      <div class="section-title">ペナルティ完了確認の依頼</div>
+    </div>
     <% if @standbyPenalties.present? %>
-      <table>
-        <thead>
-          <tr>
-            <td>コミュニティ</td>
-            <td>申請者</td>
-            <td>完了内容</td>
-            <td>回復ポイント</td>
-            <td>申請日時</td>
-            <td colspan="2"></td>
-          </tr>
-        </thead>
-        <tbody>
+      <div class="all-executed-penalties-wrapper">
+        <div class="all-executed-penalties">
           <% @standbyPenalties.each do |standby| %>
-          <tr>
-            <td><%= link_to standby.community.community_name, community_path(standby.community_id) %></td>
-            <td><%= standby.executing_user.name %></td>
-            <td><%= standby.content %></td>
-            <td><%= standby.point %></td>
-            <td><%= standby.penalty.created_at.to_s(:datetime_jp) %></td>
-            <td><%= link_to '承認する', forgive_path(standby) %></td>
-            <td><%= link_to '否認する', forbid_path(standby) %></td>
-          </tr>
+            <div class="each-executed-penalty">
+              <% if standby.community.community_image.attached? %>
+                <%= image_tag standby.community.community_image, class: "each-executed-penalty-background" %>
+              <% else %>
+                <%= image_tag("default_background_noword.png", class: "each-executed-penalty-background") %>
+              <% end %>
+              <div class="each-executed-penalty-community"><%= link_to standby.community.community_name, community_path(standby.community_id) %></div>
+              <div class="each-executed-penalty-subject"><%= standby.content %></div>
+              <div class="each-executed-penalty-point"><%= standby.point %><span class="point-letter">ポイント回復</span></div>
+              <div class="each-executed-penalty-executing-user">
+                  <div class="each-executed-penalty-executing-user-title">完了者</div>
+                  <div class="each-executed-penalty-executing-user-name"><%= standby.executing_user.name %></div>
+                </div>
+              <div class="each-executed-penalty-date">
+                  <div class="each-executed-penalty-date-title">実行日時</div>
+                  <div class="each-executed-penalty-date-subject"><%= standby.created_at.to_s(:datetime_jp) %></div>
+                </div>
+              <div class="each-executed-penalty-note">
+                  <div class="each-executed-penalty-note-title">補足</div>
+                  <div class="each-executed-penalty-note-subject">
+                    <% if standby.detail.present? %>
+                      <%= standby.detail %>
+                    <% else %>
+                      ※特にありません。
+                    <% end %>
+                  </div>
+                </div>
+              <div class="each-executed-penalty-submission">
+                  <%= link_to "承認する", forgive_path(standby), class: "each-executed-penalty-submission-cta" %> <!-- 一つのstandbyレコードのみcotrollerに送りたい -->
+                  <%= link_to "否認する", forbid_path(standby), class: "each-executed-penalty-submission-cta" %> <!-- 一つのstandbyレコードのみcotrollerに送りたい -->
+                </div>
+            </div>
           <% end %>
-        </tbody>
-      </table>
+        </div>
+      </div>
     <% else %>
       <div class="alt-text">あなたに送られたペナルティ完了の許可依頼はありません。</div>
     <% end %>
-    </div>
+  </div>
   <div class="join-requests">
-    <div class="section-title">オーナーコミュニティへの参加申請</div>
+    <div class="join-requests-header">
+      <div class="section-title">オーナーコミュニティへの参加申請</div>
+    </div>
     <% if @unacceptedUsers.present? %>
-      <table>
-        <thead>
-          <tr>
-            <td>コミュニティ</td>
-            <td>参加希望ユーザー</td>
-            <td colspan="2"></td>
-          </tr>
-        </thead>
-        <tbody>
-          <% @unacceptedUsers.each do |users| %>
-          <tr>
-            <td><%= users.community.community_name %></td>
-            <td><%= users.user.name %></td>
-            <td><%= link_to "参加を許可する", accept_path(users.id) %></td>
-          </tr>
+      <div class="all-join-requests-wrapper">
+        <div class="all-join-requests">
+          <% @unacceptedUsers.each do |user| %>
+          <div class="each-join-request">
+            <% if user.community.community_image.attached? %>
+              <%= image_tag user.community.community_image, class: "each-join-request-background" %>
+            <% else %>
+              <%= image_tag("default_background_noword.png", class: "each-join-request-background") %>
+            <% end %>
+            <div class="each-join-request-community"><%=link_to user.community.community_name, community_path(user.community_id) %></div>
+            <div class="each-join-request-user">
+              <div class="each-join-request-user-title">申請者</div>
+              <div class="each-join-request-user-name"><%= user.user.name %></div>
+            </div>
+            <div class="each-join-request-date">
+              <div class="each-join-request-date-title">申請日時</div>
+              <div class="each-join-request-date-subject"><%= user.updated_at.to_s(:datetime_jp) %></div>
+            </div>
+            <div class="each-join-request-submission">
+              <%= link_to "許可する", accept_path(user.id), class: "each-join-request-submission-cta" %>
+              <%= link_to "拒否する", decline_path(user.id), class: "each-join-request-submission-cta" %>
+            </div>
+          </div>
           <% end %>
-        </tbody>
-      </table>
+        </div>
+      </div>
     <% else %>
       <div class="alt-text">参加依頼はありません。</div>
     <% end %>

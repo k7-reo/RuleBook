@@ -75,7 +75,9 @@
   height: 0px;
 }
 
-.each-rule-content {
+.each-rule-content,
+.each-executed-rule-subject,
+.each-executed-penalty-subject {
   height: 40px;
   font-weight: bold;
   margin: 0 16px;
@@ -84,7 +86,8 @@
   overflow: scroll;
 }
 
-.each-positive-rule-point, .each-negative-rule-point {
+.each-positive-rule-point,
+.each-negative-rule-point, {
   font-size: 120%;
   font-weight: bold;
   margin: 0 16px;
@@ -201,6 +204,235 @@
 
 .negative-rule-new-cta:hover {
   background-color: #07868c;
+  border: 1px solid #ffffff;
+  color: #ffffff;
+}
+
+//receive
+.executed-rules,
+.executed-penalties {
+  height: calc((100% - 104px) / 8 * 3);
+  margin: 16px;
+  border-radius: 16px;
+  background-color: rgba(32,35,43, 0.5);
+}
+
+.join-requests {
+  height: calc((100% - 104px) / 8 * 2);
+  margin: 16px;
+  border-radius: 16px;
+  background-color: rgba(32,35,43, 0.5);
+}
+
+.executed-rules-header,
+.executed-penalties-header,
+.join-requests-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.all-executed-rules-wrapper,
+.all-executed-penalties-wrapper,
+.all-join-requests-wrapper {
+  height: calc(100% - 32px);
+  overflow-y: scroll;
+}
+
+
+.all-executed-rules,
+.all-executed-penalties,
+.all-join-requests {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.each-executed-rule {
+  width: 312px;
+  background-color: #44c48a;
+  margin: 16px;
+  border-radius: 16px;
+  color: #343842;
+}
+
+.each-executed-penalty {
+  width: 312px;
+  background-color: #ffd139;
+  margin: 16px;
+  border-radius: 16px;
+  color: #343842;
+}
+
+.each-join-request {
+  width: 312px;
+  background-color: #848A99;
+  margin: 16px;
+  border-radius: 16px;
+  color: #343842;
+}
+
+.each-executed-rule-background,
+.each-executed-penalty-background,
+.each-join-request-background {
+  position: relative;
+  width: 312px;
+  height: 32px;
+  object-fit: cover;
+  border-radius: 16px 16px 0 0;
+  opacity: 40%;
+}
+
+.each-executed-rule-community,
+.each-executed-penalty-community,
+.each-join-request-community {
+  position: relative;
+  bottom: 30px;
+  text-align: center;
+  font-weight: bold;
+  height: 0;
+  color: #ffffff;
+}
+
+.each-executed-rule-point,
+.each-executed-penalty-point {
+  font-size: 120%;
+  font-weight: bold;
+  margin: 0 16px 8px 16px;
+}
+
+.each-executed-rule-executing-user,
+.each-executed-rule-date,
+.each-executed-rule-note,
+.each-executed-penalty-executing-user,
+.each-executed-penalty-date,
+.each-executed-penalty-note,
+.each-join-request-user,
+.each-join-request-date {
+  margin: 0px 16px 2px 16px;
+  font-size: 80%;
+  height: 16px;
+  line-height: 16px;
+  display: flex;
+}
+
+.each-executed-rule-executing-user-title,
+.each-executed-rule-date-title,
+.each-executed-rule-note-title {
+  display: inline-block;
+  margin-right: 4px;
+  white-space: nowrap;
+  width: 44px;
+  padding: 0 2px;
+  background-color: #07868c;
+  color: #ffffff;
+  text-align: center;
+}
+
+.each-executed-penalty-executing-user-title,
+.each-executed-penalty-date-title,
+.each-executed-penalty-note-title {
+  display: inline-block;
+  margin-right: 4px;
+  white-space: nowrap;
+  width: 44px;
+  padding: 0 2px;
+  background-color: #f47842;
+  color: #ffffff;
+  text-align: center;
+}
+
+.each-join-request-user-title,
+.each-join-request-date-title {
+  display: inline-block;
+  margin-right: 4px;
+  white-space: nowrap;
+  width: 44px;
+  padding: 0 2px;
+  background-color: #343842;
+  color: #ffffff;
+  text-align: center;
+}
+
+.each-executed-rule-executing-user-name,
+.each-executed-rule-date-subject,
+.each-executed-rule-note-subject,
+.each-executed-penalty-executing-user-name,
+.each-executed-penalty-date-subject,
+.each-executed-penalty-note-subject,
+.each-join-request-user-name,
+.each-join-request-date-subject {
+  display: inline-block;
+  white-space: nowrap;
+  width: 232px;
+  overflow-x: scroll;
+  line-height: 16px;
+}
+
+.each-executed-rule-submission,
+.each-executed-penalty-submission,
+.each-join-request-submission {
+  text-align: center;
+  padding: 8px 0;
+}
+
+.each-executed-rule-submission-cta {
+  display: inline-block;
+  height: 16px;
+  line-height: 16px;
+  margin-left: 4px;
+  margin-right: 4px;
+  padding: 8px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  border: 1px solid #44c48a;
+  color: #07868c;
+  font-weight: bold;
+  text-align: center;
+}
+
+.each-executed-rule-submission-cta:hover {
+  background-color: #44c48a;
+  border: 1px solid #ffffff;
+  color: #ffffff;
+}
+
+.each-executed-penalty-submission-cta {
+  display: inline-block;
+  height: 16px;
+  line-height: 16px;
+  margin-left: 4px;
+  margin-right: 4px;
+  padding: 8px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  border: 1px solid #ffd139;
+  color: #f47842;
+  font-weight: bold;
+  text-align: center;
+}
+
+.each-executed-penalty-submission-cta:hover {
+  background-color: #ffd139;
+  border: 1px solid #ffffff;
+  color: #ffffff;
+}
+
+.each-join-request-submission-cta {
+  display: inline-block;
+  height: 16px;
+  line-height: 16px;
+  margin-left: 4px;
+  margin-right: 4px;
+  padding: 8px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  border: 1px solid #848A99;
+  color: #343842;
+  font-weight: bold;
+  text-align: center;
+}
+
+.each-join-request-submission-cta:hover {
+  background-color: #848A99;
   border: 1px solid #ffffff;
   color: #ffffff;
 }
