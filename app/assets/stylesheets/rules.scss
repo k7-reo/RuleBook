@@ -8,12 +8,12 @@
 }
 
 .rules-left {
-  width: 74%;
+  width: calc(100% - 240px);
   height: 100%;
 }
 
 .rules-right {
-  width: 26%;
+  width: 240px;
   height: 100%;
 }
 

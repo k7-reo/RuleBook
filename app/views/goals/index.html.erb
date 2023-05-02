@@ -55,14 +55,21 @@
               <% if @pastGoals.present? %>
                 <% @pastGoals.each do |goal| %>
                   <div class="each-past-goal">
-                    <div class="each-past-goal-content"><%= goal.content %></div>
-                    <div class="each-past-goal-deadline"><%= goal.deadline.to_s(:datetime_jp) %></div>
-                    <div class="each-past-goal-achievement">
-                      <% if goal.achievement == true %>
-                        達成
-                      <% else %>
-                        未達成
-                      <% end %>
+                    <div class="each-past-goal-left">
+                      <div class="each-past-goal-content"><%= goal.content %></div>
+                      <div class="each-past-goal-deadline">
+                        <div class="each-past-goal-deadline-title">達成期限</div>
+                        <div class="each-past-goal-deadline-subject"><%= goal.deadline.to_s(:datetime_jp) %></div>
+                      </div>
+                    </div>
+                    <div class="each-past-goal-right">
+                      <div class="each-past-goal-achievement">
+                        <% if goal.achievement == true %>
+                          <span class="each-past-goal-achievement-true">達成</span>
+                        <% else %>
+                          <span class="each-past-goal-achievement-false">未達成</span>
+                        <% end %>
+                      </div>
                     </div>
                   </div>
                 <% end %>

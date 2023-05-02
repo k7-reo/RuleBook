@@ -9,12 +9,12 @@
 }
 
 .privileges-penalties-left {
-  width: 74%;
+  width: calc(100% - 240px);
   height: 100%;
 }
 
 .privileges-penalties-right {
-  width: 26%;
+  width: 240px;
   height: 100%;
 }
 

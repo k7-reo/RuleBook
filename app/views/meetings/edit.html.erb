@@ -20,7 +20,7 @@
           <div class="meeting-info-agenda">
             <label>話したい内容</label>
             <div>
-              <% if @meeting.todo.present? %>
+              <% if @meeting.agenda.present? %>
                 <div><%= safe_join(@meeting.agenda.split("\n"),tag(:br)) %></div>
               <% else %>
                 <p>ありません。</p>

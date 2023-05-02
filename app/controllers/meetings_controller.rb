@@ -1,10 +1,5 @@
 class MeetingsController < ApplicationController
 
-  def show
-    @community = Community.find(params[:community_id])
-    @currentUser = CommunityUser.find_by(user_id: current_user.id)
-  end
-
   def new
     @community = Community.find(params[:community_id])
     @currentUser = CommunityUser.find_by(user_id: current_user.id)

@@ -7,113 +7,119 @@
     <%= render 'communities/info', community: @community, currentUser: @currentUser %>
   </div>
   <div class="community-main">
-    <div class="members-all">
+      <div class="members-all">
       <div class="members-left">
-        <p class="page-title"><%= @user.user.name %>の詳細</p>
-        <div class="others-role">
-          <p class="section-title">役割</p>
-          <% if @roles.present? %>
-            <% @roles.each do |role| %>
-              <div class="others-role-content">
-                <span class="others-role-content-letters"><%= role.content %></span>
+        <div class="my-page-all">
+          <div class="others-page-top">
+            <div class="others-roles">
+              <div class="roles-header">
+                <div class="section-title">
+                  <%= @user.user.name %>の役割
+                </div>
               </div>
-            <% end %>
-          <% else %>
-            <p>まだ役割が明記されていません。</p>
-          <% end %>
-        </div>
-        <div>
-          <p class="section-title">今月のポイント獲得進捗</p>
-          <p class="my-point"><%= @user.point %></p>
-          <div>
-            <!-- 実行されたルール -->
+              <% if @roles.present? %>
+                <div class="others-all-roles-wrapper">
+                  <div class="others-all-roles">
+                    <% @roles.each.with_index(1) do |role, index| %>
+                      <div class="others-each-role">
+                        <div class="others-each-role-index"><%= index %></div>
+                        <div class="others-each-role-content"><%= role.content %></div>
+                      </div>
+                    <% end %>
+                  </div>
+                </div>
+              <% else %>
+                <div class="alt-text">役割が明記されていません。</div>
+              <% end %>
+            </div>
+          </div>
+          <div class="others-page-bottom">
+              <div class="others-point-detail">
+                <div class="others-point-title">今月の獲得ポイント</div>
+                <div class="others-point-index">現在のポイント</div>
+                <div class="others-point"><%= @user.point %></div>
+                <div class="others-all-rules">
+                    <div class="others-all-targeting-rules-wrapper">
+                      <div class="others-all-targeting-rules">
+                        <div class="section-title">対象プラスルール一覧</div>
+                        <div class="others-all-targeting-positive-rules">
+                          <% @targetingPositiveRules.each do |rule| %>
+                            <div class="others-each-targeting-positive-rule">
+                              <div class="others-each-targeting-positive-rule-content"><%= rule.content %></div>
+                              <div class="others-each-targeting-positive-rule-point"><%= rule.point %><span class="point-letter">ポイント</span></div>
+                              <div class="others-each-targeting-positive-rule-execute"><%= link_to "実行", community_rule_execute_path(@community.id, rule.id), class: "others-each-targeting-positive-rule-execute-cta" %></div>
+                            </div>
+                          <% end %>
+                        </div>
+                        <div class="section-title">対象マイナスルール一覧</div>
+                        <div class="others-all-targeting-negative-rules">
+                          <% @targetingNegativeRules.each do |rule| %>
+                            <div class="others-each-targeting-negative-rule">
+                              <div class="others-each-targeting-negative-rule-content"><%= rule.content %></div>
+                              <div class="others-each-targeting-negative-rule-point"><%= rule.point %><span class="point-letter">ポイント</span></div>
+                              <div class="others-each-targeting-negative-rule-execute"><%= link_to "実行", community_rule_execute_path(@community.id, rule.id), class: "others-each-targeting-negative-rule-execute-cta" %></div>
+                            </div>
+                          <% end %>
+                        </div>
+                      </div>
+                    </div>
+                  <% if @executedRules.present? %>
+                    <div class="others-all-executed-rules-wrapper">
+                        <div class="section-title">今月実行されたルール</div>
+                        <div class="others-all-executed-rules">
+                          <% @executedRules.each do |standby| %>
+                            <div class="others-each-executed-rule">
+                              <div class="others-each-executed-rule-content"><%= standby.content %></div>
+                              <div class="others-each-executed-rule-point"><%= standby.point %><span class="point-letter">ポイント</span></div>
+                            </div>
+                          <% end %>
+                          <div class="notes"> ※承認したルールのみ反映。</div>
+                        </div>
+                    </div>
+                  <% else %>
+                    <div class="alt-text">今月実行されたルールはありません。</div>
+                  <% end %>
+                </div>
+              </div>
+              <div class="others-monthly-point-detail">
+                <div class="others-monthly-point-title">利用可能ポイント</div>
+                <div class="others-point-index">残りポイント</div>
+                <div class="others-monthly-point"><%= @user.monthly_point %></div>
+                <div class="others-all-tasks">
+                  <div class="others-all-done-tasks-wrapper">
+                    <% if @finishedPrivileges.present? || @finishedPenalties.present? %>
+                      <div class="others-all-done-tasks">
+                        <% if @finishedPrivileges.present? %>
+                          <div class="section-title">今月取得した報酬</div>
+                          <div class="others-done-privileges">
+                            <% @finishedPrivileges.each do |standby| %>
+                              <div class="others-each-done-privilege">
+                                <div class="others-each-done-privilege-content"><%= standby.content %></div>
+                                <div class="others-each-done-privilege-point"><%= standby.point %><span class="point-letter">ポイント消費</span></div>
+                              </div>
+                            <% end %>
+                          </div>
+                        <% end %>
+                        <% if @finishedPenalties.present? %>
+                          <div class="section-title">今月実行したペナルティ</div>
+                          <div class="others-done-penalties">
+                            <% @finishedPenalties.each do |standby| %>
+                              <div class="others-each-done-penalty">
+                                <div class="others-each-done-penalty-content"><%= standby.content %></div>
+                                <div class="others-each-done-penalty-point"><%= standby.point %><span class="point-letter">ポイント回復</span></div>
+                              </div>
+                            <% end %>
+                          </div>
+                        <% end %>
+                      </div>
+                    <% else %>
+                      <div class="alt-text">今月実行した報酬とペナルティが<br>表示されます。</div>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
           </div>
         </div>
-        <div>
-          <p class="section-title">今月利用できる配当ポイント</p>
-          <p class="my-monthly-point"><%= @user.monthly_point %></p>
-          <div>
-            <!-- 受けた報酬 -->
-            <!-- 受けたペナルティ -->
-          </div>
-        </div>
-        <!-- 先月違反した&継続したルール一覧withポイント -->
-        <!-- 今月違反した&継続したルール一覧withポイント -->
-        <div>
-          <p class="section-title"><%= @user.user.name %>が作成したルール</p>
-          <div>
-            <% if @rules.present? %>
-              <table>
-                <thead>
-                  <tr>
-                    <th>内容</th>
-                    <th>増減ポイント</th>
-                  </tr>
-                </thead>
-                <tbody>
-                <% @rules.each do |rule| %>
-                  <tr>
-                    <td><%= rule.content %></td>
-                    <td><%= rule.point %></td>
-                  </tr>
-                <% end %>
-                </tbody>
-              </table>
-            <% else %>
-              <p>作成したルールはありません。</p>
-            <% end %>
-          </div>
-        </div> <!-- 隠せるようにする -->
-        <div>
-          <p class="section-title"><%= @user.user.name %>が作成した特典</p>
-          <div>
-            <% if @privileges.present? %>
-              <table>
-                <thead>
-                  <tr>
-                    <th>内容</th>
-                    <th>利用ポイント</th>
-                  </tr>
-                </thead>
-                <tbody>
-                <% @privileges.each do |privilege| %>
-                  <tr>
-                    <td><%= privilege.content %></td>
-                    <td><%= privilege.point %></td>
-                  </tr>
-                <% end %>
-                </tbody>
-              </table>
-            <% else %>
-              <p>作成した特典はありません。</p>
-            <% end %>
-          </div>
-        </div> <!-- 隠せるようにする -->
-        <div>
-          <p class="section-title"><%= @user.user.name %>が作成した罰</p>
-          <div>
-            <% if @penalties.present? %>
-              <table>
-                <thead>
-                  <tr>
-                    <th>内容</th>
-                    <th>回復ポイント</th>
-                  </tr>
-                </thead>
-                <tbody>
-                <% @penalties.each do |penaltie| %>
-                  <tr>
-                    <td><%= penaltie.content %></td>
-                    <td><%= penaltie.point %></td>
-                  </tr>
-                <% end %>
-                </tbody>
-              </table>
-            <% else %>
-              <p>作成したペナルティはありません。</p>
-            <% end %>
-          </div>
-        </div> <!-- 隠せるようにする -->
       </div>
       <div class="members-right">
         <%= render 'member_comparison' %>

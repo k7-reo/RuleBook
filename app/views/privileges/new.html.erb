@@ -15,7 +15,7 @@
             <div class="form-section">
               <label><%= f.label :content, "内容", class: "form-label" %><span class="form-note">必須</span></label>
               <div>
-                <%= f.text_area :content, placeholder: "報酬内容をここに", class: "form-area-small" %>
+                <%= f.text_area :content, class: "form-area-small" %>
               </div>
               <div class="comment">
                 <i class="fa-solid fa-circle-info">設定のヒント</i>
@@ -28,7 +28,7 @@
             <div class="form-section">
               <label><%= f.label :point, "消費する累積ポイント", class: "form-label" %><span class="form-note">必須</span></label>
               <div>
-                <%= f.text_field :point, placeholder: "行使するのに必要なポイントをここに", class: "form-area-small" %>
+                <%= f.text_field :point, placeholder:"半角数字", class: "form-area-small" %>
               </div>
             </div>
             <div class="submittion">

@@ -9,12 +9,12 @@
 }
 
 .meetings-left {
-  width: 74%;
+  width: calc(100% - 240px);
   height: 100%;
 }
 
 .meetings-right {
-  width: 26%;
+  width: 240px;
   height: 100%;
 }
 
@@ -186,24 +186,58 @@
 }
 
 //一覧(index)
-.meeting-index-letter {
-  color: #343842;
-  line-height: 24px; /*meeting-indexのheightに合わせる */
-  font-weight: bold;
-}
-
-//一覧(index)
-.past-meeting-top {
+.each-past-meeting-top {
   display: flex;
 }
 
+.each-past-meeting-name {
+  font-weight: bold;
+  height: 20px;
+  line-height: 20px;
+}
+
+.each-past-meeting-date {
+  margin-left: 16px;
+  font-size: 80%;
+  line-height: 20px;
+}
+
 //一覧(index)
-.past-meeting-detail {
+.each-past-meeting-detail {
   margin-left: auto;
   position: relative;
   bottom: 8px;
   left: 8px;
+}
 
+.each-past-meeting-bottom {
+  background-color: #ffffff;
+  margin-top: 8px;
+}
+
+.each-past-meeting-section {
+  display: flex;
+  padding: 8px;
+}
+
+.each-past-meeting-content-title {
+  background-color: #343842;
+  height: 20px;
+  line-height: 20px;
+  text-align: center;
+  width: 80px;
+  color: #ffffff;
+  font-size: 80%;
+}
+
+.each-past-meeting-content-subject {
+  margin: 0 8px;
+}
+
+.each-past-meeting-content-subject-alt-text {
+  line-height: 20px;
+  font-size: 80%;
+  color: #848A99;
 }
 
 //議事録(edit)

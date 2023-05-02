@@ -207,6 +207,7 @@ main {
 
 .comment-content {
   display: none; /* 初期状態では非表示 */
+  color: #ffffff;
 }
 
 .notes {
@@ -418,3 +419,7 @@ textarea {
   font-weight: bold;
   font-size: 80%;
 }
+
+
+
+

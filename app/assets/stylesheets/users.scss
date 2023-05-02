@@ -10,15 +10,16 @@
 }
 
 .members-left {
-  width: 74%;
+  width: calc(100% - 200px);
   height: 100%;
 }
 
 .members-right {
-  width: 26%;
+  width: 200px;
   height: 100%;
-  background-color: rgba(255,209,57, 0.6);
+  background-color: rgba(255,209,57, 0.7);
   overflow-y: scroll;
+  color: #343842;
 }
 
 .my-page-all {
@@ -26,14 +27,16 @@
   width: 100%;
 }
 
-.my-page-top {
+.my-page-top,
+.others-page-top {
   height: 24%;
   width: 100%;
   display: flex;
   padding: 8px;
 }
 
-.my-page-bottom {
+.my-page-bottom,
+.others-page-bottom {
   height: calc(76% - 24px);
   width: calc(100% - 16px);
   display: flex;
@@ -54,20 +57,23 @@
   justify-content: space-between;
 }
 
-.my-all-roles-wrapper {
+.my-all-roles-wrapper,
+.others-all-roles-wrapper {
   box-sizing: border-box;
   height: calc(100% - 36px);
   overflow-y: scroll;
 }
 
-.my-all-roles {
+.my-all-roles,
+.others-all-roles {
   padding: 8px;
   display: flex;
   flex-wrap: wrap;
 }
 
 //mypage/show役割
-.my-each-role, .others-role-content {
+.my-each-role,
+.others-each-role {
   width: fit-content;
   background-color: #F6F6FF;
   border-radius: 50px;
@@ -79,7 +85,8 @@
   align-items: center;
 }
 
-.my-each-role-index {
+.my-each-role-index,
+.others-each-role-index {
   font-size: 120%;
   font-weight: bold;
   background-color: #44c48a;
@@ -92,7 +99,8 @@
 }
 
 //mypage役割
-.my-each-role-content {
+.my-each-role-content,
+.others-each-role-content {
   font-size: 150%;
   font-weight: bold;
   margin-left: 4px;
@@ -121,16 +129,19 @@
 }
 
 //mypage獲得ポイント
-.my-point-detail {
+.my-point-detail,
+.others-monthly-point-detail {
   width : calc(100% * 1/3);
   height: calc(100% - 16px);
-  background-color: rgba(52, 56, 66, 0.5);
+  background-color: #34384280;
   margin: 8px;
   border-radius: 16px;
 }
 
+
 //mypage利用可能ポイント
-.my-monthly-point-detail {
+.my-monthly-point-detail,
+.others-point-detail {
   width : calc(100% * 2/3);
   height: calc(100% - 16px);
   background-color: rgba(52, 56, 66, 0.5);
@@ -139,7 +150,8 @@
 }
 
 //mypage獲得ポイント
-.my-point-title {
+.my-point-title,
+.others-point-title {
   background-color: #44c48a;
   border-radius: 16px 16px 0 0;
   height: 24px;
@@ -150,7 +162,8 @@
 }
 
 //mypage利用可能ポイント
-.my-monthly-point-title {
+.my-monthly-point-title,
+.others-monthly-point-title {
   background-color: #07868c;
   border-radius: 16px 16px 0 0;
   height: 24px;
@@ -161,7 +174,8 @@
 }
 
 //mypage/index獲得ポイント
-.my-point-index {
+.my-point-index,
+.others-point-index {
   font-size: 50%;
   font-weight: bold;
   text-align: center;
@@ -169,7 +183,8 @@
 }
 
 //mypage/index獲得ポイント
-.my-point {
+.my-point,
+.others-point {
   font-size: 220%;
   font-weight: bold;
   margin: 0 16px;
@@ -178,7 +193,8 @@
   border-bottom: 1px solid #44c48a;
 }
 
-.my-monthly-point {
+.my-monthly-point,
+.others-monthly-point {
   font-size: 220%;
   font-weight: bold;
   margin: 0 16px;
@@ -195,11 +211,40 @@
   width: 100%;
 }
 
-//mypage利用可能ポイント ※my-excuted-rules-wrapperと同階層
+.others-all-rules {
+  display: flex;
+  height: calc(100% - 114px);
+  width: 100%;
+}
+
+.others-all-targeting-rules-wrapper {
+  height: 100%;
+  width: calc(100% / 2);
+  display: flex;
+  flex-direction: column;
+  overflow: scroll;
+  border-right: 1px dotted #44c48a;
+}
+
+.others-all-executed-rules-wrapper {
+  height: 100%;
+  width: calc(100% / 2);
+  display: flex;
+  flex-direction: column;
+  overflow: scroll;
+}
+
+//mypage利用可能ポイント ※my-executed-rules-wrapperと同階層
 .my-all-tasks {
   display: flex;
   height: calc(100% - 114px);
   width: 100%;
+}
+
+.others-all-tasks {
+  height: calc(100% - 114px);
+  width: 100%;
+  overflow: scroll;
 }
 
 .my-all-remaining-tasks-wrapper,
@@ -207,11 +252,15 @@
   width: 50%;
 }
 
+.others-all-done-tasks-wrapper {
+  width: 100%;
+}
+
 .my-all-remaining-tasks-wrapper {
   border-right: 1px dotted #07868c;
 }
 
-.my-all-excuted-rules-wrapper, .my-all-remaining-tasks,
+.my-all-executed-rules-wrapper, .my-all-remaining-tasks,
 .my-all-done-tasks {
   display: flex;
   flex-direction: column;
@@ -219,15 +268,33 @@
   overflow: scroll;
 }
 
-.my-all-excuted-rules, .my-remaining-privileges,
+.my-all-executed-rules, .my-remaining-privileges,
 .my-remaining-penalties, .my-done-privileges,
-.my-done-penalties {
+.my-done-penalties,
+.others-all-executed-rules,
+.others-done-privileges,
+.others-done-penalties,
+.others-each-targeting-positive-rule,
+.others-all-targeting-positive-rules,
+.others-all-targeting-negative-rules
+ {
   display: flex;
   flex-direction: column;
 }
 
-.my-each-excuted-rule, .my-each-done-privilege,
-.my-each-done-penalty {
+.others-each-targeting-positive-rule,
+.others-each-targeting-negative-rule {
+  margin: 8px 16px;
+  padding: 8px;
+  background-color: #44c48a;
+  border-radius: 8px;
+}
+
+.my-each-executed-rule, .my-each-done-privilege,
+.my-each-done-penalty,
+.others-each-executed-rule,
+.others-each-done-privilege,
+.others-each-done-penalty {
   margin: 8px 16px;
   padding: 8px;
   background-color: #d6dbe6;
@@ -240,6 +307,20 @@
   padding: 8px;
   background-color: #07868c;
   border-radius: 8px;
+}
+
+.my-each-executed-rule-content,
+.my-each-remaining-privilege-content,
+.my-each-remaining-penalty-content,
+.my-each-done-privilege-content,
+.my-each-done-penalty-content,
+.others-each-targeting-positive-rule-content,
+.others-each-targeting-negative-rule-content,
+.others-each-executed-rule-content,
+.others-each-done-privilege-content,
+.others-each-done-penalty-content {
+  font-weight: bold;
+  border-bottom: 1px dotted;
 }
 
 .my-each-remaining-privilege-execute-cta,
@@ -263,10 +344,37 @@
   color: #ffffff;
 }
 
+.others-each-targeting-positive-rule-execute-cta,
+.others-each-targeting-negative-rule-execute-cta {
+  display: inline-block;
+  width: 100%;
+  height: 24px;
+  line-height: 24px;
+  text-align: center;
+  background-color: #ffffff;
+  border: 1px solid #44c48a;
+  color: #44c48a;
+  border-radius: 8px;
+  font-weight: bold;
+}
+
+.others-each-targeting-positive-rule-execute-cta:hover,
+.others-each-targeting-negative-rule-execute-cta:hover {
+  background-color: #44c48a;
+  border: 1px solid #ffffff;
+  color: #ffffff;
+}
+
+//index
+.community-all-members-wrapper {
+  height: 100%;
+  overflow-y: scroll;
+}
+
 //index
 .community-all-members {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   margin: 8px;
 }
 
@@ -294,7 +402,7 @@
 //index
 .community-member-sum-left {
   text-align: center;
-  width: 80px;
+  width: 112px;
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
@@ -313,18 +421,19 @@
 }
 
 .community-member-sum-right {
-  width: 240px;
+  width: calc(100% - 96px);
 }
 
 .member-all-roles-wrapper {
-  height: 112px;
+  width: 100%;
   overflow: scroll;
+  border-bottom: 1px dotted #f47842;
 }
 
 .member-all-roles {
   margin: 8px;
   display: flex;
-  flex-direction: column;
+  white-space: nowrap;
 }
 
 .member-each-role {
@@ -334,8 +443,8 @@
   align-items: center;
 }
 
-.member-each-role:not(:last-child) {
-  border-bottom: 1px dotted #f47842;
+.member-each-role {
+  margin-right: 16px;
 }
 
 .member-each-role-index {
@@ -355,14 +464,15 @@
   font-weight: inherit;
 }
 
-
 .member-each-role-content {
-  margin-left: 4px;
+  margin-left: 2px;
   font-weight: bold;
+  font-size: 120%;
 }
 
 .member-points {
   display: flex;
+  margin-top: 8px
 }
 
 .member-point, .member-monthly_point {

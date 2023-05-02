@@ -77,36 +77,75 @@
               <% if @pastMeetings.present? %>
                 <% @pastMeetings.each do |meeting| %>
                   <div class="each-past-meeting">
-                    <div class="past-meeting-top">
-                      <div class="past-meeting-name">
+                    <div class="each-past-meeting-top">
+                      <div class="each-past-meeting-name">
                         <% if meeting.name.present? %>
                           <%= meeting.name %>
                         <% end %>
                       </div>
-                      <div class="past-meeting-date">
+                      <div class="each-past-meeting-date">
                         <% if meeting.date.present? %>
                           <%= meeting.date.to_s(:datetime_jp) %>
                         <% else %>
                           <%= meeting.updated_at.to_s(:datetime_jp) %>
                         <% end %>
                       </div>
-                      <div class="past-meeting-detail">
-                        <%= link_to community_meeting_path(@community.id, meeting.id), class: "past-meeting-detail-cta" do %>
-                          <i class="fa-solid fa-ellipsis"></i>
-                        <% end %>
+                      <div class="each-past-meeting-detail">
+                        <i class="fa-solid fa-ellipsis each-past-meeting-detail-cta"></i>
                       </div>
                     </div>
-                    <div class="past-meeting-content-bottom">
-                      <div class="past-meeting-member">
-                        <span>参加者</span>
-                        <span>
-                          <% meeting.users.each do |user| %>
-                            <%= user.name %>
+                    <div class="each-past-meeting-bottom" style="display:none;">
+                      <div class="each-past-meeting-section">
+                        <div class="each-past-meeting-content-title">参加者</div>
+                        <div class="each-past-meeting-content-subject">
+                          <% if meeting.users.present? %>
+                            <% meeting.users.each do |user| %>
+                              <%= user.name %>
+                            <% end %>
+                          <% else %>
+                            <span class="each-past-meeting-content-subject-alt-text">※登録されていません。</span>
                           <% end %>
-                        </span>
+                        </div>
                       </div>
-                      <div class="past-meeting-agenda">
-                        <%= safe_join(meeting.agenda.split("\n"),tag(:br)) %>
+                      <div class="each-past-meeting-section">
+                        <div class="each-past-meeting-content-title">場所</div>
+                        <div class="each-past-meeting-content-subject">
+                          <% if meeting.place.present? %>
+                            <%= meeting.place %>
+                          <% else %>
+                            <span class="each-past-meeting-content-subject-alt-text">※指定されていません。</span>
+                          <% end %>
+                        </div>
+                      </div>
+                      <div class="each-past-meeting-section">
+                        <div class="each-past-meeting-content-title">事前アジェンダ</div>
+                        <div class="each-past-meeting-content-subject">
+                          <% if meeting.agenda.present? %>
+                            <%= safe_join(meeting.agenda.split("\n"),tag(:br)) %>
+                          <% else %>
+                            <span class="each-past-meeting-content-subject-alt-text">※記載されていません。</span>
+                          <% end %>
+                        </div>
+                      </div>
+                      <div class="each-past-meeting-section">
+                        <div class="each-past-meeting-content-title">議事録</div>
+                        <div class="each-past-meeting-content-subject">
+                          <% if meeting.content.present? %>
+                            <%= safe_join(meeting.content.split("\n"),tag(:br)) %>
+                          <% else %>
+                            <span class="each-past-meeting-content-subject-alt-text">※記載されていません。</span>
+                          <% end %>
+                        </div>
+                      </div>
+                      <div class="each-past-meeting-section">
+                        <div class="each-past-meeting-content-title">TODO</div>
+                        <div class="each-past-meeting-content-subject">
+                          <% if meeting.todo.present? %>
+                            <%= safe_join(meeting.todo.split("\n"),tag(:br)) %>
+                          <% else %>
+                            <span class="each-past-meeting-content-subject-alt-text">※記載されていません。</span>
+                          <% end %>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -123,3 +162,11 @@
       </div>
     </div>
   </div>
+
+<script>
+$(document).ready(function() {
+  $(".each-past-meeting-detail-cta").click(function() {
+    $(this).closest(".each-past-meeting").find(".each-past-meeting-bottom").toggle();
+  });
+});
+</script>

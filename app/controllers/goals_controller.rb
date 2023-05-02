@@ -53,7 +53,7 @@ class GoalsController < ApplicationController
     @community = Community.find(params[:community_id])
     @currentUser = CommunityUser.find_by(user_id: current_user.id) #community-info表示に利用
     @activeGoal = Goal.find_by(community_id: params[:community_id], status: true)
-    @pastGoals = Goal.where(community_id: params[:community_id], status: false)
+    @pastGoals = Goal.where(community_id: params[:community_id], status: false).order(updated_at: :desc)
   end
 
   def destroy

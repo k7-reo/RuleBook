@@ -11,9 +11,11 @@ class UsersController < ApplicationController
     @user = CommunityUser.find_by(user_id: params[:id])
     @community = Community.find(params[:community_id])
     @communityUsers = CommunityUser.where(community_id: params[:community_id], status: 1).order(point_abs: :desc)
-    @rules = Rule.where(user_id: params[:id], community_id: @community.id)
-    @penalties = Penalty.where(user_id: params[:id], community_id: @community.id)
-    @privileges = Privilege.where(user_id: params[:id], community_id: @community.id)
+    @targetingPositiveRules = Rule.joins(:rule_users).where("rules.community_id = ? and rules.point >= 0", params[:community_id] ).where('rule_users.user_id' => params[:id])
+    @targetingNegativeRules = Rule.joins(:rule_users).where("rules.community_id = ? and rules.point < 0", params[:community_id] ).where('rule_users.user_id' => params[:id])
+    @executedRules = Standby.where(executed_user_id: params[:id], community_id: @community.id, action_type: "rule", approval: "true", updated_at: Time.current.all_month).order(updated_at: :desc)
+    @finishedPrivileges = Standby.where(executing_user_id: params[:id], community_id: @community.id, action_type: "privilege", approval: "true", updated_at: Time.current.all_month).order(updated_at: :desc)
+    @finishedPenalties = Standby.where(executing_user_id: params[:id], community_id: @community.id, action_type: "penalty", approval: "true", updated_at: Time.current.all_month).order(updated_at: :desc)
     @roles = Role.where(user_id: params[:id], community_id: @community.id)
     @currentUser = CommunityUser.find_by(user_id: current_user.id) #community-info表示に利用
   end
@@ -42,6 +44,8 @@ class UsersController < ApplicationController
     @executedRules = Standby.where(executed_user_id: current_user.id, community_id: @community.id, action_type: "rule", approval: "true", updated_at: Time.current.all_month).order(updated_at: :desc)
     @finishedPrivileges = Standby.where(executing_user_id: current_user.id, community_id: @community.id, action_type: "privilege", approval: "true", updated_at: Time.current.all_month).order(updated_at: :desc)
     @finishedPenalties = Standby.where(executing_user_id: current_user.id, community_id: @community.id, action_type: "penalty", approval: "true", updated_at: Time.current.all_month).order(updated_at: :desc)
+    @communityUsers = CommunityUser.where(community_id: params[:community_id], status: 1).order(point_abs: :desc)
+
   end
 
   private

@@ -9,12 +9,12 @@
 }
 
 .goals-left {
-  width: 74%;
+  width: calc(100% - 240px);
   height: 100%;
 }
 
 .goals-right {
-  width: 26%;
+  width: 240px;
   height: 100%;
 }
 
@@ -128,6 +128,7 @@
 
 .all-past-goals-wrapper {
   height: calc(100% - 32px);
+  width: 100%;
   overflow: scroll;
 }
 
@@ -143,4 +144,65 @@
   background-color: #d6dbe6;
   color: #343842;
   border-radius: 16px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.each-past-goal-content {
+  font-weight: bold;
+}
+
+.each-past-goal-deadline {
+  font-size: 80%;
+  height: 16px;
+  line-height: 16px;
+  display: flex;
+}
+
+.each-past-goal-deadline-title {
+  display: inline-block;
+  margin-right: 4px;
+  white-space: nowrap;
+  width: 44px;
+  padding: 0 2px;
+  background-color: #848A99;
+  color: #ffffff;
+  text-align: center;
+}
+
+.each-past-goal-deadline-subject {
+  display: inline-block;
+  white-space: nowrap;
+  width: 232px;
+  overflow-x: scroll;
+  line-height: 16px;
+}
+
+.each-past-goal-right {
+  display: flex;
+  align-items: center;
+}
+
+.each-past-goal-achievement-true {
+  display: inline-block;
+  background-color: #343842;
+  color: #ffffff;
+  width: 80px;
+  height: 16px;
+  line-height: 16px;
+  padding: 8px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.each-past-goal-achievement-false {
+  display: inline-block;
+  background-color: #ffffff;
+  color:#343842;
+  width: 80px;
+  height: 16px;
+  line-height: 16px;
+  padding: 8px;
+  text-align: center;
+  font-weight: bold;
 }

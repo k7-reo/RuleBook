@@ -63,7 +63,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'devise'
 
-gem 'hirb' #出力結果を表として出力するgem
+gem 'hirb', '0.7.2'
 gem 'hirb-unicode' #マルチバイト文字の表示を補正するgem
 
 gem 'whenever', require: false #時間計測gem
