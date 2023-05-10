@@ -14,10 +14,6 @@ class HomesController < ApplicationController
     @searchedCommunities = Community.search(params[:keyword])
   end
 
-  def setting
-    @user = User.find_by(id: current_user.id)
-  end
-
   def policy
   end
 

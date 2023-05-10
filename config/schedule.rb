@@ -23,10 +23,9 @@ require File.expand_path(File.dirname(__FILE__) + "/environment") #Rails.root(Ra
 rails_env = ENV['RAILS_ENV'] || :development #cronを実行する環境変数(:development, :product, :test)
 set :environment, rails_env #cronを実行する環境変数をセット
 set :output, {
-  error: "#{Rails.root}log/cron_error.log",
+  error: "#{Rails.root}/log/cron_error.log",
   standard: "#{Rails.root}/log/crontab.log"
 } #cronのログ出力用ファイル
-job_type :rake,    "cd :path && :environment_variable=:environment bundle exec rake :task --silent :output"
 
 every 1.month, at: 'start of the month' do
   rake "users_point:total_monthly_point"

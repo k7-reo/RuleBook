@@ -9,8 +9,8 @@
   <div class="community-main">
     <div class="meetings-all">
       <div class="meetings-left">
-        <div class="page-title">会議内容の変更</div>
-        <div>
+        <div class="gray-background">
+          <div class="section-title">会議内容の変更</div>
           <%= form_with(model: [@community, @meeting], url: community_meeting_path(@community.id, @meeting.id), local:true, class: "form") do |f| %> <!-- communityモデル、mottoモデルそれぞれにデータを保存するため、両モデル指定-->
             <div class="form-section">
               <label><%= f.label :name, "会議名", class: "form-label" %><span class="form-note">必須</span></label>
@@ -36,7 +36,7 @@
                 <%= f.datetime_field :date %>
               </div>
             </div>
-            <div class="submittion">
+            <div class="submission">
               <%= f.submit "変更完了", name: 'change', class: "done-btn" %>
               <%= link_to "削除", community_meeting_path(@community.id, @meeting.id), method: :delete, class: "alt-link-cta" %>
             </div>

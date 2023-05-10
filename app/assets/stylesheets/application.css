@@ -64,8 +64,8 @@ a:hover {
   line-height: 16px;
   color: #ffffff;
   font-weight: bold;
-  margin-top: 16px;
-  margin-left: 16px;
+  padding-top: 16px;
+  padding-left: 16px;
 }
 
 /*ヘッダー部*/
@@ -85,17 +85,8 @@ header {
 }
 
 .site-logo {
-  margin-left: 8px;
-  margin-top: 8px;
-}
-
-.site-concept {
-  height: 16px;
-  margin-top: 26px;
-  margin-left: 8px;
-  font-size: 80%;
-  font-weight: bold;
-  color: #44c48a;
+  margin-left: 4px;
+  margin-top: 4px;
 }
 
 .sign-in-user {
@@ -280,14 +271,14 @@ tbody td:last-child {
 
 .form {
   width: fit-content;
-  margin: 16px;
+  padding: 16px;
 }
 
 .form-section {
   padding: 8px 32px;
   margin: 4px 0;
   width: fit-content;
-  background-color: rgba(52, 56, 66, 0.5);
+  background-color: rgba(68, 196, 138, 0.5);
   border-radius: 16px;
 }
 
@@ -349,6 +340,10 @@ tbody td:last-child {
   color: #ffffff;
   margin-left: 4px;
   padding: 2px;
+}
+
+.submission {
+  margin-top: 16px;
 }
 
 /* 「プラス」アイコン*/
@@ -420,6 +415,11 @@ textarea {
   font-size: 80%;
 }
 
-
+.gray-background {
+  background-color: rgba(52, 56, 66, 0.5);
+  border-radius: 16px;
+  margin: 16px;
+  overflow: scroll;
+}
 
 

@@ -87,7 +87,7 @@
 }
 
 .each-positive-rule-point,
-.each-negative-rule-point, {
+.each-negative-rule-point {
   font-size: 120%;
   font-weight: bold;
   margin: 0 16px;
@@ -435,4 +435,9 @@
   background-color: #848A99;
   border: 1px solid #ffffff;
   color: #ffffff;
+}
+
+.rule-info,
+.executing-rule-info {
+  margin: 16px;
 }

@@ -9,8 +9,8 @@
   <div class="community-main">
     <div class="goals-all">
       <div class="goals-left">
-        <div class="page-title">ゴール編集</div>
-        <div>
+        <div class="gray-background">
+          <div class="section-title">ゴール編集</div>
           <%= form_with(model:[@community, @goal], local:true, class: "form") do |f| %>
             <div class="form-section">
               <label><%= f.label :content, "メンバー全員で達成したいゴール", class: "form-label" %><span class="form-note">必須</span></label>
@@ -116,7 +116,7 @@
                 <%= f.datetime_field :startline %>
               </div>
             </div>
-            <div class="submittion">
+            <div class="submission">
               <%= f.submit '編集完了', class: "done-btn" %>
               <%= link_to '削除', community_goal_path(@community.id, @goal.id), method: :delete, class: "alt-link-cta" %>
             </div>

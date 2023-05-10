@@ -11,6 +11,9 @@
       <div class="rules-left">
         <div class="page-title">ルール編集</div>
         <div class="rule-info">
+          <div class="rule-info-contet">内容：<%= @rule.content %></div>
+          <div class="rule-info-point">ポイント増減：<%= @rule.point %></div>
+          <div class="rule-info-ganre">ジャンル：<%= @rule.genre %></div>
           <div class="rule-info-creater">作成者：<%= @rule.creating_user.name %></div>
           <div class="rule-info-updater">最終更新者：
             <% if @rule.updating_user.present? %>

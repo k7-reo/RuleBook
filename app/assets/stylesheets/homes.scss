@@ -58,12 +58,18 @@
   font-size: 120%;
   font-weight: bold;
   height: 24px;
+  line-height: 24px;
+  white-space: nowrap;
+  overflow: scroll;
 }
 
 .my-each-community-introduction {
   height: 16px;
+  line-height: 16px;
   padding-bottom: 8px;
   border-bottom: 1px dotted #ffffff;
+  white-space: nowrap;
+  overflow: scroll;
 }
 
 .my-each-community-id {
@@ -119,12 +125,12 @@
   margin: 16px 16px 0 16px;
 }
 
-.all-seach-results, .all-requesting-communities {
+.all-search-results, .all-requesting-communities {
   padding: 8px;
   display: flex;
 }
 
-.each-seach-result {
+.each-search-result {
   width: fit-content;
   background-color: #ffffff;
   border: 1px solid #f47842;
@@ -163,7 +169,7 @@
   color: #ffffff;
 }
 
-.each-seach-result-request-cta {
+.each-search-result-request-cta {
   height: 16px;
   display: inline-block;
   padding: 4px 8px;
@@ -174,12 +180,12 @@
   font-weight: bold;
 }
 
-.each-seach-result-request-cta:hover {
+.each-search-result-request-cta:hover {
   color: #ffffff;
 }
 
 .all-requesting-communities-alt-view,
-.all-seach-results-alt-view {
+.all-search-results-alt-view {
   height: 90px;
 }
 
@@ -194,11 +200,6 @@
   margin-bottom: 0;
 }
 
-.home-header-catchphrase {
-  letter-spacing: 4px;
-  color: #44c48a;
-}
-
 .home-header-logo {
   font-size: 400%;
   font-weight: bold;
@@ -207,7 +208,7 @@
   color: #44c48a;
 }
 
-.home-header-discription {
+.home-header-description {
   margin-top: 8px;
   font-weight: bold;
 }

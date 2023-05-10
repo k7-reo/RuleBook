@@ -75,14 +75,14 @@
       <% end %>
     </div>
     <div class="notes">※半角数字</div>
-    <div class="seach-result">
+    <div class="search-result">
     <% if @searchedCommunities.present? %>
-      <div class="all-seach-results">
+      <div class="all-search-results">
         <% @searchedCommunities.each do |community| %>
           <% if community.users.exclude?(current_user) %><!-- ログインしないとcurrent_userを参照できないのでundefind エラーが出るので注意。 -->
-            <div class="each-seach-result">
-              <div class="each-seach-result-name"><%= community.community_name %></div>
-              <div class="each-seach-result-request"><%= link_to '参加申請', community_join_request_path(community.id), class: "each-seach-result-request-cta" %></div>
+            <div class="each-search-result">
+              <div class="each-search-result-name"><%= community.community_name %></div>
+              <div class="each-search-result-request"><%= link_to '参加申請', community_join_request_path(community.id), class: "each-search-result-request-cta" %></div>
               <% if community.owner_id == current_user.id %>
                 <div>※あなたがオーナーです。</div>
               <% end %>
@@ -91,7 +91,7 @@
         <% end %>
       </div>
     <% else %>
-      <div class="all-seach-results-alt-view">
+      <div class="all-search-results-alt-view">
         <div class="alt-text">該当するコミュニティはありません。</div>
       </div>
     <% end %>

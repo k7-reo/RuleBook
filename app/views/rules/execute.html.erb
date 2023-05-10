@@ -13,6 +13,7 @@
         <div class="executing-rule-info">
           <div class="executing-rule-info-content">実行するルール：<%= @rule.content %></div>
           <div class="executing-rule-info-point">加減ポイント：<%= @rule.point %></div>
+          <div class="executing-rule-info-genre">ジャンル：<%= @rule.genre %></div>
         </div>
         <div>
           <%= form_with model: @standby, url: community_rule_execute_path(@community.id, @rule.id), local:true, class: "form" do |f| %>

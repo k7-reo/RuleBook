@@ -1,5 +1,5 @@
-  <div class="page-title">新規コミュニティ作成</div>
-  <div>
+  <div class="gray-background">
+    <div class="section-title">新規コミュニティ作成</div>
     <%= form_with model: @community, url: communities_path, local:true, class: "form" do |f| %> <!-- url: でprefixを利用してcommunities#createを指定。-->
       <div class="form-section">
         <label><%= f.label :community_name, "コミュニティ名", class: "form-label" %><span class="form-note">必須</span></label>
@@ -36,7 +36,7 @@
           <%= f.text_area :manual, placeholder: "独自の使い方があれば記載しましょう！", class: "form-area-large" %>
         </div>
       </div>
-      <div class="submittion">
+      <div class="submission">
         <%= f.submit '作成', class: "done-btn" %>
       </div>
     <% end %>

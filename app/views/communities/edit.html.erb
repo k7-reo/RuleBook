@@ -1,5 +1,5 @@
-  <div class="page-title">コミュニティ編集</div>
-  <div>
+  <div class="gray-background">
+    <div class="section-title">コミュニティ編集</div>
     <%= form_with(model:[@community], local:true, class: "form") do |f| %>
       <div class="form-section">
         <label><%= f.label :community_name, "コミュニティ名", class: "form-label" %><span class="form-note">必須</span></label>
@@ -51,7 +51,7 @@
           <div><%= label_tag :default_background, "デフォルト画像に戻す", class: "form-check-box-label" %></div>
         </div>
       </div>
-      <div class="submittion">
+      <div class="submission">
         <%= f.submit '編集完了', class: "done-btn" %>
       </div>
     <% end %>
