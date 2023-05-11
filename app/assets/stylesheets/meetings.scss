@@ -64,12 +64,13 @@
 
 .meeting-name {
   font-weight: bold;
-  font-size: 120%;
   color: #343842;
   height: 24px;
   line-height: 24px;
   width: 240px;
   margin: 0 auto;
+  white-space: nowrap;
+  overflow: scroll;
 }
 
 .meeting-count-timer {
@@ -226,6 +227,7 @@
   line-height: 20px;
   text-align: center;
   width: 80px;
+  min-width: 80px;
   color: #ffffff;
   font-size: 80%;
 }
@@ -242,6 +244,39 @@
 
 //議事録(edit)
 .meeting-info {
-  background-color: #f47842;
   display: flex;
+  flex-direction: column;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+.meeting-info-section {
+  padding-top: 16px;
+  padding-bottom: 16px;
+}
+
+.meeting-info-label {
+  font-size: 80%;
+  font-weight: bold;
+}
+
+.meeting-info-content {
+  color: #44c48a;
+}
+
+.meeting-info-section:not(:last-child) {
+  border-bottom: 1px dotted #ffffff;
+}
+
+.meeting-record {
+  width: 100%;
+  display: flex;
+}
+
+.meeting-record-left {
+  max-width: 30%;
+}
+
+.meeting-record-right {
+  max-width: 70%;
 }

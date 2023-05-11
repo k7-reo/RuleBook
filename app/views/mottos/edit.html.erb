@@ -9,8 +9,18 @@
   <div class="community-main">
     <div class="mottos-all">
       <div class="mottos-left">
-        <div class="page-title">スローガン編集</div>
-        <div>
+        <div class="gray-background">
+          <div class="section-title">スローガン編集</div>
+          <div class="edit-subject-info">
+            <div class="edit-subject-info-section">
+              <div class="edit-subject-info-label">内容</div>
+              <div class="edit-subject-info-content"><%= @motto.content %></div>
+            </div>
+            <div class="edit-subject-info-section">
+              <div class="edit-subject-info-label">作成者</div>
+              <div class="edit-subject-info-content"><%= @motto.user.name %></div>
+            </div>
+          </div>
           <%= form_with(model:[@community, @motto], local:true, class: "form") do |f| %>
             <div class="form-section">
               <label><%= f.label :content, "内容", class: "form-label" %><span class="form-note">必須</span></label>
@@ -25,9 +35,9 @@
                 </div>
               </div>
             </div>
-            <div>
-            <%= f.submit "編集完了", class: "done-btn" %>
-            <%= link_to "削除", community_motto_path(@community.id, @motto.id), method: :delete, class: "alt-link-cta" %>
+            <div class="submission">
+              <%= f.submit "編集完了", class: "done-btn" %>
+              <%= link_to "削除", community_motto_path(@community.id, @motto.id), method: :delete, class: "alt-link-cta" %>
             </div>
           <% end %>
         </div>

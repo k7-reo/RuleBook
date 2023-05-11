@@ -9,89 +9,96 @@
   <div class="community-main">
     <div class="meetings-all">
       <div class="meetings-left">
-        <div class="meeting-info">
-          <div class="meeting-info-name">
-            <label>会議名</label>
-            <div>
-              <%= @meeting.name %>
-            </div>
-          </div>
-          <div class="meeting-info-agenda">
-            <label>話したい内容</label>
-            <div>
-              <% if @meeting.agenda.present? %>
-                <div><%= safe_join(@meeting.agenda.split("\n"),tag(:br)) %></div>
-              <% else %>
-                <p>ありません。</p>
-              <% end %>
-            </div>
-          </div>
-          <div class="meeting-info-todo">
-            <label>前回のTODO</label>
-            <div>
-              <% if @meeting.todo.present? %>
-                <div><%= safe_join(@meeting.todo.split("\n"),tag(:br)) %></div>
-              <% else %>
-                <p>ありません。</p>
-              <% end %>
-            </div>
-          </div>
-        </div>
         <div class="gray-background">
-          <div class="section-title">会議議事録</div>
-          <%= form_with(model: [@community, @meeting], url: community_meeting_path{@community.id}, local:true, class: "form") do |f| %> <!-- communityモデル、mottoモデルそれぞれにデータを保存するため、両モデル指定-->
-            <div class="form-section">
-              <label><%= f.label :user_ids, "参加メンバー", class: "form-label" %><span class="form-note">必須</span></label>
-              <div class="form-check-box">
-                <%= collection_check_boxes(:meeting, :user_ids, User.joins(:community_users).where(community_users: {community_id: params[:community_id]}), :id, :name, include_hidden: false) do |user| %>
-                  <div><%= user.check_box %></div>
-                  <div class="form-check-box-label"><%= user.text %></div>
-                <% end %>
-              </div>
-              <div>
-                <label><%= f.label :content, "議事録", class: "form-label" %><span class="form-note-optional">任意</span></label>
-                <div>
-                  <%= f.text_area :content, class: "form-area-large" %>
+          <div class="meeting-record">
+            <div class="meeting-record-left">
+              <div class="section-title">会議情報</div>
+              <div class="meeting-info">
+                <div class="meeting-info-section">
+                  <label class="meeting-info-label">会議名</label>
+                  <div class="meeting-info-content">
+                    <%= @meeting.name %>
+                  </div>
                 </div>
-              </div>
-              <div>
-                <label><%= f.label :todo, "TODO", class: "form-label" %><span class="form-note-optional">任意</span></label>
-                <div>
-                  <%= f.text_area :todo, class: "form-area-large" %>
+                <div class="meeting-info-section">
+                  <label class="info-label">話したい内容</label>
+                  <div class="info-content">
+                    <% if @meeting.agenda.present? %>
+                      <div><%= safe_join(@meeting.agenda.split("\n"),tag(:br)) %></div>
+                    <% else %>
+                      <p>※ありません。</p>
+                    <% end %>
+                  </div>
                 </div>
-              </div>
-            </div>
-            <div class="form-section">
-              <div>
-                <label><%= f.label :next_name, "次回の会議名", class: "form-label" %><span class="form-note-optional">任意</span></label>
-                <div>
-                  <%= f.text_field :next_name, class: "form-area-small" %>
-                </div>
-              </div>
-              <div>
-                <label><%= f.label :next_agenda, "次回話したいこと", class: "form-label" %><span class="form-note-optional">任意</span></label>
-                <div>
-                  <%= f.text_area :next_agenda, class: "form-area-large" %>
-                </div>
-              </div>
-              <div>
-                <label><%= f.label :next_place, "次回実施場所", class: "form-label" %><span class="form-note-optional">任意</span></label>
-                <div>
-                  <%= f.text_field :next_place, class: "form-area-small" %>
-                </div>
-              </div>
-              <div>
-                <label><%= f.label :next_date, "次回実施予定日", class: "form-label" %><span class="form-note-optional">任意</span></label>
-                <div>
-                  <%= f.datetime_field :next_date, value: Time.zone.now.strftime('%Y-%m-%dT') %>
+                <div class="meeting-info-section">
+                  <label class="info-label">前回のTODO</label>
+                  <div class="info-content">
+                    <% if @meeting.todo.present? %>
+                      <div><%= safe_join(@meeting.todo.split("\n"),tag(:br)) %></div>
+                    <% else %>
+                      <p>※ありません。</p>
+                    <% end %>
+                  </div>
                 </div>
               </div>
             </div>
-            <div class="submission">
-              <%= f.submit "一時保存", name: 'save', class: "done-btn" %>
-              <%= f.submit "MTG終了", name: 'done', class: "done-btn" %>
+            <div class="meeting-record-right">
+              <div class="section-title">議事録</div>
+              <%= form_with(model: [@community, @meeting], url: community_meeting_path{@community.id}, local:true, class: "form") do |f| %> <!-- communityモデル、mottoモデルそれぞれにデータを保存するため、両モデル指定-->
+                <div class="form-section">
+                  <label><%= f.label :user_ids, "参加メンバー", class: "form-label" %><span class="form-note">必須</span></label>
+                  <div class="form-check-box">
+                    <%= collection_check_boxes(:meeting, :user_ids, User.joins(:community_users).where(community_users: {community_id: params[:community_id]}), :id, :name, include_hidden: false) do |user| %>
+                      <div><%= user.check_box %></div>
+                      <div class="form-check-box-label"><%= user.text %></div>
+                    <% end %>
+                  </div>
+                  <div>
+                    <label><%= f.label :content, "議事録", class: "form-label" %><span class="form-note-optional">任意</span></label>
+                    <div>
+                      <%= f.text_area :content, class: "form-area-large" %>
+                    </div>
+                  </div>
+                  <div>
+                    <label><%= f.label :todo, "TODO", class: "form-label" %><span class="form-note-optional">任意</span></label>
+                    <div>
+                      <%= f.text_area :todo, class: "form-area-large" %>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-section">
+                  <div>
+                    <label><%= f.label :next_name, "次回の会議名", class: "form-label" %><span class="form-note-optional">任意</span></label>
+                    <div>
+                      <%= f.text_field :next_name, class: "form-area-small" %>
+                    </div>
+                  </div>
+                  <div>
+                    <label><%= f.label :next_agenda, "次回話したいこと", class: "form-label" %><span class="form-note-optional">任意</span></label>
+                    <div>
+                      <%= f.text_area :next_agenda, class: "form-area-large" %>
+                    </div>
+                  </div>
+                  <div>
+                    <label><%= f.label :next_place, "次回実施場所", class: "form-label" %><span class="form-note-optional">任意</span></label>
+                    <div>
+                      <%= f.text_field :next_place, class: "form-area-small" %>
+                    </div>
+                  </div>
+                  <div>
+                    <label><%= f.label :next_date, "次回実施予定日", class: "form-label" %><span class="form-note-optional">任意</span></label>
+                    <div>
+                      <%= f.datetime_field :next_date, value: Time.zone.now.strftime('%Y-%m-%dT') %>
+                    </div>
+                  </div>
+                </div>
+                <div class="submission">
+                  <%= f.submit "一時保存", name: 'save', class: "done-btn" %>
+                  <%= f.submit "MTG終了", name: 'done', class: "done-btn" %>
+                </div>
+              <% end %>
             </div>
-          <% end %>
+          </div>
         </div>
       </div>
       <div class="meetings-right">

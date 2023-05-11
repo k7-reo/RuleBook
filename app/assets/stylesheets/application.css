@@ -278,7 +278,7 @@ tbody td:last-child {
   padding: 8px 32px;
   margin: 4px 0;
   width: fit-content;
-  background-color: rgba(68, 196, 138, 0.5);
+  background-color: rgba(68, 196, 138, 1);
   border-radius: 16px;
 }
 
@@ -298,7 +298,6 @@ tbody td:last-child {
 }
 
 .form-area-large {
-  resize: horizontal;
   width: 316px;
   height: 80px;
   padding: 2px;
@@ -420,6 +419,38 @@ textarea {
   border-radius: 16px;
   margin: 16px;
   overflow: scroll;
+  width: fit-content;
+  max-width: calc(100% - 32px);
+  height: fit-content;
+  max-height: calc(100% - 32px);
 }
 
+.edit-subject-info {
+  display: flex;
+  flex-direction: column;
+  padding-top: 12px;
+  padding-left: 16px;
+  padding-right: 16px;
+}
 
+.edit-subject-info-section {
+  padding-top: 4px;
+  display: flex;
+}
+
+.edit-subject-info-label {
+  background-color: #343842;
+  font-size: 80%;
+  font-weight: bold;
+  width: 80px;
+  min-width: 80px;
+  height: 20px;
+  line-height: 20px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.edit-subject-info-content {
+  margin-left: 8px;
+  line-height: 20px;
+}

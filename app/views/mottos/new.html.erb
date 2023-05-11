@@ -9,8 +9,8 @@
   <div class="community-main">
     <div class="mottos-all">
       <div class="mottos-left">
-        <div class="page-title">スローガン作成</div>
-        <div>
+        <div class="gray-background">
+          <div class="section-title">スローガン作成</div>
           <%= form_with(model: [@community, @motto], url: community_mottos_path{@community.id}, local:true, class: "form") do |f| %> <!-- communityモデル、mottoモデルそれぞれにデータを保存するため、両モデル指定-->
             <div class="form-section">
               <label><%= f.label :content, "内容", class: "form-label" %><span class="form-note">必須</span></label>
@@ -25,7 +25,7 @@
                 </div>
               </div>
             </div>
-            <div class="submittion">
+            <div class="submission">
               <%= f.submit "作成", class: "done-btn" %>
             </div>
           <% end %>
