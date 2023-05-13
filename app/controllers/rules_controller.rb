@@ -1,9 +1,10 @@
 class RulesController < ApplicationController
 
+  before_action :community_user, only: [:index, :new_positive, :new_negative, :create, :destroy, :edit, :update, :execute, :execute_create]
 
   def index
     @community = Community.find(params[:community_id]) #意味：Communityモデルから該当するidのレコードをfind(探し出す)する。findはidしか引数にできない。paramがないとcontorollerはデータを受け取れない。アクションないでrule_idも呼び出されているので、しっかり[:community_id]を指定。
-    @currentUser = CommunityUser.find_by(user_id: current_user.id) #community-info表示に利用
+    @currentUser = CommunityUser.find_by(user_id: current_user.id, community_id: params[:community_id]) #community-info表示に利用
     @genres = Rule.distinct.pluck(:genre)
     @selected_genre = params[:genre] || "すべて"
     @rules = Rule.includes(:community).where(community_id: @community.id)
@@ -19,13 +20,13 @@ class RulesController < ApplicationController
   def new_positive
     @rule = Rule.new
     @community = Community.find(params[:community_id])
-    @currentUser = CommunityUser.find_by(user_id: current_user.id) #community-info表示に利用
+    @currentUser = CommunityUser.find_by(user_id: current_user.id, community_id: params[:community_id]) #community-info表示に利用
   end
 
   def new_negative
     @rule = Rule.new
     @community = Community.find(params[:community_id])
-    @currentUser = CommunityUser.find_by(user_id: current_user.id) #community-info表示に利用
+    @currentUser = CommunityUser.find_by(user_id: current_user.id, community_id: params[:community_id]) #community-info表示に利用
   end
 
   def create
@@ -84,7 +85,7 @@ class RulesController < ApplicationController
   def edit
     @community = Community.find(params[:community_id])
     @rule = Rule.find(params[:id])
-    @currentUser = CommunityUser.find_by(user_id: current_user.id) #community-info表示に利用
+    @currentUser = CommunityUser.find_by(user_id: current_user.id, community_id: params[:community_id]) #community-info表示に利用
     render "edit"
   end
 
@@ -130,7 +131,7 @@ class RulesController < ApplicationController
     @rule = Rule.find(params[:rule_id])
     @targetUsers = User.joins(:rule_users).where(rule_users: {rule_id: params[:rule_id]}).where.not(id: current_user.id)
     @standby = Standby.new
-    @currentUser = CommunityUser.find_by(user_id: current_user.id) #community-info表示に利用
+    @currentUser = CommunityUser.find_by(user_id: current_user.id, community_id: params[:community_id]) #community-info表示に利用
   end
 
   def execute_create #ルール実行htmlから申請、待機テーブルへの登録までのアクション
@@ -202,6 +203,14 @@ class RulesController < ApplicationController
 
   def user_params
     params.require(:user).permit(:name, :body, :point)
+  end
+
+  def community_user
+    community =  Community.find(params[:community_id])
+    belongedUser = CommunityUser.find_by(community_id: community.id, user_id: current_user.id)
+    unless community.community_users.exists?(user_id: current_user.id) && belongedUser.status == 1
+      redirect_to top_path
+    end
   end
 
 end

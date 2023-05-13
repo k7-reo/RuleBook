@@ -1,14 +1,16 @@
 class MottosController < ApplicationController
 
+  before_action :community_user, only: [:new, :create, :edit, :update, :index, :destroy]
+
   def index
     @community = Community.find(params[:community_id]) #mottoparamsとcommunityparamasのうちcommunityのid
-    @currentUser = CommunityUser.find_by(user_id: current_user.id) #community-info表示に利用
+    @currentUser = CommunityUser.find_by(user_id: current_user.id, community_id: params[:community_id]) #community-info表示に利用
   end
 
   def new
     @motto = Motto.new #空のインスタンス作成(motto.idは作成されるが内容が空)
     @community = Community.find(params[:community_id]) #コミュニティTOPに戻るprefixで使用
-    @currentUser = CommunityUser.find_by(user_id: current_user.id) #community-info表示に利用
+    @currentUser = CommunityUser.find_by(user_id: current_user.id, community_id: params[:community_id]) #community-info表示に利用
   end
 
   def create #mottoテーブルとrecordテーブルへの新規レコード作成
@@ -33,7 +35,7 @@ class MottosController < ApplicationController
   def edit
     @community = Community.find(params[:community_id])
     @motto = Motto.find(params[:id])
-    @currentUser = CommunityUser.find_by(user_id: current_user.id) #community-info表示に利用
+    @currentUser = CommunityUser.find_by(user_id: current_user.id, community_id: params[:community_id]) #community-info表示に利用
   end
 
   def update
@@ -79,6 +81,14 @@ class MottosController < ApplicationController
 
   def motto_params
     params.require(:motto).permit(:content)
+  end
+
+  def community_user
+    community =  Community.find(params[:community_id])
+    belongedUser = CommunityUser.find_by(community_id: community.id, user_id: current_user.id)
+    unless community.community_users.exists?(user_id: current_user.id) && belongedUser.status == 1
+      redirect_to top_path
+    end
   end
 
 end

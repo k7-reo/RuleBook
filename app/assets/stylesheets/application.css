@@ -180,7 +180,7 @@ main {
 
 .community-main {
   position: fixed;
-  top: 88px; /*headher-areaとcommunity-infoのtopとheightの合計*/
+  top: 88px; /*header-areaとcommunity-infoのtopとheightの合計*/
   box-sizing: border-box;
   width: 100%;
   height: calc(100vh - 88px);
@@ -192,8 +192,7 @@ main {
 }
 
 .comment:hover {
-  color: #44c48a;
-  font-weight: bold;
+  color: #343842;
 }
 
 .comment-content {
@@ -441,7 +440,6 @@ textarea {
 .edit-subject-info-label {
   background-color: #343842;
   font-size: 80%;
-  font-weight: bold;
   width: 80px;
   min-width: 80px;
   height: 20px;

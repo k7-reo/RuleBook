@@ -1,6 +1,7 @@
 class CommunitiesController < ApplicationController
 
-  before_action :correct_user, only: [:edit, :update, :destroy]
+  before_action :community_owner, only: [:edit, :update, :destroy, :accept]
+  before_action :community_user, only: [:show]
 
   def new
     @community = Community.new
@@ -61,7 +62,7 @@ class CommunitiesController < ApplicationController
     end
     @excutedRules = Standby.where(community_id: params[:id], action_type: "rule", created_at: Time.current.all_month) #今月created_atのデータに絞っている。
     @coupleAdvice = Advice.where(community_genre: "夫婦・カップル").order("RANDOM()").first
-    @currentUser = CommunityUser.find_by(user_id: current_user.id) #community-info表示に利用
+    @currentUser = CommunityUser.find_by(user_id: current_user.id, community_id: params[:id]) #community-info表示に利用
     @acceptedUsers = CommunityUser.where(community_id: params[:id], status: 1)
     #ゴールtimelineの表示
   end
@@ -99,7 +100,7 @@ class CommunitiesController < ApplicationController
 
   def edit
     @community = Community.find(params[:id])
-    @currentUser = CommunityUser.find_by(user_id: current_user.id) #community-info表示に利用
+    @currentUser = CommunityUser.find_by(user_id: current_user.id, community_id: params[:id]) #community-info表示に利用
   end
 
   def update
@@ -129,11 +130,19 @@ end
     params.require(:rule).permit(:content, :point, :genre, :date)
   end
 
-  def correct_user
-    @community = Community.find(params[:id])
-    unless @community.owner_id == current_user.id
+  def community_owner
+    community = Community.find(params[:id])
+    unless community.owner_id == current_user.id
       redirect_to top_path
       #「オーナーのみ設定可能です」のnotice
+    end
+  end
+
+  def community_user
+    community =  Community.find(params[:id])
+    belongedUser = CommunityUser.find_by(community_id: community.id, user_id: current_user.id)
+    unless community.community_users.exists?(user_id: current_user.id) && belongedUser.status == 1
+      redirect_to top_path
     end
   end
 

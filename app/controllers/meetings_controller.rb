@@ -1,8 +1,10 @@
 class MeetingsController < ApplicationController
 
+  before_action :community_user, only: [:new, :create, :pre_edit, :edit, :update, :destroy, :index]
+
   def new
     @community = Community.find(params[:community_id])
-    @currentUser = CommunityUser.find_by(user_id: current_user.id)
+    @currentUser = CommunityUser.find_by(user_id: current_user.id, community_id: params[:community_id]) #community-info表示に利用
     @meeting = Meeting.new
   end
 
@@ -18,13 +20,13 @@ class MeetingsController < ApplicationController
 
   def pre_edit
     @community = Community.find(params[:community_id])
-    @currentUser = CommunityUser.find_by(user_id: current_user.id)
+    @currentUser = CommunityUser.find_by(user_id: current_user.id, community_id: params[:community_id]) #community-info表示に利用
     @meeting = Meeting.find(params[:meeting_id])
   end
 
   def edit
     @community = Community.find(params[:community_id])
-    @currentUser = CommunityUser.find_by(user_id: current_user.id)
+    @currentUser = CommunityUser.find_by(user_id: current_user.id, community_id: params[:community_id]) #community-info表示に利用
     @meeting = Meeting.find(params[:id])
   end
 
@@ -106,7 +108,7 @@ class MeetingsController < ApplicationController
 
   def index
     @community = Community.find(params[:community_id])
-    @currentUser = CommunityUser.find_by(user_id: current_user.id) #community-info表示に利用
+    @currentUser = CommunityUser.find_by(user_id: current_user.id, community_id: params[:community_id]) #community-info表示に利用
     @nextMeeting = Meeting.find_by(community_id:  params[:community_id], status: 0) #実施前のMTG
     if @nextMeeting.present?
       if @nextMeeting.date.present? #次のミーティングまでのカウントダウン実装javascriptに使う数値を定義。
@@ -123,6 +125,14 @@ class MeetingsController < ApplicationController
 
   def meeting_params
     params.require(:meeting).permit(:name, :next_name, :community_id, :user_id, :content, :todo, :agenda, :next_agenda, :date, :next_date, :status, :place, :next_place)
+  end
+
+  def community_user
+    community =  Community.find(params[:community_id])
+    belongedUser = CommunityUser.find_by(community_id: community.id, user_id: current_user.id)
+    unless community.community_users.exists?(user_id: current_user.id) && belongedUser.status == 1
+      redirect_to top_path
+    end
   end
 
 end

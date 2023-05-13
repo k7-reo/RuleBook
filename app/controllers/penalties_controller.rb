@@ -1,12 +1,11 @@
 class PenaltiesController < ApplicationController
 
-  def index #privileges#indexに定義
-  end
+  before_action :community_user, only: [:new, :create, :edit, :update, :destroy, :execute, :execute_create]
 
   def new
     @penalty = Penalty.new
     @community = Community.find(params[:community_id])
-    @currentUser = CommunityUser.find_by(user_id: current_user.id) #community-info表示に利用
+    @currentUser = CommunityUser.find_by(user_id: current_user.id, community_id: params[:community_id]) #community-info表示に利用
   end
 
   def create
@@ -32,7 +31,7 @@ class PenaltiesController < ApplicationController
   def edit
     @community = Community.find(params[:community_id])
     @penalty = Penalty.find(params[:id])
-    @currentUser = CommunityUser.find_by(user_id: current_user.id) #community-info表示に利用
+    @currentUser = CommunityUser.find_by(user_id: current_user.id, community_id: params[:community_id]) #community-info表示に利用
   end
 
   def update
@@ -77,7 +76,7 @@ class PenaltiesController < ApplicationController
     @community = Community.find(params[:community_id])
     @penalty = Penalty.find(params[:penalty_id])
     @standby = Standby.new
-    @currentUser = CommunityUser.find_by(user_id: current_user.id) #community-info表示に利用
+    @currentUser = CommunityUser.find_by(user_id: current_user.id, community_id: params[:community_id]) #community-info表示に利用
   end
 
   def execute_create #penalty実行完了申請。この時点でcommunity_userのpointにポイント反映。否認されれば申請前のポイントに戻る。
@@ -128,6 +127,14 @@ class PenaltiesController < ApplicationController
 
   def standby_params
     params.require(:standby).permit(:executing_user_id, :executed_user_id, :community_id, :penalty_id, :action_type).merge(executing_user_id: current_user.id)
+  end
+
+  def community_user
+    community =  Community.find(params[:community_id])
+    belongedUser = CommunityUser.find_by(community_id: community.id, user_id: current_user.id)
+    unless community.community_users.exists?(user_id: current_user.id) && belongedUser.status == 1
+      redirect_to top_path
+    end
   end
 
 end

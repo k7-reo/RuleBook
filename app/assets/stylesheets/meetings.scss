@@ -19,13 +19,6 @@
 }
 
 //一覧(index)
-.active-meetings {
-  margin: 16px;
-  background-color: rgba(52, 56, 66, 0.5);
-  border-radius: 16px;
-}
-
-//一覧(index)
 .meetings-header {
   display: flex;
   justify-content: space-between;
@@ -36,6 +29,8 @@
   display: flex;
   justify-content: center;
   padding: 8px;
+  width: 100%;
+  overflow-x: scroll;
 }
 
 //一覧(index)
@@ -97,11 +92,26 @@
 }
 
 .next-meeting-alt-view-wrapper {
-  height: 176px;
+  position: relative;
+  background-color: #f47842;
+  height: 128px;
+  padding: 16px;
+  width: 272px;
   display: flex;
   justify-content: center;
   text-align: center;
-  align-items: center;
+  border-radius: 16px;
+  margin: 8px;
+}
+
+.next-meeting-alt-view {
+  padding-top: 16px;
+}
+
+.meeting-new {
+  position: absolute;
+  bottom: 16px;
+  left: 114px;
 }
 
 //一覧(index)
@@ -140,11 +150,6 @@
 }
 
 //一覧(index)
-.meeting-new {
-  padding-bottom: 32px;
-}
-
-//一覧(index)
 .back-to-meeting-cta:hover {
   background-color: #ffd139;
   border: 1px solid #ffffff;
@@ -153,8 +158,9 @@
 
 //一覧(index)
 .past-meetings {
-  height: calc(100% - 272px);
-  margin: 16px;
+  height: calc(100% - 208px);
+  margin-left: 16px;
+  margin-right: 16px;
   background-color: rgba(52, 56, 66, 0.5);
   border-radius: 16px;
 }
@@ -256,12 +262,14 @@
 }
 
 .meeting-info-label {
+  background-color: #343842;
   font-size: 80%;
-  font-weight: bold;
-}
-
-.meeting-info-content {
-  color: #44c48a;
+  width: 80px;
+  min-width: 80px;
+  height: 20px;
+  line-height: 20px;
+  text-align: center;
+  white-space: nowrap;
 }
 
 .meeting-info-section:not(:last-child) {

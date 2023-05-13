@@ -1,9 +1,11 @@
 class PrivilegesController < ApplicationController
 
+  before_action :community_user, only: [:index, :new, :create, :edit, :update, :destroy, :execute]
+
   def index #penalties#indexもここで定義
     @community = Community.find(params[:community_id])
     @user = CommunityUser.find_by(user_id: current_user.id, community_id: @community.id)
-    @currentUser = CommunityUser.find_by(user_id: current_user.id) #community-info表示に利用
+    @currentUser = CommunityUser.find_by(user_id: current_user.id, community_id: params[:community_id]) #community-info表示に利用
     @activePrivileges = Privilege.where("community_id = ? and point <= ?", @community.id, @user.monthly_point) #whereの変異系：community_idが@community.idでpointが@user.monthly_pointのレコード取得。
     @activePenalties = Penalty.where("community_id = ? and -(point) >= ?", @community.id, @user.monthly_point)
   end
@@ -11,7 +13,7 @@ class PrivilegesController < ApplicationController
   def new
     @privilege = Privilege.new
     @community = Community.find(params[:community_id])
-    @currentUser = CommunityUser.find_by(user_id: current_user.id) #community-info表示に利用
+    @currentUser = CommunityUser.find_by(user_id: current_user.id, community_id: params[:community_id]) #community-info表示に利用
   end
 
   def create
@@ -37,7 +39,7 @@ class PrivilegesController < ApplicationController
   def edit
     @community = Community.find(params[:community_id])
     @privilege = Privilege.find(params[:id])
-    @currentUser = CommunityUser.find_by(user_id: current_user.id) #community-info表示に利用
+    @currentUser = CommunityUser.find_by(user_id: current_user.id, community_id: params[:community_id]) #community-info表示に利用
   end
 
   def update
@@ -106,6 +108,14 @@ class PrivilegesController < ApplicationController
 
   def penalty_params
     params.require(:penalty).permit(:content, :point, :community_id, :creating_user_id, :permitting_user_id, :punished_user_id, :status)
+  end
+
+  def community_user
+    community =  Community.find(params[:community_id])
+    belongedUser = CommunityUser.find_by(community_id: community.id, user_id: current_user.id)
+    unless community.community_users.exists?(user_id: current_user.id) && belongedUser.status == 1
+      redirect_to top_path
+    end
   end
 
 end

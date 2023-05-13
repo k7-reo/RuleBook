@@ -12,7 +12,7 @@
       <div>
         <% if @records.present? %>
           <% @records.each do |record| %>
-          <div class="thirtydays-each-record">
+          <div class="thirty-days-each-record">
             <% if record.action_type == "Motto" %>
               <% if record.version == 1 %>
                 <div class="record-content"><span class="record-motto">スローガン</span>「<%= record.content %>」が<%= record.user.name %>によって作成されました。<br><span class="record-date"><%= record.created_at.to_s(:datetime_jp) %></span></div>

@@ -15,14 +15,14 @@
               <div class="section-title">会議情報</div>
               <div class="meeting-info">
                 <div class="meeting-info-section">
-                  <label class="meeting-info-label">会議名</label>
+                  <div class="meeting-info-label">会議名</div>
                   <div class="meeting-info-content">
                     <%= @meeting.name %>
                   </div>
                 </div>
                 <div class="meeting-info-section">
-                  <label class="info-label">話したい内容</label>
-                  <div class="info-content">
+                  <div class="meeting-info-label">話したい内容</div>
+                  <div class="meeting-info-content">
                     <% if @meeting.agenda.present? %>
                       <div><%= safe_join(@meeting.agenda.split("\n"),tag(:br)) %></div>
                     <% else %>
@@ -31,8 +31,8 @@
                   </div>
                 </div>
                 <div class="meeting-info-section">
-                  <label class="info-label">前回のTODO</label>
-                  <div class="info-content">
+                  <div class="meeting-info-label">前回のTODO</div>
+                  <div class="meeting-info-content">
                     <% if @meeting.todo.present? %>
                       <div><%= safe_join(@meeting.todo.split("\n"),tag(:br)) %></div>
                     <% else %>

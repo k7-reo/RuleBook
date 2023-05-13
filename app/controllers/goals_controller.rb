@@ -1,8 +1,10 @@
 class GoalsController < ApplicationController
 
+  before_action :community_user, only: [:new, :create, :edit, :update, :index, :destroy, :achieved, :unachieved]
+
   def new
     @community = Community.find(params[:community_id])
-    @currentUser = CommunityUser.find_by(user_id: current_user.id) #community-info表示に利用
+    @currentUser = CommunityUser.find_by(user_id: current_user.id, community_id: params[:community_id]) #community-info表示に利用
     @goal = Goal.new
   end
 
@@ -27,7 +29,7 @@ class GoalsController < ApplicationController
 
   def edit
     @community = Community.find(params[:community_id])
-    @currentUser = CommunityUser.find_by(user_id: current_user.id) #community-info表示に利用
+    @currentUser = CommunityUser.find_by(user_id: current_user.id, community_id: params[:community_id]) #community-info表示に利用
     @goal = Goal.find(params[:id])
   end
 
@@ -51,7 +53,7 @@ class GoalsController < ApplicationController
 
   def index
     @community = Community.find(params[:community_id])
-    @currentUser = CommunityUser.find_by(user_id: current_user.id) #community-info表示に利用
+    @currentUser = CommunityUser.find_by(user_id: current_user.id, community_id: params[:community_id]) #community-info表示に利用
     @activeGoal = Goal.find_by(community_id: params[:community_id], status: true)
     @pastGoals = Goal.where(community_id: params[:community_id], status: false).order(updated_at: :desc)
   end
@@ -94,6 +96,14 @@ class GoalsController < ApplicationController
 
   def goal_params
     params.require(:goal).permit(:community_id, :user_id, :content, :deadline, :startline)
+  end
+
+  def community_user
+    community =  Community.find(params[:community_id])
+    belongedUser = CommunityUser.find_by(community_id: community.id, user_id: current_user.id)
+    unless community.community_users.exists?(user_id: current_user.id) && belongedUser.status == 1
+      redirect_to top_path
+    end
   end
 
 end

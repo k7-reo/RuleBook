@@ -9,8 +9,8 @@
   <div class="community-main">
     <div class="privileges-penalties-all">
       <div class="privileges-penalties-left">
-        <div class="page-title">報酬新規作成</div>
-        <div>
+        <div class="gray-background">
+          <div class="section-title">報酬新規作成</div>
           <%= form_with(model:[@community, @privilege], local:true, class: "form") do |f| %>
             <div class="form-section">
               <label><%= f.label :content, "内容", class: "form-label" %><span class="form-note">必須</span></label>
@@ -31,7 +31,7 @@
                 <%= f.text_field :point, placeholder:"半角数字", class: "form-area-small" %>
               </div>
             </div>
-            <div class="submittion">
+            <div class="submission">
               <%= f.submit '作成', class: "done-btn" %>
             </div>
           <% end %>

@@ -9,21 +9,36 @@
   <div class="community-main">
     <div class="rules-all">
       <div class="rules-left">
-        <div class="page-title">ルール編集</div>
-        <div class="rule-info">
-          <div class="rule-info-contet">内容：<%= @rule.content %></div>
-          <div class="rule-info-point">ポイント増減：<%= @rule.point %></div>
-          <div class="rule-info-ganre">ジャンル：<%= @rule.genre %></div>
-          <div class="rule-info-creater">作成者：<%= @rule.creating_user.name %></div>
-          <div class="rule-info-updater">最終更新者：
-            <% if @rule.updating_user.present? %>
-              <%= @rule.updating_user.name %>
-            <% else %>
-              更新なし
-            <% end %>
+        <div class="gray-background">
+          <div class="page-title">ルール編集</div>
+          <div class="edit-subject-info">
+            <div class="edit-subject-info-section">
+              <div class="edit-subject-info-label">内容</div>
+              <div class="edit-subject-info-content"><%= @rule.content %></div>
+            </div>
+            <div class="edit-subject-info-section">
+              <div class="edit-subject-info-label">ポイント増減</div>
+              <div class="edit-subject-info-content"><%= @rule.point %></div>
+            </div>
+            <div class="edit-subject-info-section">
+              <div class="edit-subject-info-label">ジャンル</div>
+              <div class="edit-subject-info-content"><%= @rule.genre %></div>
+            </div>
+            <div class="edit-subject-info-section">
+              <div class="edit-subject-info-label">作成者</div>
+              <div class="edit-subject-info-content"><%= @rule.creating_user.name %></div>
+            </div>
+            <div class="edit-subject-info-section">
+              <div class="edit-subject-info-label">最終更新者</div>
+              <div class="edit-subject-info-content">
+                <% if @rule.updating_user.present? %>
+                  <%= @rule.updating_user.name %>
+                <% else %>
+                  更新なし
+                <% end %>
+              </div>
+            </div>
           </div>
-        </div>
-        <div>
           <%= form_with(model:[@community, @rule], local:true, class: "form") do |f| %>
             <div class="form-section">
               <label><%= f.label :content, "ルール", class: "form-label" %><span class="form-note">必須</span></label>
@@ -48,7 +63,7 @@
                 <% end %>
               </div>
             </div>
-            <div class="submittion">
+            <div class="submission">
               <%= f.submit '編集完了', class: "done-btn" %>
               <%= link_to "削除", community_rule_path(@community.id, @rule.id), method: :delete, class: "alt-link-cta" %>
             </div>

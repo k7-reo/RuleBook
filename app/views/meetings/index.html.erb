@@ -10,9 +10,6 @@
     <div class="meetings-all">
       <div class="meetings-left">
         <div class="active-meetings">
-          <div class="meetings-header">
-            <div class="section-title">アクティブな会議</div>
-          </div>
           <div class="all-active-meetings">
             <% if @nextMeeting.present? %>
               <div class="next-meeting">
@@ -48,10 +45,8 @@
             <% else %>
               <div class="next-meeting-alt-view-wrapper">
                 <div class="next-meeting-alt-view">
-                  <div class="meeting-content">
-                    <div class="alt-text">メンバーのコミュニケーションの場を定期的に設けましょう！<br>かしこまった内容ではなく、一緒に映画を見るなどでもいいですね。</div>
-                    <div class="meeting-new"><%= link_to "会議を設定", new_community_meeting_path(@community.id), class: "dashboard-meeting-new-cta" %></div>
-                  </div>
+                  <div class="alt-text">定期的なコミュニケーションの場を設けましょう！<br>かしこまった内容でなくても構いません。</div>
+                  <div class="meeting-new"><%= link_to "会議を設定", new_community_meeting_path(@community.id), class: "dashboard-meeting-new-cta" %></div>
                 </div>
               </div>
             <% end %>

@@ -26,7 +26,9 @@
             </div>
             <div class="edit-subject-info-section">
               <div class="edit-subject-info-label">予定日時</div>
-              <div class="edit-subject-info-content"><%= @meeting.date.to_s(:datetime_jp) %>日間</div>
+                <% if @meeting.date.present? %>
+                  <div class="edit-subject-info-content"><%= @meeting.date.to_s(:datetime_jp) %>日間</div>
+                <% end %>
             </div>
           </div>
           <%= form_with(model: [@community, @meeting], url: community_meeting_path(@community.id, @meeting.id), local:true, class: "form") do |f| %> <!-- communityモデル、mottoモデルそれぞれにデータを保存するため、両モデル指定-->

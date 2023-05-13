@@ -9,13 +9,22 @@
   <div class="community-main">
     <div class="rules-all">
       <div class="rules-left">
-        <div class="page-title">ルール実行</div>
-        <div class="executing-rule-info">
-          <div class="executing-rule-info-content">実行するルール：<%= @rule.content %></div>
-          <div class="executing-rule-info-point">加減ポイント：<%= @rule.point %></div>
-          <div class="executing-rule-info-genre">ジャンル：<%= @rule.genre %></div>
-        </div>
-        <div>
+        <div class="gray-background">
+          <div class="page-title">ルール実行</div>
+          <div class="edit-subject-info">
+            <div class="edit-subject-info-section">
+              <div class="edit-subject-info-label">内容</div>
+              <div class="edit-subject-info-content"><%= @rule.content %></div>
+            </div>
+            <div class="edit-subject-info-section">
+              <div class="edit-subject-info-label">加減ポイント</div>
+              <div class="edit-subject-info-content"><%= @rule.point %></div>
+            </div>
+            <div class="edit-subject-info-section">
+              <div class="edit-subject-info-label">ジャンル</div>
+              <div class="edit-subject-info-content"><%= @rule.genre %></div>
+            </div>
+          </div>
           <%= form_with model: @standby, url: community_rule_execute_path(@community.id, @rule.id), local:true, class: "form" do |f| %>
             <div class="form-section">
               <label><%= f.label :executed_user_id, "対象メンバー", class: "form-label" %><span class="form-note">必須</span></label>
@@ -36,7 +45,7 @@
                 <%= f.text_area :detail, class: "form-area-large" %>
               </div>
             </div>
-            <div class="submittion"><%= f.submit '対象にルール行使', class: "done-btn" %></div>
+            <div class="submission"><%= f.submit '対象にルール行使', class: "done-btn" %></div>
           <% end %>
         </div>
       </div>

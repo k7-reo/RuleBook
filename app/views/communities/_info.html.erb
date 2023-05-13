@@ -1,7 +1,7 @@
   <div class="community-info-contents">
     <ul class="community-navigation-items">
       <li class="community-navigation-item"><%= link_to "ダッシュボード", community_path(community.id), class: "community-navigation-link" %></li>
-      <li class="community-navigation-item"><%= link_to "マイページ", community_user_mypage_path(community.id, currentUser.id), class: "community-navigation-link" %></li>
+      <li class="community-navigation-item"><%= link_to "マイページ", community_user_mypage_path(community.id, currentUser.user_id), class: "community-navigation-link" %></li>
       <li class="community-navigation-item"><%= link_to "メンバー", community_users_path(community.id), class: "community-navigation-link" %></li>
       <li class="community-navigation-item"><%= link_to "ルール", community_rules_path(community.id), class: "community-navigation-link" %></li>
       <li class="community-navigation-item"><%= link_to "報酬&ペナルティ", community_privileges_path(community.id), class: "community-navigation-link" %></li>
@@ -41,8 +41,8 @@
               <% end%>
             </div>
           </div>
-          <div class="community-info-window-submittion">
-            <%= link_to "編集する", edit_community_path(community.id), class: "community-info-window-submittion-cta" %>
+          <div class="community-info-window-submission">
+            <%= link_to "編集する", edit_community_path(community.id), class: "community-info-window-submission-cta" %>
           </div>
          </div>
       </div>

@@ -7,8 +7,14 @@
     <%= render 'communities/info', community: @community, currentUser: @currentUser %>
   </div>
   <div class="community-main">
-    <div class="page-title">役割編集</div>
-    <div>
+    <div class="gray-background">
+      <div class="section-title">役割編集</div>
+      <div class="edit-subject-info">
+        <div class="edit-subject-info-section">
+          <div class="edit-subject-info-label">役割</div>
+          <div class="edit-subject-info-content"><%= @role.content %></div>
+        </div>
+      </div>
       <%= form_with(model: [@community, @user, @role], url: community_user_role_path{@community.id}, local: true, class: "form") do |f| %>
         <div class="form-section">
           <label><%= f.label :content, "このコミュニティにおけるあなたの役", class: "form-label" %><span class="form-note">必須</span></label>
@@ -22,7 +28,7 @@
             </div>
           </div>
         </div>
-        <div class="submittion">
+        <div class="submission">
           <%= f.submit '編集完了', class: "done-btn" %>
           <%= link_to '削除', community_user_role_path(@community.id), method: :delete, class: "alt-link-cta" %>
         </div>
