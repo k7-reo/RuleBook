@@ -17,6 +17,15 @@
               <div>
                 <%= f.text_field :content, class: "form-area-small" %>
               </div>
+              <div id="error_explanation">
+                <% if @rule.errors.any? && @rule.errors.has_key?(:content) %>
+                  <ul class="all-error-messages">
+                    <% @rule.errors[:content].each do |message| %>
+                      <li class="each-error-message"><%= message %></li>
+                    <% end %>
+                  </ul>
+                <% end %>
+              </div>
               <div class="comment">
                 <i class="fa-solid fa-circle-info">設定のヒント</i>
                 <div class="comment-content">
@@ -30,11 +39,29 @@
               <div>
                 <%= f.text_field :point, placeholder: "プラス指定、半角数字", class: "form-area-small" %>
               </div>
+              <div id="error_explanation">
+                <% if @rule.errors.any? && @rule.errors.has_key?(:point) %>
+                  <ul class="all-error-messages">
+                    <% @rule.errors[:point].each do |message| %>
+                      <li class="each-error-message"><%= message %></li>
+                    <% end %>
+                  </ul>
+                <% end %>
+              </div>
             </div>
             <div class="form-section">
               <label><%= f.label :genre, "ジャンル", class: "form-label" %><span class="form-note">必須</span></label>
               <div>
                 <%= f.select :genre, [["お金", "お金"], ["家事", "家事"], ["キャリア・仕事", "キャリア・仕事"], ["育児", "育児"], ["人間関係・コミュニケーション", "人間関係・コミュニケーション"], ["セックス・性的関係", "セックス・性的関係"], ["趣味・休日", "趣味・休日"], ["行事・イベント", "行事・イベント"], ["健康管理・医療", "健康管理・医療"], ["住まい・生活環境", "住まい・生活環境"], ["プライバシー・個人情報", "プライバシー・個人情報"], ["その他", "その他"]], include_blank: "選択してください" %>
+              </div>
+              <div id="error_explanation">
+                <% if @rule.errors.any? && @rule.errors.has_key?(:genre) %>
+                  <ul class="all-error-messages">
+                    <% @rule.errors[:genre].each do |message| %>
+                      <li class="each-error-message"><%= message %></li>
+                    <% end %>
+                  </ul>
+                <% end %>
               </div>
             </div>
             <div class="form-section">
@@ -43,6 +70,15 @@
                 <%= collection_check_boxes(:rule, :user_ids, User.joins(:community_users).where(community_users: {community_id: params[:community_id]}), :id, :name, include_hidden: false) do |user| %>
                   <div><%= user.check_box %></div>
                   <div class="form-check-box-label"><%= user.text %></div>
+                <% end %>
+              </div>
+              <div id="error_explanation">
+                <% if @rule.errors.any? && @rule.errors.has_key?(:user_ids) %>
+                  <ul class="all-error-messages">
+                    <% @rule.errors[:user_ids].each do |message| %>
+                      <li class="each-error-message"><%= message %></li>
+                    <% end %>
+                  </ul>
                 <% end %>
               </div>
             </div>

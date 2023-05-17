@@ -41,6 +41,15 @@
               <div>
                 <%= f.text_area :content, class: "form-area-small" %>
               </div>
+              <div id="error_explanation">
+                <% if @privilege.errors.any? && @privilege.errors.has_key?(:content) %>
+                  <ul class="all-error-messages">
+                    <% @privilege.errors[:content].each do |message| %>
+                      <li class="each-error-message"><%= message %></li>
+                    <% end %>
+                  </ul>
+                <% end %>
+              </div>
               <div class="comment">
                 <i class="fa-solid fa-circle-info">設定のヒント</i>
                 <div class="comment-content">
@@ -53,6 +62,15 @@
               <label><%= f.label :point, "消費する配当ポイント", class: "form-label" %><span class="form-note">必須</span></label>
               <div>
                 <%= f.text_field :point, placeholder:"半角数字", class: "form-area-small" %>
+              </div>
+              <div id="error_explanation">
+                <% if @privilege.errors.any? && @privilege.errors.has_key?(:point) %>
+                  <ul class="all-error-messages">
+                    <% @privilege.errors[:point].each do |message| %>
+                      <li class="each-error-message"><%= message %></li>
+                    <% end %>
+                  </ul>
+                <% end %>
               </div>
             </div>
             <div class="submission">

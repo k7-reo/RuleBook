@@ -18,15 +18,29 @@
             </div>
             <div class="edit-subject-info-section">
               <div class="edit-subject-info-label">達成期限</div>
-              <div class="edit-subject-info-content"><%= @goal.deadline.to_s(:datetime_jp) %></div>
+              <% if @goal.deadline.present? %>
+                <div class="edit-subject-info-content"><%= @goal.deadline.to_s(:datetime_jp) %></div>
+              <% else %>
+                <div class="edit-subject-info-content">※指定されていません。</div>
+              <% end %>
             </div>
             <div class="edit-subject-info-section">
               <div class="edit-subject-info-label">開始日時</div>
-              <div class="edit-subject-info-content"><%= @goal.startline.to_s(:datetime_jp) %></div>
+              <% if @goal.startline.present? %>
+                <div class="edit-subject-info-content"><%= @goal.startline.to_s(:datetime_jp) %></div>
+              <% else %>
+                <div class="edit-subject-info-content"><%= @goal.created_at.to_s(:datetime_jp) %>※作成日</div>
+              <% end %>
             </div>
             <div class="edit-subject-info-section">
               <div class="edit-subject-info-label">期間</div>
-              <div class="edit-subject-info-content"><%= ((@goal.deadline - @goal.startline) / 86400).to_i %>日間</div>
+              <% if @goal.startline.present? && @goal.deadline.present? %>
+                <div class="edit-subject-info-content"><%= ((@goal.deadline - @goal.startline) / 86400).to_i %>日間</div>
+              <% elsif @goal.deadline.present? %>
+                <div class="edit-subject-info-content"><%= ((@goal.deadline - @goal.created_at) / 86400).to_i %>日間</div>
+              <% else %>
+                <div class="edit-subject-info-content">※期限が設定されていません。</div>
+              <% end %>
             </div>
           </div>
           <%= form_with(model:[@community, @goal], local:true, class: "form") do |f| %>
@@ -34,6 +48,15 @@
               <label><%= f.label :content, "メンバー全員で達成したいゴール", class: "form-label" %><span class="form-note">必須</span></label>
               <div>
                 <%= f.text_area :content, class: "form-area-small" %>
+              </div>
+              <div id="error_explanation">
+                <% if @goal.errors.any? && @goal.errors.has_key?(:content) %>
+                  <ul class="all-error-messages">
+                    <% @goal.errors[:content].each do |message| %>
+                      <li class="each-error-message"><%= message %></li>
+                    <% end %>
+                  </ul>
+                <% end %>
               </div>
               <div class="comment">
                 <i class="fa-solid fa-circle-info">ゴール設定の手順</i>

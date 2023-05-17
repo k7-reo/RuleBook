@@ -53,6 +53,15 @@
                       <div class="form-check-box-label"><%= user.text %></div>
                     <% end %>
                   </div>
+                  <div id="error_explanation">
+                    <% if @meeting.errors.any? && @meeting.errors.has_key?(:user_ids) %>
+                      <ul class="all-error-messages">
+                        <% @meeting.errors[:user_ids].each do |message| %>
+                          <li class="each-error-message"><%= message %></li>
+                        <% end %>
+                      </ul>
+                    <% end %>
+                  </div>
                   <div>
                     <label><%= f.label :content, "議事録", class: "form-label" %><span class="form-note-optional">任意</span></label>
                     <div>
@@ -95,6 +104,7 @@
                 <div class="submission">
                   <%= f.submit "一時保存", name: 'save', class: "done-btn" %>
                   <%= f.submit "MTG終了", name: 'done', class: "done-btn" %>
+                  <%= link_to "削除", community_meeting_path(@community.id, @meeting.id), method: :delete, class: "alt-link-cta" %>
                 </div>
               <% end %>
             </div>

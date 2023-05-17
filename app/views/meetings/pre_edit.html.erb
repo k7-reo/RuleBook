@@ -18,17 +18,34 @@
             </div>
             <div class="edit-subject-info-section">
               <div class="edit-subject-info-label">話したいこと</div>
-              <div class="edit-subject-info-content"><%= safe_join(@meeting.agenda.split("\n"),tag(:br)) %></div>
+              <% if @meeting.agenda.present? %>
+                <div class="edit-subject-info-content"><%= safe_join(@meeting.agenda.split("\n"),tag(:br)) %></div>
+              <% else %>
+                <div class="edit-subject-info-content">※未定</div>
+              <% end %>
             </div>
             <div class="edit-subject-info-section">
               <div class="edit-subject-info-label">場所</div>
-              <div class="edit-subject-info-content"><%= @meeting.place %></div>
+              <% if @meeting.place.present? %>
+                <div class="edit-subject-info-content"><%= @meeting.place %></div>
+              <% else %>
+                <div class="edit-subject-info-content">※未定</div>
+              <% end %>
             </div>
             <div class="edit-subject-info-section">
               <div class="edit-subject-info-label">予定日時</div>
-                <% if @meeting.date.present? %>
-                  <div class="edit-subject-info-content"><%= @meeting.date.to_s(:datetime_jp) %>日間</div>
+
+              <% if @meeting.date.present? %>
+                <div class="edit-subject-info-content"><%= @meeting.date.to_s(:datetime_jp) %>日間</div>
+              <% end %>
+            </div>
+            <div class="edit-subject-info-section">
+              <div class="edit-subject-info-label">参加メンバー</div>
+              <div class="edit-subject-info-content">
+                <% @meeting.users.each do |user| %>
+                  <%= user.name %>
                 <% end %>
+              </div>
             </div>
           </div>
           <%= form_with(model: [@community, @meeting], url: community_meeting_path(@community.id, @meeting.id), local:true, class: "form") do |f| %> <!-- communityモデル、mottoモデルそれぞれにデータを保存するため、両モデル指定-->
@@ -36,6 +53,15 @@
               <label><%= f.label :name, "会議名", class: "form-label" %><span class="form-note">必須</span></label>
               <div>
                 <%= f.text_field :name, class: "form-area-small" %>
+              </div>
+              <div id="error_explanation">
+                <% if @meeting.errors.any? && @meeting.errors.has_key?(:name) %>
+                  <ul class="all-error-messages">
+                    <% @meeting.errors[:name].each do |message| %>
+                      <li class="each-error-message"><%= message %></li>
+                    <% end %>
+                  </ul>
+                <% end %>
               </div>
             </div>
             <div class="form-section">
@@ -54,6 +80,33 @@
               <label><%= f.label :date, "予定日時", class: "form-label" %><span class="form-note">必須</span></label>
               <div>
                 <%= f.datetime_field :date %>
+              </div>
+              <div id="error_explanation">
+                <% if @meeting.errors.any? && @meeting.errors.has_key?(:date) %>
+                  <ul class="all-error-messages">
+                    <% @meeting.errors[:date].each do |message| %>
+                      <li class="each-error-message"><%= message %></li>
+                    <% end %>
+                  </ul>
+                <% end %>
+              </div>
+            </div>
+            <div class="form-section">
+              <label><%= f.label :user_ids, "参加予定メンバー", class: "form-label" %><span class="form-note">必須</span></label>
+              <div class="form-check-box">
+                <%= collection_check_boxes(:meeting, :user_ids, User.joins(:community_users).where(community_users: {community_id: params[:community_id]}), :id, :name, include_hidden: false) do |user| %>
+                  <div><%= user.check_box %></div>
+                  <div class="form-check-box-label"><%= user.text %></div>
+                <% end %>
+              </div>
+              <div id="error_explanation">
+                <% if @meeting.errors.any? && @meeting.errors.has_key?(:user_ids) %>
+                  <ul class="all-error-messages">
+                    <% @meeting.errors[:user_ids].each do |message| %>
+                      <li class="each-error-message"><%= message %></li>
+                    <% end %>
+                  </ul>
+                <% end %>
               </div>
             </div>
             <div class="submission">

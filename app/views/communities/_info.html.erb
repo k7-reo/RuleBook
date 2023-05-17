@@ -42,7 +42,9 @@
             </div>
           </div>
           <div class="community-info-window-submission">
-            <%= link_to "編集する", edit_community_path(community.id), class: "community-info-window-submission-cta" %>
+            <% if community.owner_id == current_user.id %>
+              <%= link_to "編集する", edit_community_path(community.id), class: "community-info-window-submission-cta" %>
+            <% end %>
           </div>
          </div>
       </div>

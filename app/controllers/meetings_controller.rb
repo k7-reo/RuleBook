@@ -10,12 +10,23 @@ class MeetingsController < ApplicationController
 
   def create
     @community = Community.find(params[:community_id])
-    meeting = Meeting.new(meeting_params)
-    meeting.community_id = @community.id
-    meeting.user_id = current_user.id
-    meeting.status = 0
-    meeting.save
-    redirect_to community_meetings_path(@community.id)
+    @meeting = Meeting.new(meeting_params)
+    @meeting.community_id = @community.id
+    @meeting.user_id = current_user.id
+    @meeting.status = 0
+    userIds = params[:meeting][:user_ids]
+    if userIds.present?
+      userIds.each do |user_id| #user_idsで配列されているuser一人一人をruleに関連づける。(MeetingUser中間テーブルに保存。)
+        user = User.find(user_id.to_i)
+        @meeting.users << user #関連付ける。
+      end
+    end
+    if @meeting.save
+      redirect_to community_meetings_path(@community.id)
+    else
+      @currentUser = CommunityUser.find_by(user_id: current_user.id, community_id: params[:community_id]) #community-info表示に利用
+      render 'new'
+    end
   end
 
   def pre_edit
@@ -32,69 +43,95 @@ class MeetingsController < ApplicationController
 
   def update
     @community = Community.find(params[:community_id])
-    meeting = Meeting.find(params[:id])
-    if meeting.users.present?
-      oldUserIds = meeting.users.pluck(:id)#もともと登録されているユーザーの#idを配列で取得
-    end
+    @meeting = Meeting.find(params[:id])
+    oldUserIds = @meeting.users.pluck(:id)#もともと登録されているユーザーの#idを配列で取得
     newUserIds = params[:meeting][:user_ids] #新しく登録されるユーザー
-    if params[:change]
-      meeting.update(meeting_params)
-      redirect_to community_meetings_path(@community.id)
-    elsif params[:save] #一時保存だったら
-      meeting.status = 1
+    if params[:change] #事前変更だったら
       if oldUserIds.present?
         oldUserIds.each do |userId|
-          user = MeetingUser.find_by(meeting_id: meeting.id, user_id: userId.to_i)
+          user = MeetingUser.find_by(meeting_id: @meeting.id, user_id: userId.to_i)
           user.destroy
         end
       end
       if newUserIds.present?
         newUserIds.each do |user_id| #user_idsで配列されているuser一人一人をruleに関連づける。(MeetingUser中間テーブルに保存。)
           user = User.find(user_id.to_i)
-          meeting.users << user #関連付ける。
+          @meeting.users << user #関連付ける。
         end
       end
-      meetingUsers = MeetingUser.where(meeting_id: meeting.id) #中間テーブルの各community_idの保存。
+      meetingUsers = MeetingUser.where(meeting_id: @meeting.id) #中間テーブルの各community_idの保存。
       meetingUsers.each do |user|
         user.community_id = params[:community_id]
         user.save
       end
-      meeting.update(meeting_params)
-      redirect_to community_meetings_path(@community.id)
-    elsif params[:done] #MTG終了だったら
-      meeting.status = 2
-      if oldUserIds.present?
-        oldUserIds.each do |userId|
-          user = MeetingUser.find_by(meeting_id: meeting.id, user_id: userId.to_i)
-          user.destroy
-        end
-      end
-      if newUserIds.present?
-        newUserIds.each do |user_id| #user_idsで配列されているuser一人一人をruleに関連づける。(MeetingUser中間テーブルに保存。)
-          user = User.find(user_id.to_i)
-          meeting.users << user #関連付ける。
-        end
-      end
-      meetingUsers = MeetingUser.where(meeting_id: meeting.id) #中間テーブルの各community_idの保存。
-      meetingUsers.each do |user|
-        user.community_id = params[:community_id]
-        user.save
-      end
-      if meeting.update(meeting_params)
+      if @meeting.update(meeting_params)
         redirect_to community_meetings_path(@community.id)
-        if meeting.next_name.present? || meeting.next_agenda.present? || meeting.next_date.present?
+      else
+        @currentUser = CommunityUser.find_by(user_id: current_user.id, community_id: params[:community_id]) #community-info表示に利用
+        render 'pre_edit'
+      end
+    elsif params[:save] #一時保存だったら
+      @meeting.status = 1
+      if oldUserIds.present?
+        oldUserIds.each do |userId|
+          user = MeetingUser.find_by(meeting_id: @meeting.id, user_id: userId.to_i)
+          user.destroy
+        end
+      end
+      if newUserIds.present?
+        newUserIds.each do |user_id| #user_idsで配列されているuser一人一人をruleに関連づける。(MeetingUser中間テーブルに保存。)
+          user = User.find(user_id.to_i)
+          @meeting.users << user #関連付ける。
+        end
+      end
+      meetingUsers = MeetingUser.where(meeting_id: @meeting.id) #中間テーブルの各community_idの保存。
+      meetingUsers.each do |user|
+        user.community_id = params[:community_id]
+        user.save
+      end
+      if @meeting.update(meeting_params)
+        redirect_to community_meetings_path(@community.id)
+      else
+        @currentUser = CommunityUser.find_by(user_id: current_user.id, community_id: params[:community_id]) #community-info表示に利用
+        render 'edit'
+      end
+    elsif params[:done] #MTG終了だったら
+      @meeting.status = 2
+      if oldUserIds.present?
+        oldUserIds.each do |userId|
+          user = MeetingUser.find_by(meeting_id: @meeting.id, user_id: userId.to_i)
+          user.destroy
+        end
+      end
+      if newUserIds.present?
+        newUserIds.each do |user_id| #user_idsで配列されているuser一人一人をruleに関連づける。(MeetingUser中間テーブルに保存。)
+          user = User.find(user_id.to_i)
+          @meeting.users << user #関連付ける。
+        end
+      end
+      meetingUsers = MeetingUser.where(meeting_id: @meeting.id) #中間テーブルの各community_idの保存。
+      meetingUsers.each do |user|
+        user.community_id = params[:community_id]
+        user.save
+      end
+      if @meeting.update(meeting_params)
+        redirect_to community_meetings_path(@community.id)
+        if @meeting.next_name.present? || @meeting.next_agenda.present? || @meeting.next_date.present?
           existMeeting = Meeting.find_by(community_id: @community.id, status: 0)
           unless existMeeting.present?
             nextMeeting = Meeting.new
             nextMeeting.community_id = @community.id
             nextMeeting.user_id = current_user.id
-            nextMeeting.name = meeting.next_name
-            nextMeeting.date = meeting.next_date
-            nextMeeting.agenda = meeting.next_agenda
-            nextMeeting.place = meeting.next_place
+            nextMeeting.name = @meeting.next_name
+            nextMeeting.date = @meeting.next_date
+            nextMeeting.agenda = @meeting.next_agenda
+            nextMeeting.place = @meeting.next_place
             nextMeeting.save
           end
         end
+      else
+        @currentUser = CommunityUser.find_by(user_id: current_user.id, community_id: params[:community_id]) #community-info表示に利用
+        render 'edit'
       end
     end
   end

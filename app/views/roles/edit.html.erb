@@ -7,31 +7,51 @@
     <%= render 'communities/info', community: @community, currentUser: @currentUser %>
   </div>
   <div class="community-main">
-    <div class="gray-background">
-      <div class="section-title">役割編集</div>
-      <div class="edit-subject-info">
-        <div class="edit-subject-info-section">
-          <div class="edit-subject-info-label">役割</div>
-          <div class="edit-subject-info-content"><%= @role.content %></div>
-        </div>
-      </div>
-      <%= form_with(model: [@community, @user, @role], url: community_user_role_path{@community.id}, local: true, class: "form") do |f| %>
-        <div class="form-section">
-          <label><%= f.label :content, "このコミュニティにおけるあなたの役", class: "form-label" %><span class="form-note">必須</span></label>
-          <div>
-            <%= f.text_field :content, class: "form-area-small" %>
-          </div>
-          <div class="comment">
-            <i class="fa-solid fa-circle-info"> 設定のヒント</i>
-            <div class="comment-content">
-              ゴール達成を意識して、自分が担うべき役割を考えましょう。
+    <div class="members-all">
+      <div class="members-left">
+        <div class="gray-background">
+          <div class="section-title">役割編集</div>
+          <div class="edit-subject-info">
+            <div class="edit-subject-info-section">
+              <div class="edit-subject-info-label">役割</div>
+              <div class="edit-subject-info-content"><%= @role.content %></div>
+            </div>
+            <div class="edit-subject-info-section">
+              <div class="edit-subject-info-label">作成日時</div>
+              <div class="edit-subject-info-content"><%= @role.created_at.to_s(:datetime_jp) %></div>
             </div>
           </div>
+          <%= form_with(model: [@community, @user, @role], url: community_user_role_path{@community.id}, local: true, class: "form") do |f| %>
+            <div class="form-section">
+              <label><%= f.label :content, "このコミュニティにおけるあなたの役", class: "form-label" %><span class="form-note">必須</span></label>
+              <div>
+                <%= f.text_field :content, class: "form-area-small" %>
+              </div>
+              <div id="error_explanation">
+                <% if @role.errors.any? && @role.errors.has_key?(:content) %>
+                  <ul class="all-error-messages">
+                    <% @role.errors[:content].each do |message| %>
+                      <li class="each-error-message"><%= message %></li>
+                    <% end %>
+                  </ul>
+                <% end %>
+              </div>
+              <div class="comment">
+                <i class="fa-solid fa-circle-info"> 設定のヒント</i>
+                <div class="comment-content">
+                  ゴール達成を意識して、自分が担うべき役割を考えましょう。
+                </div>
+              </div>
+            </div>
+            <div class="submission">
+              <%= f.submit '編集完了', class: "done-btn" %>
+              <%= link_to '削除', community_user_role_path(@community.id), method: :delete, class: "alt-link-cta" %>
+            </div>
+          <% end %>
         </div>
-        <div class="submission">
-          <%= f.submit '編集完了', class: "done-btn" %>
-          <%= link_to '削除', community_user_role_path(@community.id), method: :delete, class: "alt-link-cta" %>
-        </div>
-      <% end %>
+      </div>
+      <div class="members-right">
+        <%= render 'users/member_comparison' %>
+      </div>
     </div>
   </div>

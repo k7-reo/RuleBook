@@ -10,22 +10,26 @@ class PenaltiesController < ApplicationController
 
   def create
     @community = Community.find(params[:community_id])
-    penalty = Penalty.new(penalty_params)
-    penalty.user_id = current_user.id
-    penalty.community_id = @community.id
-    penalty.save!
-    #履歴登録↓
-    newRecord = Record.new
-    newRecord.community_id = @community.id
-    newRecord.penalty_id = penalty.id
-    newRecord.content = penalty.content
-    newRecord.point = penalty.point
-    newRecord.user_id = current_user.id
-    newRecord.updating_user_id = current_user.id
-    newRecord.version = 1
-    newRecord.action_type = "Penalty"
-    newRecord.save
-    redirect_to community_privileges_path(@community.id)
+    @penalty = Penalty.new(penalty_params)
+    @penalty.user_id = current_user.id
+    @penalty.community_id = @community.id
+    if @penalty.save
+      #履歴登録↓
+      newRecord = Record.new
+      newRecord.community_id = @community.id
+      newRecord.penalty_id = @penalty.id
+      newRecord.content = @penalty.content
+      newRecord.point = @penalty.point
+      newRecord.user_id = current_user.id
+      newRecord.updating_user_id = current_user.id
+      newRecord.version = 1
+      newRecord.action_type = "Penalty"
+      newRecord.save
+      redirect_to community_privileges_path(@community.id)
+    else
+      @currentUser = CommunityUser.find_by(user_id: current_user.id, community_id: params[:community_id]) #community-info表示に利用
+      render 'new'
+    end
   end
 
   def edit
@@ -36,22 +40,26 @@ class PenaltiesController < ApplicationController
 
   def update
     @community = Community.find(params[:community_id])
-    penalty = Penalty.find(params[:id])
-    penalty.updating_user_id = current_user.id
-    penalty.update(penalty_params)
-    #履歴登録↓
-    oldRecord = Record.find_by(penalty_id: penalty.id)
-    newRecord = Record.new
-    newRecord.community_id = @community.id
-    newRecord.penalty_id = penalty.id
-    newRecord.content = penalty.content
-    newRecord.point = penalty.point
-    newRecord.user_id = penalty.user_id
-    newRecord.updating_user_id = current_user.id
-    newRecord.version = oldRecord.version + 1
-    newRecord.action_type = "Penalty"
-    newRecord.save
-    redirect_to community_privileges_path(@community.id)
+    @penalty = Penalty.find(params[:id])
+    @penalty.updating_user_id = current_user.id
+    if @penalty.update(penalty_params)
+      #履歴登録↓
+      oldRecord = Record.find_by(penalty_id: @penalty.id)
+      newRecord = Record.new
+      newRecord.community_id = @community.id
+      newRecord.penalty_id = @penalty.id
+      newRecord.content = @penalty.content
+      newRecord.point = @penalty.point
+      newRecord.user_id = @penalty.user_id
+      newRecord.updating_user_id = current_user.id
+      newRecord.version = oldRecord.version + 1
+      newRecord.action_type = "Penalty"
+      newRecord.save
+      redirect_to community_privileges_path(@community.id)
+    else
+      @currentUser = CommunityUser.find_by(user_id: current_user.id, community_id: params[:community_id]) #community-info表示に利用
+      render 'edit'
+    end
   end
 
   def destroy

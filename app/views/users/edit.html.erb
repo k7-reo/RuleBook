@@ -4,10 +4,28 @@
     <div class="form-section">
       <label for="inputName", class="form-label">ユーザーネーム</label><span class="form-note">必須</span>
       <div><%= f.text_field :name, autofocus: true, id:"inputName", placeholder:"ユーザー名", class: "form-area-small" %></div>
+      <div id="error_explanation">
+        <% if @user.errors.any? && @user.errors.has_key?(:name) %>
+          <ul class="all-error-messages">
+            <% @user.errors[:name].each do |message| %>
+              <li class="each-error-message"><%= message %></li>
+            <% end %>
+          </ul>
+        <% end %>
+      </div>
     </div>
     <div class="form-section">
       <label for="inputEmail", class="form-label">メールアドレス</label><span class="form-note">必須</span>
       <div><%= f.text_field :email, id:"inputEmail", placeholder:"メールアドレス", class: "form-area-small" %></div>
+      <div id="error_explanation">
+        <% if @user.errors.any? && @user.errors.has_key?(:email) %>
+          <ul class="all-error-messages">
+            <% @user.errors[:email].each do |message| %>
+              <li class="each-error-message"><%= message %></li>
+            <% end %>
+          </ul>
+        <% end %>
+      </div>
     </div>
     <div class="form-section">
       <label for="inputImage", class="form-label">プロフィール画像</label><span class="form-note-optional">任意</span>

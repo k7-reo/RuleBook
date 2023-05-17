@@ -9,22 +9,29 @@ class GoalsController < ApplicationController
   end
 
   def create
-    community = Community.find(params[:community_id])
-    goal = Goal.new(goal_params)
-    goal.user_id = current_user.id
-    goal.community_id = community.id
-    goal.save
-    redirect_to community_path(community.id)
-    #履歴登録↓
-    newRecord = Record.new
-    newRecord.community_id = community.id
-    newRecord.goal_id = goal.id
-    newRecord.content = goal.content
-    newRecord.user_id = current_user.id
-    newRecord.updating_user_id = current_user.id
-    newRecord.version = 1 #1→作成
-    newRecord.action_type = "Goal"
-    newRecord.save
+    @community = Community.find(params[:community_id])
+    @goal = Goal.new(goal_params)
+    @goal.user_id = current_user.id
+    @goal.community_id = @community.id
+    if @goal.deadline.present? && @goal.startline.nil?
+      @goal.startline = @goal.created_at
+    end
+    if @goal.save
+      redirect_to community_path(@community.id)
+      #履歴登録↓
+      newRecord = Record.new
+      newRecord.community_id = @community.id
+      newRecord.goal_id = @goal.id
+      newRecord.content = @goal.content
+      newRecord.user_id = current_user.id
+      newRecord.updating_user_id = current_user.id
+      newRecord.version = 1 #1→作成
+      newRecord.action_type = "Goal"
+      newRecord.save
+    else
+      @currentUser = CommunityUser.find_by(user_id: current_user.id, community_id: params[:community_id]) #community-info表示に利用
+      render 'new'
+    end
   end
 
   def edit
@@ -34,21 +41,25 @@ class GoalsController < ApplicationController
   end
 
   def update
-    community = Community.find(params[:community_id])
-    goal = Goal.find(params[:id])
-    goal.update(goal_params)
-    redirect_to community_path(community.id)
-    #履歴登録↓
-    oldRecord = Record.find_by(goal_id: goal.id)
-    newRecord = Record.new
-    newRecord.community_id = community.id
-    newRecord.goal_id = goal.id
-    newRecord.content = goal.content
-    newRecord.user_id = goal.user_id
-    newRecord.updating_user_id = current_user.id
-    newRecord.version = oldRecord.version + 1
-    newRecord.action_type = "Goal"
-    newRecord.save
+    @community = Community.find(params[:community_id])
+    @goal = Goal.find(params[:id])
+    if @goal.update(goal_params)
+      redirect_to community_path(@community.id)
+      #履歴登録↓
+      oldRecord = Record.find_by(goal_id: @goal.id)
+      newRecord = Record.new
+      newRecord.community_id = @community.id
+      newRecord.goal_id = @goal.id
+      newRecord.content = @goal.content
+      newRecord.user_id = @goal.user_id
+      newRecord.updating_user_id = current_user.id
+      newRecord.version = oldRecord.version + 1
+      newRecord.action_type = "Goal"
+      newRecord.save
+    else
+      @currentUser = CommunityUser.find_by(user_id: current_user.id, community_id: params[:community_id]) #community-info表示に利用
+      render 'edit'
+    end
   end
 
   def index

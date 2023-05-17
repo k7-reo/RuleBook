@@ -51,7 +51,7 @@ class CommunitiesController < ApplicationController
         if @goal.startline.present? #startが指定されてない時は、updated＿atをスタートにする
           startline = @goal.startline
         else @goal.startline.present?
-          startline = @goal.updated_at
+          startline = @goal.created_at
         end
         total_time = @goal.deadline - startline
         passed_time = now - startline

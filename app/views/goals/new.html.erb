@@ -17,6 +17,15 @@
               <div>
                 <%= f.text_area :content, class: "form-area-small" %>
               </div>
+              <div id="error_explanation">
+                <% if @goal.errors.any? && @goal.errors.has_key?(:content) %>
+                  <ul class="all-error-messages">
+                    <% @goal.errors[:content].each do |message| %>
+                      <li class="each-error-message"><%= message %></li>
+                    <% end %>
+                  </ul>
+                <% end %>
+              </div>
               <div class="comment">
                 <i class="fa-solid fa-circle-info">ゴール設定の手順</i>
                 <div class="comment-content">

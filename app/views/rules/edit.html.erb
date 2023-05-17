@@ -25,6 +25,14 @@
               <div class="edit-subject-info-content"><%= @rule.genre %></div>
             </div>
             <div class="edit-subject-info-section">
+              <div class="edit-subject-info-label">対象メンバー</div>
+              <div class="edit-subject-info-content">
+                <% @rule.users.each do |user| %>
+                  <%= user.name %>
+                <% end %>
+              </div>
+            </div>
+            <div class="edit-subject-info-section">
               <div class="edit-subject-info-label">作成者</div>
               <div class="edit-subject-info-content"><%= @rule.creating_user.name %></div>
             </div>
@@ -43,15 +51,42 @@
             <div class="form-section">
               <label><%= f.label :content, "ルール", class: "form-label" %><span class="form-note">必須</span></label>
               <div><%= f.text_field :content, autofocus: true, class: "form-area-small" %></div>
+              <div id="error_explanation">
+                <% if @rule.errors.any? && @rule.errors.has_key?(:content) %>
+                  <ul class="all-error-messages">
+                    <% @rule.errors[:content].each do |message| %>
+                      <li class="each-error-message"><%= message %></li>
+                    <% end %>
+                  </ul>
+                <% end %>
+              </div>
             </div>
             <div class="form-section">
               <label><%= f.label :point, "ポイント増減", class: "form-label" %><span class="form-note">必須</span></label>
               <div><%= f.text_field :point, placeholder:"マイナス指定可、半角数字", class: "form-area-small" %></div>
+              <div id="error_explanation">
+                <% if @rule.errors.any? && @rule.errors.has_key?(:point) %>
+                  <ul class="all-error-messages">
+                    <% @rule.errors[:point].each do |message| %>
+                      <li class="each-error-message"><%= message %></li>
+                    <% end %>
+                  </ul>
+                <% end %>
+              </div>
             </div>
             <div class="form-section">
               <label><%= f.label :genre, "ジャンル", class: "form-label" %><span class="form-note">必須</span></label>
               <div>
                 <%= f.select :genre, [["お金", "お金"], ["家事", "家事"], ["キャリア・仕事", "キャリア・仕事"], ["育児", "育児"], ["人間関係・コミュニケーション", "人間関係・コミュニケーション"], ["セックス・性的関係", "セックス・性的関係"], ["趣味・休日", "趣味・休日"], ["行事・イベント", "行事・イベント"], ["健康管理・医療", "健康管理・医療"], ["住まい・生活環境", "住まい・生活環境"], ["プライバシー・個人情報", "プライバシー・個人情報"], ["その他", "その他"]], include_blank: "選択してください" %>
+              </div>
+              <div id="error_explanation">
+                <% if @rule.errors.any? && @rule.errors.has_key?(:genre) %>
+                  <ul class="all-error-messages">
+                    <% @rule.errors[:genre].each do |message| %>
+                      <li class="each-error-message"><%= message %></li>
+                    <% end %>
+                  </ul>
+                <% end %>
               </div>
             </div>
             <div class="form-section">
@@ -62,6 +97,13 @@
                   <div class="form-check-box-label"><%= user.text %></div>
                 <% end %>
               </div>
+              <% if @rule.errors.any? && @rule.errors.has_key?(:user_ids) %>
+                <ul class="all-error-messages">
+                  <% @rule.errors[:user_ids].each do |message| %>
+                    <li class="each-error-message"><%= message %></li>
+                  <% end %>
+                </ul>
+              <% end %>
             </div>
             <div class="submission">
               <%= f.submit '編集完了', class: "done-btn" %>

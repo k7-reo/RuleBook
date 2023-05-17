@@ -35,9 +35,9 @@ class RulesController < ApplicationController
     @rule = Rule.new(rule_params)
     @rule.user_id = current_user.id #ルール制作者
     @rule.community_id = @community.id
-    @userIds=params[:rule][:user_ids] #[][]に連続※params[]の意味：送られてきた情報を受け取る。今回のcreateアクションではformに記載された情報をストロングパラメーターとして送っており、それを取得している。
-    if @rule.save
-      @userIds.each do |user_id| #user_idsで配列されているuser一人一人をruleに関連づける。(RuleUser中間テーブルに保存。)
+    userIds = params[:rule][:user_ids] #[][]に連続※params[]の意味：送られてきた情報を受け取る。今回のcreateアクションではformに記載された情報をストロングパラメーターとして送っており、それを取得している。
+    if userIds.present?
+      userIds.each do |user_id| #user_idsで配列されているuser一人一人をruleに関連づける。(RuleUser中間テーブルに保存。)
         user = User.find(user_id.to_i)
         @rule.users << user #関連付ける。
       end
@@ -46,6 +46,8 @@ class RulesController < ApplicationController
         user.community_id = params[:community_id]
         user.save
       end
+    end
+    if @rule.save!
       newRecord = Record.new
       newRecord.community_id = @community.id
       newRecord.rule_id = @rule.id
@@ -59,7 +61,12 @@ class RulesController < ApplicationController
       newRecord.save
       redirect_to community_rules_path(@community.id)
     else
-      render 'new'
+      @currentUser = CommunityUser.find_by(user_id: current_user.id, community_id: params[:community_id]) #community-info表示に利用
+      if request.url.include?('positive') #URLにpositiveが含まれる場合
+        render 'new_positive'
+      elsif request.url.include?('negative')  #URLにnegativeが含まれる場合
+        render 'new_negative'
+      end
     end
   end
 
@@ -91,37 +98,44 @@ class RulesController < ApplicationController
 
   def update
     @community = Community.find(params[:community_id])
-    rule = Rule.find(params[:id])
-    rule.updating_user_id = current_user.id
-    oldUserIds = rule.users.pluck(:id) #idを配列で取得
-    newUserIds = params[:rule][:user_ids].map(&:to_i) #文字の配列として受け取ったidを数に変換
-    if rule.update(rule_params)
-      destroyUserIds = oldUserIds - newUserIds
-      destroyUserIds.each do |destroy_user_id|
-        user = RuleUser.find_by(rule_id: rule.id, user_id: destroy_user_id)
+    @rule = Rule.find(params[:id])
+    @rule.updating_user_id = current_user.id
+    oldUserIds = @rule.users.pluck(:id) #idを配列で取得
+    newUserIds = params[:rule][:user_ids]
+    if oldUserIds.present?
+      oldUserIds.each do |userId|
+        user = RuleUser.find_by(rule_id: @rule.id, user_id: userId.to_i)
         user.destroy
       end
-      newUserIds.each do |user_id|
-        unless oldUserIds.include?(user_id)
-          user = User.find(user_id)
-          rule.users << user
-        end
+    end
+    if newUserIds.present?
+      newUserIds.each do |userId|
+        user = User.find(userId.to_i)
+        @rule.users << user #関連付ける。
       end
+    end
+    ruleUsers = RuleUser.where(rule_id: @rule.id) #中間テーブルの各community_idの保存。
+    ruleUsers.each do |user|
+      user.community_id = params[:community_id]
+      user.save
+    end
+    if @rule.update(rule_params)
       redirect_to community_rules_path(@community.id)
       #履歴登録↓
-      oldRecord = Record.find_by(rule_id: rule.id)
+      oldRecord = Record.find_by(rule_id: @rule.id)
       newRecord = Record.new
       newRecord.community_id = @community.id
-      newRecord.rule_id = rule.id
-      newRecord.content = rule.content
-      newRecord.point = rule.point
-      newRecord.genre = rule.genre
-      newRecord.user_id = rule.user_id
+      newRecord.rule_id = @rule.id
+      newRecord.content = @rule.content
+      newRecord.point = @rule.point
+      newRecord.genre = @rule.genre
+      newRecord.user_id = @rule.user_id
       newRecord.updating_user_id = current_user.id
       newRecord.version = oldRecord.version + 1
       newRecord.action_type = "Rule"
       newRecord.save
     else
+      @currentUser = CommunityUser.find_by(user_id: current_user.id, community_id: params[:community_id]) #community-info表示に利用
       render 'edit'
     end
   end

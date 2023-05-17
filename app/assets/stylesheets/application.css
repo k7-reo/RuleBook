@@ -275,7 +275,7 @@ tbody td:last-child {
 
 .form-section {
   padding: 8px 32px;
-  margin: 4px 0;
+  margin-bottom: 4px;
   width: fit-content;
   background-color: rgba(68, 196, 138, 1);
   border-radius: 16px;
@@ -307,6 +307,7 @@ tbody td:last-child {
 
 .form-check-box {
   display: flex;
+  height: 16px;
 }
 
 /*チェックボックスのラベルのズレ微調整*/
@@ -347,8 +348,8 @@ tbody td:last-child {
 /* 「プラス」アイコン*/
 .fa-square-plus {
   position: relative;
-  top: 4px;
-  right: 8px;
+  top: 8px;
+  right: 12px;
 }
 
 .fa-circle {
@@ -451,4 +452,5 @@ textarea {
 .edit-subject-info-content {
   margin-left: 8px;
   line-height: 20px;
+  white-space: nowrap;
 }

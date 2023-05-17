@@ -18,4 +18,8 @@ class User < ApplicationRecord
   has_many :meeting_users
   has_many :meetings, through: :meeting_users
   has_one_attached :profile_image #ActiveStrageによる画像保存機能
+
+  validates :name, presence: { message: "ユーザーネームを入力してください。" }
+  validates :email, presence: { message: "メールアドレスを入力してください。" }
+
 end

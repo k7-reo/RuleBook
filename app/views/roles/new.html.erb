@@ -7,24 +7,40 @@
     <%= render 'communities/info', community: @community, currentUser: @currentUser %>
   </div>
   <div class="community-main">
-    <div class="gray-background">
-      <div class="section-title">役割新規作成</div>
-      <%= form_with(model: [@community, @user, @role], local: true, class: "form") do |f| %>
-        <div class="form-section">
-          <label><%= f.label :content, "このコミュニティにおけるあなたの役割", class: "form-label" %><span class="form-note">必須</span></label>
-          <div>
-            <%= f.text_field :content, class: "form-area-small" %>
-          </div>
-          <div class="comment">
-            <i class="fa-solid fa-circle-info"> 設定のヒント</i>
-            <div class="comment-content">
-              ゴール達成を意識して、自分が担うべき役割を考えましょう。
+    <div class="members-all">
+      <div class="members-left">
+        <div class="gray-background">
+          <div class="section-title">役割新規作成</div>
+          <%= form_with(model: [@community, @user, @role], local: true, class: "form") do |f| %>
+            <div class="form-section">
+              <label><%= f.label :content, "このコミュニティにおけるあなたの役割", class: "form-label" %><span class="form-note">必須</span></label>
+              <div>
+                <%= f.text_field :content, class: "form-area-small" %>
+              </div>
+              <div id="error_explanation">
+                <% if @role.errors.any? && @role.errors.has_key?(:content) %>
+                  <ul class="all-error-messages">
+                    <% @role.errors[:content].each do |message| %>
+                      <li class="each-error-message"><%= message %></li>
+                    <% end %>
+                  </ul>
+                <% end %>
+              </div>
+              <div class="comment">
+                <i class="fa-solid fa-circle-info"> 設定のヒント</i>
+                <div class="comment-content">
+                  ゴール達成を意識して、自分が担うべき役割を考えましょう。
+                </div>
+              </div>
             </div>
-          </div>
+            <div class="submission">
+              <%= f.submit '作成', class: "done-btn" %>
+            </div>
+          <% end %>
         </div>
-        <div class="submission">
-          <%= f.submit '作成', class: "done-btn" %>
-        </div>
-      <% end %>
+      </div>
+      <div class="members-right">
+        <%= render 'users/member_comparison' %>
+      </div>
     </div>
   </div>

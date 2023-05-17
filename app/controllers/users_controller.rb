@@ -12,7 +12,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = CommunityUser.find_by(user_id: current_user.id, community_id: params[:community_id]) #community-info表示に利用
+    @user = CommunityUser.find_by(user_id: params[:id], community_id: params[:community_id]) #community-info表示に利用
     @community = Community.find(params[:community_id])
     @communityUsers = CommunityUser.where(community_id: params[:community_id], status: 1).order(point_abs: :desc)
     @targetingPositiveRules = Rule.joins(:rule_users).where("rules.community_id = ? and rules.point >= 0", params[:community_id] ).where('rule_users.user_id' => params[:id])
@@ -29,9 +29,9 @@ class UsersController < ApplicationController
   end
 
   def update
-    user = User.find_by(id: current_user.id)
-    if user.update(user_params)
-      user.profile_image.attach(params[:user][:profile_image])
+    @user = User.find_by(id: current_user.id)
+    if @user.update(user_params)
+      @user.profile_image.attach(params[:user][:profile_image])
       redirect_to top_path
     else
       render 'edit'

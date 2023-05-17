@@ -18,22 +18,26 @@ class PrivilegesController < ApplicationController
 
   def create
     @community = Community.find(params[:community_id])
-    privilege = Privilege.new(privilege_params)
-    privilege.user_id = current_user.id
-    privilege.community_id = @community.id
-    privilege.save
-    #履歴登録↓
-    newRecord = Record.new
-    newRecord.community_id = @community.id
-    newRecord.privilege_id = privilege.id
-    newRecord.content = privilege.content
-    newRecord.point = privilege.point
-    newRecord.user_id = current_user.id
-    newRecord.updating_user_id = current_user.id
-    newRecord.version = 1
-    newRecord.action_type = "Privilege"
-    newRecord.save
-    redirect_to community_privileges_path(@community.id)
+    @privilege = Privilege.new(privilege_params)
+    @privilege.user_id = current_user.id
+    @privilege.community_id = @community.id
+    if @privilege.save
+      #履歴登録↓
+      newRecord = Record.new
+      newRecord.community_id = @community.id
+      newRecord.privilege_id = @privilege.id
+      newRecord.content = @privilege.content
+      newRecord.point = @privilege.point
+      newRecord.user_id = current_user.id
+      newRecord.updating_user_id = current_user.id
+      newRecord.version = 1
+      newRecord.action_type = "Privilege"
+      newRecord.save
+      redirect_to community_privileges_path(@community.id)
+    else
+      @currentUser = CommunityUser.find_by(user_id: current_user.id, community_id: params[:community_id]) #community-info表示に利用
+      render 'new'
+    end
   end
 
   def edit
@@ -44,22 +48,26 @@ class PrivilegesController < ApplicationController
 
   def update
     @community = Community.find(params[:community_id])
-    privilege = Privilege.find(params[:id])
-    privilege.updating_user_id = current_user.id
-    privilege.update(privilege_params)
-    #履歴登録↓
-    oldRecord = Record.find_by(privilege_id: privilege.id)
-    newRecord = Record.new
-    newRecord.community_id = @community.id
-    newRecord.privilege_id = privilege.id
-    newRecord.content = privilege.content
-    newRecord.point = privilege.point
-    newRecord.user_id = privilege.user_id
-    newRecord.updating_user_id = current_user.id
-    newRecord.version = oldRecord.version + 1
-    newRecord.action_type = "Privilege"
-    newRecord.save
-    redirect_to community_privileges_path(@community.id)
+    @privilege = Privilege.find(params[:id])
+    @privilege.updating_user_id = current_user.id
+    if @privilege.update(privilege_params)
+      #履歴登録↓
+      oldRecord = Record.find_by(privilege_id: privilege.id)
+      newRecord = Record.new
+      newRecord.community_id = @community.id
+      newRecord.privilege_id = @privilege.id
+      newRecord.content = @privilege.content
+      newRecord.point = @privilege.point
+      newRecord.user_id = @privilege.user_id
+      newRecord.updating_user_id = current_user.id
+      newRecord.version = oldRecord.version + 1
+      newRecord.action_type = "Privilege"
+      newRecord.save
+      redirect_to community_privileges_path(@community.id)
+    else
+      @currentUser = CommunityUser.find_by(user_id: current_user.id, community_id: params[:community_id]) #community-info表示に利用
+      render 'edit'
+    end
   end
 
   def destroy
