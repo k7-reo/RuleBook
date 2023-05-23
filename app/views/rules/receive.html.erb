@@ -117,8 +117,8 @@
               <div class="each-join-request-date-subject"><%= user.updated_at.to_s(:datetime_jp) %></div>
             </div>
             <div class="each-join-request-submission">
-              <%= link_to "許可する", accept_path(user.id), class: "each-join-request-submission-cta" %>
-              <%= link_to "拒否する", decline_path(user.id), class: "each-join-request-submission-cta" %>
+              <%= link_to "許可する", accept_path(user.community_id, user.id), class: "each-join-request-submission-cta" %>
+              <%= link_to "拒否する", decline_path(user.community_id, user.id), class: "each-join-request-submission-cta" %>
             </div>
           </div>
           <% end %>

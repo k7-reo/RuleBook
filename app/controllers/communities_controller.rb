@@ -1,6 +1,7 @@
 class CommunitiesController < ApplicationController
 
-  before_action :community_owner, only: [:edit, :update, :destroy, :accept]
+  before_action :community_owner1, only: [:accept]
+  before_action :community_owner2, only: [:edit, :update, :destroy]
   before_action :community_user, only: [:show]
 
   def new
@@ -12,7 +13,7 @@ class CommunitiesController < ApplicationController
     @community.owner_id = current_user.id
     @community.users << current_user
     #CommunityUserの当該ユーザーのstatusを1にしたい
-    if @community.save
+    if @community.save!
       community_user = CommunityUser.find_by(user_id: current_user.id, community_id: @community.id)
       community_user.status = 1
       community_user.save
@@ -130,7 +131,15 @@ end
     params.require(:rule).permit(:content, :point, :genre, :date)
   end
 
-  def community_owner
+  def community_owner1
+    community = Community.find(params[:community_id])
+    unless community.owner_id == current_user.id
+      redirect_to top_path
+      #「オーナーのみ設定可能です」のnotice
+    end
+  end
+
+  def community_owner2
     community = Community.find(params[:id])
     unless community.owner_id == current_user.id
       redirect_to top_path

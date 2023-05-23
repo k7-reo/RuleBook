@@ -38,6 +38,15 @@
                   対象ユーザーが設定されていません。
                 <% end %>
               </div>
+              <div id="error_explanation">
+                <% if @standby.errors.any? && @standby.errors.has_key?(:executed_user_id) %>
+                  <ul class="all-error-messages">
+                    <% @standby.errors[:executed_user_id].each do |message| %>
+                      <li class="each-error-message"><%= message %></li>
+                    <% end %>
+                  </ul>
+                <% end %>
+              </div>
             </div>
             <div class="form-section">
               <label><%= f.label :detail, "補足", class: "form-label" %><span class="form-note-optional">任意</span></label>

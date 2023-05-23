@@ -4,11 +4,29 @@
   <div class="field form-section">
     <%= f.label :email, "メールアドレス", class: "form-label" %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-area-small" %>
+    <div id="error_explanation">
+      <% if @user.errors.any? && @user.errors.has_key?(:email) %>
+        <ul class="all-error-messages">
+          <% @user.errors[:email].each do |message| %>
+            <li class="each-error-message"><%= message %></li>
+          <% end %>
+        </ul>
+      <% end %>
+    </div>
   </div>
 
   <div class="field form-section">
     <%= f.label :password, "パスワード", class: "form-label" %><br />
     <%= f.password_field :password, autocomplete: "current-password", class: "form-area-small" %>
+    <div id="error_explanation">
+      <% if @user.errors.any? && @user.errors.has_key?(:password) %>
+        <ul class="all-error-messages">
+          <% @user.errors[:password].each do |message| %>
+            <li class="each-error-message"><%= message %></li>
+          <% end %>
+        </ul>
+      <% end %>
+    </div>
   </div>
 
   <% if devise_mapping.rememberable? %>

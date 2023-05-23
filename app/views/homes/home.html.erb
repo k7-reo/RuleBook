@@ -1,24 +1,101 @@
   <div class="home-all">
-    <div class="home-header">
-      <div class="home-header-logo">Gachiru.</div>
-      <div class="home-header-description">夫婦・カップルの対話を活性化させるルール管理ツール</div>
+    <div class="home-top">
+      <div class="home-top-background"><%= image_tag 'home_first_view_image.png' %></div>
+      <div class="home-top-scripts-wrapper">
+        <div class="home-top-scripts">
+          <div class="home-app-description">
+            <div class="home-app-description-line">感情に左右されない快適なパートナーシップをあなたに</div>
+          </div>
+          <div class="home-app-poem">
+            <div class="home-app-poem-line">自分のプライドが邪魔をして、相手への甘えが出て、分かっていながら適切なコミュニケーションを取れずにいる。</div>
+            <div class="between-line"></div>
+            <div class="home-app-poem-line">改善したいと思うけど、真剣に話し合うのは照れくさいし、建設的な話ができるだろうか。</div>
+            <div class="between-line"></div>
+            <div class="home-app-poem-line">共通のゴールは結束力を高め、パートナーは補い合うべき仲間になるでしょう。ルール決定への対話は互いの理解を深め、不満は減っていくでしょう。</div>
+          </div>
+        </div>
+      </div>
+      <div class="home-registration"><%= link_to "今すぐGachiru.", new_user_registration_path, class: "home-registration-cta" %></div>
     </div>
-
-    <div class="home-main">
-      <p>
-        いつからだろう。<br>
-        自分のプライドが邪魔をして、相手への甘えが出て、<br>
-        悪いと分かっていても、適切なコミュニケーションを取れずにいる。<br>
-        <br>
-        関係を改善したいけど、<br>
-        直接話し合うのは照れくさいし、建設的な話ができるだろうか。<br>
-        <br>
-        Gachiru.はパートナーと共にゴールやルールを管理するツールです。<br>
-        共通のゴールは結束力を高め、パートナーは補い合うべき仲間になるでしょう。<br>
-        ルール決定に向けた対話は互いの理解を深め、不満は減っていくでしょう。<br>
-        <br>
-        さあ、Gachiru.を使って、<br>
-        「感情に左右されない快適なパートナーシップ」を築きましょう。
-      </p>
+    <div class="home-middle">
+      <div class="home-app-function-copy">パートナーとの認識を共有し仕組み化するツール「Gachiru.」</div>
+      <div class="home-app-functions-wrapper">
+        <div class="home-app-functions">
+          <div class="home-app-function">
+            <div class="function-index"><em>Action 1</em></div>
+            <div class="function-title">共通ゴールを設定する</div>
+            <div class="function-image"><%= image_tag '1_goal.png', size: '200x100' %></div>
+            <div class="function-detail">
+              <div class="function-detail-section"><span class="function-detail-title">機能</span>ゴール設定</div>
+            </div>
+          </div>
+          <i class="fa-solid fa-circle-chevron-right to-next-icon"></i>
+          <div class="home-app-function">
+            <div class="function-index"><em>Action 2</em></div>
+            <div class="function-title">決まりごと設定する</div>
+            <div class="function-image"><%= image_tag '2_plan.png', size: '200x100' %></div>
+            <div class="function-detail">
+              <div class="function-detail-section"><span class="function-detail-title">機能</span>スローガン作成</div>
+              <div class="function-detail-section"><span class="function-detail-title">機能</span>ルール作成</div>
+              <div class="function-detail-section"><span class="function-detail-title">機能</span>報酬作成</div>
+              <div class="function-detail-section"><span class="function-detail-title">機能</span>ペナルティ作成</div>
+            </div>
+          </div>
+          <i class="fa-solid fa-circle-chevron-right to-next-icon"></i>
+          <div class="home-app-function">
+            <div class="function-index"><em>Action 3</em></div>
+            <div class="function-title">ルールを実行する</div>
+            <div class="function-image"><%= image_tag '3_do.png', size: '200x100' %></div>
+            <div class="function-detail">
+              <div class="function-detail-section"><span class="function-detail-title">機能</span>ルール実行</div>
+              <div class="function-detail-section"><span class="function-detail-title">機能</span>報酬取得</div>
+              <div class="function-detail-section"><span class="function-detail-title">機能</span>ペナルティ実行</div>
+            </div>
+          </div>
+          <i class="fa-solid fa-circle-chevron-right to-next-icon"></i>
+          <div class="home-app-function">
+            <div class="function-index"><em>Action 4</em></div>
+            <div class="function-title">振り返る・改善する</div>
+            <div class="function-image"><%= image_tag '4_meeting.png', size: '200x100' %></div>
+            <div class="function-detail">
+              <div class="function-detail-section"><span class="function-detail-title">機能</span>ミーティング</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="home-bottom">
+      <div class="home-advices">
+        <div class="home-advice">
+          <div class="home-advice-content">
+            <div class="home-advice-content-line"><em>" パートナーとの関係を円満にするためには、ルールを共有し、お互いのニーズや期待を明確にすることが重要です。</em></div>
+            <div class="home-advice-content-line"><em>そして、共通の目標を持ち、それに向かって協力することで、より良い関係を築くことができます。"</em></div>
+          </div>
+          <div class="home-advice-detail">
+            <span class="home-advice-detail-person">ジュリー・ゴットマン</span>
+            <span class="home-advice-detail-biography">心理学研究者・カップルセラピスト</span>
+          </div>
+        </div>
+        <div class="home-advice">
+          <div class="home-advice-content">
+            <div class="home-advice-content-line"><em>" 夫婦はチームであり、共同経営者である。"</em></div>
+          </div>
+          <div class="home-advice-detail">
+            <span class="home-advice-detail-person">ビル・ゲイツ</span>
+            <span class="home-advice-detail-biography">マイクロソフト創業者・慈善家</span>
+          </div>
+        </div>
+        <div class="home-advice">
+          <div class="home-advice-content">
+            <div class="home-advice-content-line"><em>" 真のコミュニケーションは、お互いを支え合う絆を築く力です。"</em></div>
+          </div>
+          <div class="home-advice-detail">
+            <span class="home-advice-detail-person">マザー・テレサ</span>
+            <span class="home-advice-detail-biography">修道女・人道主義者</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="home-footer">
     </div>
   </div>

@@ -545,12 +545,16 @@ div#goalCountTimer span {
 //ミーティング
 .dashboard-meeting-detail {
   font-size: 80%;
+  padding-left: 16px;
+  padding-right: 16px;
 }
 
 //ミーティング
 .dashboard-meeting-date, .dashboard-meeting-place {
   height: 16px;
   line-height: 16px;
+  white-space: nowrap;
+  overflow-x: scroll;
 }
 
 //ミーティング
@@ -687,3 +691,4 @@ div#goalCountTimer span {
   height: 100%;
   object-fit: cover;
 }
+

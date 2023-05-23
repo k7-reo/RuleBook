@@ -29,7 +29,7 @@ class RulesController < ApplicationController
     @currentUser = CommunityUser.find_by(user_id: current_user.id, community_id: params[:community_id]) #community-info表示に利用
   end
 
-  def create
+  def create_positive
     @community = Community.find(params[:community_id])
     #ruleレコード保存↓
     @rule = Rule.new(rule_params)
@@ -47,7 +47,7 @@ class RulesController < ApplicationController
         user.save
       end
     end
-    if @rule.save!
+    if @rule.save
       newRecord = Record.new
       newRecord.community_id = @community.id
       newRecord.rule_id = @rule.id
@@ -62,11 +62,44 @@ class RulesController < ApplicationController
       redirect_to community_rules_path(@community.id)
     else
       @currentUser = CommunityUser.find_by(user_id: current_user.id, community_id: params[:community_id]) #community-info表示に利用
-      if request.url.include?('positive') #URLにpositiveが含まれる場合
-        render 'new_positive'
-      elsif request.url.include?('negative')  #URLにnegativeが含まれる場合
-        render 'new_negative'
+      render 'new_positive'
+    end
+  end
+
+  def create_negative
+    @community = Community.find(params[:community_id])
+    #ruleレコード保存↓
+    @rule = Rule.new(rule_params)
+    @rule.user_id = current_user.id #ルール制作者
+    @rule.community_id = @community.id
+    userIds = params[:rule][:user_ids] #[][]に連続※params[]の意味：送られてきた情報を受け取る。今回のcreateアクションではformに記載された情報をストロングパラメーターとして送っており、それを取得している。
+    if userIds.present?
+      userIds.each do |user_id| #user_idsで配列されているuser一人一人をruleに関連づける。(RuleUser中間テーブルに保存。)
+        user = User.find(user_id.to_i)
+        @rule.users << user #関連付ける。
       end
+      ruleUsers = RuleUser.where(rule_id: @rule.id) #中間テーブルの各community_idの保存。
+      ruleUsers.each do |user|
+        user.community_id = params[:community_id]
+        user.save
+      end
+    end
+    if @rule.save
+      newRecord = Record.new
+      newRecord.community_id = @community.id
+      newRecord.rule_id = @rule.id
+      newRecord.content = @rule.content
+      newRecord.point = @rule.point
+      newRecord.genre = @rule.genre
+      newRecord.user_id = current_user.id
+      newRecord.updating_user_id = current_user.id
+      newRecord.version = 1
+      newRecord.action_type = "Rule"
+      newRecord.save
+      redirect_to community_rules_path(@community.id)
+    else
+      @currentUser = CommunityUser.find_by(user_id: current_user.id, community_id: params[:community_id]) #community-info表示に利用
+      render 'new_positive'
     end
   end
 
@@ -153,19 +186,25 @@ class RulesController < ApplicationController
     @rule = Rule.find(params[:rule_id])
     userIds = params[:standby][:executed_user_id]
     detail = params[:standby][:detail]
-    userIds.each do |user_id|
-      standby = Standby.new(standby_params)
-      standby.executing_user_id = current_user.id
-      standby.executed_user_id = user_id
-      standby.detail = detail
-      standby.community_id = @community.id
-      standby.rule_id = @rule.id
-      standby.content = @rule.content
-      standby.point = @rule.point
-      standby.action_type = 'rule'
-      standby.save!
+    if userIds.present?
+      userIds.each do |user_id|
+        @standby = Standby.new(standby_params)
+        @standby.executing_user_id = current_user.id
+        @standby.executed_user_id = user_id
+        @standby.detail = detail
+        @standby.community_id = @community.id
+        @standby.rule_id = @rule.id
+        @standby.content = @rule.content
+        @standby.point = @rule.point
+        @standby.action_type = 'rule'
+        unless @standby.save
+          @targetUsers = User.joins(:rule_users).where(rule_users: {rule_id: params[:rule_id]}).where.not(id: current_user.id)
+          @currentUser = CommunityUser.fifnd_by(user_id: current_user.id, community_id: params[:community_id]) #community-info表示に利用
+          render 'execute' and return # エラーメッセージを表示してアクションを終了
+        end
+      end
+      redirect_to community_rules_path(@community.id) # 保存が成功した場合のリダイレクト
     end
-    redirect_to community_rules_path(@community.id)
   end
 
   def receive #ルール実行申請を受けての承認/否認のアクション(notificationアクションが実装できたら移行)
@@ -208,7 +247,7 @@ class RulesController < ApplicationController
   end
 
   def standby_params
-    params.require(:standby).permit(:executing_user_id, :executed_user_id, :community_id, :rule_id).merge(executing_user_id: current_user.id)
+    params.require(:standby).permit(:executing_user_id, :executed_user_id, :community_id, :rule_id)
   end
 
   def record_params

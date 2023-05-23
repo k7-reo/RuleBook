@@ -54,8 +54,8 @@ a:hover {
   line-height: 24px;
   color: #ffffff;
   font-weight: bold;
-  margin-top: 16px;
-  margin-left: 16px;
+  padding-top: 16px;
+  padding-left: 16px;
   font-size: 120%;
 }
 
@@ -90,7 +90,6 @@ header {
 }
 
 .sign-in-user {
-  position: relative;
   position: fixed;
   top: 0;
   right: 0;
@@ -117,6 +116,26 @@ header {
   top: 8px;
   right: 38px;
   z-index: 1005;
+}
+
+.user-sign-in-cta {
+  display: inline-block;
+  position: fixed;
+  top: 14px;
+  right: 20px;
+  font-size: 80%;
+  font-weight: bold;
+  height: 20px;
+  background-color: #44c48a;
+  color: #ffffff;
+  border-radius: 16px;
+  padding: 4px 16px;
+  margin-right: -4px;
+}
+
+.user-sign-in-cta:hover {
+  background-color: #ffd139;
+  color: #343842;
 }
 
 .slide-menu {
@@ -157,6 +176,8 @@ main {
   top: 56px; /* header-areaの高さに合わせる。 */
   height: calc(100% - 56px); /* header-areaの高さを引く。 */
   width: 100%;
+  overflow-x: hidden;
+  overflow-y: scroll;
 }
 
 .community-background img {
@@ -165,7 +186,6 @@ main {
   width: 100%;
   height: 100%;
   object-fit: cover;
-
 }
 
 .community-info {
@@ -201,10 +221,12 @@ main {
 }
 
 .notes {
-  margin-left: 16px;
-  margin-right: 16px;
-  margin-top: 2px;
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-top: 2px;
+  padding-bottom: 2px;
   font-size: 80%;
+  font-weight: bold;
 }
 
 /*「・」を抜く*/
@@ -453,4 +475,8 @@ textarea {
   margin-left: 8px;
   line-height: 20px;
   white-space: nowrap;
+}
+
+.between-line {
+  font-size: 50%;
 }

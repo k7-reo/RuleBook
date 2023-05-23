@@ -34,6 +34,8 @@
               <%= image_tag("f_f_event_98_s512_f_event_98_0bg.jpg", style: "width: 40px; height: 40px;", class: "sign-in-user-profile-image-cta") %>
             <% end %>
           </div>
+        <% else %>
+          <div class="user-sign-in"><%= link_to "ログイン", new_user_session_path, class: "user-sign-in-cta" %></div>
         <% end %>
       </div>
       <div class="slide-menu">

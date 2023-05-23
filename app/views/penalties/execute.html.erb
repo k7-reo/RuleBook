@@ -19,6 +19,15 @@
               <div>
                 <%= f.collection_select :executed_user_id, User.joins(:community_users).where(community_users: {community_id: params[:community_id]}).where.not(id: current_user.id), :id, :name, include_blank: "ユーザー選択" %>
               </div>
+              <div id="error_explanation">
+                <% if @standby.errors.any? && @standby.errors.has_key?(:executed_user_id) %>
+                  <ul class="all-error-messages">
+                    <% @standby.errors[:executed_user_id].each do |message| %>
+                      <li class="each-error-message"><%= message %></li>
+                    <% end %>
+                  </ul>
+                <% end %>
+              </div>
             </div>
             <div class="submittion">
               <%= f.submit '実行完了申請', class: "done-btn" %>

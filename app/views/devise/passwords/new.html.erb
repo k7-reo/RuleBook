@@ -2,11 +2,18 @@
 
 <div class="form">
   <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-    <%= render "devise/shared/error_messages", resource: resource %>
-
     <div class="field form-section">
-      <%= f.label :email, "メールアドレス", class: "form-label" %><br />
-      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-area-small" %>
+      <div><%= f.label :email, "メールアドレス", class: "form-label" %></div>
+      <div><%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-area-small" %></div>
+      <div id="error_explanation">
+      <% if @user.errors.any? && @user.errors.has_key?(:email) %>
+        <ul class="all-error-messages">
+          <% @user.errors[:email].each do |message| %>
+            <li class="each-error-message"><%= message %></li>
+          <% end %>
+        </ul>
+      <% end %>
+    </div>
     </div>
 
     <div class="actions">

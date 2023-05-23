@@ -12,8 +12,8 @@ Rails.application.routes.draw do
   get "denial/:id" => 'rules#denial', as: "denial"
   get "forgive/:id" => 'penalties#forgive', as:"forgive" #as:""でURLはforgiveとしつつ、 receive.htmlに送っているStandbyのid(@standbyPenaltiesとして取得している)も参照できるような記載の仕方
   get "forbid/:id" => 'penalties#forbid', as:"forbid"
-  get "accept/:id" => "communities#accept", as:"accept" #as:""でURLはforgiveとしつつ、 receive.htmlに送っているCommunityUserのid(@unacceptedUsersとして取得している)も参照できるような記載の仕方
-  get "decline/:id" => "communities#decline", as:"decline"
+  get "accept/community/:community_id/user/:id" => "communities#accept", as:"accept" #as:""でURLはforgiveとしつつ、 receive.htmlに送っているCommunityUserのid(@unacceptedUsersとして取得している)も参照できるような記載の仕方
+  get "decline/community/:community_id/user/:id" => "communities#decline", as:"decline"
 
   resources :users do
     resources :notes
@@ -32,7 +32,9 @@ Rails.application.routes.draw do
       post "execute" => 'rules#execute_create' #ルール実行申請。standbyテーブルにテーブルを新しく作成。
     end
     get "new_positive_rule" => 'rules#new_positive'
+    post "create_positive" => 'rules#create_positive'
     get "new_negative_rule" => 'rules#new_negative'
+    post "create_negative" => 'rules#create_negative'
     resources :mottos
     resources :privileges do
       get "execute" => 'privileges#execute' #今すぐ受けられる特典を「実行」したときのアクション

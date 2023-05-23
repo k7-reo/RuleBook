@@ -1,29 +1,63 @@
 <div class="page-title">新規登録</div>
 
 <%= form_with model: @user, url: user_registration_path, local: true, class: "form" do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
-
   <div class="field form-section">
-    <%= f.label :name, "ユーザーネーム", class: "form-label" %><br />
-    <%= f.text_field :name, autofocus: true, class: "form-area-small" %>
+    <div><%= f.label :name, "ユーザーネーム", class: "form-label" %></div>
+    <div><%= f.text_field :name, autofocus: true, class: "form-area-small" %></div>
+    <div id="error_explanation">
+      <% if @user.errors.any? && @user.errors.has_key?(:name) %>
+        <ul class="all-error-messages">
+          <% @user.errors[:name].each do |message| %>
+            <li class="each-error-message"><%= message %></li>
+          <% end %>
+        </ul>
+      <% end %>
+    </div>
   </div>
 
   <div class="field form-section">
-    <%= f.label :email, "メールアドレス", class: "form-label" %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-area-small" %>
+    <div><%= f.label :email, "メールアドレス", class: "form-label" %></div>
+    <div><%= f.text_field :email, autofocus: true, autocomplete: "email", class: "form-area-small" %></div>
+    <div id="error_explanation">
+      <% if @user.errors.any? && @user.errors.has_key?(:email) %>
+        <ul class="all-error-messages">
+          <% @user.errors[:email].each do |message| %>
+            <li class="each-error-message"><%= message %></li>
+          <% end %>
+        </ul>
+      <% end %>
+    </div>
   </div>
 
   <div class="field form-section">
-    <%= f.label :password, "パスワード", class: "form-label" %>
+    <div><%= f.label :password, "パスワード", class: "form-label" %>
     <% if @minimum_password_length %>
     <em class="form-note">(<%= @minimum_password_length %>文字以上)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password", class: "form-area-small" %>
+    <% end %></div>
+    <div><%= f.password_field :password, autocomplete: "new-password", class: "form-area-small" %></div>
+    <div id="error_explanation">
+      <% if @user.errors.any? && @user.errors.has_key?(:password) %>
+        <ul class="all-error-messages">
+          <% @user.errors[:password].each do |message| %>
+            <li class="each-error-message"><%= message %></li>
+          <% end %>
+        </ul>
+      <% end %>
+    </div>
   </div>
 
   <div class="field form-section">
-    <%= f.label :password_confirmation, "パスワード再確認", class: "form-label" %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-area-small" %>
+    <div><%= f.label :password_confirmation, "パスワード再確認", class: "form-label" %></div>
+    <div><%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-area-small" %></div>
+    <div id="error_explanation">
+      <% if @user.errors.any? && @user.errors.has_key?(:password_confirmation) %>
+        <ul class="all-error-messages">
+          <% @user.errors[:password_confirmation].each do |message| %>
+            <li class="each-error-message"><%= message %></li>
+          <% end %>
+        </ul>
+      <% end %>
+    </div>
   </div>
 
   <div class="actions submittion">

@@ -10,6 +10,7 @@ class Community < ApplicationRecord
   has_many :records, dependent: :destroy
   has_many :meetings, dependent: :destroy
   has_one_attached :community_image #ActiveStrageによる画像保存機能
+  
   validates :community_name, presence: { message: "コミュニティ名を入力してください。" }
 
   def self.search(search)

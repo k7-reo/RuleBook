@@ -90,18 +90,22 @@ class PenaltiesController < ApplicationController
   def execute_create #penalty実行完了申請。この時点でcommunity_userのpointにポイント反映。否認されれば申請前のポイントに戻る。
     @community = Community.find(params[:community_id])
     @penalty = Penalty.find(params[:penalty_id])
-    standby = Standby.new(standby_params)
-    standby.executing_user_id = current_user.id
-    standby.community_id = @community.id
-    standby.penalty_id = @penalty.id
-    standby.content = @penalty.content
-    standby.point = @penalty.point
-    standby.action_type = 'penalty'
-    standby.save!
-    community_user = CommunityUser.find_by(user_id: current_user.id, community_id: @community.id)
-    community_user.monthly_point += standby.point
-    community_user.save
-    redirect_to community_privileges_path(@community.id)
+    @standby = Standby.new(standby_params)
+    @standby.executing_user_id = current_user.id
+    @standby.community_id = @community.id
+    @standby.penalty_id = @penalty.id
+    @standby.content = @penalty.content
+    @standby.point = @penalty.point
+    @standby.action_type = 'penalty'
+    if @standby.save
+      community_user = CommunityUser.find_by(user_id: current_user.id, community_id: @community.id)
+      community_user.monthly_point += @standby.point
+      community_user.save
+      redirect_to community_privileges_path(@community.id)
+    else
+      @currentUser = CommunityUser.find_by(user_id: current_user.id, community_id: params[:community_id]) #community-info表示に利用
+      render 'execute'
+    end
   end
 
   def forgive #penalty実行承認

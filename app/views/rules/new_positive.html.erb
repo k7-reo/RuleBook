@@ -11,7 +11,7 @@
       <div class="rules-left">
         <div class="gray-background">
           <div class="section-title">プラスルール新規作成</div>
-          <%= form_with(model:[@community, @rule], url: community_rules_path{@community.id}, local:true, class: "form") do |f| %> <!--modelが配列してある理由：ネストしている時は親(community)のインスタンスも必要になる-->
+          <%= form_with(model:[@community, @rule], url: community_create_positive_path{@community.id}, local:true, class: "form") do |f| %> <!--modelが配列してある理由：ネストしている時は親(community)のインスタンスも必要になる-->
             <div class="form-section">
               <label><%= f.label :content, "ルール内容", class: "form-label" %><span class="form-note">必須</span></label>
               <div>

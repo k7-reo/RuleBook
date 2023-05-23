@@ -8,4 +8,7 @@ class Standby < ApplicationRecord
   belongs_to :executed_user, class_name: 'User', foreign_key: :executed_user_id
   #belongs_to :{任意の名前}, class_name: 'リレーションするモデルのクラス名', foreign_key: :{リレーションするカラム名}。
   #複数Userのuser_idとリレーションを貼っている為リレーションの名前を別にする必要がある。
+
+  validates :executed_user_id, presence: { message: "対象メンバーを選択してください。" }
+
 end
