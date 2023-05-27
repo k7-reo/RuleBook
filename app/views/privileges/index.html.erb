@@ -9,6 +9,9 @@
   <div class="community-main">
     <div class="privileges-penalties-all">
       <div class="privileges-penalties-left">
+        <% if notice.present? %>
+          <div id="notice" class="notice"><%= notice %></div>
+        <% end %>
         <div class="privileges">
           <div class="privileges-header">
             <div class="section-title">報酬一覧</div>

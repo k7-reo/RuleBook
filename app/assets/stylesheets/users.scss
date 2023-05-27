@@ -10,14 +10,14 @@
 }
 
 .members-left {
-  width: calc(100% - 200px);
+  width: calc(100% - 240px);
   height: 100%;
 }
 
 .members-right {
-  width: 200px;
+  width: 240px;
   height: 100%;
-  background-color: rgba(255,209,57, 0.7);
+  background-color: rgba(68, 196, 138, 0.7);
   overflow-y: scroll;
   color: #343842;
 }
@@ -46,7 +46,7 @@
 //mypage/show役割
 .my-roles, .others-roles {
   margin: 8px;
-  background-color: rgba(52, 56, 66, 0.5);
+  background-color: #07868c;
   border-radius: 16px;
   height: calc(100% - 8px);
   width: calc(100% - 32px);
@@ -156,7 +156,7 @@
   height: 24px;
   line-height: 24px;
   text-align: center;
-  color: #343842;
+  color: #ffffff;
   font-weight: bold;
 }
 
@@ -168,7 +168,7 @@
   height: 24px;
   line-height: 24px;
   text-align: center;
-  color: #343842;
+  color: #ffffff;
   font-weight: bold;
 }
 
@@ -528,12 +528,16 @@
 
 .comparison-each-image {
   height: 42px;
+  text-align: center;
+  margin-top: 8px;
 }
 
 .comparison-each-figure {
   text-align: center;
-  font-size: 120%;
+  font-size: 150%;
   font-weight: bold;
-  height: 16px;
+  height: 20px;
+  line-height: 20px;
   color: #343842;
+  margin-top: 8px;
 }

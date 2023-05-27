@@ -161,6 +161,18 @@
             document.getElementById("meetingCountTimer").innerHTML = "あと" + days + "日"; // 指定日前の表示
           }
         }
-    </script>
-  </body>
-</html>
+      
+      // 5秒後にnoticeを非表示にする関数
+        setTimeout(function() {
+          document.getElementById('notice').style.display = 'none';
+        }, 5000);
+
+      // notice以外をクリックするとnoticeを非表示にするイベントリスナー
+        document.addEventListener('click', function(event) {
+          if (!event.target.closest('#notice')) {
+            document.getElementById('notice').style.display = 'none';
+          }
+        });
+        </script>
+      </body>
+    </html>

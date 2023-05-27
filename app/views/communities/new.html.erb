@@ -4,7 +4,7 @@
       <div class="form-section">
         <label><%= f.label :community_name, "コミュニティ名", class: "form-label" %><span class="form-note">必須</span></label>
         <div>
-          <%= f.text_field :community_name, placeholder: "250文字まで", class: "form-area-small" %>
+          <%= f.text_field :community_name, placeholder: "例）山田夫婦", class: "form-area-small" %>
         </div>
         <div id="error_explanation">
           <% if @community.errors.any? && @community.errors.has_key?(:community_name) %>
@@ -27,13 +27,13 @@
       <div class="form-section">
         <label><%= f.label :introduction, "コミュニティ概要", class: "form-label" %><span class="form-note-optional">任意</span></label>
         <div>
-          <%= f.text_area :introduction, placeholder: "30文字以内推奨", class: "form-area-large" %>
+          <%= f.text_area :introduction, placeholder: "例）山田夫婦が毎日仲良く過ごすためのルールブック", class: "form-area-large" %>
         </div>
       </div>
       <div class="form-section">
         <label><%= f.label :manual, "コミュニティ利用上の注意", class: "form-label" %><span class="form-note-optional">任意</span></label>
         <div>
-          <%= f.text_area :manual, placeholder: "独自の使い方があれば記載しましょう！", class: "form-area-large" %>
+          <%= f.text_area :manual, placeholder: "例）2人で話して決めるルール以外は無効。", class: "form-area-large" %>
         </div>
       </div>
       <div class="submission">

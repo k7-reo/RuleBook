@@ -101,7 +101,8 @@ class PenaltiesController < ApplicationController
       community_user = CommunityUser.find_by(user_id: current_user.id, community_id: @community.id)
       community_user.monthly_point += @standby.point
       community_user.save
-      redirect_to community_privileges_path(@community.id)
+      @message = "ペナルティの承認申請を送りました。"
+      redirect_to community_privileges_path(@community.id), notice: @message
     else
       @currentUser = CommunityUser.find_by(user_id: current_user.id, community_id: params[:community_id]) #community-info表示に利用
       render 'execute'

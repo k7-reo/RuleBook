@@ -15,6 +15,9 @@
             <%= submit_tag("ジャンル絞り込み", class: "btn btn-primary", class: "done-btn") %>
           <% end %>
         </div>
+        <% if notice.present? %>
+          <div id="notice" class="notice"><%= notice %></div>
+        <% end %>
         <div class="positive-rules-wrapper">
           <div class="positive-rules-header">
             <div class="section-title">プラスルール一覧</div>

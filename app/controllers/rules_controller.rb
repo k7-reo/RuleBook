@@ -203,7 +203,8 @@ class RulesController < ApplicationController
           render 'execute' and return # エラーメッセージを表示してアクションを終了
         end
       end
-      redirect_to community_rules_path(@community.id) # 保存が成功した場合のリダイレクト
+      @message = "ルールの実行が完了しました。"
+      redirect_to community_rules_path(@community.id), notice: @message # 保存が成功した場合のリダイレクト
     end
   end
 

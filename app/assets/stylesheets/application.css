@@ -209,10 +209,11 @@ main {
 .comment {
   margin-top: 2px;
   font-size: 80%;
+  color: #343842;
 }
 
 .comment:hover {
-  color: #343842;
+  color: #ffffff;
 }
 
 .comment-content {
@@ -232,51 +233,6 @@ main {
 /*「・」を抜く*/
 ul {
   list-style: none;
-}
-
-/*テーブル全体*/
-table {
-  border-collapse: separate;
-  border-spacing: 1px 12px;
-  text-align: center;
-  width: 100%;
-}
-
-/*テーブルのタイトル全体*/
-thead {
-  font-size: 80%;
-}
-
-/*テーブルのデータ全体*/
-tbody {
-  color: #343842;
-  background-color: #dddddd;
-}
-
-th, td {
-  padding: 8px 16px;
-}
-
-/*テーブルスレッドの最左のセル*/
-th:first-child, td:first-child {
-  padding-left: 16px
-}
-
-/*テーブルスレッドの最右のセル*/
-th:last-child, td:last-child {
-  padding-right: 16px
-}
-
-/*テーブルデータの最初の行*/
-tbody td:first-child {
-  border-top-left-radius: 24px;
-  border-bottom-left-radius: 24px;
-}
-
-/*テーブルデータの最後の行*/
-tbody td:last-child {
-  border-top-right-radius: 24px;
-  border-bottom-right-radius: 24px;
 }
 
 /*後々広告入れる用 */
@@ -477,6 +433,17 @@ textarea {
   white-space: nowrap;
 }
 
-.between-line {
-  font-size: 50%;
+.notice {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #ffffff;
+  border-radius: 16px;
+  border: 1px solid #44c48a;
+  width: fit-content;
+  padding: 40px 88px;
+  color: #44c48a;
+  font-weight: bold;
+  z-index: 4000;
 }
