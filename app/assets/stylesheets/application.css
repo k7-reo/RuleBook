@@ -19,7 +19,7 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  /* font-family: ""; ※全角半角でズレたりしない適切なフォントを選ぶ*/
+  font-family: 'Open Sans', sans-serif; /* ※全角半角でズレたりしない適切なフォントを選ぶ*/
   background: linear-gradient(160deg, #07868c, #44c48a);
   overflow-x: hidden; /* 画面外の要素を非表示にできる(slide-menu非表示) */
   height: 100vh;

@@ -4,21 +4,25 @@
       <div class="home-1st-scripts-wrapper">
         <div class="home-1st-scripts">
           <div class="home-app-description">
-            <div class="home-app-description-line">「察する力」に左右されない快適なパートナーシップをあなたに</div>
+            <div class="home-app-description-line">「察する力」がなくても快適なパートナーシップをあなたに</div>
           </div>
           <div class="home-app-poem">
-            <div class="home-app-poem-line">自分のプライドが邪魔をして、相手への甘えが出て、分かっていながら適切なコミュニケーションを取れずにいる。</div>
+            <div class="home-app-poem-line">価値観の違う2人。</div>
             <div class="between-line-narrow"></div>
-            <div class="home-app-poem-line">改善したいと思うけど、真剣に話し合うのは照れくさいし、建設的な話ができるだろうか。</div>
+            <div class="home-app-poem-line">いつからだろう。関係が以前のように良好じゃない。</div>
             <div class="between-line-narrow"></div>
-            <div class="home-app-poem-line">共通のゴールは結束力を高め、パートナーは補い合うべき仲間になるでしょう。ルール決定への対話は互いの理解を深め、不満は減っていくでしょう。</div>
+            <div class="home-app-poem-line">でも、自分のプライドが邪魔をして、相手への甘えが出て、分かっていながら適切なコミュニケーションを取れずにいる。</div>
+            <div class="between-line-narrow"></div>
+            <div class="home-app-poem-line">改善したくても、真剣に話し合うのは照れくさいし、そもそも建設的な話ができるだろうか。</div>
+            <div class="between-line-narrow"></div>
+            <div class="home-app-poem-line">ああ、どこから始めればいいのだろう。</div>
           </div>
         </div>
       </div>
       <div class="home-registration"><%= link_to "今すぐ無料でGachiru.", new_user_registration_path, class: "home-registration-cta" %></div>
     </div>
     <div class="home-2nd">
-      <div class="home-worries-copy">こんな<span class="emphasize-word">悩み</span>を持っていませんか？</div>
+      <div class="home-worries-copy">こんな<span class="emphasize-word-yellow">悩み</span>を持っていませんか？</div>
       <div class="home-worries-wrapper">
         <div class="home-worries-top-wrapper">
           <div class="home-worries-top">
@@ -49,11 +53,14 @@
       <div class="down-arrow"><%= image_tag 'down_arrow.png', size: '120x60' %></div>
     </div>
     <div class="home-3rd">
-      <div class="home-app-function-copy">パートナーと認識を共有し<span class="emphasize-word">仕組み化</span>するツール「Gachiru.」</div>
+      <div class="home-app-function-copy">パートナーと認識を共有し<span class="emphasize-word-yellow">見える化</span>するツール「Gachiru.」</div>
       <div class="home-app-functions-wrapper">
         <div class="home-app-functions">
           <div class="home-app-function">
-            <div class="function-index"><em>Action 1</em></div>
+            <div class="function-index">
+              <div class="function-index-image"><%= image_tag 'step.png', size: '80x80' %></div>
+              <div class="function-index-number">1</div>
+            </div>
             <div class="function-image"><%= image_tag '1_goal.png', size: '200x100' %></div>
             <div class="function-title">共通ゴールを設定する</div>
             <div class="function-usage">作成ヒントを参考にパートナーと一緒に目指すゴールを決めましょう！</div>
@@ -67,7 +74,10 @@
           </div>
           <i class="fa-solid fa-circle-chevron-right to-next-icon"></i>
           <div class="home-app-function">
-            <div class="function-index"><em>Action 2</em></div>
+            <div class="function-index">
+              <div class="function-index-image"><%= image_tag 'step.png', size: '80x80' %></div>
+              <div class="function-index-number">2</div>
+            </div>
             <div class="function-image"><%= image_tag '2_plan.png', size: '200x100' %></div>
             <div class="function-title">決まり事を設定する</div>
             <div class="function-usage">ゴール達成のために意識することや必要なルールを決めましょう！</div>
@@ -83,7 +93,10 @@
           </div>
           <i class="fa-solid fa-circle-chevron-right to-next-icon"></i>
           <div class="home-app-function">
-            <div class="function-index"><em>Action 3</em></div>
+            <div class="function-index">
+              <div class="function-index-image"><%= image_tag 'step.png', size: '80x80' %></div>
+              <div class="function-index-number">3</div>
+            </div>
             <div class="function-image"><%= image_tag '3_do.png', size: '200x100' %></div>
             <div class="function-title">ルールを実行する</div>
             <div class="function-usage">ルールを実行してポイントを貯めましょう。獲得ポイントに応じて報酬やペナルティを取得します。</div>
@@ -98,7 +111,10 @@
           </div>
           <i class="fa-solid fa-circle-chevron-right to-next-icon"></i>
           <div class="home-app-function">
-            <div class="function-index"><em>Action 4</em></div>
+            <div class="function-index">
+              <div class="function-index-image"><%= image_tag 'step.png', size: '80x80' %></div>
+              <div class="function-index-number">4</div>
+            </div>
             <div class="function-image"><%= image_tag '4_meeting.png', size: '200x100' %></div>
             <div class="function-title">振り返る・改善する</div>
             <div class="function-usage">実行状況などを確認しながらルールなどを改善しましょう！</div>
@@ -113,10 +129,15 @@
           </div>
         </div>
       </div>
+      <div class="home-effects">
+        <div class="home-effect">共通のゴール 結束力を高める</div>
+        <div class="home-effect">ゴール・ルール決定へのプロセス 互いの理解を深める</div>
+        <div class="home-effect">ルールの遂行 習慣化</div>
+      </div>
     </div>
     <div class="home-4th">
       <div class="home-advices">
-        <div class="home-advice-copy">共通のゴールやルールはこんなにも大切</div>
+        <div class="home-advice-copy">良好なパートナーシップを築くためには<span class="emphasize-word-green">仕組み</span>が必要</div>
         <div class="home-advice">
           <div class="home-advice-content">
             <div class="home-advice-content-line"><em>" パートナーとの関係を円満にするためには、ルールを共有し、お互いのニーズや期待を明確にすることが重要です。</em></div>
@@ -164,7 +185,7 @@
             <div class="administrator-message-line">忙しい中でも1人の時間を確保するためのものでした。</div>
             <div class="between-line-wide"></div>
             <div class="administrator-message-line">ルールというツールを通して、私たち夫婦は初めて真剣に向き合うことができました。</div>
-            <div class="administrator-message-line">ルールは関係を縛るものではなく、理想の関係を築くため核になるものです。</div>
+            <div class="administrator-message-line">ルールは関係を縛るものではなく、理想の関係を築くための基盤になるものです。</div>
             <div class="between-line-wide"></div>
             <div class="administrator-message-line">皆さんにも「Gachiru.」をきっかけに、パートナーとの理解を深めていただけると嬉しいです。</div>
           </div>

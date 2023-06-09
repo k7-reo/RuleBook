@@ -14,7 +14,7 @@
         <% end %>
         <div class="privileges">
           <div class="privileges-header">
-            <div class="section-title">報酬一覧</div>
+            <div class="section-title">報酬</div>
             <div class="privilege-new-header">
               <% if @community.privileges.present? %>
                 <%= link_to new_community_privilege_path(@community.id) do %>
@@ -53,7 +53,7 @@
         </div>
         <div class="penalties">
           <div class="penalties-header">
-            <div class="section-title">ペナルティ一覧</div>
+            <div class="section-title">ペナルティ</div>
             <div class="penalties-new-header">
               <% if @community.penalties.present? %>
                 <%= link_to new_community_penalty_path(@community.id) do %>

@@ -302,6 +302,7 @@
   color: #343842;
   border-radius: 40px;
   padding: 8px 40px;
+  margin-bottom: 24px;
 }
 
 .home-registration-cta:hover {
@@ -314,15 +315,20 @@
   font-size: 150%;
   font-weight: bold;
   color: #ffffff;
-  padding-top: 80px;
+  padding-top: 56px;
   padding-bottom: 32px;
   letter-spacing: 2px;
   background-color: #07868c;
 }
 
-.emphasize-word {
+.emphasize-word-yellow {
   font-size: 150%;
   color: #ffd139;
+}
+
+.emphasize-word-green {
+  font-size: 150%;
+  color: #07868c;
 }
 
 .home-worries-wrapper {
@@ -428,31 +434,44 @@
   margin-left: auto;
   margin-right: auto;
   justify-content: center;
-  padding-bottom: 56px;
+  padding-bottom: 24px;
   align-items: center;
+}
+
+.home-effects {
+  text-align: center;
+  padding-bottom: 56px;
 }
 
 .home-app-function {
   width: 200px;
-  height: 440px;
-  margin: 16px 8px;
+  height: 420px;
+  margin: 32px 8px 16px 8px;
   background-color: #ffffff;
   border-radius: 16px;
 }
 
 .function-index {
-  background-color: #F6F6FF;
-  color: #07868c;
-  border-radius: 16px 16px 0 0;
+  position: relative;
+  bottom: 32px;
+  right: 88px;
+  height: 16px;
   text-align: center;
   font-weight: bold;
-  padding-top: 8px;
-  padding-bottom: 8px;
+  z-index: 5000;
+}
+
+.function-index-number {
+  position: relative;
+  bottom: 55px;
+  height: 0;
+  text-align: center;
+  font-weight: bold;
+  font-size: 200%;
 }
 
 .function-title {
   font-size: 120%;
-  height: 20px;
   line-height: 20px;
   font-weight: bold;
   text-align: center;
@@ -518,6 +537,22 @@
   font-size: 200%;
 }
 
+.home-effects {
+  padding-top: 16px;
+}
+
+.home-effect {
+  width: fit-content;
+  font-size: 150%;
+  font-weight: bold;
+  color: #343842;
+  padding-bottom: 2px;
+  margin-bottom: 16px;
+  margin-left: auto;
+  margin-right: auto;
+  border-bottom: 2px dotted #ffd139;
+}
+
 .home-advices {
   background-color: rgba(255,209,57, 0.8);
   padding-top: 40px;
@@ -525,12 +560,12 @@
 }
 
 .home-advice-copy {
-  padding-top: 24px;
+  padding-top: 16px;
   padding-bottom: 32px;
   text-align: center;
   font-size: 150%;
   font-weight: bold;
-
+  color: #343842;
 }
 
 .home-advice {
