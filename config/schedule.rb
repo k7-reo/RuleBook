@@ -26,6 +26,7 @@ set :output, {
   error: "#{Rails.root}/log/cron_error.log",
   standard: "#{Rails.root}/log/crontab.log"
 } #cronのログ出力用ファイル
+env :PATH, ENV['PATH'] #アプリを開発している環境で実行できるように指定する。これがないと既存埋め込みの2.6で実行しようとして現在の3.1と齟齬があり実行できない。
 
 every 1.month, at: 'start of the month' do
   rake "users_point:total_monthly_point"
@@ -35,6 +36,6 @@ end
 #  rake "sample_task:reo_point_add"
 #end
 
-every '2 * * * *' do
-  rake "sample_task:reo_point_add"
-end
+#every '* * * * *' do
+#  rake "sample_task:reo_point_add"
+#end
