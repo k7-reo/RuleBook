@@ -28,7 +28,7 @@
               <%= image_tag("f_f_event_98_s512_f_event_98_0bg.jpg", style: "width: 40px; height: 40px;", class: "community-member-profile-image") %>
             <% end %>
           </div>
-          <div class="comparison-each-figure"><%= Standby.where("community_id = ? AND point > 0 AND action_type = ? AND executed_user_id = ?", @community.id, "rule", user.user_id).count %></div>
+          <div class="comparison-each-figure">  <%= Standby.where("community_id = ? AND point > 0 AND action_type = ? AND executed_user_id = ? AND updated_at >= ?", @community.id, "rule", user.user_id, Time.current.beginning_of_month).count %></div>
         </div>
       <% end %>
     </div>
@@ -45,7 +45,7 @@
               <%= image_tag("f_f_event_98_s512_f_event_98_0bg.jpg", style: "width: 40px; height: 40px;", class: "community-member-profile-image") %>
             <% end %>
           </div>
-          <div class="comparison-each-figure"><%= Standby.where("community_id = ? AND point < 0 AND action_type = ? AND executed_user_id = ?", @community.id, "rule", user.user_id).count %></div>
+          <div class="comparison-each-figure"><%= Standby.where("community_id = ? AND point < 0 AND action_type = ? AND executed_user_id = ? AND updated_at >= ?", @community.id, "rule", user.user_id, Time.current.beginning_of_month).count %></div>
         </div>
       <% end %>
     </div>

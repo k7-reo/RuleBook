@@ -276,6 +276,10 @@
   border-bottom: 1px dotted #ffffff;
 }
 
+.meeting-info-content {
+  margin-top: 8px;
+}
+
 .meeting-record {
   width: 100%;
   display: flex;
@@ -287,4 +291,46 @@
 
 .meeting-record-right {
   max-width: 70%;
+}
+
+@media screen and ( max-width:999px ) {
+  
+  .meetings-left {
+    width: calc(100% - 120px);
+  }
+
+  .meeting-record {
+    flex-direction: column;
+  }
+
+  .meeting-record-left {
+    max-width: inherit;
+  }
+
+  .meeting-info {
+    flex-direction: row;
+  }
+
+  .meeting-info-section {
+    min-width: 100px;
+  }
+
+  .meeting-info-label {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .meeting-info-section:not(:last-child) {
+    border-bottom: inherit;
+    border-right: 1px dotted #ffffff;
+    padding-right: 16px;
+  }
+
+  .meeting-info-section:not(:first-child) {
+    padding-left: 16px;
+  }
+
+  .meetings-right {
+    width: 120px;
+  }
 }

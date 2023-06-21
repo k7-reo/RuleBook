@@ -44,12 +44,13 @@
 .all-positive-rules, .all-negative-rules {
   display: flex;
   flex-wrap: wrap;
+  padding: 12px;
 }
 
 .each-positive-rule {
   width: 280px;
   height: fit-content;
-  margin: 16px;
+  margin: 4px;
   padding: 16px;
   background-color: #f47842;
   border-radius: 16px;
@@ -59,7 +60,7 @@
 .each-negative-rule {
   width: 280px;
   height: fit-content;
-  margin: 16px;
+  margin: 4px;
   padding: 16px;
   background-color: #07868c;
   border-radius: 16px;
@@ -88,6 +89,7 @@
 
 .each-positive-rule-point,
 .each-negative-rule-point {
+  height: 24px;
   font-size: 120%;
   font-weight: bold;
   margin: 0 16px;
@@ -440,4 +442,15 @@
 .rule-info,
 .executing-rule-info {
   margin: 16px;
+}
+
+@media screen and ( max-width:999px ) {
+  
+  .rules-left {
+    width: calc(100% - 120px);
+  }
+
+  .rules-right {
+    width: 120px;
+  }
 }

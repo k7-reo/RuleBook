@@ -34,6 +34,7 @@
 
 //_info
 .community-basic-info {
+  background-color: rgba(32,35,43, 0.8);
   display: flex;
 }
 
@@ -41,6 +42,7 @@
 .community-basic-info-name-title {
   font-size: 80%;
   white-space: nowrap; //自動改行させない
+  margin-left: 8px;
 }
 
 //_info
@@ -69,6 +71,7 @@
   padding: 16px 16px 4px 16px;
   border-radius: 16px;
   width: 40%;
+  min-width: 240px;
   height: fit-content;
 }
 
@@ -692,3 +695,84 @@ div#goalCountTimer span {
   object-fit: cover;
 }
 
+@media screen and ( max-width:999px ) {
+  
+  .community-dashboard-wrapper-wrapper {
+    align-items:inherit;
+  }
+
+  .community-dashboard-wrapper {
+    margin: 0;
+    width: 100%;
+    overflow-x: hidden;
+  }
+
+  .dashboard-quote {
+    height: auto;
+  }
+
+  .community-dashboard-middle {
+    display: block;
+    height: fit-content;
+  }
+
+  .dashboard-goal {
+    width: auto;
+    margin: 0 8px 0 8px;
+  }
+
+  .goal-timeline {
+    width: auto;
+  }
+
+  .dashboard-meetings {
+    flex-direction: row;
+    width: calc(100% - 8px);
+    overflow-x: scroll;
+  }
+
+  .dashboard-meeting-content {
+    position: relative;
+    height: 170px;
+  }
+
+  .dashboard-meeting-in-progress-alt-view-wrapper {
+    height: 178px;
+  }
+
+  .dashboard-back-to-meeting-cta {
+    position: absolute;
+    bottom: 8px;
+    left: calc(50% - 8px);
+    transform: translateX(-50%);
+  }
+
+  .community-dashboard-bottom {
+    display: block;
+  }
+
+  .dashboard-figures {
+    flex-direction: row;
+    width: calc(100% - 16px);
+    overflow-x: scroll;
+    margin-left: 8px;
+    margin-top: 0;
+  }
+
+  .dashboard-figure {
+    margin: 0 8px 0 0;
+
+  }
+
+  .dashboard-mottos {
+    width: auto;
+  }
+
+  .dashboard-figure-content {
+    width: 96px;
+  }
+
+  .dashboard-late-activities {
+    width: auto;
+  }
+}

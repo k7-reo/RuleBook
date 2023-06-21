@@ -473,10 +473,10 @@
 
 .member-points {
   display: flex;
-  margin-top: 8px
+  margin-top: 8px;
 }
 
-.member-point, .member-monthly_point {
+.member-point, .member-monthly-point {
   background-color: #ffffff;
   border-radius: 8px;
   margin: 8px;
@@ -506,7 +506,7 @@
 }
 
 .comparison-section {
-  margin-bottom: 32px;
+  margin-bottom: 16px;
 }
 
 .comparison-title {
@@ -529,7 +529,7 @@
 .comparison-each-image {
   height: 42px;
   text-align: center;
-  margin-top: 8px;
+  margin-top: 4px;
 }
 
 .comparison-each-figure {
@@ -540,4 +540,61 @@
   line-height: 20px;
   color: #343842;
   margin-top: 8px;
+}
+
+@media screen and ( max-width:999px ) {
+  
+  .members-left {
+    width: calc(100% - 120px);
+  }
+
+  .community-member-sum {
+    flex-direction: column;
+  }
+
+  .community-member-sum-left {
+    width: auto;
+    margin-top: 8px;
+    margin-bottom: 8px;
+  }
+
+  .community-member-sum-right {
+    width: auto;
+  }
+
+  .member-all-roles-wrapper {
+    border: inherit;
+  }
+
+  .member-all-roles {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .my-page-bottom, .others-page-bottom {
+    flex-direction: column;
+  }
+
+  .my-point-detail, .others-monthly-point-detail {
+    width: auto;
+  }
+
+  .my-monthly-point-detail, .others-point-detail {
+    width: auto;
+  }
+
+  .member-points {
+    align-items: center;
+    flex-direction: column;
+    overflow-x: scroll;
+  }
+
+  .member-point, .member-monthly-point {
+    width: calc(100% - 32px);
+    min-width: 100px;
+  }
+
+  .members-right {
+    width: 120px;
+  }
 }

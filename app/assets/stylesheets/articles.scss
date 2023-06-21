@@ -18,11 +18,13 @@
   height: 160px;
   background: linear-gradient(160deg, #20232B, #343842);
   border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .article-note {
-  height: 160px;
-  line-height: 160px;
+  line-height: 20px;
   text-align: center;
   color: #ffffff;
 }

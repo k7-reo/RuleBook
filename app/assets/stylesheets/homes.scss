@@ -553,7 +553,7 @@
   border-bottom: 2px dotted #ffd139;
 }
 
-.home-advices {
+.home-4th {
   background-color: rgba(255,209,57, 0.8);
   padding-top: 40px;
   padding-bottom: 56px;
@@ -568,29 +568,62 @@
   color: #343842;
 }
 
+.home-advices {
+  display: flex;
+  justify-content: center;
+}
+
 .home-advice {
-  margin-left: auto;
-  margin-right: auto;
-  width: 806px;
-  background-color: rgba(52, 56, 66, 0.2);
-  padding: 16px 48px;
+  margin-left: 16px;
+  margin-right: 16px;
+  width: 264px;
+  height: 264px;
   border-radius: 16px;
-  margin-bottom: 16px;
+  position: relative;
+}
+
+.home-advice-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1200;
+}
+
+.home-advice-background img {
+  width: 264px;
+  height: 264px;
+  object-fit: cover;
+  border-radius: 16px;
+}
+
+.home-advice-content {
+  position: relative;
+  background-color: rgba(52, 56, 66, 0.6);
+  border-radius: 16px;
+  z-index: 1201;
+  width: 200px;
+  height: 200px;
+  padding: 32px;
 }
 
 .home-advice-content-line {
-  text-align: center;
+  line-height: 32px;
+  height: 160px;
+  display: flex;
+  align-items: center;
 }
 
 .home-advice-detail {
+  position: relative;
+  top: 8px;
   margin-top: 4px;
-  text-align: right;
   font-size: 90%;
-  color: #343842;
+  color: #ffd139;
+  z-index: 1201;
 }
 
 .home-advice-detail-person {
-  margin-right: 8px;
   font-weight: bold;
 }
 
@@ -638,4 +671,5 @@
   width: 100%;
   height: 80px;
   background-color: rgba(255,255,255, 0.8);
+  z-index: 3000;
 }

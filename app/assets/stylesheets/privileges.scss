@@ -38,12 +38,13 @@
 .all-privileges, .all-penalties {
   display: flex;
   flex-wrap: wrap;
+  padding: 12px;
 }
 
 .each-privilege {
   width: 280px;
   height: fit-content;
-  margin: 16px;
+  margin: 4px;
   padding: 16px;
   background-color: #ffd139;
   border-radius: 16px;
@@ -53,7 +54,7 @@
 .each-penalty {
   width: 280px;
   height: fit-content;
-  margin: 16px;
+  margin: 4px;
   padding: 16px;
   background-color: #44c48a;
   border-radius: 16px;
@@ -169,4 +170,16 @@
   background-color: #07868c;
   border: 1px solid #ffffff;
   color: #ffffff;
+}
+
+@media screen and ( max-width:999px ) {
+  
+  .privileges-penalties-left {
+    width: calc(100% - 120px);
+  }
+
+  .privileges-penalties-right {
+    width: 120px;
+  }
+
 }

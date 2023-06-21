@@ -38,11 +38,12 @@
 .all-mottos {
   display: flex;
   flex-wrap: wrap;
+  padding: 12px;
 }
 
 .each-motto {
   width: 280px;
-  margin: 16px;
+  margin: 4px;
   padding: 16px;
   background-color: #44c48a;
   border-radius: 16px;
@@ -84,4 +85,15 @@
 .motto-new {
   padding-bottom: 32px;
   text-align: center;
+}
+
+@media screen and ( max-width:999px ) {
+
+  .mottos-left {
+    width: calc(100% - 120px);
+  }
+
+  .mottos-right {
+    width: 120px;
+  }
 }
