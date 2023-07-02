@@ -442,12 +442,12 @@ div#goalCountTimer span {
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 4px;
-  background-color: #fff;
   height: 16px;
   width: 16px;
   border-radius: 50px;
+  border: 1px solid #ffffff;
   line-height: 16px;
-  color: #343842;
+  color: #ffffff;
   font-weight: bold;
 }
 
@@ -526,13 +526,14 @@ div#goalCountTimer span {
 .dashboard-meeting-name {
   font-size: 120%;
   font-weight: bold;
-  height: 24px;
-  line-height: 24px;
+  height: 20px;
+  line-height: 20px;
   margin-top: 16px;
   color: #f47842;
   white-space: nowrap;
   margin-left: auto;
   margin-right: auto;
+  margin-bottom: 4px;
   width: 240px;
   overflow-x: scroll;
 }
@@ -541,8 +542,8 @@ div#goalCountTimer span {
 .dashboard-meeting-count-timer {
   font-size: 160%;
   font-weight: bold;
-  height: 32px;
-  line-height: 32px;
+  height: 24px;
+  line-height: 24px;
 }
 
 //ミーティング
@@ -603,14 +604,17 @@ div#goalCountTimer span {
 //ミーティング
 .dashboard-meeting-new-cta {
   display: inline-block;
-  height: 20px;
+  height: 16px;
+  line-height: 16px;
   background-color: #ffffff;
   font-weight: bold;
   padding: 8px;
   border-radius: 8px;
   border: 1px solid #f47842;
   color: #f47842;
+  white-space: nowrap;
 }
+
 
 //ミーティング
 .dashboard-meeting-new-cta:hover {
@@ -709,6 +713,7 @@ div#goalCountTimer span {
 
   .dashboard-quote {
     height: auto;
+    margin: 8px;
   }
 
   .community-dashboard-middle {
@@ -718,7 +723,7 @@ div#goalCountTimer span {
 
   .dashboard-goal {
     width: auto;
-    margin: 0 8px 0 8px;
+    margin: 0 16px;
   }
 
   .goal-timeline {
@@ -727,22 +732,53 @@ div#goalCountTimer span {
 
   .dashboard-meetings {
     flex-direction: row;
-    width: calc(100% - 8px);
+    width: calc(100% - 24px);
     overflow-x: scroll;
+    margin: 12px;
+  }
+
+  .dashboard-next-meeting,
+  .dashboard-meeting-in-progress {
+    width: calc(100% / 2);
   }
 
   .dashboard-meeting-content {
     position: relative;
     height: 170px;
+    width: calc(100% - 8px);
+  }
+
+  .dashboard-meeting-name {
+    margin-left: 24px;
+    margin-right: 24px;
+    width: auto;
+  }
+
+  .dashboard-meeting-new-cta {
+    position: absolute;
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .dashboard-meeting-start-cta,
+  .dashboard-back-to-meeting-cta {
+    width: 80px;
+  }
+
+  .dashboard-next-meeting-alt-view-wrapper {
+    position: relative;
+    min-width: calc(100% / 2 - 8px);
   }
 
   .dashboard-meeting-in-progress-alt-view-wrapper {
     height: 178px;
+    min-width: calc(100% / 2 - 8px);
   }
 
   .dashboard-back-to-meeting-cta {
     position: absolute;
-    bottom: 8px;
+    bottom: 16px;
     left: calc(50% - 8px);
     transform: translateX(-50%);
   }
@@ -753,26 +789,46 @@ div#goalCountTimer span {
 
   .dashboard-figures {
     flex-direction: row;
-    width: calc(100% - 16px);
+    width: calc(100% - 32px);
     overflow-x: scroll;
-    margin-left: 8px;
+    margin-left: 16px;
     margin-top: 0;
+    margin-bottom: 0;
   }
 
   .dashboard-figure {
     margin: 0 8px 0 0;
+    width: calc(100% / 4);
+  }
 
+  .dashboard-figure:nth-child(4) {
+    margin: 0;
+  }
+
+  .dashboard-figure:last-child {
+    display: none;
+  }
+
+  .dashboard-figure-content {
+    width: 100%;
   }
 
   .dashboard-mottos {
     width: auto;
+    height: auto;
+    min-height: 112px;
+    margin: 16px;
   }
 
-  .dashboard-figure-content {
-    width: 96px;
+  .dashboard-motto-list {
+    overflow-y: inherit;
+    padding-bottom: 8px;
   }
 
   .dashboard-late-activities {
     width: auto;
+    height: auto;
+    min-height: 80px;
+    margin: 16px;
   }
 }

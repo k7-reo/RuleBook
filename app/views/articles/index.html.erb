@@ -1,0 +1,21 @@
+  <div class="community-background">
+    <% if @community.community_image.attached? %>
+      <%= image_tag @community.community_image %>
+    <% end %>
+  </div>
+  <div class="community-info">
+    <%= render 'communities/info', community: @community, currentUser: @currentUser %>
+  </div>
+  <div class="community-main">
+    <div class="all-articles">
+      <div class="articles-for-beginner">
+        <div class="section-title">使い方に迷ったら</div>
+      </div>
+      <div class="articles-for-intermediate">
+        <div class="section-title">使い方に慣れてきたら</div>
+      </div>
+      <div class="articles-for-expert">
+        <div class="section-title">チャレンジしてみよう</div>
+      </div>
+    </div>
+  </div>

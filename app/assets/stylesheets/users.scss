@@ -10,12 +10,12 @@
 }
 
 .members-left {
-  width: calc(100% - 240px);
+  width: calc(100% - 200px);
   height: 100%;
 }
 
 .members-right {
-  width: 240px;
+  width: 200px;
   height: 100%;
   background-color: rgba(68, 196, 138, 0.7);
   overflow-y: scroll;
@@ -60,7 +60,7 @@
 .my-all-roles-wrapper,
 .others-all-roles-wrapper {
   box-sizing: border-box;
-  height: calc(100% - 36px);
+  height: calc(100% - 32px);
   overflow-y: scroll;
 }
 
@@ -75,6 +75,7 @@
 .my-each-role,
 .others-each-role {
   width: fit-content;
+  height: 24px;
   background-color: #F6F6FF;
   border-radius: 50px;
   margin: 8px;
@@ -184,6 +185,8 @@
 //mypage/index獲得ポイント
 .my-point,
 .others-point {
+  height: 40px;
+  line-height: 40px;
   font-size: 220%;
   font-weight: bold;
   margin: 0 16px;
@@ -221,7 +224,7 @@
   width: calc(100% / 2);
   display: flex;
   flex-direction: column;
-  overflow: scroll;
+  overflow-y: scroll;
   border-right: 1px dotted #44c48a;
 }
 
@@ -428,7 +431,6 @@
 .member-all-roles-wrapper {
   width: 100%;
   overflow: scroll;
-  border-bottom: 1px dotted #f47842;
 }
 
 .member-all-roles {
@@ -473,7 +475,6 @@
 
 .member-points {
   display: flex;
-  margin-top: 8px;
 }
 
 .member-point, .member-monthly-point {
@@ -514,7 +515,7 @@
 }
 
 .comparison-content {
-  margin-top: 8px;
+  margin-top: 4px;
   display: flex;
   overflow-x: scroll;
 }
@@ -534,10 +535,10 @@
 
 .comparison-each-figure {
   text-align: center;
-  font-size: 150%;
+  font-size: 120%;
   font-weight: bold;
-  height: 20px;
-  line-height: 20px;
+  height: 16px;
+  line-height: 16px;
   color: #343842;
   margin-top: 8px;
 }
@@ -545,7 +546,7 @@
 @media screen and ( max-width:999px ) {
   
   .members-left {
-    width: calc(100% - 120px);
+    width: calc(100% - 160px);
   }
 
   .community-member-sum {
@@ -554,7 +555,7 @@
 
   .community-member-sum-left {
     width: auto;
-    margin-top: 8px;
+    margin-top: 16px;
     margin-bottom: 8px;
   }
 
@@ -562,25 +563,29 @@
     width: auto;
   }
 
-  .member-all-roles-wrapper {
-    border: inherit;
-  }
-
   .member-all-roles {
     flex-wrap: wrap;
-    justify-content: center;
   }
 
-  .my-page-bottom, .others-page-bottom {
+  .my-page-all {
+    overflow-y: scroll;
+  }
+
+  .my-page-bottom,
+  .others-page-bottom {
+    width: calc(100% - 16px);
+    height: auto;
     flex-direction: column;
   }
 
-  .my-point-detail, .others-monthly-point-detail {
+  .my-point-detail {
     width: auto;
+    height: calc(100% / 3 * 2);
   }
 
-  .my-monthly-point-detail, .others-point-detail {
+  .my-monthly-point-detail {
     width: auto;
+    height: calc(100% / 3 * 1);
   }
 
   .member-points {
@@ -589,12 +594,111 @@
     overflow-x: scroll;
   }
 
-  .member-point, .member-monthly-point {
+  .member-point,
+  .member-monthly-point {
     width: calc(100% - 32px);
     min-width: 100px;
   }
 
-  .members-right {
-    width: 120px;
+  .others-all-targeting-rules-wrapper {
+    width: 100%;
+    border-right: inherit;
   }
+
+  .my-page-top,
+  .others-page-top {
+    width: calc(100% - 16px);
+    display: block;
+    padding: 8px 8px 0 8px;
+    height: auto;
+  }
+
+  .my-roles, .others-roles {
+    width: calc(100% - 16px);
+    height: auto;
+  }
+
+  .my-all-roles-wrapper, .others-all-roles-wrapper {
+    height: auto;
+    overflow-x: scroll;
+    overflow-y: inherit;
+  }
+
+  .others-point-detail {
+    width: calc(100% - 16px);
+    height: calc(100% /7 * 4);
+  }
+
+  .my-all-rules {
+    max-height: 400px;
+  }
+
+  .my-monthly-point,
+  .others-monthly-point {
+    padding-bottom: 8px;
+  }
+
+  .others-monthly-point-detail {
+    width:  calc(100% - 16px);
+    height: calc(100% /7 * 3);
+  }
+
+  .my-all-tasks {
+    flex-direction: column;
+  }
+
+  .my-all-remaining-tasks-wrapper,
+  .my-all-done-tasks-wrapper {
+    width: 100%;
+  }
+
+  .my-all-remaining-tasks-wrapper {
+    border-right: inherit;
+    max-height: 400px;
+    overflow-y: scroll;
+  }
+
+  .my-all-done-tasks-wrapper {
+    max-height: 400px;
+    overflow-y: scroll;
+  }
+
+  .my-point-index,
+  .others-point-index {
+    margin-top: 8px;
+  }
+
+  .my-point,
+  .others-point {
+    padding-bottom: 8px;
+  }
+
+  .others-all-rules {
+    flex-direction: column;
+  }
+
+  .others-all-targeting-rules-wrapper {
+    max-height: 400px;
+    overflow-y: scroll;
+  }
+
+  .others-all-executed-rules-wrapper {
+    width: 100%;
+    max-height: 400px;
+    overflow-y: scroll;
+  }
+
+  .others-all-done-tasks-wrapper {
+    max-height: 400px;
+    overflow-y: scroll;
+  }
+
+  .members-right {
+    width: 160px;
+  }
+
+  .member-comparison-all {
+    padding-left: 8px;
+  }
+
 }

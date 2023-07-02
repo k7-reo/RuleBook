@@ -18,8 +18,8 @@ Rails.application.routes.draw do
   resources :users do
     resources :notes
   end
-  resources :articles
   resources :communities do #URLがcommunityディレクトリ配下にrules、mottos、usersがくる
+    get "articles" => 'articles#index'
     resources :goals do
       get "achieved" => 'goals#achieved'
       get "unachieved" => 'goals#unachieved'

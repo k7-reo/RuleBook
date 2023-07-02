@@ -45,9 +45,9 @@
             <% else %>
               <div class="next-meeting-alt-view-wrapper">
                 <div class="next-meeting-alt-view">
-                  <div class="alt-text">定期的なコミュニケーションの場を設けましょう！<br>かしこまった内容でなくても構いません。</div>
-                  <div class="meeting-new"><%= link_to "会議を設定", new_community_meeting_path(@community.id), class: "dashboard-meeting-new-cta" %></div>
+                  <div class="alt-text">定期的なコミュニケーションの場を設けましょう！</div>
                 </div>
+                <div class="meeting-new"><%= link_to "会議を設定", new_community_meeting_path(@community.id), class: "meeting-new-cta" %></div>
               </div>
             <% end %>
             <% if @meetingsInProgress.present? %>
@@ -73,17 +73,19 @@
                 <% @pastMeetings.each do |meeting| %>
                   <div class="each-past-meeting">
                     <div class="each-past-meeting-top">
-                      <div class="each-past-meeting-name">
-                        <% if meeting.name.present? %>
-                          <%= meeting.name %>
-                        <% end %>
-                      </div>
-                      <div class="each-past-meeting-date">
-                        <% if meeting.date.present? %>
-                          <%= meeting.date.to_s(:datetime_jp) %>
-                        <% else %>
-                          <%= meeting.updated_at.to_s(:datetime_jp) %>
-                        <% end %>
+                      <div class="each-past-meeting-top-info">
+                        <div class="each-past-meeting-name">
+                          <% if meeting.name.present? %>
+                            <%= meeting.name %>
+                          <% end %>
+                        </div>
+                        <div class="each-past-meeting-date">
+                          <% if meeting.date.present? %>
+                            <%= meeting.date.to_s(:datetime_jp) %>
+                          <% else %>
+                            <%= meeting.updated_at.to_s(:datetime_jp) %>
+                          <% end %>
+                        </div>
                       </div>
                       <div class="each-past-meeting-detail">
                         <i class="fa-solid fa-ellipsis each-past-meeting-detail-cta"></i>

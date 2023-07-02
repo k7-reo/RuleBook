@@ -24,6 +24,10 @@
   justify-content: space-between;
 }
 
+.active-meetings {
+  width: 100%;
+}
+
 //一覧(index)
 .all-active-meetings {
   display: flex;
@@ -77,6 +81,11 @@
 .meeting-detail {
   font-size: 80%;
   margin-bottom: 16px;
+  white-space: nowrap;
+}
+
+.meeting-start {
+  white-space: nowrap;
 }
 
 //一覧(index)
@@ -89,6 +98,7 @@
   font-weight: bold;
   border-radius: 8px;
   border: 1px solid #f47842;
+  white-space: nowarp;
 }
 
 .next-meeting-alt-view-wrapper {
@@ -97,21 +107,34 @@
   height: 128px;
   padding: 16px;
   width: 272px;
-  display: flex;
-  justify-content: center;
+  min-width: 128px;
   text-align: center;
   border-radius: 16px;
   margin: 8px;
 }
 
 .next-meeting-alt-view {
-  padding-top: 16px;
+  height: 90px;
+  display: flex;
+  align-items: center;
 }
 
-.meeting-new {
-  position: absolute;
-  bottom: 16px;
-  left: 114px;
+.meeting-new-cta {
+  display: inline-block;
+  height: 20px;
+  background-color: #ffffff;
+  font-weight: bold;
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid #f47842;
+  color: #f47842;
+  white-space: nowrap;
+}
+
+.meeting-new-cta:hover {
+  background-color: #f47842;
+  border: 1px solid #ffffff;
+  color: #ffffff;
 }
 
 //一覧(index)
@@ -147,6 +170,7 @@
   font-weight: bold;
   border-radius: 8px;
   border: 1px solid #ffd139;
+  white-space: nowrap;
 }
 
 //一覧(index)
@@ -198,12 +222,12 @@
 }
 
 .each-past-meeting-name {
+  display: inline-block;
   font-weight: bold;
-  height: 20px;
-  line-height: 20px;
 }
 
 .each-past-meeting-date {
+  display: inline-block;
   margin-left: 16px;
   font-size: 80%;
   line-height: 20px;
@@ -297,6 +321,21 @@
   
   .meetings-left {
     width: calc(100% - 120px);
+    overflow-y: scroll;
+  }
+
+  .all-active-meetings {
+    width: calc(100% - 16px);
+    flex-wrap: wrap;
+  }
+
+  .next-meeting,
+  .meeting-in-progress {
+    width: 320px;
+  }
+
+  .meeting-name {
+    width: calc(100% - 32px);
   }
 
   .meeting-record {
@@ -328,6 +367,17 @@
 
   .meeting-info-section:not(:first-child) {
     padding-left: 16px;
+  }
+
+  .each-past-meeting-top {
+  }
+
+  .each-past-meeting-date {
+    margin-left: 0;
+  }
+
+  .each-past-meeting-section {
+    flex-direction: column;
   }
 
   .meetings-right {

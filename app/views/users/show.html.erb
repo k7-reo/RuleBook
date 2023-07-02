@@ -41,26 +41,33 @@
                 <div class="others-all-rules">
                     <div class="others-all-targeting-rules-wrapper">
                       <div class="others-all-targeting-rules">
-                        <div class="section-title">対象プラスルール一覧</div>
-                        <div class="others-all-targeting-positive-rules">
-                          <% @targetingPositiveRules.each do |rule| %>
-                            <div class="others-each-targeting-positive-rule">
-                              <div class="others-each-targeting-positive-rule-content"><%= rule.content %></div>
-                              <div class="others-each-targeting-positive-rule-point"><%= rule.point %><span class="point-letter">ポイント</span></div>
-                              <div class="others-each-targeting-positive-rule-execute"><%= link_to "実行", community_rule_execute_path(@community.id, rule.id), class: "others-each-targeting-positive-rule-execute-cta" %></div>
-                            </div>
-                          <% end %>
-                        </div>
-                        <div class="section-title">対象マイナスルール一覧</div>
-                        <div class="others-all-targeting-negative-rules">
-                          <% @targetingNegativeRules.each do |rule| %>
-                            <div class="others-each-targeting-negative-rule">
-                              <div class="others-each-targeting-negative-rule-content"><%= rule.content %></div>
-                              <div class="others-each-targeting-negative-rule-point"><%= rule.point %><span class="point-letter">ポイント</span></div>
-                              <div class="others-each-targeting-negative-rule-execute"><%= link_to "実行", community_rule_execute_path(@community.id, rule.id), class: "others-each-targeting-negative-rule-execute-cta" %></div>
-                            </div>
-                          <% end %>
-                        </div>
+                        <% if @targetingPositiveRules.present? %>
+                          <div class="section-title">対象プラスルール一覧</div>
+                          <div class="others-all-targeting-positive-rules">
+                            <% @targetingPositiveRules.each do |rule| %>
+                              <div class="others-each-targeting-positive-rule">
+                                <div class="others-each-targeting-positive-rule-content"><%= rule.content %></div>
+                                <div class="others-each-targeting-positive-rule-point"><%= rule.point %><span class="point-letter">ポイント</span></div>
+                                <div class="others-each-targeting-positive-rule-execute"><%= link_to "実行", community_rule_execute_path(@community.id, rule.id), class: "others-each-targeting-positive-rule-execute-cta" %></div>
+                              </div>
+                            <% end %>
+                          </div>
+                        <% end %>
+                        <% if @targetingNegativeRules.present? %>
+                          <div class="section-title">対象マイナスルール一覧</div>
+                          <div class="others-all-targeting-negative-rules">
+                            <% @targetingNegativeRules.each do |rule| %>
+                              <div class="others-each-targeting-negative-rule">
+                                <div class="others-each-targeting-negative-rule-content"><%= rule.content %></div>
+                                <div class="others-each-targeting-negative-rule-point"><%= rule.point %><span class="point-letter">ポイント</span></div>
+                                <div class="others-each-targeting-negative-rule-execute"><%= link_to "実行", community_rule_execute_path(@community.id, rule.id), class: "others-each-targeting-negative-rule-execute-cta" %></div>
+                              </div>
+                            <% end %>
+                          </div>
+                        <% end %>
+                        <% unless @targetingPositiveRules.present? && @targetingNegativeRules.present? %>
+                          <div class="alt-text">対象ルールがありません。</div>
+                        <% end %>
                       </div>
                     </div>
                   <% if @executedRules.present? %>

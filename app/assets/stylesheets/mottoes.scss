@@ -42,7 +42,6 @@
 }
 
 .each-motto {
-  width: 280px;
   margin: 4px;
   padding: 16px;
   background-color: #44c48a;
@@ -50,19 +49,20 @@
 }
 
 .each-motto-edit {
-  color: #fff;
   width: fit-content;
   margin-left: auto;
   position: relative;
   bottom: 8px;
   left: 8px;
   height: 0px;
+  color: #343842;
 }
 
 .each-motto-content {
-  height: 40px;
   font-weight: bold;
+  color: #343842;
   margin: 0 16px 8px 16px;
+  padding-bottom: 8px;
   border-bottom: 1px dotted;
   display: flex;
   overflow: scroll;

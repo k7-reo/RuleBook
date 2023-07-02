@@ -131,7 +131,7 @@
         <div class="community-dashboard-bottom">
           <div class="dashboard-figures">
             <div class="dashboard-figure">
-              <div class="dashboard-figure-title">ルール数</div>
+              <div class="dashboard-figure-title">ルール</div>
               <div class="dashboard-figure-content">
                 <% if @community.rules.present? %>
                   <%= @community.rules.count %>
@@ -141,7 +141,7 @@
               </div>
             </div>
             <div class="dashboard-figure">
-              <div class="dashboard-figure-title">報酬数</div>
+              <div class="dashboard-figure-title">報酬</div>
               <div class="dashboard-figure-content">
                 <% if @community.privileges.present? %>
                   <%= @community.privileges.count %>
@@ -151,7 +151,7 @@
               </div>
             </div>
             <div class="dashboard-figure">
-              <div class="dashboard-figure-title">ペナルティ数</div>
+              <div class="dashboard-figure-title">ペナルティ</div>
               <div class="dashboard-figure-content">
                 <% if @community.penalties.present? %>
                   <%= @community.penalties.count %>
@@ -161,7 +161,7 @@
               </div>
             </div>
             <div class="dashboard-figure">
-              <div class="dashboard-figure-title">ルール実行数</div>
+              <div class="dashboard-figure-title">ルール実行</div>
               <div class="dashboard-figure-content">
                 <% if @excutedRules.present? %>
                   <%= @excutedRules.count %>
@@ -171,7 +171,7 @@
               </div>
             </div>
             <div class="dashboard-figure">
-              <div class="dashboard-figure-title">メンバー人数</div>
+              <div class="dashboard-figure-title">メンバー</div>
               <div class="dashboard-figure-content"><%= @acceptedUsers.count %></div>
             </div>
           </div>

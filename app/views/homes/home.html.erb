@@ -4,17 +4,21 @@
       <div class="home-1st-scripts-wrapper">
         <div class="home-1st-scripts">
           <div class="home-app-description">
-            <div class="home-app-description-line">「察する力」がなくても快適なパートナーシップをあなたに</div>
+            <div class="home-app-description-line">価値観の不一致に</div>
+            <div class="between-description-line"></div>
+            <div class="home-app-description-line">惑わされない</div>
+            <div class="between-description-line"></div>
+            <div class="home-app-description-line">快適なパートナーシップ</div>
           </div>
           <div class="home-app-poem">
             <div class="home-app-poem-line">価値観の違う2人。</div>
-            <div class="between-line-narrow"></div>
+            <div class="between-poem-line"></div>
             <div class="home-app-poem-line">いつからだろう。関係が以前のように良好じゃない。</div>
-            <div class="between-line-narrow"></div>
+            <div class="between-poem-line"></div>
             <div class="home-app-poem-line">でも、自分のプライドが邪魔をして、相手への甘えが出て、分かっていながら適切なコミュニケーションを取れずにいる。</div>
-            <div class="between-line-narrow"></div>
+            <div class="between-poem-line"></div>
             <div class="home-app-poem-line">改善したくても、真剣に話し合うのは照れくさいし、そもそも建設的な話ができるだろうか。</div>
-            <div class="between-line-narrow"></div>
+            <div class="between-poem-line"></div>
             <div class="home-app-poem-line">ああ、どこから始めればいいのだろう。</div>
           </div>
         </div>
@@ -29,10 +33,12 @@
             <div class="home-worry1">
               <div><%= image_tag 'e0795_1.png', size: '200x160', class: "speech-bubble1" %></div>
               <div class="home-worry-words">なんとなく<br>最近パートナーと<br>上手くいかない</div>
+              <div class="home-worry1-image-sp"><%= image_tag 'worry2.png', size: '120x120' %></div>
             </div>
             <div class="home-worry2">
               <div><%= image_tag 'e0795_1.png', size: '200x160', class: "speech-bubble2" %></div>
               <div class="home-worry-words">価値観が合わないと<br>感じるようになった</div>
+              <div class="home-worry2-image-sp"><%= image_tag 'worry1.png', size: '120x120' %></div>
             </div>
           </div>
         </div>
@@ -41,14 +47,16 @@
             <div class="home-worry3">
               <div><%= image_tag 'e0795_1.png', size: '200x160', class: "speech-bubble3" %></div>
               <div class="home-worry-words">パートナーが<br>冷たくなった気がする</div>
+              <div class="home-worry3-image-sp"><%= image_tag 'worry4.png', size: '120x120' %></div>
             </div>
             <div class="home-worry4">
               <div><%= image_tag 'e0795_1.png', size: '200x160', class: "speech-bubble4" %></div>
               <div class="home-worry-words">いつも自分ばかり<br>我慢している気がする</div>
+              <div class="home-worry4-image-sp"><%= image_tag 'worry3.png', size: '120x120' %></div>
             </div>
           </div>
         </div>
-        <div class="home-worries-image"><%= image_tag 'worries.png', size: '500x250' %></div>
+        <div class="home-worries-image-pc"><%= image_tag 'worries.png', size: '500x250' %></div>
       </div>
       <div class="down-arrow"><%= image_tag 'down_arrow.png', size: '120x60' %></div>
     </div>
@@ -65,14 +73,14 @@
             <div class="function-title">共通ゴールを設定する</div>
             <div class="function-usage">作成ヒントを参考にパートナーと一緒に目指すゴールを決めましょう！</div>
             <div class="function-detail-index">利用機能</div>
-            <div class="function-detail-wrapper">
+            <div class="function-detail-wrapper-two-items">
               <div class="function-detail">
                 <div class="function-detail-section"><i class="fa-solid fa-arrow-right function-sign"></i>ゴール設定機能</div>
                 <div class="function-detail-section"><i class="fa-solid fa-arrow-right function-sign"></i>ミーティング機能</div>
               </div>
             </div>
           </div>
-          <i class="fa-solid fa-circle-chevron-right to-next-icon"></i>
+          <i id="to-right-icon" class="fa-solid fa-circle-chevron-right"></i>
           <div class="home-app-function">
             <div class="function-index">
               <div class="function-index-image"><%= image_tag 'step.png', size: '80x80' %></div>
@@ -82,7 +90,7 @@
             <div class="function-title">決まり事を設定する</div>
             <div class="function-usage">ゴール達成のために意識することや必要なルールを決めましょう！</div>
             <div class="function-detail-index">利用機能</div>
-            <div class="function-detail-wrapper">
+            <div class="function-detail-wrapper-four-items">
               <div class="function-detail">
                 <div class="function-detail-section"><i class="fa-solid fa-arrow-right function-sign"></i>スローガン作成機能</div>
                 <div class="function-detail-section"><i class="fa-solid fa-arrow-right function-sign"></i>ルール作成機能</div>
@@ -91,7 +99,7 @@
               </div>
             </div>
           </div>
-          <i class="fa-solid fa-circle-chevron-right to-next-icon"></i>
+          <i id="to-right-icon" class="fa-solid fa-circle-chevron-right"></i>
           <div class="home-app-function">
             <div class="function-index">
               <div class="function-index-image"><%= image_tag 'step.png', size: '80x80' %></div>
@@ -99,9 +107,9 @@
             </div>
             <div class="function-image"><%= image_tag '3_do.png', size: '200x100' %></div>
             <div class="function-title">ルールを実行する</div>
-            <div class="function-usage">ルールを実行してポイントを貯めましょう。獲得ポイントに応じて報酬やペナルティを取得します。</div>
+            <div class="function-usage">ルール実行で貯めたポイントに応じて、報酬やペナルティを取得しましょう！</div>
             <div class="function-detail-index">利用機能</div>
-            <div class="function-detail-wrapper">
+            <div class="function-detail-wrapper-three-items">
               <div class="function-detail">
                 <div class="function-detail-section"><i class="fa-solid fa-arrow-right function-sign"></i>ルール実行機能</div>
                 <div class="function-detail-section"><i class="fa-solid fa-arrow-right function-sign"></i>報酬取得機能</div>
@@ -109,7 +117,7 @@
               </div>
             </div>
           </div>
-          <i class="fa-solid fa-circle-chevron-right to-next-icon"></i>
+          <i id="to-right-icon" class="fa-solid fa-circle-chevron-right"></i>
           <div class="home-app-function">
             <div class="function-index">
               <div class="function-index-image"><%= image_tag 'step.png', size: '80x80' %></div>
@@ -119,7 +127,7 @@
             <div class="function-title">振り返る・改善する</div>
             <div class="function-usage">実行状況などを確認しながらルールなどを改善しましょう！</div>
             <div class="function-detail-index">利用機能</div>
-            <div class="function-detail-wrapper">
+            <div class="function-detail-wrapper-three-items">
               <div class="function-detail">
                 <div class="function-detail-section"><i class="fa-solid fa-arrow-right function-sign"></i>ダッシュボード確認</div>
                 <div class="function-detail-section"><i class="fa-solid fa-arrow-right function-sign"></i>ミーティング機能</div>
@@ -129,10 +137,24 @@
           </div>
         </div>
       </div>
-      <div class="home-effects">
-        <div class="home-effect">共通のゴール 結束力を高める</div>
-        <div class="home-effect">ゴール・ルール決定へのプロセス 互いの理解を深める</div>
-        <div class="home-effect">ルールの遂行 習慣化</div>
+      <div class="down-arrow2"><%= image_tag 'down_arrow2.png', size: '120x60' %></div>
+      <div class="home-app-effect-copy">動き出す<span class="emphasize-word-yellow">3つの好循環</span>をあなたにも</div>
+      <div class="home-app-effects">
+        <div class="home-effect">
+          <i class="fa-solid fa-handshake effect-icon"></i>
+          <div class="home-effect-action">共通のゴールを目指す</div>
+          <div class="home-effect-after">結束力の強化</div>
+        </div>
+        <div class="home-effect">
+          <i class="fa-solid fa-comments effect-icon"></i>
+          <div class="home-effect-action">ゴール・ルール決定に向けて議論する</div>
+          <div class="home-effect-after">互いの理解促進</div>
+        </div>
+        <div class="home-effect">
+          <i class="fa-solid fa-list-ul effect-icon"></i>
+          <div class="home-effect-action">ルールを遂行する</div>
+          <div class="home-effect-after">行動の習慣化</div>
+        </div>
       </div>
     </div>
     <div class="home-4th">

@@ -447,3 +447,11 @@ textarea {
   font-weight: bold;
   z-index: 5000;
 }
+
+@media screen and ( max-width:999px ) {
+
+  .section-title {
+    white-space: nowrap;
+    padding-top: 10px;
+  }
+}

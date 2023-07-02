@@ -42,7 +42,7 @@
 }
 
 .each-privilege {
-  width: 280px;
+  /*width: 280px;*/
   height: fit-content;
   margin: 4px;
   padding: 16px;
@@ -52,7 +52,7 @@
 }
 
 .each-penalty {
-  width: 280px;
+  /*width: 280px;*/
   height: fit-content;
   margin: 4px;
   padding: 16px;
@@ -70,20 +70,22 @@
   height: 0px;
 }
 
-.each-privilege-content, .each-penalty-content {
-  height: 40px;
+.each-privilege-content,
+.each-penalty-content {
   font-weight: bold;
   margin: 0 16px;
+  padding-bottom: 8px;
   border-bottom: 1px dotted;
   display: flex;
   overflow: scroll;
 }
 
-.each-privilege-point, .each-penalty-point {
-  height: 24px;
+.each-privilege-point,
+.each-penalty-point {
   font-size: 120%;
   font-weight: bold;
-  margin: 0 16px 16px 16px;
+  color: #ffffff;
+  margin: 8px 16px 16px 16px;
 }
 
 .point-letter {
