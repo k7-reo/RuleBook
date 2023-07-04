@@ -1,14 +1,59 @@
   <div class="community-info-contents">
     <ul class="community-navigation-items">
-      <li class="community-navigation-item"><%= link_to "ダッシュボード", community_path(community.id), class: "community-navigation-link" %></li>
-      <li class="community-navigation-item"><%= link_to "マイページ", community_user_mypage_path(community.id, currentUser.user_id), class: "community-navigation-link" %></li>
-      <li class="community-navigation-item"><%= link_to "メンバー", community_users_path(community.id), class: "community-navigation-link" %></li>
-      <li class="community-navigation-item"><%= link_to "ルール", community_rules_path(community.id), class: "community-navigation-link" %></li>
-      <li class="community-navigation-item"><%= link_to "報酬&ペナルティ", community_privileges_path(community.id), class: "community-navigation-link" %></li>
-      <li class="community-navigation-item"><%= link_to "スローガン", community_mottos_path(community.id), class: "community-navigation-link" %></li>
-      <li class="community-navigation-item"><%= link_to "ゴール", community_goals_path(community.id), class: "community-navigation-link" %></li>
-      <li class="community-navigation-item"><%= link_to "会議", community_meetings_path(community.id), class: "community-navigation-link" %></li>
-      <li class="community-navigation-item"><%= link_to "コンテンツ", community_articles_path(community.id), class: "community-navigation-link" %></li>
+      <li class="community-navigation-item">
+        <%= link_to community_path(community.id), class: "community-navigation-link" do %>
+          <i id="community-navigation-item-icon" class="fa-solid fa-house"></i>
+          <div class="community-navigation-item-letter">ダッシュボード</div>
+        <% end %>
+      </li>
+      <li class="community-navigation-item">
+        <%= link_to community_user_mypage_path(community.id, currentUser.user_id), class: "community-navigation-link" do %>
+          <i id="community-navigation-item-icon" class="fa-solid fa-user"></i>
+          <div class="community-navigation-item-letter">マイページ</div>
+        <% end %>
+      </li>
+      <li class="community-navigation-item">
+        <%= link_to community_users_path(community.id), class: "community-navigation-link" do %>
+          <i id="community-navigation-item-icon" class="fa-solid fa-user-group"></i>
+          <div class="community-navigation-item-letter">メンバー</div>
+        <% end %>
+      </li>
+      <li class="community-navigation-item">
+        <%= link_to community_rules_path(community.id), class: "community-navigation-link" do %>
+          <i id="community-navigation-item-icon" class="fa-solid fa-table-list"></i>
+          <div class="community-navigation-item-letter">ルール</div>
+        <% end%>
+      </li>
+      <li class="community-navigation-item">
+        <%= link_to community_privileges_path(community.id), class: "community-navigation-link" do %>
+          <i id="community-navigation-item-icon" class="fa-solid fa-trophy"></i>
+          <div class="community-navigation-item-letter">報酬&ペナルティ</div>
+        <% end %>
+      </li>
+      <li class="community-navigation-item">
+        <%= link_to community_mottos_path(community.id), class: "community-navigation-link" do %>
+          <i id="community-navigation-item-icon" class="fa-solid fa-scroll"></i>
+          <div class="community-navigation-item-letter">スローガン</div>
+        <% end %>
+      </li>
+      <li class="community-navigation-item">
+        <%= link_to community_goals_path(community.id), class: "community-navigation-link" do %>
+          <i id="community-navigation-item-icon" class="fa-solid fa-bullseye"></i>
+          <div class="community-navigation-item-letter">ゴール</div>
+        <% end %>
+      </li>
+      <li class="community-navigation-item">
+        <%= link_to community_meetings_path(community.id), class: "community-navigation-link" do %>
+          <i id="community-navigation-item-icon" class="fa-solid fa-handshake-simple"></i>
+          <div class="community-navigation-item-letter">会議</div>
+        <% end %>
+      </li>
+      <li class="community-navigation-item">
+        <%= link_to community_articles_path(community.id), class: "community-navigation-link" do %>
+          <i id="community-navigation-item-icon" class="fa-solid fa-book"></i>
+          <div class="community-navigation-item-letter">コンテンツ</div>
+        <% end %>
+      </li>
     </ul>
     <div class="community-basic-info">
       <div class="community-basic-info-name-title">参加中のコミュニティ</div>

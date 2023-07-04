@@ -453,10 +453,21 @@
 
 .home-app-function {
   width: 200px;
-  height: 420px;
   margin: 32px 8px 16px 8px;
+}
+
+.home-app-function-section1 {
   background-color: #ffffff;
-  border-radius: 16px;
+  border-radius: 16px 16px 8px 8px;
+  margin-bottom: 2px;
+}
+
+.home-app-function-section2 {
+  height: 248px;
+  background-color: #ffffff;
+  border-radius: 8px 8px 16px 16px;
+  margin-bottom: 2px;
+  padding: 0 16px 16px 16px;
 }
 
 .function-index {
@@ -491,57 +502,82 @@
   padding-top: 16px;
 }
 
-.function-detail-index {
-  width: fit-content;
-  margin-left: auto;
-  margin-right: auto;
-  position: relative;
-  height: 20px;
-  line-height: 20px;
-  background-color: #44c48a;
-  color: #ffffff;
-  padding: 2px 8px 2px 8px;
-  border-radius: 8px;
-  z-index: 1005;
+.function-usage {
+  margin-top: 8px;
+  padding-left: 16px;
+  padding-right: 16px;
+  height: 72px;
 }
 
-.function-detail-wrapper-two-items,
-.function-detail-wrapper-three-items,
-.function-detail-wrapper-four-items {
-  position: relative;
-  bottom: 12px;
-  margin-left: 16px;
-  margin-right: 16px;
-  padding: 10px 8px 8px 8px;
-  border: 2px solid #44c48a;
-  border-radius: 8px;
-  height: 90px;
-  display: flex;
-  align-items: center;
-}
-
-.function-detail-section {
-  margin-top: 2px;
-  margin-bottom: 2px;
-  margin-left: 8px;
-  height: 20px;
-  line-height: 20px;
-}
-
-.function-sign {
-  display: inline-block;
-  height: 20px;
-  font-size: 90%;
+.function-example-index {
+  font-size: 120%;
+  font-style: italic;
   font-weight: bold;
-  color: #44c48a;
+  color: #ffffff;
+  text-align: center;
+  height: 24px;
+  line-height: 24px;
+  background-color: #ffd139;
+  margin-left: -16px;
+  margin-right: -16px;
+  border-radius: 8px 8px 0 0;
+}
+
+.function-example-content {
+  padding-top: 16px;
+}
+
+.function-example-function {
+  line-height: 16px;
+  width: fit-content;
+  background-color: #ffd139;
+  padding: 2px 8px;
+  margin-bottom: 2px;
+  border-radius: 16px;
+  color: #343842;
+  font-size: 80%;
+}
+
+.function-example-subject {
+  line-height: 20px;
+  margin-bottom: 2px;
+  font-size: 80%;
+}
+
+.function-example-goal,
+.function-example-mtg,
+.function-example-motto,
+.function-example-rule,
+.function-example-privilege {
+  display: inline-block;
+  width: fit-content;
+  line-height: 16px;
+  font-weight: bold;
   margin-right: 2px;
 }
 
-.function-usage {
-  margin-top: 8px;
-  margin-left: 16px;
-  margin-right: 16px;
-  height: 88px;
+.function-example-person {
+  display: inline-block;
+  width: fit-content;
+  color: #343842;
+  margin-right: 2px;
+  position: relative;
+  top: 2px;
+  font-size: 140%;
+}
+
+.function-example-role,
+.function-example-term,
+.function-example-rule-point,
+.function-example-privilege-point,
+.function-example-achievement {
+  display: inline-block;
+  line-height: 16px;
+  font-weight: bold;
+  background-color: rgba(255,209,57, 0.5);
+  padding-left: 2px;
+  padding-right: 2px;
+  margin-right: 2px;
 }
 
 #to-right-icon {
@@ -676,7 +712,7 @@
 }
 
 .home-5th {
-  margin-bottom: 96px;
+  margin-bottom: 56px;
   margin-top: 64px;
 }
 
@@ -714,11 +750,9 @@
 }
 
 .home-6th {
-  position: absolute;
-  bottom: 0;
   width: 100%;
   height: 80px;
-  background-color: rgba(255,255,255, 0.8);
+  background-color: #ffffff;
   z-index: 3000;
 }
 
@@ -845,24 +879,16 @@
     padding-bottom: 4px;
   }
 
-  .function-detail-wrapper-two-items {
-    height: 48px;
-  }
-
-  .function-detail-wrapper-three-items {
-    height: 72px;
-  }
-
-  .function-detail-wrapper-four-items {
-    height: 96px;
-  }
-
   .function-index {
     right: 120px;
   }
 
   .function-usage {
     height: 56px;
+  }
+
+  .home-app-function-section2 {
+    height: auto;
   }
 
   #to-right-icon {
@@ -876,6 +902,7 @@
 
   .home-effect:not(:last-child) {
     border-right: inherit;
+    margin-bottom: inherit;
   }
 
   .home-advice-copy {

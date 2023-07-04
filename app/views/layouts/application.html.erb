@@ -71,7 +71,10 @@
     </header>
     <main>
       <% if notice.present? %>
-          <div id="notice" class="notice"><%= notice %></div>
+          <div id="notice" class="notice">
+            <div class="notice-image"><%= image_tag("completed.png", style: "width: 200px; height: 200px;") %></div>
+            <%= notice %>
+          </div>
       <% end %>
       <%= yield %>
     </main>
@@ -168,7 +171,8 @@
       
       // 5秒後にnoticeを非表示にする関数
         setTimeout(function() {
-          document.getElementById('notice').style.display = 'none';
+          var noticeElement = document.getElementById("notice");
+          noticeElement.style.display = "none";
         }, 5000);
 
       // notice以外をクリックするとnoticeを非表示にするイベントリスナー

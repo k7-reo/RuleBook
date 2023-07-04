@@ -3,19 +3,22 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 
-.members-all {
+.members-all,
+.members-list-all {
   display: flex;
   height: 100%;
   width: 100%;
 }
 
-.members-left {
-  width: calc(100% - 200px);
+.members-left,
+.members-list-left {
+  width: calc(100% - 160px);
   height: 100%;
 }
 
-.members-right {
-  width: 200px;
+.members-right,
+.members-list-right {
+  width: 160px;
   height: 100%;
   background-color: rgba(68, 196, 138, 0.7);
   overflow-y: scroll;
@@ -40,7 +43,7 @@
   height: calc(76% - 24px);
   width: calc(100% - 16px);
   display: flex;
-  padding: 0 8px;
+  padding: 0 8px 8px 8px;
 }
 
 //mypage/show役割
@@ -78,7 +81,7 @@
   height: 24px;
   background-color: #F6F6FF;
   border-radius: 50px;
-  margin: 8px;
+  margin: 4px 8px;
   padding: 8px 12px;
   color: #343842;
   display: flex;
@@ -507,7 +510,7 @@
 }
 
 .comparison-section {
-  margin-bottom: 16px;
+  padding-bottom: 16px;
 }
 
 .comparison-title {
@@ -546,7 +549,19 @@
 @media screen and ( max-width:999px ) {
   
   .members-left {
-    width: calc(100% - 160px);
+    width: 100%;
+  }
+
+  .members-right {
+    display: none;
+  }
+
+  .members-list-left {
+    width: calc(100% - 144px);
+  }
+
+  .members-list-right {
+    width: 144px;
   }
 
   .community-member-sum {
@@ -624,6 +639,16 @@
     overflow-y: inherit;
   }
 
+  .my-each-role,
+  .others-each-role {
+    height: 20px;
+  }
+
+  .my-each-role-content,
+  .others-each-role-content {
+    font-size: 120%;
+  }
+
   .others-point-detail {
     width: calc(100% - 16px);
     height: calc(100% /7 * 4);
@@ -691,10 +716,6 @@
   .others-all-done-tasks-wrapper {
     max-height: 400px;
     overflow-y: scroll;
-  }
-
-  .members-right {
-    width: 160px;
   }
 
   .member-comparison-all {

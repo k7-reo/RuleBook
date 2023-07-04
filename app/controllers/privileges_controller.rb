@@ -52,7 +52,7 @@ class PrivilegesController < ApplicationController
     @privilege.updating_user_id = current_user.id
     if @privilege.update(privilege_params)
       #履歴登録↓
-      oldRecord = Record.find_by(privilege_id: privilege.id)
+      oldRecord = Record.find_by(privilege_id: @privilege.id)
       newRecord = Record.new
       newRecord.community_id = @community.id
       newRecord.privilege_id = @privilege.id
@@ -104,8 +104,10 @@ class PrivilegesController < ApplicationController
     standby.point = privilege.point
     standby.checked = true
     standby.approval = true
-    standby.save
-    redirect_to community_privileges_path(@community.id)
+    if standby.save
+      @message = "報酬の取得を完了しました。"
+      redirect_to community_privileges_path(@community.id), notice: @message
+    end
   end
 
   private

@@ -90,10 +90,10 @@
 @media screen and ( max-width:999px ) {
 
   .mottos-left {
-    width: calc(100% - 120px);
+    width: 100%;
   }
 
   .mottos-right {
-    width: 120px;
+    display: none;
   }
 }

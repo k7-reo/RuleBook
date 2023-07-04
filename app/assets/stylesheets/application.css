@@ -433,6 +433,12 @@ textarea {
   white-space: nowrap;
 }
 
+.notice-title {
+  font-size: 400%;
+  font-weight: bold;
+  padding-bottom: 40px;
+}
+
 .notice {
   position: fixed;
   top: 50%;
@@ -442,10 +448,17 @@ textarea {
   border-radius: 16px;
   border: 1px solid #44c48a;
   width: fit-content;
-  padding: 40px 88px;
+  text-align: center;
+  padding: 20px 20px;
   color: #44c48a;
   font-weight: bold;
   z-index: 5000;
+}
+
+.notice-image {
+  font-weight: bold;
+  padding-bottom: 8px;
+  color: #44c48a;
 }
 
 @media screen and ( max-width:999px ) {
@@ -453,5 +466,19 @@ textarea {
   .section-title {
     white-space: nowrap;
     padding-top: 10px;
+  }
+
+  .community-info {
+    top: auto;
+    bottom: 0;
+    height: 72px;
+    border-bottom: inherit;
+    background-color: #ffffff;
+    border-top: 2px solid #ffffff;
+  }
+
+  .community-main {
+    top: 88px;
+    height: calc(100vh - 160px);
   }
 }

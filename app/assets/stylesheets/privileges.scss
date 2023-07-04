@@ -177,11 +177,11 @@
 @media screen and ( max-width:999px ) {
   
   .privileges-penalties-left {
-    width: calc(100% - 120px);
+    width: 100%;
   }
 
   .privileges-penalties-right {
-    width: 120px;
+    display: none;
   }
 
 }

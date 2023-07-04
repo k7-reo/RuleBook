@@ -452,11 +452,11 @@
 @media screen and ( max-width:999px ) {
   
   .rules-left {
-    width: calc(100% - 120px);
+    width: 100%;
   }
 
   .rules-right {
-    width: 120px;
+    display: none;
   }
 
   .rules-sort {
@@ -473,7 +473,7 @@
 
   .positive-rules-wrapper,
   .negative-rules-wrapper {
-    height: calc((100% - 112px) / 2);
+    height: calc((100% - 96px) / 2);
   }
   
 }

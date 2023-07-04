@@ -7,8 +7,8 @@
     <%= render 'communities/info', community: @community, currentUser: @currentUser %>
   </div>
   <div class="community-main">
-    <div class="members-all">
-      <div class="members-left">
+    <div class="members-list-all">
+      <div class="members-list-left">
         <div class="community-all-members-wrapper">
           <div class="community-all-members">
             <% @communityUsers.each do |communityUser| %>
@@ -105,7 +105,7 @@
           </div>
         </div>
       </div>
-      <div class="members-right">
+      <div class="members-list-right">
         <%= render 'member_comparison' %>
       </div>
     </div>

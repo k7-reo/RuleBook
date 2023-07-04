@@ -51,6 +51,8 @@
   align-items: center;
   white-space: nowrap;
   overflow-x: scroll;
+  height: 20px;
+  line-height: 20px;
 }
 
 .active-goal-deadline {
@@ -115,7 +117,7 @@
 }
 
 .active-goal-alt-view-wrapper {
-  height: 137px;
+  height: 125px;
   display: flex;
   justify-content: center;
   text-align: center;
@@ -217,21 +219,17 @@
 @media screen and ( max-width:999px ) {
   
   .goals-left {
-    width: calc(100% - 120px);
-    overflow-y: scroll;
+    width: 100%;
   }
 
   .goals-right {
-    width: 120px;
-  }
-
-  .active-goal-content {
-    overflow-x: inherit;
-    white-space: normal;
+    display: none;
   }
 
   .active-goal-deadline {
-    height: auto;
+    white-space: nowrap;
+    width: calc(100% - 32px);
+    overflow-x: scroll;
   }
 
   .active-goal-achievement {

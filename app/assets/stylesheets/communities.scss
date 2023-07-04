@@ -32,6 +32,10 @@
   background-color: rgba(68, 196, 138, 0.5);
 }
 
+#community-navigation-item-icon {
+  display: none;
+}
+
 //_info
 .community-basic-info {
   background-color: rgba(32,35,43, 0.8);
@@ -43,6 +47,7 @@
   font-size: 80%;
   white-space: nowrap; //自動改行させない
   margin-left: 8px;
+  width: 100px;
 }
 
 //_info
@@ -50,7 +55,7 @@
   font-weight: bold;
   color: #44c48a;
   margin-left: 4px;
-  max-width: 100px;
+  max-width: calc(100% - 132px);
   white-space: nowrap; //自動改行させない
   overflow-x: scroll;
 }
@@ -68,7 +73,7 @@
   left: 50%;
   transform: translate(-50%, -50%); // 中央寄せのため、自身の50%ずつ移動 //
   background-color: rgba(52, 56, 66, 0.97);
-  padding: 16px 16px 4px 16px;
+  padding: 24px 24px 4px 24px;
   border-radius: 16px;
   width: 40%;
   min-width: 240px;
@@ -701,6 +706,37 @@ div#goalCountTimer span {
 
 @media screen and ( max-width:999px ) {
   
+  .community-navigation-item {
+    color: #343842;
+    width: 96px;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 12px;
+    padding-bottom: 4px;
+  }
+
+  .community-navigation-item:hover {
+    background-color: inherit;
+    color: #44c48a;
+  }
+
+  .community-navigation-item-letter {
+    font-size: 80%;
+    font-weight: bold;
+  }
+
+  #community-navigation-item-icon {
+    display: block;
+    font-size: 200%;
+    height: 24px;
+  }
+
+  .community-basic-info {
+    position: fixed;
+    top: 56px;
+    width: 100%;
+  }
+
   .community-dashboard-wrapper-wrapper {
     align-items:inherit;
   }
@@ -723,7 +759,17 @@ div#goalCountTimer span {
 
   .dashboard-goal {
     width: auto;
+    height: auto;
     margin: 0 16px;
+  }
+
+  .dashboard-goal-contents-wrapper {
+    height: auto;
+    padding-top: 16px;
+  }
+
+  .dashboard-goal-subject {
+    max-height: inherit;
   }
 
   .goal-timeline {

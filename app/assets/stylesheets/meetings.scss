@@ -185,6 +185,7 @@
   height: calc(100% - 208px);
   margin-left: 16px;
   margin-right: 16px;
+  margin-bottom: 16px;
   background-color: rgba(52, 56, 66, 0.5);
   border-radius: 16px;
 }
@@ -320,8 +321,12 @@
 @media screen and ( max-width:999px ) {
   
   .meetings-left {
-    width: calc(100% - 120px);
+    width: 100%;
     overflow-y: scroll;
+  }
+
+  .meetings-right {
+    display: none;
   }
 
   .all-active-meetings {
