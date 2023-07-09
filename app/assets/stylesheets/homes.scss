@@ -756,6 +756,20 @@
   z-index: 3000;
 }
 
+.privacy-policy-section,
+.terms-of-service-section {
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+
+.privacy-policy-section-body,
+.terms-of-service-section-body {
+  margin-top: 8px;
+  margin-bottom: 8px;
+  margin-left: 16px;
+  margin-right: 16px;
+  word-break: break-all;
+}
 
 @media screen and ( max-width:999px ) {
 

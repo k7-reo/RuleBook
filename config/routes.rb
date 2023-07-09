@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get "top" => 'homes#top'
   get "setting" => 'homes#setting'
   get "policy" => 'homes#policy'
+  get "terms" => 'homes#terms'
   get "info" => 'homes#info'
   get "home" => 'homes#home'
   get 'search' => 'homes#top'

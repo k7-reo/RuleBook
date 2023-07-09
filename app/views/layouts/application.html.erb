@@ -54,8 +54,8 @@
             <li><%= link_to "コミュニティ一覧", top_path %></li>
             <li><%= link_to "ユーザー情報", edit_user_path(current_user.id) %></li>
             <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
-            <li>利用規約</li>
-            <li>プライバシーポリシー</li>
+            <li><%= link_to "利用規約", terms_path %></li>
+            <li><%= link_to "プライバシーポリシー", policy_path %></li>
             <li><%= link_to "TOP", home_path %></li>
           </ul>
         <% else %>

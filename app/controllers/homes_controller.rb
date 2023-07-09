@@ -14,6 +14,11 @@ class HomesController < ApplicationController
   end
 
   def policy
+    render 'homes/privacy_policy'
+  end
+
+  def terms
+    render 'homes/terms_of_service'
   end
 
   private
