@@ -753,7 +753,32 @@
   width: 100%;
   height: 80px;
   background-color: #ffffff;
+  color: #343842;
   z-index: 3000;
+}
+
+.footer-cta {
+  display: flex;
+  justify-content: center;
+  padding-top: 16px;
+  height: 16px;
+}
+
+.footer-terms,
+.footer-policy {
+  padding: 0 8px;
+  height: 16px;
+  line-height: 16px;
+}
+
+.footer-terms {
+  border-right: #343842 1px dotted;
+}
+
+.rights-declaration {
+  display: flex;
+  justify-content: center;
+  padding-top: 8px;
 }
 
 .privacy-policy-section,
