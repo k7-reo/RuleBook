@@ -43,7 +43,7 @@
       <div class="slide-menu">
         <% if user_signed_in? %>
           <div class="slide-menu-user-name"><%= current_user.name %></div>
-          <ul class="slide-menu-lists">
+          <ul class="slide-menu-list">
             <li>
               <span>
                 <% if @standbyRules.present? || @standbyPenalties.present? || @unacceptedUsers.present? %>
