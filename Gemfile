@@ -6,7 +6,7 @@ ruby '3.1.0'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.1.4'
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+# gem 'sqlite3'
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
 # Use SCSS for stylesheets
@@ -39,6 +39,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'sqlite3', '1.5.4'
 end
 
 group :development do
@@ -74,3 +75,5 @@ gem "refile-mini_magick" # 画像加工用（サイズ調整など）gem
 gem 'gon' #RailsからJavaScriptにデータを渡すgem https://qiita.com/mosa_siru/items/e69eee47a183b13cfb62
 
 gem 'image_processing', '~> 1.12'
+
+gem 'mysql2', '>= 0.4.4', '< 0.6.0' , group: :production
