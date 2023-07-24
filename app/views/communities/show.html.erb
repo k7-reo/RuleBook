@@ -11,7 +11,7 @@
       <div class="community-dashboard-wrapper">
         <div class="community-dashboard-top">
           <div class="dashboard-quote">
-            <% if @community.genre == "夫婦・カップル" %>
+            <% if @community.genre == "夫婦・カップル" && @coupleAdvice %>
               <div class="dashboard-quote-content"><%= @coupleAdvice.quote %></div>
               <div class="dashboard-quote-detail">
                 <span class="dashboard-quote-person"><%= @coupleAdvice.person %></span>
