@@ -76,4 +76,4 @@ gem 'gon' #RailsからJavaScriptにデータを渡すgem https://qiita.com/mosa_
 
 gem 'image_processing', '~> 1.12'
 
-gem 'mysql2', '>= 0.4.4', '< 0.6.0' , group: :production
+gem 'mysql2', '>= 0.4.4' , group: :production
