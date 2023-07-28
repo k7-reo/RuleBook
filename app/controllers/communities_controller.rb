@@ -62,7 +62,7 @@ class CommunitiesController < ApplicationController
       end
     end
     @excutedRules = Standby.where(community_id: params[:id], action_type: "rule", created_at: Time.current.all_month) #今月created_atのデータに絞っている。
-    @coupleAdvice = Advice.where(community_genre: "夫婦・カップル").order("RANDOM()").first
+    @coupleAdvice = Advice.where(community_genre: "夫婦・カップル").order("RAND()").first
     @currentUser = CommunityUser.find_by(user_id: current_user.id, community_id: params[:id]) #community-info表示に利用
     @acceptedUsers = CommunityUser.where(community_id: params[:id], status: 1)
     #ゴールtimelineの表示
