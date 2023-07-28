@@ -29,10 +29,23 @@
             <div class="form-section">
               <label><%= f.label :executed_user_id, "対象メンバー", class: "form-label" %><span class="form-note">必須</span></label>
               <div class="form-check-box">
-                <% if @targetUsers.present? %>
-                  <%= collection_check_boxes(:standby, :executed_user_id, @targetUsers, :id, :name, include_hidden: false) do |user| %>
-                    <div><%= user.check_box %></div>
-                    <div class="form-check-box-label"><%= user.text %></div>
+                <% if @targetUsers.present? && @rule.point < 0 %>
+                  <% @negativeTargetUsers.each do |user| %>
+                    <div>
+                      <%= check_box_tag "standby[executed_user_id][]", user.id, false, { class: 'form-check-input'} %>
+                    </div>
+                    <div class="form-check-box-label">
+                      <%= user == current_user ? '自己申告' : user.name %>
+                    </div>
+                  <% end %>
+              <% elsif @targetUsers.present? && @rule.point > 0 %>
+                  <% @positiveTargetUsers.each do |user| %>
+                    <div>
+                      <%= check_box_tag "standby[executed_user_id][]", user.id, false, { class: 'form-check-input'} %>
+                    </div>
+                    <div class="form-check-box-label">
+                      <%= user.name %>
+                    </div>
                   <% end %>
                 <% else %>
                   対象ユーザーが設定されていません。

@@ -227,7 +227,6 @@ main {
   padding-top: 2px;
   padding-bottom: 2px;
   font-size: 80%;
-  font-weight: bold;
 }
 
 /*「・」を抜く*/
@@ -461,6 +460,10 @@ textarea {
   color: #44c48a;
 }
 
+.element::-webkit-scrollbar {
+  display: none;
+}
+
 @media screen and ( max-width:999px ) {
 
   .section-title {
@@ -474,7 +477,6 @@ textarea {
     height: 72px;
     border-bottom: inherit;
     background-color: #ffffff;
-    border-top: 2px solid #ffffff;
   }
 
   .community-main {

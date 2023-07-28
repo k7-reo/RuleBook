@@ -176,7 +176,9 @@ class RulesController < ApplicationController
   def execute #ルール実行html表示のアクション
     @community = Community.find(params[:community_id])
     @rule = Rule.find(params[:rule_id])
-    @targetUsers = User.joins(:rule_users).where(rule_users: {rule_id: params[:rule_id]}).where.not(id: current_user.id)
+    @targetUsers = User.joins(:rule_users).where(rule_users: {rule_id: params[:rule_id]})
+    @positiveTargetUsers = User.joins(:rule_users).where(rule_users: {rule_id: params[:rule_id]}).where.not(id: current_user.id)
+    @negativeTargetUsers = User.joins(:rule_users).where(rule_users: {rule_id: params[:rule_id]})
     @standby = Standby.new
     @currentUser = CommunityUser.find_by(user_id: current_user.id, community_id: params[:community_id]) #community-info表示に利用
   end

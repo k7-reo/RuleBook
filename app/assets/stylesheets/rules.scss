@@ -449,6 +449,11 @@
   margin: 16px;
 }
 
+.self-application-check-box {
+  //display: none;
+  margin-top: 8px;
+}
+
 @media screen and ( max-width:999px ) {
   
   .rules-left {
@@ -473,7 +478,7 @@
 
   .positive-rules-wrapper,
   .negative-rules-wrapper {
-    height: calc((100% - 96px) / 2);
+    height: calc((100% - 92px) / 2);
   }
   
 }
