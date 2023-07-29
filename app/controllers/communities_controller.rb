@@ -62,8 +62,8 @@ class CommunitiesController < ApplicationController
       end
     end
     @excutedRules = Standby.where(community_id: params[:id], action_type: "rule", created_at: Time.current.all_month) #今月created_atのデータに絞っている。
-    rand = Rails.env.production? ? "rand()" : "RANDOM()" #本番環境なら"rand()"を代入し、それ以外の環境なら"RANDOM()"を代入する
-    @coupleAdvice = Advice.where(community_genre: "夫婦・カップル").order("rand()").first
+    rand = Rails.env.production? ? "rand()" : "RANDOM()" #本番環境なら"rand()"を代入し、それ以外の環境なら"RANDOM()"を代入する。本番環境のMysplではRANDOMは使えないため。
+    @coupleAdvice = Advice.where(community_genre: "夫婦・カップル").order(rand).first
     @currentUser = CommunityUser.find_by(user_id: current_user.id, community_id: params[:id]) #community-info表示に利用
     @acceptedUsers = CommunityUser.where(community_id: params[:id], status: 1)
     #ゴールtimelineの表示
