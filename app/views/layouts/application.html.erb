@@ -53,7 +53,7 @@
               <span><%= link_to "通知BOX", receive_path %></span>
             </li>
             <li><%= link_to "コミュニティ一覧", top_path %></li>
-            <li><%= link_to "ユーザー情報", edit_user_path(current_user.id) %></li>
+            <li><%= link_to "ユーザー情報変更", edit_user_path(current_user.id) %></li>
             <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
             <li><%= link_to "利用規約", terms_path %></li>
             <li><%= link_to "プライバシーポリシー", policy_path %></li>
