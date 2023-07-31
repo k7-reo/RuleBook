@@ -7,7 +7,7 @@ class RolesController < ApplicationController
     @user = User.find(params[:user_id])
     @role = Role.new
     @currentUser = CommunityUser.find_by(user_id: current_user.id, community_id: params[:community_id]) #community-info表示に利用
-    @communityUsers = CommunityUser.where(community_id: params[:community_id], status: 1).order(point_abs: :desc)
+    @communityUsers = CommunityUser.where(community_id: params[:community_id], status: 1).order("ABS(point) DESC")
   end
 
   def create
@@ -20,7 +20,7 @@ class RolesController < ApplicationController
     else
       @user = User.find(params[:user_id])
       @currentUser = CommunityUser.find_by(user_id: current_user.id, community_id: params[:community_id]) #community-info表示に利用
-      @communityUsers = CommunityUser.where(community_id: params[:community_id], status: 1).order(point_abs: :desc)
+      @communityUsers = CommunityUser.where(community_id: params[:community_id], status: 1).order("ABS(point) DESC")
       render 'new'
     end
   end
@@ -30,7 +30,7 @@ class RolesController < ApplicationController
     @user = User.find(params[:user_id])
     @role = Role.find(params[:id])
     @currentUser = CommunityUser.find_by(user_id: current_user.id, community_id: params[:community_id]) #community-info表示に利用
-    @communityUsers = CommunityUser.where(community_id: params[:community_id], status: 1).order(point_abs: :desc)
+    @communityUsers = CommunityUser.where(community_id: params[:community_id], status: 1).order("ABS(point) DESC")
   end
 
   def update
@@ -41,7 +41,7 @@ class RolesController < ApplicationController
     else
       @user = User.find(params[:user_id])
       @currentUser = CommunityUser.find_by(user_id: current_user.id, community_id: params[:community_id]) #community-info表示に利用
-      @communityUsers = CommunityUser.where(community_id: params[:community_id], status: 1).order(point_abs: :desc)
+      @communityUsers = CommunityUser.where(community_id: params[:community_id], status: 1).order("ABS(point) DESC")
       render 'edit'
     end
   end
