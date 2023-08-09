@@ -41,7 +41,7 @@ class CommunitiesController < ApplicationController
     @meetingsInProgress = Meeting.find_by(community_id: params[:id], status: 1) #実施中のMTG
     @rules = Rule.where(community_id: params[:id])
     @mottos = Motto.where(community_id: params[:id])
-    @records = Record.joins(:motto).eager_load(:motto).where(community_id: params[:id], updated_at: Time.zone.today.ago(30.days)..Time.zone.today.end_of_day).order(updated_at: :desc)
+    @records = Record.where(community_id: params[:id], updated_at: Time.zone.today.ago(30.days)..Time.zone.today.end_of_day).order(updated_at: :desc)
     @goal = Goal.find_by(community_id: params[:id], status: true)
     if @goal.present? #if文にしないとなぜかエラーがでる。
       #deadlineの文字カウントダウン
