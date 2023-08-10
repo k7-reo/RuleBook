@@ -31,7 +31,7 @@
               <% end %>
             </span>
             <% if current_user.profile_image.attached? %>
-              <%= image_tag current_user.profile_image.variant(gravity: :center, resize:"40x40^", crop:"40x40+0+0").processed, class: "sign-in-user-profile-image-cta" %>
+              <%= image_tag current_user.profile_image.variant(gravity: :center, resize:"40x40^", crop:"40x40^+0+0").processed, class: "sign-in-user-profile-image-cta" %>
             <% else %>
               <%= image_tag("f_f_event_98_s512_f_event_98_0bg.jpg", style: "width: 40px; height: 40px;", class: "sign-in-user-profile-image-cta") %>
             <% end %>
