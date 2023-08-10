@@ -18,7 +18,7 @@
                     <div class="community-member-sum-left">
                       <div>
                         <% if communityUser.user.profile_image.attached? %>
-                          <%= image_tag communityUser.user.profile_image.variant(resize: "88x88"), class: "community-member-profile-image" %>
+                          <%= image_tag communityUser.user.profile_image.variant(gravity: :center, resize:"88x88^", crop:"88x88+0+0"), class: "community-member-profile-image" %>
                         <% else %>
                           <%= image_tag("f_f_event_98_s512_f_event_98_0bg.jpg", style: "width: 88px; height: 88px;", class: "community-member-profile-image") %>
                         <% end %>
