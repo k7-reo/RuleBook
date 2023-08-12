@@ -77,3 +77,5 @@ gem 'gon' #RailsからJavaScriptにデータを渡すgem https://qiita.com/mosa_
 gem 'image_processing', '~> 1.12'
 
 gem 'mysql2', '>= 0.4.4' , group: :production
+
+gem "aws-sdk-s3", require: false #本番環境でamazonS3に画像ファイルをアップロードするため。herokuは1日おきに
