@@ -136,10 +136,10 @@
             var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             var seconds = Math.floor((distance % (1000 * 60)) / 1000);
             // 出力する内容
-            if (distance < 0) { // タイマー終了後
+            if (document.getElementById("goalCountTimer") && distance < 0) { // タイマー終了後
               document.getElementById("goalCountTimer").innerHTML = "制限時間終了です";
               clearInterval(x);
-            } else { // 期限内
+            } else if(document.getElementById("goalCountTimer")) { // 期限内
               document.getElementById("goalCountTimer").innerHTML = days + "<span>日</span>" + hours + "<span>時間</span>" + minutes + "<span>分</span>" + seconds + "<span>秒</span>";
             }
           }, 1000);
@@ -158,14 +158,14 @@
           var days = Math.ceil((Date.parse(tgday) - now.getTime()) / (24 * 60 * 60 * 1000));
 
           // 表示開始
-          if(days == 0) {
+          if(document.getElementById("meetingCountTimer") && days == 0) {
             document.getElementById("meetingCountTimer").innerHTML = "会議当日です"; // 指定日当日の表示
           }
-          else if(days < 0) {
+          else if(document.getElementById("meetingCountTimer") && days < 0) {
             days = Math.abs(days);
             document.getElementById("meetingCountTimer").innerHTML =  days + "日経過"; // 指定日後の表示
           }
-          else {
+          else if(document.getElementById("meetingCountTimer")){
             document.getElementById("meetingCountTimer").innerHTML = "あと" + days + "日"; // 指定日前の表示
           }
         }
@@ -173,12 +173,14 @@
       // 5秒後にnoticeを非表示にする関数
         setTimeout(function() {
           var noticeElement = document.getElementById("notice");
-          noticeElement.style.display = "none";
+          if (noticeElement) {
+            noticeElement.style.display = "none";
+          }
         }, 5000);
 
       // notice以外をクリックするとnoticeを非表示にするイベントリスナー
         document.addEventListener('click', function(event) {
-          if (!event.target.closest('#notice')) {
+          if (document.getElementById('notice') && !event.target.closest('#notice')) {
             document.getElementById('notice').style.display = 'none';
           }
         });
