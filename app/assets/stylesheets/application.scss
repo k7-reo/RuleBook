@@ -22,7 +22,8 @@ body {
   font-family: 'Open Sans', sans-serif; /* ※全角半角でズレたりしない適切なフォントを選ぶ*/
   background: linear-gradient(160deg, #07868c, #44c48a);
   overflow-x: hidden; /* 画面外の要素を非表示にできる(slide-menu非表示) */
-  height: 100vh;
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
 }
 
 a { /*リンク部*/
@@ -486,5 +487,12 @@ textarea {
   .community-main {
     top: 88px;
     height: calc(100vh - 160px);
+  }
+}
+
+@supports (-webkit-touch-callout: none) {
+  body {
+    /* The hack for Safari */
+    height: -webkit-fill-available;
   }
 }
