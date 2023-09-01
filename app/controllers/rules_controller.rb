@@ -47,21 +47,26 @@ class RulesController < ApplicationController
         user.save
       end
     end
-    if @rule.save
-      newRecord = Record.new
-      newRecord.community_id = @community.id
-      newRecord.rule_id = @rule.id
-      newRecord.content = @rule.content
-      newRecord.point = @rule.point
-      newRecord.genre = @rule.genre
-      newRecord.user_id = current_user.id
-      newRecord.updating_user_id = current_user.id
-      newRecord.version = 1
-      newRecord.action_type = "Rule"
-      newRecord.save
-      redirect_to community_rules_path(@community.id)
+    if @rule.valid?(:create_positive) # バリデーションをチェックする際にコンテキストを指定
+      if @rule.save
+        newRecord = Record.new
+        newRecord.community_id = @community.id
+        newRecord.rule_id = @rule.id
+        newRecord.content = @rule.content
+        newRecord.point = @rule.point
+        newRecord.genre = @rule.genre
+        newRecord.user_id = current_user.id
+        newRecord.updating_user_id = current_user.id
+        newRecord.version = 1
+        newRecord.action_type = "Rule"
+        newRecord.save
+        redirect_to community_rules_path(@community.id)
+      else
+        @currentUser = CommunityUser.find_by(user_id: current_user.id, community_id: params[:community_id])
+        render 'new_positive'
+      end
     else
-      @currentUser = CommunityUser.find_by(user_id: current_user.id, community_id: params[:community_id]) #community-info表示に利用
+      @currentUser = CommunityUser.find_by(user_id: current_user.id, community_id: params[:community_id])
       render 'new_positive'
     end
   end
@@ -84,22 +89,27 @@ class RulesController < ApplicationController
         user.save
       end
     end
-    if @rule.save
-      newRecord = Record.new
-      newRecord.community_id = @community.id
-      newRecord.rule_id = @rule.id
-      newRecord.content = @rule.content
-      newRecord.point = @rule.point
-      newRecord.genre = @rule.genre
-      newRecord.user_id = current_user.id
-      newRecord.updating_user_id = current_user.id
-      newRecord.version = 1
-      newRecord.action_type = "Rule"
-      newRecord.save
-      redirect_to community_rules_path(@community.id)
+    if @rule.valid?(:create_negative) # バリデーションをチェックする際にコンテキストを指定
+      if @rule.save
+        newRecord = Record.new
+        newRecord.community_id = @community.id
+        newRecord.rule_id = @rule.id
+        newRecord.content = @rule.content
+        newRecord.point = @rule.point
+        newRecord.genre = @rule.genre
+        newRecord.user_id = current_user.id
+        newRecord.updating_user_id = current_user.id
+        newRecord.version = 1
+        newRecord.action_type = "Rule"
+        newRecord.save
+        redirect_to community_rules_path(@community.id)
+      else
+        @currentUser = CommunityUser.find_by(user_id: current_user.id, community_id: params[:community_id]) #community-info表示に利用
+        render 'new_negative'
+      end
     else
-      @currentUser = CommunityUser.find_by(user_id: current_user.id, community_id: params[:community_id]) #community-info表示に利用
-      render 'new_positive'
+      @currentUser = CommunityUser.find_by(user_id: current_user.id, community_id: params[:community_id])
+      render 'new_negative'
     end
   end
 

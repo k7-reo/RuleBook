@@ -63,7 +63,7 @@
             </div>
             <div class="form-section">
               <label><%= f.label :point, "ポイント増減", class: "form-label" %><span class="form-note">必須</span></label>
-              <div><%= f.text_field :point, placeholder:"マイナス指定可、半角数字", class: "form-area-small" %></div>
+              <div><%= f.text_field :point, placeholder:"減点ルールの場合は「-」指定、半角数字", class: "form-area-small" %></div>
               <div id="error_explanation">
                 <% if @rule.errors.any? && @rule.errors.has_key?(:point) %>
                   <ul class="all-error-messages">
