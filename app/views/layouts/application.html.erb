@@ -91,16 +91,18 @@
         var profileImage = document.querySelector('.sign-in-user-profile-image-cta');
         var slideMenu = document.querySelector('.slide-menu');
 
-        profileImage.addEventListener('click', () => {
-          slideMenu.classList.toggle('show-menu'); // show-menuクラスをトグルで付与・削除する
-        });
+        if (addEventListener) {
+          profileImage.addEventListener('click', () => {
+            slideMenu.classList.toggle('show-menu'); // show-menuクラスをトグルで付与・削除する
+          });
 
-        document.addEventListener('click', (event) => {
-          if (!event.target.closest('.slide-menu') && !event.target.matches('.sign-in-user-profile-image-cta')) {
-            // クリックされた要素がslide-menu自体ではなく、かつprofileImageでもない場合、show-menuクラスを削除する
-            slideMenu.classList.remove('show-menu');
-          }
-        });
+          document.addEventListener('click', (event) => {
+            if (!event.target.closest('.slide-menu') && !event.target.matches('.sign-in-user-profile-image-cta')) {
+              // クリックされた要素がslide-menu自体ではなく、かつprofileImageでもない場合、show-menuクラスを削除する
+              slideMenu.classList.remove('show-menu');
+            }
+          });
+        }
 
       //コミュニティ詳細表示の動き
         $(document).ready(function() {
